@@ -125,7 +125,9 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -8910720602657178419, guid: 60166b3fd20bfda47b4e8fecdb06f835, type: 2}
+  - {fileID: 11400000, guid: 930c50dfbc61c374fbeca171db209e98, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -674,7 +676,9 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: AMPLIFY_SHADER_EDITOR
+    7: AMPLIFY_SHADER_EDITOR
   platformArchitecture: {}
   scriptingBackend:
     Standalone: 1
