@@ -5,16 +5,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class SimmulatorManager : MonoBehaviour
 {
+#if UNITY_EDITOR
     // Rig
     public XRRig Rig = null;
 
-    // HMD + Controllers
-    public Camera HMDCamera = null;
-    public XRController RightController = null;
-    public XRController LeftController = null;
+    // HMD + CharacterController + Controllers
+    public Camera HMDCamera                     = null;
+    public CharacterController CharController   = null;
+    public XRController RightController         = null;
+    public XRController LeftController          = null;
 
     // Simmulators
-    private HeadsetSimmulator HMDSimmulator = null;
+    private HeadsetSimmulator HMDSimmulator         = null;
     private ControllerSimulator ControllerSimulator = null;
 
 
@@ -23,6 +25,8 @@ public class SimmulatorManager : MonoBehaviour
         if(Rig == null) Rig = FindObjectOfType<XRRig>();
 
         HMDCamera = Rig.GetComponentInChildren<Camera>();
+        CharController = Rig.GetComponentInChildren<CharacterController>();
+
 
         XRController[] controllers = Rig.GetComponentsInChildren<XRController>();
         foreach(XRController controller in controllers)
@@ -37,14 +41,5 @@ public class SimmulatorManager : MonoBehaviour
         ControllerSimulator = GetComponent<ControllerSimulator>();
         if (ControllerSimulator != null) ControllerSimulator.Init(this);
     }
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+#endif
 }

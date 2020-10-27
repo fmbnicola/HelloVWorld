@@ -8,15 +8,16 @@ using UnityEditor;
 public class ControllerSimulator : MonoBehaviour
 {
 #if UNITY_EDITOR
-    public float controllerDefaultDistance = 1;
-    public float controllerMaxDistance = 2;
-    public float controllerMinDistance = 0;
-    public float scrollWheelToDistance = 0.1f;
-    public KeyCode selectKey = KeyCode.Mouse1;
-    public KeyCode activateKey = KeyCode.Return;
-    public KeyCode triggerKey = KeyCode.Return;
-    public KeyCode gripKey = KeyCode.Mouse1;
-    public KeyCode switchControllerKey = KeyCode.BackQuote;
+    public float controllerDefaultDistance  = 1;
+    public float controllerMaxDistance      = 2;
+    public float controllerMinDistance      = 0;
+    public float scrollWheelToDistance      = 0.1f;
+
+    public KeyCode selectKey            = KeyCode.Mouse1;
+    public KeyCode activateKey          = KeyCode.Return;
+    public KeyCode triggerKey           = KeyCode.Return;
+    public KeyCode gripKey              = KeyCode.Mouse1;
+    public KeyCode switchControllerKey  = KeyCode.BackQuote;
 
     [System.Serializable]
     public enum ControllerType { Right, Left};
