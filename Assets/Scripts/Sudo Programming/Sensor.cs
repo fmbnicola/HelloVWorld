@@ -12,7 +12,8 @@ public class Sensor
 
     public ID Id { get; protected set; }
 
-    Sensor(ID id)
+
+    public Sensor(ID id)
     {
         this.Id = id;
     }

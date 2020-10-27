@@ -16,10 +16,12 @@ public class Instruction : CodeNode
 
     public bool Complete = false;
 
-    Instruction(ID id, CodeNode context, CodeNode prev, CodeNode next) : base(context, prev, next)
+
+    public Instruction(ID id, CodeNode context, CodeNode prev) : base(context, prev)
     {
         this.Id = id;
     }
+
 
     public bool Execute(Transform robot) // Replace with the MonoBehaviour class
     {

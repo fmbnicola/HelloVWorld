@@ -12,7 +12,7 @@ public class Value
 
     public ID Id { get; protected set; }
 
-    Value(ID id)
+    public Value(ID id)
     {
         this.Id = id;
     }

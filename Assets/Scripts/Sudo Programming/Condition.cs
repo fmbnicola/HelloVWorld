@@ -9,7 +9,7 @@ public class Condition
     public Comparator Comparator { get; protected set; }
 
 
-    Condition(Sensor sensor, Value value, Comparator comparator)
+    public Condition(Sensor sensor, Value value, Comparator comparator)
     {
         this.Sensor = sensor;
         this.Value = value;
