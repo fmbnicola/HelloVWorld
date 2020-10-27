@@ -5,12 +5,11 @@ using UnityEngine;
 public class While : CodeNode
 {
     public Condition Condition { get; protected set; }
-    public CodeNode NextIfTrue { get; protected set; }
+    public CodeNode NextIfTrue;
 
-    While(CodeNode context, CodeNode prev, CodeNode next, Condition cond, CodeNode nextTrue) : base(context, prev, next)
+    public While(CodeNode context, CodeNode prev, Condition cond) : base(context, prev)
     {
         this.Condition = cond;
-        this.NextIfTrue = nextTrue;
     }
 
     public CodeNode GetNext(Transform robot) // Replace with the MonoBehaviour class

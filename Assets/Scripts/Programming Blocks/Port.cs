@@ -23,7 +23,7 @@ public class Port : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.Block.RegisterPort(this);
     }
 
     // Update is called once per frame
@@ -33,5 +33,20 @@ public class Port : MonoBehaviour
         {
             Debug.DrawLine(this.transform.position, this.ConnectedTo.transform.position);
         }
+    }
+
+    public Types GetPortType()
+    {
+        return this.Type;
+    }
+
+    public Port GetConnectedTo()
+    {
+        return this.ConnectedTo;
+    }
+
+    public ProgrammingBlock GetBlock()
+    {
+        return this.Block;
     }
 }

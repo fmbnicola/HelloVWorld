@@ -16,7 +16,8 @@ public class Comparator
 
     public ID Id { get; protected set; }
 
-    Comparator(ID id)
+
+    public Comparator(ID id)
     {
         this.Id = id;
     }
