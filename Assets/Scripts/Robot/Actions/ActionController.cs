@@ -8,6 +8,11 @@ namespace Robot.Actions
 {
     public class ActionController : MonoBehaviour
     {
+        private Action CurrentAction { get; set; }
+
+
+
+
         #region === Unity Events ===
 
         // Start is called before the first frame update
@@ -28,21 +33,27 @@ namespace Robot.Actions
 
         #region === Action Methods ===
 
-        public void Execute(Instruction instruction)
+        public void Execute(CodeNode programLine)
         {
+            this.CurrentAction = new Action(this.transform, programLine);
 
+            bool complete = this.CurrentAction.Execute();
+
+            if (complete)
+            {
+                this.CurrentAction = null;
+            }
         }
 
 
-        public void Execute(If instruction)
+        public bool CurrentActionCompleted()
         {
+            if (this.CurrentAction != null)
+            {
+                return this.CurrentAction.Completed();
+            }
 
-        }
-
-
-        public void Execute(While instruction)
-        {
-
+            return true;
         }
 
         #endregion

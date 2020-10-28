@@ -13,6 +13,10 @@ public class CodeNode
 
     public CodeNode Next;
 
+    // added by miguel
+    public bool Complete = false;
+
+
 
     public CodeNode(CodeNode context, CodeNode prev)
     {
@@ -22,8 +26,12 @@ public class CodeNode
     }
 
 
-    public void Execute(ActionController actionController)
+    public bool Execute(ActionController robotActuator)
     {
-        //actionController.Execute(this);
+        // TODO: backend stuff
+
+        robotActuator.Execute(this);
+
+        return this.Complete;
     }
 }
