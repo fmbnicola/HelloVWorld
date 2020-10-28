@@ -23,13 +23,24 @@ namespace Robot
         void Start()
         {
             this.ActionController = this.transform.GetComponent<ActionController>();
+
+            this.Program = null;
         }
 
 
         // Update is called once per frame
         void Update()
         {
-            this.ExecuteProgram();
+            //this.ExecuteProgram();
+        }
+
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (this.Program == null && other.CompareTag("Disk"))
+            {
+                this.LoadProgram(other.gameObject);
+            }
         }
 
         #endregion
@@ -38,17 +49,17 @@ namespace Robot
 
         #region === Program Methods ===
 
-        public void LoadProgram(CodeNode programHead)
+        public void LoadProgram(GameObject disk)
         {
-            this.Program = programHead;
+            // get program head from floppy disk
+            this.Program = new CodeNode(null, null);
+            Debug.Log("Program loaded");
         }
 
 
         private void ExecuteProgram()
         {
             CodeNode instruction = this.Program;
-
-
         }
 
         #endregion
