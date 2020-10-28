@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8615569817459953248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8615569817459953243}
+  - component: {fileID: 8615569817459953247}
+  - component: {fileID: 8615569817459953246}
+  - component: {fileID: 8615569817459953249}
+  - component: {fileID: 1407917656}
+  m_Layer: 9
+  m_Name: XR Rig Emulator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8615569817459953243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8615569817459953247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fa20a8053cb0f4ba84a106812daac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 0}
+  HMDCamera: {fileID: 0}
+  CharController: {fileID: 0}
+  RightController: {fileID: 0}
+  LeftController: {fileID: 0}
+--- !u!114 &8615569817459953246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e74b21409f5a346ad924e7f004d98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerDefaultDistance: 1
+  controllerMaxDistance: 3
+  controllerMinDistance: 0
+  scrollWheelToDistance: 0.1
+  selectKey: 324
+  activateKey: 13
+  triggerKey: 13
+  gripKey: 324
+  switchControllerKey: 9
+  DefaultController: 1
+--- !u!114 &8615569817459953249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c35af68711833f488efe2e7d8fe3414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  Height: 1.7
+  FowardKey: 119
+  LeftKey: 97
+  BackwardKey: 115
+  RightKey: 100
+  mouseSensitivityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 3.8503706
+      outSlope: 3.8503706
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.04226452
+    - serializedVersion: 3
+      time: 0.9984131
+      value: 1.8849144
+      inSlope: 0.006586095
+      outSlope: 0.006586095
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.58851904
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationLerpTime: 0.01
+--- !u!114 &1407917656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dac210a80c64f089652dec17dda8e47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fontColor: {r: 0.82, g: 0.82, b: 0.82, a: 1}
+  richTextTagMap: 010101010101010101010101010101010101010101010101010101000000000000000000000000000000000001010101010101010101010101010100000000000000000000000000000000000000000000000000000000000000000000000000000000010101010101010101010101010101010000000000000000000000000000000001010101010101010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010101010101010101010101010101000000000001010101010101010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000000000000000000000000010101010101010100
+  font: {fileID: 0}
+  fontSize: 12
+  iconBeingUsed: 1
+  useTackIcon: 1
+  readonlyMode: 0
+  activeSettings:
+    name: Paid
+    id: 30c0eca9-01de-41b5-bf2e-1a8e9a1206f7
+    path: Assets/Packages/TP/Readme/Editor\..\Settings
+    fileName: Paid
+    redistributable: 0
+    lite: 0
+    priority: 5
+    type: json
+  allSettings:
+  - name: Free
+    id: 817f8bd3-6a31-4b68-a1dc-7c2bb2b78c46
+    path: Assets/Packages/TP/Readme/Settings
+    fileName: Free
+    redistributable: 1
+    lite: 0
+    priority: 10
+    type: json
+  - name: Lite
+    id: f3de355d-ddb4-4eee-bf3d-388f95ac3ad0
+    path: Assets/Packages/TP/Readme/Settings
+    fileName: Lite
+    redistributable: 0
+    lite: 1
+    priority: 7
+    type: json
+  - name: New
+    id: f3de355d-ddb4-4eee-bf3d-388f95ac3ad0
+    path: Assets/Packages/TP/Readme/Settings
+    fileName: New
+    redistributable: 0
+    lite: 0
+    priority: 1000
+    type: json
+  - name: Paid
+    id: 30c0eca9-01de-41b5-bf2e-1a8e9a1206f7
+    path: Assets/Packages/TP/Readme/Editor\..\Settings
+    fileName: Paid
+    redistributable: 0
+    lite: 0
+    priority: 5
+    type: json
+  readmeData:
+    richText: "<size=\"16\"><color=\"#00000\">XR Rig Simmulator</color></size>\nSimmulate
+      XR HMD and Controller Input\n\n<color=\"#00000\">DEFAULT CONTROLS</color>\n---------------------\nWASD             
+      -   Walk\nMouse\t          -   Look\nTab                   -   Switch controller\nLeftClick        
+      -   Move controller\nRightClick       -   Grab with controller\nMiddleClick   
+      -   Rotate Controller\nMouseWheel  -   Change controller distance\n\n<color=\"#00000\">Note:</color>\nIf
+      you are grabbing on one controller when you switch to the other, that controller
+      will keep grabbing untill you switch back,\nThis allows you to simulate two
+      hand interaction.\n\n<color=\"#FF6262\">Disable this object when building to
+      PC!</color>\n"
+    textAreaObjectFields: []
+    objectIdPairs:
+    - name: None (12)
+      id: 12
+      objectRef: {fileID: 0}
+    - name: None (0)
+      id: 0
+      objectRef: {fileID: 0}
+    - name: None (9)
+      id: 9
+      objectRef: {fileID: 0}
+    - name: Directional Light (UnityEngine.Light) (14)
+      id: 14
+      objectRef: {fileID: 0}
+    - name: Directional Light (UnityEngine.GameObjec... (13)
+      id: 13
+      objectRef: {fileID: 0}
+    - name: Assets (UnityEngine.DefaultAsset) (15)
+      id: 15
+      objectRef: {fileID: 102900000, guid: d9d75b32554482147852c176f3b3ac19, type: 3}
+    - name: Demo (UnityEngine.DefaultAsset) (1)
+      id: 1
+      objectRef: {fileID: 102900000, guid: e2dcc7397f3c7f5478bf2e2b87af728f, type: 3}
+    - name: Example (UnityEngine.SceneAsset) (16)
+      id: 16
+      objectRef: {fileID: 102900000, guid: 8705acb24e8a40641a8e8a68b3078955, type: 3}
+    - name: Documentation (UnityEngine.DefaultAsset) (17)
+      id: 17
+      objectRef: {fileID: 102900000, guid: b61ea80bb3631c344b90b1eacc32da4a, type: 3}
+    - name: Cylinder (UnityEngine.GameObject) (18)
+      id: 18
+      objectRef: {fileID: 0}
+    - name: Readme (UnityEngine.GameObject) (19)
+      id: 19
+      objectRef: {fileID: 0}
+    - name: ReadmeManager (UnityEngine.MonoScript) (20)
+      id: 20
+      objectRef: {fileID: 11500000, guid: 9c0cd4005c8f32a4295471dcd0ec2ec8, type: 3}
+    - name: README (UnityEngine.DefaultAsset) (21)
+      id: 21
+      objectRef: {fileID: 102900000, guid: 9f51b8cdf8b0f0142b8e8b03a8f847b2, type: 3}
+    - name: Readme (UnityEngine.GameObject) (22)
+      id: 22
+      objectRef: {fileID: 1554221016812988, guid: 21e0be3a2c0fa8e4da0586919fb26d36,
+        type: 3}
