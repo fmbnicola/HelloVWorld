@@ -7,9 +7,9 @@ namespace Robot.Actions
 {
     public class Action 
     {
-        private Transform Robot { get; set; }
+        protected Transform Robot { get; set; }
 
-        private CodeNode ProgramLine { get; set; }
+        protected CodeNode ProgramLine { get; set; }
 
 
 
@@ -21,14 +21,12 @@ namespace Robot.Actions
 
 
 
-        public bool Execute()
+        virtual public void Execute()
         {
             Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
 
             // the line is done because the robot does not need to do nothing
             this.ProgramLine.Complete = true;
-
-            return this.ProgramLine.Complete;
         }
 
 

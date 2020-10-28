@@ -33,19 +33,6 @@ namespace Robot.Actions
 
         #region === Action Methods ===
 
-        public void Execute(CodeNode programLine)
-        {
-            this.CurrentAction = new Action(this.transform, programLine);
-
-            bool complete = this.CurrentAction.Execute();
-
-            if (complete)
-            {
-                this.CurrentAction = null;
-            }
-        }
-
-
         public bool CurrentActionCompleted()
         {
             if (this.CurrentAction != null)
@@ -54,6 +41,39 @@ namespace Robot.Actions
             }
 
             return true;
+        }
+
+
+        public void Execute(Instruction programLine)
+        {
+            switch (programLine.Id)
+            {
+                case Instruction.ID.Walk:
+                    this.CurrentAction = new Walk(this.transform, programLine);
+                    break;
+                
+                case Instruction.ID.Grab:
+                    break;
+                
+                case Instruction.ID.Drop:
+                    break;
+                
+                case Instruction.ID.Rotate:
+                    break;
+
+                default:
+                    throw new System.Exception("Unknow Instruction");
+            }
+
+            this.CurrentAction.Execute();
+        }
+
+
+        public void Execute(CodeNode programLine)
+        {
+            this.CurrentAction = new Action(this.transform, programLine);
+
+            this.CurrentAction.Execute();
         }
 
         #endregion

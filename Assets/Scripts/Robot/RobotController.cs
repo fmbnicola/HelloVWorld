@@ -55,11 +55,23 @@ namespace Robot
 
         #region === Program Methods ===
 
+        private void createProgram()
+        {
+            CodeNode Line1 = new CodeNode(null, null);
+
+            CodeNode Line2 = new CodeNode(null, Line1);
+            Line1.Next = Line2;
+
+            CodeNode Line3 = new Instruction(Instruction.ID.Walk, null, Line2);
+            Line2.Next = Line3;
+
+            this.Program = Line1;
+        }
+
         public void LoadProgram(GameObject disk)
         {
             // TODO: get program head from floppy disk
-            this.Program = new CodeNode(null, null);
-            this.Program.Next = new CodeNode(null, this.Program);
+            this.createProgram();
             Debug.Log("Program loaded");
 
             // TODO: only start execution after clicking the start button

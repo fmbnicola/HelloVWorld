@@ -26,7 +26,7 @@ public class CodeNode
     }
 
 
-    public bool Execute(ActionController robotActuator)
+    virtual public bool Execute(ActionController robotActuator)
     {
         // TODO: backend stuff
 
