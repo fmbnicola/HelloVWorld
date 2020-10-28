@@ -53,12 +53,15 @@ namespace Robot.Actions
                     break;
                 
                 case Instruction.ID.Grab:
+                    this.CurrentAction = new Grab(this.transform, programLine);
                     break;
                 
                 case Instruction.ID.Drop:
+                    this.CurrentAction = new Drop(this.transform, programLine);
                     break;
                 
                 case Instruction.ID.Rotate:
+                    this.CurrentAction = new Rotate(this.transform, programLine);
                     break;
 
                 default:

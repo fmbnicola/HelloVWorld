@@ -65,6 +65,15 @@ namespace Robot
             CodeNode Line3 = new Instruction(Instruction.ID.Walk, null, Line2);
             Line2.Next = Line3;
 
+            CodeNode Line4 = new Instruction(Instruction.ID.Grab, null, Line3);
+            Line3.Next = Line4;
+
+            CodeNode Line5 = new Instruction(Instruction.ID.Drop, null, Line4);
+            Line4.Next = Line5;
+
+            CodeNode Line6 = new Instruction(Instruction.ID.Rotate, null, Line5);
+            Line5.Next = Line6;
+
             this.Program = Line1;
         }
 
