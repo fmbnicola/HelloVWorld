@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Actions;
+
+
+
 public class CodeNode
 {
     public CodeNode ContextNode { get; protected set; }
@@ -15,5 +19,11 @@ public class CodeNode
         this.ContextNode = context;
 
         this.Previous = prev;
+    }
+
+
+    public void Execute(ActionController actionController)
+    {
+        //actionController.Execute(this);
     }
 }

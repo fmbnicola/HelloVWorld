@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Actions;
+
 
 
 namespace Robot
 {
     public class RobotController : MonoBehaviour
     {
+        private ActionController ActionController { get; set; }
+
+
         // TODO: change to correct type
-        private List<Object> Program { get; set; }
+        private List<CodeNode> Program { get; set; }
 
 
 
@@ -18,7 +23,7 @@ namespace Robot
         // Start is called before the first frame update
         void Start()
         {
-
+            this.ActionController = this.transform.GetComponent<ActionController>();
         }
 
 
@@ -34,7 +39,7 @@ namespace Robot
 
         #region === Program Methods ===
 
-        public void LoadProgram(List<Object> newProgram)
+        public void LoadProgram(List<CodeNode> newProgram)
         {
             this.Program = newProgram;
         }
@@ -42,9 +47,10 @@ namespace Robot
 
         public void ExecuteProgram()
         {
-            foreach(Object instruction in this.Program)
+            foreach(CodeNode instruction in this.Program)
             {
-                // this.ActionController.Execute(instruction);
+                //instruction.Execute(this.ActionController);
+                //this.ActionController.Execute(instruction);
             }
         }
 
