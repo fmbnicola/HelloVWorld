@@ -13,8 +13,7 @@ namespace Robot
         private ActionController ActionController { get; set; }
 
 
-        // TODO: change to correct type
-        private List<CodeNode> Program { get; set; }
+        private CodeNode Program { get; set; }
 
 
 
@@ -30,7 +29,7 @@ namespace Robot
         // Update is called once per frame
         void Update()
         {
-
+            this.ExecuteProgram();
         }
 
         #endregion
@@ -39,19 +38,17 @@ namespace Robot
 
         #region === Program Methods ===
 
-        public void LoadProgram(List<CodeNode> newProgram)
+        public void LoadProgram(CodeNode programHead)
         {
-            this.Program = newProgram;
+            this.Program = programHead;
         }
 
 
-        public void ExecuteProgram()
+        private void ExecuteProgram()
         {
-            foreach(CodeNode instruction in this.Program)
-            {
-                //instruction.Execute(this.ActionController);
-                //this.ActionController.Execute(instruction);
-            }
+            CodeNode instruction = this.Program;
+
+
         }
 
         #endregion
