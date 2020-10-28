@@ -117,24 +117,19 @@ public class HeadsetSimmulator : MonoBehaviour
 
     private void CheckForViewChange()
     {
-        if (Input.GetMouseButton(1))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+       
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
-            var mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") * -1);
-            var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
+        var mouseMovement = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y") * -1);
+        var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
+        if (Input.GetMouseButton(2)) mouseMovement = Vector2.zero;
 
-            TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
-            TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
+        TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
+        TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
 
-            HandleViewChange();
-        }
-        else
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        HandleViewChange();
+ 
     }
 
     private void HandleViewChange()

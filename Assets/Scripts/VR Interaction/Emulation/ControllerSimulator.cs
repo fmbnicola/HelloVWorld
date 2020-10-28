@@ -25,8 +25,22 @@ public class ControllerSimulator : MonoBehaviour
 
     private SimmulatorManager Manager = null;
 
-    private XRController m_xrController;
-    private ControllerType m_currentSelected;
+    //Controller encapsulating class
+    private class Controller
+    {
+        public XRController XRController;
+        public bool Select = false;
+
+        public Controller(XRController xrcontroller)
+        {
+            XRController = xrcontroller;
+        }
+    }
+
+    private List<Controller> Controllers;
+    private ControllerType ActiveControllerType;
+    private Controller ActiveController;
+
     private float m_distance = 0;
 
     // Initialisation
@@ -34,20 +48,23 @@ public class ControllerSimulator : MonoBehaviour
     {
         Manager = _manager;
 
-        m_currentSelected = DefaultController;
+        Controllers = new List<Controller>();
+        Controllers.Add(new Controller(Manager.RightController));
+        Controllers.Add( new Controller(Manager.LeftController));
+
+        ActiveControllerType = DefaultController;
         SetController();
     }
 
     private void SetController()
     {
-        if (m_currentSelected == ControllerType.Right) m_xrController = Manager.RightController;
-        if (m_currentSelected == ControllerType.Left) m_xrController = Manager.LeftController;
+        ActiveController = Controllers[(int) ActiveControllerType];
     }
 
     // Type Manipulation
     private Type GetNestedType(object obj, string typeName)
     {
-        foreach (var type in m_xrController.GetType().GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public))
+        foreach (var type in obj.GetType().GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Public))
         {
             if (type.Name == typeName)
             {
@@ -68,14 +85,24 @@ public class ControllerSimulator : MonoBehaviour
         return enumValues;
     }
 
-    private void UpdateXRControllerState(string interaction, KeyCode inputKey)
+    private void UpdateXRControllerState(XRController controller, string interaction, KeyCode inputKey)
     {
         // Update interaction state
         bool state = Input.GetKey(inputKey);
-        Type interactionTypes = GetNestedType(m_xrController, "InteractionTypes");
+        Type interactionTypes = GetNestedType(controller, "InteractionTypes");
         Dictionary<string, object> interactionTypesEnum = GetEnumValues(interactionTypes);
-        MethodInfo updateInteractionType = m_xrController.GetType().GetMethod("UpdateInteractionType", BindingFlags.NonPublic | BindingFlags.Instance);
-        updateInteractionType.Invoke(m_xrController, new object[] { interactionTypesEnum[interaction], (object)state });
+        MethodInfo updateInteractionType = controller.GetType().GetMethod("UpdateInteractionType", BindingFlags.NonPublic | BindingFlags.Instance);
+        updateInteractionType.Invoke(controller, new object[] { interactionTypesEnum[interaction], (object)state });
+    }
+
+    private void HoldXRControllerState(XRController controller, string interaction)
+    {
+        // Update interaction state
+        bool state = true;
+        Type interactionTypes = GetNestedType(controller, "InteractionTypes");
+        Dictionary<string, object> interactionTypesEnum = GetEnumValues(interactionTypes);
+        MethodInfo updateInteractionType = controller.GetType().GetMethod("UpdateInteractionType", BindingFlags.NonPublic | BindingFlags.Instance);
+        updateInteractionType.Invoke(controller, new object[] { interactionTypesEnum[interaction], (object)state });
     }
 
     private bool GetButtonPressed(InputHelpers.Button button)
@@ -83,9 +110,11 @@ public class ControllerSimulator : MonoBehaviour
         switch (button)
         {
             case InputHelpers.Button.Trigger:
-            return Input.GetKey(triggerKey);
+                return Input.GetKey(triggerKey);
+
             case InputHelpers.Button.Grip:
-            return Input.GetKey(gripKey);
+                return Input.GetKey(gripKey);
+
             default:
             return false;
         }
@@ -95,41 +124,66 @@ public class ControllerSimulator : MonoBehaviour
     {
         // Switch to a different controller?
         if (Input.GetKeyDown(switchControllerKey))
-        {    
+        {
+            //save input state
+            ActiveController.Select = (bool) Input.GetKey(selectKey);
+
             int[] ControllerTypes = (int[]) System.Enum.GetValues(typeof(ControllerType));
             int n = ControllerTypes.Length;
-            int i = (int) m_currentSelected;
-            m_currentSelected = (ControllerType) ((i + 1) % n);
+            int i = (int) ActiveControllerType;
+            ActiveControllerType = (ControllerType) ((i + 1) % n);
             SetController();
 
-            Debug.LogFormat("Switched controller: {0}", m_xrController.name);
+            Debug.LogFormat("Switched controller: {0}", ActiveController.XRController.name);
         }
     
         // Ensure we are overriding ControllerInput as well, which is our wrapper for direct button press detection
-        ControllerInput controllerInput = m_xrController.GetComponent<ControllerInput>();
+        ControllerInput controllerInput = ActiveController.XRController.GetComponent<ControllerInput>();
         if (controllerInput)
         {
             controllerInput.SetButtonPressProvider(GetButtonPressed);
         }
     
-        // Controller movement
+        // Controller Movement
         float scroll = Input.mouseScrollDelta.y;
         if (Input.GetMouseButton(0) || scroll != 0)
         {
-            // Scroll wheel controls depth
+            // Scroll wheel controls distance
             m_distance += scroll * scrollWheelToDistance;
             float depthOffset = Mathf.Clamp(controllerDefaultDistance + m_distance, controllerMinDistance, controllerMaxDistance);
 
             // Mouse position sets position in XY plane at current depth
             Vector3 screenPos = Input.mousePosition;
             Ray ray = Manager.HMDCamera.ScreenPointToRay(screenPos);
+            
+            // Position controller
             Vector3 position = ray.origin + ray.direction * depthOffset;
-            m_xrController.transform.position = position;
+            ActiveController.XRController.transform.position = position;
+        }
+
+        // Controller Rotation
+        if (Input.GetMouseButton(2))
+        {
+            var mouseMovement = new Vector2(Input.GetAxis("Mouse X") * -1, Input.GetAxis("Mouse Y"));
+
+            var transform = ActiveController.XRController.transform;
+
+            transform.RotateAround(transform.position, Vector3.up, mouseMovement.x);
+            var axis = Vector3.Cross(Vector3.up, Manager.HMDCamera.transform.forward);
+            transform.RotateAround(transform.position, axis, mouseMovement.y);
         }
 
         // Interaction states
-        UpdateXRControllerState("select", selectKey);
-        UpdateXRControllerState("activate", activateKey);
+        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
+        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
+
+        //Hold input state for inactive controllers
+        foreach(Controller controller in Controllers)
+        {
+            if (controller != ActiveController && controller.Select) {
+                HoldXRControllerState(controller.XRController, "select");
+            }
+        }
     }
 
 #endif
