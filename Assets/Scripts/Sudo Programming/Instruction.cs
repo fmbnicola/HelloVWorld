@@ -29,8 +29,6 @@ public class Instruction : CodeNode
 
     override public bool Execute(ActionController robotActuator)
     {
-        // TODO: backend stuff
-
         robotActuator.Execute(this);
 
         return this.Complete;
