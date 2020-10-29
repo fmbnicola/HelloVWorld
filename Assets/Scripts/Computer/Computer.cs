@@ -88,19 +88,8 @@ public class Computer : MonoBehaviour
 
             while(block != null)
             {
-               
-                var node = block.Parse(null, prev);
+                this.transform.Find("FloppyDisk").gameObject.GetComponent<FloppyDisk>().codeHead = head;
 
-                if (head == null) head = node;
-                else
-                {
-                    prev.Next = node;
-
-                }
-
-                prev = node;
-
-                block = block.GetNext();
             }
 
             if (this.transform.Find("FloppyDisk") != null)
