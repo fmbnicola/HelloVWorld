@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Actions;
+
+
+
 public class Instruction : CodeNode
 {
     public enum ID
@@ -14,7 +18,7 @@ public class Instruction : CodeNode
 
     public ID Id { get; protected set; }
 
-    public bool Complete = false;
+    //public bool Complete = false;
 
 
     public Instruction(ID id, CodeNode context, CodeNode prev) : base(context, prev)
@@ -23,9 +27,11 @@ public class Instruction : CodeNode
     }
 
 
-    public bool Execute(Transform robot) // Replace with the MonoBehaviour class
+    override public bool Execute(ActionController robotActuator)
     {
-        //this.Complete = robot.Do(this.Id);
+        // TODO: backend stuff
+
+        robotActuator.Execute(this);
 
         return this.Complete;
     }

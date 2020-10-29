@@ -21,7 +21,7 @@ public class InstructionBlock : ProgrammingBlock
     }
 
 
-    override public CodeNode Parse(CodeNode context, CodeNode prev)
+    public override CodeNode Parse(CodeNode context, CodeNode prev)
     {
         return new Instruction(this.Id, context, prev);
     }

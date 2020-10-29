@@ -52,7 +52,7 @@ public class ProgrammingBlock : MonoBehaviour
         return null;
     }
 
-    virtual public CodeNode Parse(CodeNode context, CodeNode next)
+    public virtual CodeNode Parse(CodeNode context, CodeNode next)
     {
         return null;
     }
