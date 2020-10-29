@@ -10,6 +10,16 @@ public class ComputerButton : MonoBehaviour
     [SerializeField]
     private Computer Computer;
 
+    public enum Types
+    {
+        StartUp,
+        Save,
+        ShutDown,
+        Clear
+    }
+
+    public Types Type = Types.Save;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +33,24 @@ public class ComputerButton : MonoBehaviour
         {
             this.Clicked = false;
 
-            this.Computer.Parse();
+            switch(this.Type)
+            {
+                default:
+                    break;
+
+                case Types.StartUp:
+                    this.Computer.StartUp();
+                    break;
+
+                case Types.Save:
+                    break;
+
+                case Types.Clear:
+                    break;
+
+                case Types.ShutDown:
+                    break;
+            }
         }
     }
 }
