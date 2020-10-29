@@ -16,6 +16,9 @@ public class Computer : MonoBehaviour
 
     public States State { get; private set; }
 
+    private float StartUpTime = 0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,8 @@ public class Computer : MonoBehaviour
                 break;
 
             case States.StartUp:
+                if (Time.time - this.StartUpTime >= 5)
+                    this.State = States.Active;
                 break;
 
             case States.Active:
@@ -41,7 +46,12 @@ public class Computer : MonoBehaviour
 
     public void StartUp()
     {
-        if (this.State == States.Idle) this.State = States.StartUp;
+        if (this.State == States.Idle)
+        {
+            this.State = States.StartUp;
+
+            this.StartUpTime = Time.time;
+        }
     }
 
     public void Save()

@@ -43,12 +43,14 @@ public class ComputerButton : MonoBehaviour
                     break;
 
                 case Types.Save:
+                    this.Computer.Save();
                     break;
 
                 case Types.Clear:
                     break;
 
                 case Types.ShutDown:
+                    this.Computer.ShutDown();
                     break;
             }
         }
