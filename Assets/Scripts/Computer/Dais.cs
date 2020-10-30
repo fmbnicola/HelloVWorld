@@ -8,11 +8,15 @@ public class Dais : MonoBehaviour
 
     public Computer.States State { get; private set; }
 
+    private Dictionary<GameObject, float> Objects;
+
 
     // Start is called before the first frame update
     void Start()
     {
         this.Computer = this.transform.parent.GetComponent<Computer>();
+
+        this.Objects = new Dictionary<GameObject, float>();
     }
 
     // Update is called once per frame
@@ -57,13 +61,15 @@ public class Dais : MonoBehaviour
                     collider.attachedRigidbody.AddForce(new Vector3(0, 4, 0));
 
                 if (vel.magnitude > 0.5)
+                {
                     collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.95f, vel.y * 0.95f, vel.z * 0.95f);
+                }
                 break;
 
             case Computer.States.Active:
-                if (vel.magnitude > 0.5)
+                if (vel.magnitude > 0)
                 {
-                    collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.95f, vel.y * 0.5f, vel.z * 0.95f);
+                    collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.7f, vel.y * 0.7f, vel.z * 0.7f);
                 }
                     
                 collider.attachedRigidbody.useGravity = false;
