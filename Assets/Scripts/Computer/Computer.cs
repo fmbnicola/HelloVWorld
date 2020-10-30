@@ -12,8 +12,6 @@ public class Computer : MonoBehaviour
 
     public FloppyDisk FloppyDisk;
 
-    public bool HasFloppy;
-
     public enum States
     {
         Idle,
@@ -27,7 +25,7 @@ public class Computer : MonoBehaviour
     void Start()
     {
         this.State = States.Idle;
-        this.HasFloppy = false;
+
         this.Socket = transform.Find("FloppyDiskSocket").GetComponent<XRSocketInteractor>();
         this.Socket.showInteractableHoverMeshes = true;
 
@@ -127,7 +125,6 @@ public class Computer : MonoBehaviour
         Debug.Log("entrei");
         interactable.gameObject.GetComponent<FloppyDisk>().inserted = true;
       //  intera.gameObject.GetComponent<FloppyDisk>().transform.parent = this.transform;
-        this.HasFloppy = true;
         this.FloppyDisk = interactable.gameObject.GetComponent<FloppyDisk>();
     }
 
@@ -136,10 +133,9 @@ public class Computer : MonoBehaviour
         Debug.Log("sai");
         interactable.gameObject.GetComponent<FloppyDisk>().inserted = false;
         // intera.gameObject.transform.parent = null;
-        this.HasFloppy = false;
         this.FloppyDisk = null;
         Debug.Log(interactable.gameObject.GetComponent<FloppyDisk>().codeHead);
     }
 
- 
+
 }

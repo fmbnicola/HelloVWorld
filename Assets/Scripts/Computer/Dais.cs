@@ -8,13 +8,15 @@ public class Dais : MonoBehaviour
 
     public Computer.States State { get; private set; }
 
-    private float AntiGravityForce = 5;
+    private Dictionary<GameObject, float> Objects;
 
 
     // Start is called before the first frame update
     void Start()
     {
         this.Computer = this.transform.parent.GetComponent<Computer>();
+
+        this.Objects = new Dictionary<GameObject, float>();
     }
 
     // Update is called once per frame
@@ -34,13 +36,11 @@ public class Dais : MonoBehaviour
                 break;
 
             case Computer.States.StartUp: //Make them lift off the ground
-                if(collider.attachedRigidbody.velocity.y < 5)
-                    collider.attachedRigidbody.AddForce(new Vector3(0,6,0));
+                if(collider.attachedRigidbody.velocity.y < 0.5)
+                    collider.attachedRigidbody.AddForce(new Vector3(0, 4, 0));
                 break;
 
             case Computer.States.Active: // Turn off their gravity
-                collider.attachedRigidbody.useGravity  = false;
-                collider.attachedRigidbody.isKinematic = true;
                 break;
         }
     }
@@ -49,19 +49,34 @@ public class Dais : MonoBehaviour
     {
         if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
 
+        var vel = collider.attachedRigidbody.velocity;
+
         switch (this.State)
         {
             default:
                 break;
 
             case Computer.States.StartUp: //Make them lift off the ground
-                if (collider.attachedRigidbody.velocity.y < 5)
-                    collider.attachedRigidbody.AddForce(new Vector3(0, 6, 0));
+                if (vel.y < 0.5)
+                    collider.attachedRigidbody.AddForce(new Vector3(0, 4, 0));
+
+                if (vel.magnitude > 0.5)
+                {
+                    collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.95f, vel.y * 0.95f, vel.z * 0.95f);
+                }
+                break;
+
+            case Computer.States.Active:
+                if (vel.magnitude > 0)
+                {
+                    collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.7f, vel.y * 0.7f, vel.z * 0.7f);
+                }
+                    
+                collider.attachedRigidbody.useGravity = false;
                 break;
 
             case Computer.States.Idle:
                 collider.attachedRigidbody.useGravity  = true;
-                collider.attachedRigidbody.isKinematic = false;
                 break;
         }
 
@@ -78,8 +93,7 @@ public class Dais : MonoBehaviour
         if (this.Computer.StartBlock != null && collider.gameObject == this.Computer.StartBlock)
             this.Computer.StartBlock = null;
 
-        // Make sure Gravity and Kinematic are right
+        // Make sure Gravity are right
          collider.attachedRigidbody.useGravity  = true;
-         collider.attachedRigidbody.isKinematic = false;
     }
 }
