@@ -6,6 +6,7 @@ public class FloppyDisk : MonoBehaviour
 {
 
     public bool inserted = false;
+
     public CodeNode codeHead = null;
     // Start is called before the first frame update
     void Start()
