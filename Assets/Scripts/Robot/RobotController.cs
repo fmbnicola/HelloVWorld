@@ -3,19 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Robot.Actions;
-
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Robot
 {
     public class RobotController : MonoBehaviour
     {
+        #region /* Actions Attributes */
+
         private ActionController ActionController { get; set; }
 
+        #endregion
+
+        #region /* Progam Attributes */
+
+        private XRSocketInteractor DiskSocket { get; set; }
+
+        private FloppyDisk Disk { get; set; }
 
         private CodeNode Program { get; set; }
+        private bool ProgramRunning { get; set; }
 
-        private bool ProgramEnded { get; set; }
+        #endregion
 
 
 
@@ -26,26 +35,21 @@ namespace Robot
         {
             this.ActionController = this.transform.GetComponent<ActionController>();
 
+            this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
+            this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
+            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram());
+
             this.Program = null;
-            this.ProgramEnded = false;
+            this.ProgramRunning = false;
         }
 
 
         // Update is called once per frame
         void Update()
         {
-            if (this.Program != null)
+            if (this.ProgramRunning)
             {
                 this.ExecuteProgram();
-            }
-        }
-
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (this.Program == null && other.CompareTag("Disk") && !this.ProgramEnded)
-            {
-                this.LoadProgram(other.gameObject);
             }
         }
 
@@ -77,14 +81,33 @@ namespace Robot
             this.Program = Line1;
         }
 
-        public void LoadProgram(GameObject disk)
+
+        private void LoadProgram(XRBaseInteractable disk)
         {
-            // TODO: get program head from floppy disk
-            this.createProgram();
+            this.Disk = disk.GetComponent<FloppyDisk>();
+            this.Program = this.Disk.codeHead;
+
+            // TODO: remove if
+            if (this.Program == null)
+            {
+                this.createProgram();
+            }
+
             Debug.Log("Program loaded");
 
             // TODO: only start execution after clicking the start button
+            this.ProgramRunning = true;
             this.Program.Execute(this.ActionController);
+        }
+
+
+        private void CloseProgram()
+        {
+            this.Disk = null;
+            this.Program = null;
+            this.ProgramRunning = false;
+
+            Debug.Log("Program info cleaned");
         }
 
 
@@ -100,9 +123,11 @@ namespace Robot
                 }
                 else
                 {
-                    this.ProgramEnded = true;
+                    this.ProgramRunning = false;
+                    this.Program = this.Disk.codeHead;
                     Debug.Log("Program ended");
                 }
+
             }
             else
             {
