@@ -5,6 +5,8 @@ using UnityEngine;
 using Robot.Actions;
 using UnityEngine.XR.Interaction.Toolkit;
 
+
+
 namespace Robot
 {
     public class RobotController : MonoBehaviour
@@ -12,6 +14,8 @@ namespace Robot
         #region /* Robot Info */
         
         public Vector3 Dimensions { get; private set; }
+
+        public Rigidbody Rigidbody { get; private set; }
         
         #endregion
 
@@ -44,11 +48,16 @@ namespace Robot
             this.PrepareActionController();
 
             this.PrepareForProgram();
+
+            //this.createProgram();
+            //this.ProgramRunning = true;
+            //this.Program.Execute(this.ActionController);
+
         }
 
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if (this.ProgramRunning)
             {
@@ -66,6 +75,11 @@ namespace Robot
         {
             BoxCollider robotCollider = this.transform.GetComponent<BoxCollider>();
             this.Dimensions = robotCollider.size;
+
+            this.Rigidbody = this.transform.GetComponent<Rigidbody>();
+
+            //TODO: change when nico finishes new model
+            this.Rigidbody.centerOfMass = new Vector3(0, -0.1f, 0);
         }
 
 
@@ -100,6 +114,7 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
+
         }
 
 
@@ -175,7 +190,7 @@ namespace Robot
             }
             else
             {
-                // TODO: continue current action
+                this.ActionController.Continue();
             }
         }
 

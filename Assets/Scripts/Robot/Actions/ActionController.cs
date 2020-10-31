@@ -19,6 +19,8 @@ namespace Robot.Actions
         #region /* Attributes defined on Editor */
 
         public float WalkMargin;
+        public float Force;
+        public float MaxSpeed;
 
         #endregion
 
@@ -67,12 +69,18 @@ namespace Robot.Actions
         }
 
 
+        public void Continue()
+        {
+            this.CurrentAction.Execute();
+        }
+
+
         public void Execute(Instruction programLine)
         {
             switch (programLine.Id)
             {
                 case Instruction.ID.Walk:
-                    this.CurrentAction = new Walk(this.Robot, programLine);
+                    this.CurrentAction = new Walk(this.Robot, programLine, this.WalkMargin, this.Force, this.MaxSpeed);
                     break;
                 
                 case Instruction.ID.Grab:

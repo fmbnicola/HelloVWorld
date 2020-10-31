@@ -25,7 +25,6 @@ namespace Robot.Actions
         {
             Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
 
-            // the line is done because the robot does not need to do nothing
             this.ProgramLine.Complete = true;
         }
 
