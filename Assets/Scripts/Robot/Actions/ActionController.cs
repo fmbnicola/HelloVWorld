@@ -58,7 +58,7 @@ namespace Robot.Actions
 
         #region === Action Methods ===
 
-        public bool CurrentActionCompleted()
+        public bool ActionCompleted()
         {
             if (this.CurrentAction != null)
             {
@@ -66,6 +66,12 @@ namespace Robot.Actions
             }
 
             return true;
+        }
+
+
+        public void TerminateAction()
+        {
+            this.CurrentAction.Terminate();
         }
 
 

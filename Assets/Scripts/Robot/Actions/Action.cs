@@ -33,5 +33,8 @@ namespace Robot.Actions
         {
             return this.ProgramLine.Complete;
         }
+
+
+        virtual public void Terminate() { }
     }
 }

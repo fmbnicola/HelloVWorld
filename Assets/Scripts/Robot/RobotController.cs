@@ -114,7 +114,6 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
-
         }
 
 
@@ -162,6 +161,8 @@ namespace Robot
 
         private void CloseProgram()
         {
+            this.ActionController.TerminateAction();
+
             this.Disk = null;
             this.Program = null;
             this.ProgramRunning = false;
@@ -172,7 +173,7 @@ namespace Robot
 
         private void ExecuteProgram()
         {
-            if (this.ActionController.CurrentActionCompleted())
+            if (this.ActionController.ActionCompleted())
             {
                 this.Program = this.Program.Next;
 

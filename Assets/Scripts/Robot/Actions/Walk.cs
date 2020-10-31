@@ -37,7 +37,7 @@ namespace Robot.Actions
 
 
 
-        override public void Execute()
+        public override void Execute()
         {
             this.RobotBody.AddRelativeForce(Vector3.forward * this.Force);
 
@@ -57,13 +57,19 @@ namespace Robot.Actions
             {
                 this.ProgramLine.Complete = true;
 
-                this.RobotBody.velocity = Vector3.zero;
-                this.RobotBody.useGravity = true;
+                this.Terminate();
 
                 Debug.Log("Target Reached");
             }
 
             return this.ProgramLine.Complete;
+        }
+
+
+        public override void Terminate()
+        {
+            this.RobotBody.velocity = Vector3.zero;
+            this.RobotBody.useGravity = true;
         }
 
     }
