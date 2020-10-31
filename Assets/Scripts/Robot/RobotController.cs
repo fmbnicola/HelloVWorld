@@ -9,6 +9,12 @@ namespace Robot
 {
     public class RobotController : MonoBehaviour
     {
+        #region /* Robot Info */
+        
+        public Vector3 Dimensions { get; private set; }
+        
+        #endregion
+
         #region /* Actions Attributes */
 
         private ActionController ActionController { get; set; }
@@ -33,14 +39,11 @@ namespace Robot
         // Start is called before the first frame update
         void Start()
         {
-            this.ActionController = this.transform.GetComponent<ActionController>();
+            this.InitializeRobotInfo();
 
-            this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
-            this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
-            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram());
+            this.PrepareActionController();
 
-            this.Program = null;
-            this.ProgramRunning = false;
+            this.PrepareForProgram();
         }
 
 
@@ -57,7 +60,48 @@ namespace Robot
 
 
 
+        #region === Robot Info Methods ===
+
+        private void InitializeRobotInfo()
+        {
+            BoxCollider robotCollider = this.transform.GetComponent<BoxCollider>();
+            this.Dimensions = robotCollider.size;
+        }
+
+
+        public Vector3 GetPosition()
+        {
+            return this.transform.position;
+        }
+
+        #endregion
+
+
+
+        #region === Action Methods ===
+
+        private void PrepareActionController()
+        {
+            this.ActionController = this.transform.GetComponent<ActionController>();
+            this.ActionController.Initialize(this);
+        }
+
+        #endregion
+
+
+
         #region === Program Methods ===
+
+        private void PrepareForProgram()
+        {
+            this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
+            this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
+            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram());
+
+            this.Program = null;
+            this.ProgramRunning = false;
+        }
+
 
         private void createProgram()
         {

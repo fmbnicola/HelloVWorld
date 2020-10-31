@@ -8,7 +8,7 @@ namespace Robot.Actions
 {
     public class Rotate : Action
     {
-        public Rotate(Transform robot, Instruction rotate) : base(robot, rotate) { }
+        public Rotate(RobotController robot, Instruction rotate) : base(robot, rotate) { }
 
 
         override public void Execute()
