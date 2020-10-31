@@ -72,6 +72,8 @@ namespace Robot.Actions
         public void TerminateAction()
         {
             this.CurrentAction.Terminate();
+
+            Debug.Log("Action Aborted");
         }
 
 

@@ -49,9 +49,9 @@ namespace Robot
 
             this.PrepareForProgram();
 
-            //this.createProgram();
-            //this.ProgramRunning = true;
-            //this.Program.Execute(this.ActionController);
+            this.createProgram();
+            this.ProgramRunning = true;
+            this.Program.Execute(this.ActionController);
 
         }
 
@@ -77,9 +77,6 @@ namespace Robot
             this.Dimensions = robotCollider.size;
 
             this.Rigidbody = this.transform.GetComponent<Rigidbody>();
-
-            //TODO: change when nico finishes new model
-            this.Rigidbody.centerOfMass = new Vector3(0, -0.1f, 0);
         }
 
 
@@ -142,6 +139,8 @@ namespace Robot
 
         private void LoadProgram(XRBaseInteractable disk)
         {
+            disk.transform.parent = this.transform;
+
             this.Disk = disk.GetComponent<FloppyDisk>();
             this.Program = this.Disk.codeHead;
 
@@ -187,7 +186,6 @@ namespace Robot
                     this.Program = this.Disk.codeHead;
                     Debug.Log("Program ended");
                 }
-
             }
             else
             {
