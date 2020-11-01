@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -16,6 +17,8 @@ public class Plug : MonoBehaviour
     private Vector3 AnchorPoint;
     private Rigidbody RigidBody;
 
+    public bool OnSocket;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class Plug : MonoBehaviour
         this.Joint = transform.GetComponent<FixedJoint>();
         this.RigidBody = this.Joint.connectedBody; 
         this.AnchorPoint = this.Joint.connectedAnchor;
+        this.OnSocket = false;
 
 
     }
@@ -38,7 +42,13 @@ public class Plug : MonoBehaviour
         }
         else
         {
-            this.Reconnect();
+            if ( this.OnSocket == false) this.Reconnect();
+
+            else
+            {
+               Debug.Log("else");
+            }
+
         }
 
 
