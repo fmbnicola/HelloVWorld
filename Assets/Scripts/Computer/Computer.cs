@@ -21,6 +21,8 @@ public class Computer : MonoBehaviour
 
     public States State { get; private set; }
 
+    private float StartTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,8 @@ public class Computer : MonoBehaviour
                 break;
 
             case States.StartUp:
+                if (Time.time - this.StartTime >= 5)
+                    this.State = States.Active;
                 break;
 
             case States.Active:
@@ -56,7 +60,12 @@ public class Computer : MonoBehaviour
 
     public void StartUp()
     {
-        if (this.State == States.Idle) this.State = States.StartUp;
+        if (this.State == States.Idle)
+        {
+            this.State = States.StartUp;
+
+            this.StartTime = Time.time;
+        }
     }
 
     public void Save()
@@ -122,20 +131,23 @@ public class Computer : MonoBehaviour
 
     void DetectFloppyIn(XRBaseInteractable interactable)
     {
-        Debug.Log("entrei");
-        interactable.gameObject.GetComponent<FloppyDisk>().inserted = true;
-      //  intera.gameObject.GetComponent<FloppyDisk>().transform.parent = this.transform;
-        this.FloppyDisk = interactable.gameObject.GetComponent<FloppyDisk>();
+        var floppy = interactable.GetComponent<FloppyDisk>();
+
+        if (floppy == null) return;
+
+        floppy.inserted = true;
+
+        this.FloppyDisk = floppy;
     }
 
     void DetectFloppyOut(XRBaseInteractable interactable)
     {
-        Debug.Log("sai");
-        interactable.gameObject.GetComponent<FloppyDisk>().inserted = false;
-        // intera.gameObject.transform.parent = null;
+        var floppy = interactable.GetComponent<FloppyDisk>();
+
+        if (floppy == null) return;
+
+        floppy.inserted = false;
+
         this.FloppyDisk = null;
-        Debug.Log(interactable.gameObject.GetComponent<FloppyDisk>().codeHead);
     }
-
-
 }

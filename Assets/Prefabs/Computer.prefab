@@ -109,7 +109,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   m_AttachTransform: {fileID: 4607646795707142747}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
@@ -603,7 +603,7 @@ Transform:
   m_GameObject: {fileID: 8672873239991695251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.5, y: -0.438, z: 0}
-  m_LocalScale: {x: 3, y: 0.0625, z: 7.5}
+  m_LocalScale: {x: 6, y: 0.0625, z: 15}
   m_Children: []
   m_Father: {fileID: 3765642492513885810}
   m_RootOrder: 1
@@ -663,12 +663,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8672873239991695251}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 120
+  m_Height: 177.5
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 31, z: -0.00000008940697}
+  m_Center: {x: 0, y: 29.868765, z: 0}
 --- !u!64 &6083730949293549779
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InstructionBlock : ProgrammingBlock
 {
     [SerializeField]
-    private Instruction.ID Id;
+    private Instruction.ID Id = Instruction.ID.Drop;
 
 
     // Start is called before the first frame update

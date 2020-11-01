@@ -15,6 +15,8 @@ public class Dais : MonoBehaviour
     void Start()
     {
         this.Computer = this.transform.parent.GetComponent<Computer>();
+
+        this.Bodies = new List<Rigidbody>();
     }
 
     public float factor = 6;
@@ -37,7 +39,7 @@ public class Dais : MonoBehaviour
                     break;
 
                 case Computer.States.StartUp:
-                    body.AddForce(new Vector3(0, 5, 0));
+                    body.AddForce(new Vector3(0, 3, 0));
 
                     if(vel.magnitude > 0)
                         body.velocity *= rate;

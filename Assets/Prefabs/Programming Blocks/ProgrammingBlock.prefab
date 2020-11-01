@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   m_OnFirstHoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -212,6 +212,11 @@ PrefabInstance:
       propertyPath: Block
       value: 
       objectReference: {fileID: 2406990076760739445}
+    - target: {fileID: 4856613503479227392, guid: dc493f9af3103bc419291b36e17d216c,
+        type: 3}
+      propertyPath: m_InteractionLayerMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 4968036345756288540, guid: dc493f9af3103bc419291b36e17d216c,
         type: 3}
       propertyPath: m_ConnectedBody
