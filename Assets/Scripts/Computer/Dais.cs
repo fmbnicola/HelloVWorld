@@ -25,10 +25,13 @@ public class Dais : MonoBehaviour
     void Update()
     {
         this.State = this.Computer.State;
+    }
 
-        var rate = 1 - factor * (Time.unscaledDeltaTime);
+    private void FixedUpdate()
+    {
+        var rate = 1 - factor * (Time.fixedDeltaTime / Time.timeScale);
 
-        foreach (var body in this.Bodies) 
+        foreach (var body in this.Bodies)
         {
             var vel = body.velocity;
             var ang = body.angularVelocity;
@@ -39,9 +42,9 @@ public class Dais : MonoBehaviour
                     break;
 
                 case Computer.States.StartUp:
-                    body.AddForce(new Vector3(0, 2.5f, 0));
+                    body.AddForce(new Vector3(0, 15f, 0));
 
-                    if(vel.magnitude > 0)
+                    if (vel.magnitude > 0)
                         body.velocity *= rate;
 
                     if (ang.magnitude > 0)
@@ -68,6 +71,8 @@ public class Dais : MonoBehaviour
         {
             body.useGravity = true;
         }
+
+        this.State = Computer.States.Idle;
     }
 
 
