@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine;
 
 public class Computer : MonoBehaviour
 {
     public ProgrammingBlock StartBlock;
+
+    public XRSocketInteractor Socket;
+
+    public FloppyDisk FloppyDisk;
 
     public enum States
     {
@@ -16,13 +21,18 @@ public class Computer : MonoBehaviour
 
     public States State { get; private set; }
 
-    private float StartUpTime = 0f;
-
-
     // Start is called before the first frame update
     void Start()
     {
         this.State = States.Idle;
+
+        this.Socket = transform.Find("FloppyDiskSocket").GetComponent<XRSocketInteractor>();
+        this.Socket.showInteractableHoverMeshes = true;
+
+        this.Socket.onSelectEnter.AddListener((interactable) => DetectFloppyIn(interactable));
+        this.Socket.onSelectExit.AddListener((interactable) => DetectFloppyOut(interactable));
+
+        this.FloppyDisk = null;
     }
 
     // Update is called once per frame
@@ -34,24 +44,19 @@ public class Computer : MonoBehaviour
                 break;
 
             case States.StartUp:
-                if (Time.time - this.StartUpTime >= 5)
-                    this.State = States.Active;
                 break;
 
             case States.Active:
                 break;
         }
+
+
     }
 
 
     public void StartUp()
     {
-        if (this.State == States.Idle)
-        {
-            this.State = States.StartUp;
-
-            this.StartUpTime = Time.time;
-        }
+        if (this.State == States.Idle) this.State = States.StartUp;
     }
 
     public void Save()
@@ -88,44 +93,49 @@ public class Computer : MonoBehaviour
 
             while(block != null)
             {
-                this.transform.Find("FloppyDisk").gameObject.GetComponent<FloppyDisk>().codeHead = head;
 
+                var node = block.Parse(null, prev);
+
+                if (head == null) head = node;
+                else
+                {
+                    prev.Next = node;
+
+                }
+
+                prev = node;
+
+                block = block.GetNext();
             }
 
-            if (this.transform.Find("FloppyDisk") != null)
+
+            if ( this.FloppyDisk != null )
             {
-                this.transform.Find("FloppyDisk").gameObject.GetComponent<FloppyDisk>().codeHead = head;
-               
+                this.FloppyDisk.codeHead = head;
             }
-            Debug.Log(this.transform.Find("FloppyDisk").gameObject.GetComponent<FloppyDisk>().codeHead);
             return head;
         }
 
         return null;
     }
 
-    private void OnTriggerStay(Collider collider)
+
+    void DetectFloppyIn(XRBaseInteractable interactable)
     {
-        if (collider.gameObject.name == "FloppyDisk")
-        {
-            //ver com nico como se deteta que ela esta a ser agarrada
-
-            collider.gameObject.transform.parent = this.transform;
-            collider.gameObject.transform.localPosition = new Vector3(-0.277299f, 0.453f, 0);
-
-            Vector3 rotationVector = new Vector3(0 - 0.089f, 179.991f, -4.008f);
-            Quaternion rotation = Quaternion.Euler(rotationVector);
-            collider.gameObject.transform.localRotation = rotation;
-            
-            collider.gameObject.GetComponent<FloppyDisk>().inserted = true;
-        }
+        Debug.Log("entrei");
+        interactable.gameObject.GetComponent<FloppyDisk>().inserted = true;
+      //  intera.gameObject.GetComponent<FloppyDisk>().transform.parent = this.transform;
+        this.FloppyDisk = interactable.gameObject.GetComponent<FloppyDisk>();
     }
 
-    private void OnTriggerExit(Collider collider)
+    void DetectFloppyOut(XRBaseInteractable interactable)
     {
-        collider.gameObject.GetComponent<FloppyDisk>().inserted = false;
-        collider.gameObject.transform.parent = null;
-        //if (this.Computer.StartBlock != null && collider.gameObject == this.Computer.StartBlock)
-        //  this.Computer.StartBlock = null;
+        Debug.Log("sai");
+        interactable.gameObject.GetComponent<FloppyDisk>().inserted = false;
+        // intera.gameObject.transform.parent = null;
+        this.FloppyDisk = null;
+        Debug.Log(interactable.gameObject.GetComponent<FloppyDisk>().codeHead);
     }
+
+
 }
