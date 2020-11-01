@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Robot.Actions;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 
@@ -10,12 +11,30 @@ namespace Robot
 {
     public class RobotController : MonoBehaviour
     {
+        #region /* Robot Info */
+        
+        public Vector3 Dimensions { get; private set; }
+
+        public Rigidbody Rigidbody { get; private set; }
+        
+        #endregion
+
+        #region /* Actions Attributes */
+
         private ActionController ActionController { get; set; }
 
+        #endregion
+
+        #region /* Progam Attributes */
+
+        private XRSocketInteractor DiskSocket { get; set; }
+
+        private FloppyDisk Disk { get; set; }
 
         private CodeNode Program { get; set; }
+        private bool ProgramRunning { get; set; }
 
-        private bool ProgramEnded { get; set; }
+        #endregion
 
 
 
@@ -24,28 +43,25 @@ namespace Robot
         // Start is called before the first frame update
         void Start()
         {
-            this.ActionController = this.transform.GetComponent<ActionController>();
+            this.InitializeRobotInfo();
 
-            this.Program = null;
-            this.ProgramEnded = false;
+            this.PrepareActionController();
+
+            this.PrepareForProgram();
+
+            this.createProgram();
+            this.ProgramRunning = true;
+            this.Program.Execute(this.ActionController);
+
         }
 
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
-            if (this.Program != null)
+            if (this.ProgramRunning)
             {
                 this.ExecuteProgram();
-            }
-        }
-
-
-        private void OnTriggerStay(Collider other)
-        {
-            if (this.Program == null && other.CompareTag("Disk") && !this.ProgramEnded)
-            {
-                this.LoadProgram(other.gameObject);
             }
         }
 
@@ -53,7 +69,50 @@ namespace Robot
 
 
 
+        #region === Robot Info Methods ===
+
+        private void InitializeRobotInfo()
+        {
+            BoxCollider robotCollider = this.transform.GetComponent<BoxCollider>();
+            this.Dimensions = robotCollider.size;
+
+            this.Rigidbody = this.transform.GetComponent<Rigidbody>();
+        }
+
+
+        public Vector3 GetPosition()
+        {
+            return this.transform.position;
+        }
+
+        #endregion
+
+
+
+        #region === Action Methods ===
+
+        private void PrepareActionController()
+        {
+            this.ActionController = this.transform.GetComponent<ActionController>();
+            this.ActionController.Initialize(this);
+        }
+
+        #endregion
+
+
+
         #region === Program Methods ===
+
+        private void PrepareForProgram()
+        {
+            this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
+            this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
+            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram());
+
+            this.Program = null;
+            this.ProgramRunning = false;
+        }
+
 
         private void createProgram()
         {
@@ -77,20 +136,43 @@ namespace Robot
             this.Program = Line1;
         }
 
-        public void LoadProgram(GameObject disk)
+
+        private void LoadProgram(XRBaseInteractable disk)
         {
-            // TODO: get program head from floppy disk
-            this.createProgram();
+            disk.transform.parent = this.transform;
+
+            this.Disk = disk.GetComponent<FloppyDisk>();
+            this.Program = this.Disk.codeHead;
+
+            // TODO: remove if
+            if (this.Program == null)
+            {
+                this.createProgram();
+            }
+
             Debug.Log("Program loaded");
 
             // TODO: only start execution after clicking the start button
+            this.ProgramRunning = true;
             this.Program.Execute(this.ActionController);
+        }
+
+
+        private void CloseProgram()
+        {
+            this.ActionController.TerminateAction();
+
+            this.Disk = null;
+            this.Program = null;
+            this.ProgramRunning = false;
+
+            Debug.Log("Program info cleaned");
         }
 
 
         private void ExecuteProgram()
         {
-            if (this.ActionController.CurrentActionCompleted())
+            if (this.ActionController.ActionCompleted())
             {
                 this.Program = this.Program.Next;
 
@@ -100,13 +182,14 @@ namespace Robot
                 }
                 else
                 {
-                    this.ProgramEnded = true;
+                    this.ProgramRunning = false;
+                    this.Program = this.Disk.codeHead;
                     Debug.Log("Program ended");
                 }
             }
             else
             {
-                // TODO: continue current action
+                this.ActionController.Continue();
             }
         }
 

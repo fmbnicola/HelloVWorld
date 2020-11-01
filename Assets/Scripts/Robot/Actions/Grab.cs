@@ -8,7 +8,7 @@ namespace Robot.Actions
 {
     public class Grab : Action
     {
-        public Grab(Transform robot, Instruction grab) : base(robot, grab) { }
+        public Grab(RobotController robot, Instruction grab) : base(robot, grab) { }
 
 
         override public void Execute()

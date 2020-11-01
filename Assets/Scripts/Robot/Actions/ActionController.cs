@@ -8,7 +8,21 @@ namespace Robot.Actions
 {
     public class ActionController : MonoBehaviour
     {
+        #region /* Action Control */
+
+        private RobotController Robot { get; set; }
+
         private Action CurrentAction { get; set; }
+
+        #endregion
+
+        #region /* Attributes defined on Editor */
+
+        public float WalkMargin;
+        public float Force;
+        public float MaxSpeed;
+
+        #endregion
 
 
 
@@ -31,9 +45,20 @@ namespace Robot.Actions
 
 
 
+        #region === Initialization ===
+        
+        public void Initialize(RobotController Robot)
+        {
+            this.Robot = Robot;
+        }
+        
+        #endregion
+
+
+
         #region === Action Methods ===
 
-        public bool CurrentActionCompleted()
+        public bool ActionCompleted()
         {
             if (this.CurrentAction != null)
             {
@@ -44,24 +69,38 @@ namespace Robot.Actions
         }
 
 
+        public void TerminateAction()
+        {
+            this.CurrentAction.Terminate();
+
+            Debug.Log("Action Aborted");
+        }
+
+
+        public void Continue()
+        {
+            this.CurrentAction.Execute();
+        }
+
+
         public void Execute(Instruction programLine)
         {
             switch (programLine.Id)
             {
                 case Instruction.ID.Walk:
-                    this.CurrentAction = new Walk(this.transform, programLine);
+                    this.CurrentAction = new Walk(this.Robot, programLine, this.WalkMargin, this.Force, this.MaxSpeed);
                     break;
                 
                 case Instruction.ID.Grab:
-                    this.CurrentAction = new Grab(this.transform, programLine);
+                    this.CurrentAction = new Grab(this.Robot, programLine);
                     break;
                 
                 case Instruction.ID.Drop:
-                    this.CurrentAction = new Drop(this.transform, programLine);
+                    this.CurrentAction = new Drop(this.Robot, programLine);
                     break;
                 
                 case Instruction.ID.Rotate:
-                    this.CurrentAction = new Rotate(this.transform, programLine);
+                    this.CurrentAction = new Rotate(this.Robot, programLine);
                     break;
 
                 default:
@@ -74,7 +113,7 @@ namespace Robot.Actions
 
         public void Execute(CodeNode programLine)
         {
-            this.CurrentAction = new Action(this.transform, programLine);
+            this.CurrentAction = new Action(this.Robot, programLine);
 
             this.CurrentAction.Execute();
         }

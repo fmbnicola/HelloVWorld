@@ -8,15 +8,66 @@ namespace Robot.Actions
 {
     public class Walk : Action
     {
-        public Walk(Transform robot, Instruction walk) : base(robot, walk) { }
+        private Vector3 TargetPos { get; set; }
+
+        private float Margin { get; set; }
+        private float Force { get; set; }
+        private float MaxSpeed { get; set; }
+
+        private Rigidbody RobotBody { get; set; }
 
 
-        override public void Execute()
+
+        public Walk(RobotController robot, Instruction walk, float margin, float force, float maxSpeed) : 
+            base(robot, walk)
         {
-            Debug.Log(base.ProgramLine.ToString() + " -> " + this.ToString());
+            Vector3 pos = robot.GetPosition();
+            float zTarget = pos.z + robot.Dimensions.z;
+            this.TargetPos = new Vector3(pos.x, pos.y, zTarget);
 
-            // the line is done because the robot does not need to do nothing
-            this.ProgramLine.Complete = true;
+            this.Margin = margin;
+            this.Force = force;
+            this.MaxSpeed = maxSpeed;
+
+            this.RobotBody = this.Robot.Rigidbody;
+            this.RobotBody.useGravity = false;
+        }
+
+
+
+        public override void Execute()
+        {
+            this.RobotBody.AddRelativeForce(Vector3.forward * this.Force);
+
+            if (this.RobotBody.velocity.magnitude > this.MaxSpeed)
+            {
+                this.RobotBody.velocity = this.RobotBody.velocity.normalized * this.MaxSpeed; 
+            }
+        }
+
+
+        public override bool Completed()
+        {
+            float dist = Vector3.Distance(this.Robot.GetPosition(), this.TargetPos);
+
+
+            if (dist <= this.Margin)
+            {
+                this.ProgramLine.Complete = true;
+
+                this.Terminate();
+
+                Debug.Log("Target Reached");
+            }
+
+            return this.ProgramLine.Complete;
+        }
+
+
+        public override void Terminate()
+        {
+            this.RobotBody.velocity = Vector3.zero;
+            this.RobotBody.useGravity = true;
         }
 
     }
