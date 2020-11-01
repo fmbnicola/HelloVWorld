@@ -65,7 +65,7 @@ public class Plug : MonoBehaviour
         if (this.Joint != null) return;
 
         this.transform.position = this.Block.transform.position + this.AnchorPoint;
-        this.transform.eulerAngles = new Vector3(0,0,0);
+        this.transform.eulerAngles = this.Block.transform.eulerAngles;
 
         this.Joint = this.gameObject.AddComponent<FixedJoint>();
         this.Joint.autoConfigureConnectedAnchor = false;
