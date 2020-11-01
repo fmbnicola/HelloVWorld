@@ -15,8 +15,12 @@ public class SimmulatorManager : MonoBehaviour
     public XRController RightController         = null;
     public XRController LeftController          = null;
 
+    // Hands
+    public HandPhysics rightHand = null;
+    public HandPhysics leftHand = null;
+
     // Simmulators
-    private HeadsetSimmulator HMDSimmulator         = null;
+    private HeadsetSimmulator HMDSimulator         = null;
     private ControllerSimulator ControllerSimulator = null;
 
 
@@ -31,12 +35,28 @@ public class SimmulatorManager : MonoBehaviour
         XRController[] controllers = Rig.GetComponentsInChildren<XRController>();
         foreach(XRController controller in controllers)
         {
-            if (controller.name == "RightHand Controller") RightController = controller;
-            if (controller.name == "LeftHand Controller") LeftController = controller;
+            if (controller.name == "RightHand Controller")
+            {
+                RightController = controller;
+                RightController.GetComponent<HandHider>().setForceValid(true);
+            }
+            if (controller.name == "LeftHand Controller")
+            {
+                LeftController = controller;
+                LeftController.GetComponent<HandHider>().setForceValid(true);
+            }
         }
 
-        HMDSimmulator = GetComponent<HeadsetSimmulator>();
-        if (HMDSimmulator != null) HMDSimmulator.Init(this);
+        //Hands
+        var rhand = transform.parent.Find("Hand_Right").gameObject;
+        rightHand = rhand.GetComponent<HandPhysics>();
+
+        var lhand = transform.parent.Find("Hand_Left").gameObject;
+        leftHand = lhand.GetComponent<HandPhysics>();
+
+        //Simulatros
+        HMDSimulator = GetComponent<HeadsetSimmulator>();
+        if (HMDSimulator != null) HMDSimulator.Init(this);
 
         ControllerSimulator = GetComponent<ControllerSimulator>();
         if (ControllerSimulator != null) ControllerSimulator.Init(this);

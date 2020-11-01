@@ -15,6 +15,7 @@ public class HandHider : MonoBehaviour
     private Renderer hand_renderer = null;
 
     private bool disconnected = true;
+    private bool forceValid = false;
 
     private void Awake()
     {
@@ -42,12 +43,12 @@ public class HandHider : MonoBehaviour
     private void Update()
     {
         var device = controller.inputDevice;
-        if (disconnected && device.isValid)
+        if (disconnected && (device.isValid || forceValid))
         {
             disconnected = false;
             this.Show();
         }
-        else if (!disconnected && !device.isValid)
+        else if (!disconnected && !(device.isValid || forceValid))
         {
             disconnected = true;
             this.Hide();
@@ -79,5 +80,10 @@ public class HandHider : MonoBehaviour
     {
         hand_collider.enabled = false;
         hand_renderer.enabled = false;
+    }
+
+    public void setForceValid(bool _forceValid)
+    {
+        forceValid = _forceValid;
     }
 }

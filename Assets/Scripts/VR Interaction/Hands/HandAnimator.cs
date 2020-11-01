@@ -49,6 +49,7 @@ public class HandAnimator : MonoBehaviour
     {
         if(controller.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
             SetFingerTargets(gripFingers, gripValue);
+
     }
 
     private void CheckPointer()

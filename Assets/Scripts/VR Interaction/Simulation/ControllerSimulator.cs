@@ -15,8 +15,6 @@ public class ControllerSimulator : MonoBehaviour
 
     public KeyCode selectKey            = KeyCode.Mouse1;
     public KeyCode activateKey          = KeyCode.Return;
-    public KeyCode triggerKey           = KeyCode.Return;
-    public KeyCode gripKey              = KeyCode.Mouse1;
     public KeyCode switchControllerKey  = KeyCode.BackQuote;
 
     [System.Serializable]
@@ -110,40 +108,18 @@ public class ControllerSimulator : MonoBehaviour
         switch (button)
         {
             case InputHelpers.Button.Trigger:
-                return Input.GetKey(triggerKey);
+                return Input.GetKey(KeyCode.Alpha0); //FIXME
 
             case InputHelpers.Button.Grip:
-                return Input.GetKey(gripKey);
+                return Input.GetKey(KeyCode.Alpha0); //FIXME
 
             default:
             return false;
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
-        // Switch to a different controller?
-        if (Input.GetKeyDown(switchControllerKey))
-        {
-            //save input state
-            ActiveController.Select = (bool) Input.GetKey(selectKey);
-
-            int[] ControllerTypes = (int[]) System.Enum.GetValues(typeof(ControllerType));
-            int n = ControllerTypes.Length;
-            int i = (int) ActiveControllerType;
-            ActiveControllerType = (ControllerType) ((i + 1) % n);
-            SetController();
-
-            Debug.LogFormat("Switched controller: {0}", ActiveController.XRController.name);
-        }
-    
-        // Ensure we are overriding ControllerInput as well, which is our wrapper for direct button press detection
-        ControllerInput controllerInput = ActiveController.XRController.GetComponent<ControllerInput>();
-        if (controllerInput)
-        {
-            controllerInput.SetButtonPressProvider(GetButtonPressed);
-        }
-    
         // Controller Movement
         float scroll = Input.mouseScrollDelta.y;
         if (Input.GetMouseButton(0) || scroll != 0)
@@ -172,10 +148,38 @@ public class ControllerSimulator : MonoBehaviour
             var axis = Vector3.Cross(Vector3.up, Manager.HMDCamera.transform.forward);
             transform.RotateAround(transform.position, axis, mouseMovement.y);
         }
+        else
+        {
+            // Rotate with Camera
+            var rot = ActiveController.XRController.transform.eulerAngles;
+            rot.y = Manager.HMDCamera.transform.eulerAngles.y;
+            ActiveController.XRController.transform.eulerAngles = rot;
+        }
+    }
 
-        // Interaction states
-        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
-        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
+    private void LateUpdate()
+    {
+        // Switch to a different controller?
+        if (Input.GetKeyDown(switchControllerKey))
+        {
+            //save input state
+            ActiveController.Select = (bool) Input.GetKey(selectKey);
+
+            int[] ControllerTypes = (int[]) System.Enum.GetValues(typeof(ControllerType));
+            int n = ControllerTypes.Length;
+            int i = (int) ActiveControllerType;
+            ActiveControllerType = (ControllerType) ((i + 1) % n);
+            SetController();
+
+            Debug.LogFormat("Switched controller: {0}", ActiveController.XRController.name);
+        }
+
+        // Ensure we are overriding ControllerInput as well, which is our wrapper for direct button press detection
+        ControllerInput controllerInput = ActiveController.XRController.GetComponent<ControllerInput>();
+        if (controllerInput)
+        {
+            controllerInput.SetButtonPressProvider(GetButtonPressed);
+        }
 
         //Hold input state for inactive controllers
         foreach(Controller controller in Controllers)
@@ -184,6 +188,11 @@ public class ControllerSimulator : MonoBehaviour
                 HoldXRControllerState(controller.XRController, "select");
             }
         }
+
+        // Interaction states
+        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
+        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
+
     }
 
 #endif

@@ -96,10 +96,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8615569817459953246, guid: 5abc1651b93292a4c8b68f7b9fc49e81,
+        type: 3}
+      propertyPath: DefaultController
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8615569817459953248, guid: 5abc1651b93292a4c8b68f7b9fc49e81,
         type: 3}
       propertyPath: m_Name
       value: XR Rig Simmulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8615569817459953248, guid: 5abc1651b93292a4c8b68f7b9fc49e81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5abc1651b93292a4c8b68f7b9fc49e81, type: 3}
@@ -126,6 +136,16 @@ PrefabInstance:
       propertyPath: handObject
       value: 
       objectReference: {fileID: 7840948369938674561}
+    - target: {fileID: 1440917455366029471, guid: 46805a10d4f8f6d48bc729550b5a1a42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892755954071919414, guid: 46805a10d4f8f6d48bc729550b5a1a42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6558467681469524568, guid: 46805a10d4f8f6d48bc729550b5a1a42,
         type: 3}
       propertyPath: m_InteractionManager

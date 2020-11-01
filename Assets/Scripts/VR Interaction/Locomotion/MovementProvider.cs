@@ -95,9 +95,9 @@ public class MovementProvider : LocomotionProvider
         Vector3 movement = direction * speed;
         characterController.Move(movement *Time.fixedDeltaTime);
 
-        if(position != Vector2.zero)
+        //Make sure Controllers are teleported when mooving (So they dont lag behind)
+        if (position != Vector2.zero)
         {
-            //Make sure Controllers are teleported
             rightHand.TeleportToTarget();
             leftHand.TeleportToTarget();
         }
