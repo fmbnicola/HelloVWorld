@@ -62,6 +62,16 @@ public class Dais : MonoBehaviour
     }
 
 
+    public void Release()
+    {
+        foreach(var body in this.Bodies)
+        {
+            body.useGravity = true;
+        }
+    }
+
+
+    #region Gravity Field
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.attachedRigidbody      == null || 
@@ -108,4 +118,5 @@ public class Dais : MonoBehaviour
         if (body.name == "StartBlock")
             this.Computer.StartBlock = null;
     }
+    #endregion
 }

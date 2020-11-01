@@ -10,6 +10,8 @@ public class Computer : MonoBehaviour
 
     public XRSocketInteractor Socket;
 
+    public Dais Dais;
+
     public FloppyDisk FloppyDisk;
 
     public enum States
@@ -33,6 +35,8 @@ public class Computer : MonoBehaviour
 
         this.Socket.onSelectEnter.AddListener((interactable) => DetectFloppyIn(interactable));
         this.Socket.onSelectExit.AddListener((interactable) => DetectFloppyOut(interactable));
+
+        this.Dais = this.transform.Find("Dais").GetComponent<Dais>();
 
         this.FloppyDisk = null;
     }
@@ -78,6 +82,8 @@ public class Computer : MonoBehaviour
     public void Clear()
     {
         //Clear Block Links
+
+        this.Dais.Release();
     }
 
     public void ShutDown()

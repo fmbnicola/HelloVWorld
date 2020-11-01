@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartBlock: {fileID: 0}
   Socket: {fileID: 0}
+  Dais: {fileID: 0}
   FloppyDisk: {fileID: 0}
 --- !u!1 &3765642493359027321
 GameObject:
@@ -588,7 +589,7 @@ GameObject:
   - component: {fileID: 6083730949293549779}
   - component: {fileID: 514899428630904563}
   m_Layer: 0
-  m_Name: Dias
+  m_Name: Dais
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
