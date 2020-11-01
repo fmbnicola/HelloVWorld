@@ -57,5 +57,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 3264636629228588722, guid: 5dfb9be7200befb41875bc32caebd6e7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dfb9be7200befb41875bc32caebd6e7, type: 3}

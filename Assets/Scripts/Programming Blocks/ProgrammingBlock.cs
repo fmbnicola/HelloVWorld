@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProgrammingBlock : MonoBehaviour
 {
-    protected List<Port> Ports;
+    protected List<Plug> Plugs;
+    protected Socket Socket;
 
     [SerializeField]
     float id;
@@ -22,13 +23,27 @@ public class ProgrammingBlock : MonoBehaviour
     }
 
 
-    public bool RegisterPort(Port port)
+    public bool RegisterSocket(Socket socket)
     {
-        if (this.Ports == null) this.Ports = new List<Port>();
 
-        if (port.transform.IsChildOf(this.transform) && !this.Ports.Contains(port))
+        if (socket.transform.IsChildOf(this.transform) && this.Socket != null)
         {
-            this.Ports.Add(port);
+            this.Socket = socket;
+            return true;
+        }
+        //adicionar erro caso nao seja null
+
+        return false;
+    }
+
+
+    public bool RegisterPlug(Plug plug)
+    {
+        if (this.Plugs == null) this.Plugs = new List<Plug>();
+
+        if (plug.transform.IsChildOf(this.transform) && !this.Plugs.Contains(plug))
+        {
+            this.Plugs.Add(plug);
             return true;
         }
 
@@ -37,16 +52,14 @@ public class ProgrammingBlock : MonoBehaviour
 
     public ProgrammingBlock GetNext()
     {
-        foreach(var port in this.Ports)
+        foreach(var plug in this.Plugs)
         {
-            if(port.GetPortType() == Port.Types.Out)
-            {
-                var connectedTo = port.GetConnectedTo();
+            var connectedTo = plug.GetConnectedTo();
 
-                if(connectedTo != null) {
-                    return connectedTo.GetBlock();
-                }
+            if(connectedTo != null) {
+                return connectedTo.GetBlock();
             }
+            
         }
 
         return null;
