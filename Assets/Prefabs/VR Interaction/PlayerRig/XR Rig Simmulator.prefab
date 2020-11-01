@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8615569817459953249}
   - component: {fileID: 1407917656}
   m_Layer: 9
-  m_Name: XR Rig Emulator
+  m_Name: XR Rig Simmulator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

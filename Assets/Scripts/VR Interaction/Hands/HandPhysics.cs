@@ -4,7 +4,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class HandPhysics : MonoBehaviour
 {
 
-    public float smoothingAmmount = 15.0f;
+    public float InterpolationSpeed = 20.0f;
     public Transform target = null;
 
     private Rigidbody rigidBody = null;
@@ -21,22 +21,10 @@ public class HandPhysics : MonoBehaviour
         TeleportToTarget();
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         SetTargetPosition();
         SetTargetRotation();
-    }
-
-    private void SetTargetPosition()
-    {
-        float time = smoothingAmmount * Time.fixedDeltaTime;
-        targetPosition = Vector3.Lerp(targetPosition, target.position, time);
-    }
-
-    private void SetTargetRotation()
-    {
-        float time = smoothingAmmount * Time.fixedDeltaTime;
-        targetRotation = Quaternion.Slerp(targetRotation, target.rotation, time);
     }
 
     private void FixedUpdate()
@@ -45,18 +33,33 @@ public class HandPhysics : MonoBehaviour
         RotateToController();
     }
 
+    private void SetTargetPosition()
+    {
+        targetPosition = target.position;
+    }
+
+    private void SetTargetRotation()
+    {
+        targetRotation = target.rotation;
+    }
+
     private void MoveToController()
     {
-        Vector3 positionDelta = targetPosition - transform.position;
+        float time = InterpolationSpeed * (1 - Mathf.Exp(-20 * Time.deltaTime));
+        Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, time);
 
         rigidBody.velocity = Vector3.zero;
-        rigidBody.MovePosition(transform.position + positionDelta);
+        rigidBody.MovePosition(newPosition);
+
     }
 
     private void RotateToController()
     {
+        float time = InterpolationSpeed * (1 - Mathf.Exp(-20 * Time.deltaTime));
+        Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, time);
+
         rigidBody.angularVelocity = Vector3.zero;
-        rigidBody.MoveRotation(targetRotation);
+        rigidBody.MoveRotation(newRotation);
     }
 
     public void TeleportToTarget()

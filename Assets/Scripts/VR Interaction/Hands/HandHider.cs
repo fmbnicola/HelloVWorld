@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandHider : MonoBehaviour
@@ -7,33 +9,75 @@ public class HandHider : MonoBehaviour
 
     private HandPhysics handPhysics = null;
     private XRDirectInteractor interactor = null;
+    private XRController controller = null;
+
+    private Collider hand_collider = null;
+    private Renderer hand_renderer = null;
+
+    private bool disconnected = true;
 
     private void Awake()
     {
         handPhysics = handObject.GetComponent<HandPhysics>();
         interactor = GetComponent<XRDirectInteractor>();
+        controller = GetComponent<XRController>();
+
+        hand_collider = handObject.GetComponent<Collider>();
+        hand_renderer = handObject.GetComponentInChildren<Renderer>();
+
     }
 
     private void OnEnable()
     {
-        interactor.onSelectEnter.AddListener(Hide);
-        interactor.onSelectExit.AddListener(Show);
+        interactor.onSelectEnter.AddListener(InteractorHide);
+        interactor.onSelectExit.AddListener(InteractorShow);
     }
 
     private void OnDisable()
     {
-        interactor.onSelectEnter.RemoveListener(Hide);
-        interactor.onSelectExit.RemoveListener(Show);
+        interactor.onSelectEnter.RemoveListener(InteractorHide);
+        interactor.onSelectExit.RemoveListener(InteractorShow);
     }
 
-    private void Show(XRBaseInteractable interactable)
+    private void Update()
     {
-        handPhysics.TeleportToTarget();
-        //handObject.SetActive(true);
+        var device = controller.inputDevice;
+        if (disconnected && device.isValid)
+        {
+            disconnected = false;
+            this.Show();
+        }
+        else if (!disconnected && !device.isValid)
+        {
+            disconnected = true;
+            this.Hide();
+        }
     }
 
-    private void Hide(XRBaseInteractable interactable)
+    private void InteractorShow(XRBaseInteractable interactable)
     {
-        //handObject.SetActive(false);
+        this.Show();
+    }
+
+    private void InteractorHide(XRBaseInteractable interactable)
+    {
+        this.Hide();
+    }
+
+    private void Show()
+    {
+        if (!disconnected)
+        {
+            handPhysics.TeleportToTarget();
+
+            hand_collider.enabled = true;
+            hand_renderer.enabled = true;
+        }
+    }
+
+    private void Hide()
+    {
+        hand_collider.enabled = false;
+        hand_renderer.enabled = false;
     }
 }
