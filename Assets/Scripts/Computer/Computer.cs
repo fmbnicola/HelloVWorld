@@ -46,7 +46,7 @@ public class Computer : MonoBehaviour
                 break;
 
             case States.StartUp:
-                if (Time.time - this.StartTime >= 5)
+                if (Time.time - this.StartTime >= 3)
                     this.State = States.Active;
                 break;
 

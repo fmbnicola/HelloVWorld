@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -16,6 +17,8 @@ public class Plug : MonoBehaviour
     private Vector3 AnchorPoint;
     private Rigidbody RigidBody;
 
+    public bool OnSocket;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class Plug : MonoBehaviour
         this.Joint = transform.GetComponent<FixedJoint>();
         this.RigidBody = this.Joint.connectedBody; 
         this.AnchorPoint = this.Joint.connectedAnchor;
+        this.OnSocket = false;
 
 
     }
@@ -34,26 +38,35 @@ public class Plug : MonoBehaviour
     {
         if (this.Interactable.isSelected)
         {
-            this.Disconnect();
+            this.DisconnectJoint();
         }
         else
         {
-            this.Reconnect();
+            if ( this.OnSocket == false) this.ReconnectJoint();
+
+            else
+            {
+               Debug.Log("else");
+            }
+
         }
 
 
     }
 
-    private void Disconnect()
+
+    private void DisconnectJoint()
     {
         Destroy(this.Joint);
     }
 
-    private void Reconnect()
+    private void ReconnectJoint()
     {
         if (this.Joint != null) return;
 
         this.transform.position = this.Block.transform.position + this.AnchorPoint;
+        this.transform.eulerAngles = new Vector3(0,0,0);
+
         this.Joint = this.gameObject.AddComponent<FixedJoint>();
         this.Joint.autoConfigureConnectedAnchor = false;
         this.Joint.enableCollision = false;
@@ -62,6 +75,20 @@ public class Plug : MonoBehaviour
 
     }
 
+
+    public void ConnectTo(Socket socket)
+    {
+        if (this.OnSocket == true || socket == null) return;
+
+        this.OnSocket    = true;
+        this.ConnectedTo = socket;
+    }
+
+    public void Disconnect()
+    {
+        this.OnSocket    = false;
+        this.ConnectedTo = null;
+    }
 
     public Socket GetConnectedTo()
     {
@@ -72,6 +99,4 @@ public class Plug : MonoBehaviour
     {
         return this.Block;
     }
-
-
 }

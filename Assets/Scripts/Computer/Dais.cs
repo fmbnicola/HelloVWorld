@@ -39,7 +39,7 @@ public class Dais : MonoBehaviour
                     break;
 
                 case Computer.States.StartUp:
-                    body.AddForce(new Vector3(0, 3, 0));
+                    body.AddForce(new Vector3(0, 2.5f, 0));
 
                     if(vel.magnitude > 0)
                         body.velocity *= rate;
@@ -64,7 +64,9 @@ public class Dais : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
+        if (collider.attachedRigidbody      == null || 
+            collider.attachedRigidbody.mass >= 10f  || 
+            collider.transform.parent       != null) return;
 
         var body = collider.attachedRigidbody;
 
@@ -73,6 +75,10 @@ public class Dais : MonoBehaviour
 
     private void OnTriggerExit(Collider collider)
     {
+        if (collider.attachedRigidbody      == null ||
+            collider.attachedRigidbody.mass >= 10f  ||
+            collider.transform.parent       != null) return;
+
         if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
 
         var body = collider.attachedRigidbody;

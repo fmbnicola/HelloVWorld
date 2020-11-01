@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Socket : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class Socket : MonoBehaviour
     void Start()
     {
         this.Block.RegisterSocket(this);
+        this.transform.GetComponent<XRSocketInteractor>().onSelectEnter.AddListener((interactable) => AttachPlug(interactable));
+        this.transform.GetComponent<XRSocketInteractor>().onSelectExit.AddListener((interactable) => DetachPlug(interactable));
     }
 
     // Update is called once per frame
@@ -32,6 +36,25 @@ public class Socket : MonoBehaviour
     public ProgrammingBlock GetBlock()
     {
         return this.Block;
+    }
+
+    public void AttachPlug(XRBaseInteractable interactable)
+    {
+        var plug = interactable.GetComponent<Plug>();
+
+        if (plug == null) return;
+
+        plug.ConnectTo(this);
+    }
+
+    public void DetachPlug(XRBaseInteractable interactable)
+    {
+        var plug = interactable.GetComponent<Plug>();
+
+        if (plug == null) return;
+
+        this.ConnectedTo = null;
+        plug.OnSocket    = false;
     }
 
 }
