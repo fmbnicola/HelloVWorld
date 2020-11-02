@@ -8,7 +8,7 @@ public class ComputerButton : MonoBehaviour
     private bool Clicked = false;
 
     [SerializeField]
-    private Computer Computer;
+    private Computer Computer = null;
 
     public enum Types
     {

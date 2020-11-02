@@ -135,6 +135,11 @@ public class ControllerSimulator : MonoBehaviour
             // Position controller
             Vector3 position = ray.origin + ray.direction * depthOffset;
             ActiveController.XRController.transform.position = position;
+
+            //Reset y rotation
+            var rot = ActiveController.XRController.transform.eulerAngles;
+            rot.y = Manager.HMDCamera.transform.eulerAngles.y;
+            ActiveController.XRController.transform.eulerAngles = rot;
         }
 
         // Controller Rotation
@@ -147,13 +152,6 @@ public class ControllerSimulator : MonoBehaviour
             transform.RotateAround(transform.position, Vector3.up, mouseMovement.x);
             var axis = Vector3.Cross(Vector3.up, Manager.HMDCamera.transform.forward);
             transform.RotateAround(transform.position, axis, mouseMovement.y);
-        }
-        else
-        {
-            // Rotate with Camera
-            var rot = ActiveController.XRController.transform.eulerAngles;
-            rot.y = Manager.HMDCamera.transform.eulerAngles.y;
-            ActiveController.XRController.transform.eulerAngles = rot;
         }
     }
 

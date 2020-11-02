@@ -7,13 +7,13 @@ namespace Robot.Actions
 {
     public class Action 
     {
-        protected Transform Robot { get; set; }
+        protected RobotController Robot { get; set; }
 
         protected CodeNode ProgramLine { get; set; }
 
 
 
-        public Action(Transform robot, CodeNode programLine)
+        public Action(RobotController robot, CodeNode programLine)
         {
             this.Robot = robot;
             this.ProgramLine = programLine;
@@ -24,15 +24,16 @@ namespace Robot.Actions
         virtual public void Execute()
         {
             Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
-
-            // the line is done because the robot does not need to do nothing
             this.ProgramLine.Complete = true;
         }
 
 
-        public bool Completed()
+        virtual public bool Completed()
         {
             return this.ProgramLine.Complete;
         }
+
+
+        virtual public void Terminate() { }
     }
 }

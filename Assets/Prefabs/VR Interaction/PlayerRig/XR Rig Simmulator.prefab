@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8615569817459953243}
+  - component: {fileID: 1407917656}
   - component: {fileID: 8615569817459953247}
   - component: {fileID: 8615569817459953246}
   - component: {fileID: 8615569817459953249}
-  - component: {fileID: 1407917656}
   m_Layer: 9
   m_Name: XR Rig Simmulator
   m_TagString: Untagged
@@ -34,88 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &8615569817459953247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8615569817459953248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40fa20a8053cb0f4ba84a106812daac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rig: {fileID: 0}
-  HMDCamera: {fileID: 0}
-  CharController: {fileID: 0}
-  RightController: {fileID: 0}
-  LeftController: {fileID: 0}
---- !u!114 &8615569817459953246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8615569817459953248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79e74b21409f5a346ad924e7f004d98e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controllerDefaultDistance: 1
-  controllerMaxDistance: 3
-  controllerMinDistance: 0
-  scrollWheelToDistance: 0.1
-  selectKey: 324
-  activateKey: 13
-  triggerKey: 13
-  gripKey: 324
-  switchControllerKey: 9
-  DefaultController: 1
---- !u!114 &8615569817459953249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8615569817459953248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c35af68711833f488efe2e7d8fe3414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 3
-  Height: 1.7
-  FowardKey: 119
-  LeftKey: 97
-  BackwardKey: 115
-  RightKey: 100
-  mouseSensitivityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 3.8503706
-      outSlope: 3.8503706
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.04226452
-    - serializedVersion: 3
-      time: 0.9984131
-      value: 1.8849144
-      inSlope: 0.006586095
-      outSlope: 0.006586095
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.58851904
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  rotationLerpTime: 0.01
 --- !u!114 &1407917656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +150,86 @@ MonoBehaviour:
       id: 22
       objectRef: {fileID: 1554221016812988, guid: 21e0be3a2c0fa8e4da0586919fb26d36,
         type: 3}
+--- !u!114 &8615569817459953247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40fa20a8053cb0f4ba84a106812daac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 0}
+  HMDCamera: {fileID: 0}
+  CharController: {fileID: 0}
+  RightController: {fileID: 0}
+  LeftController: {fileID: 0}
+  rightHand: {fileID: 0}
+  leftHand: {fileID: 0}
+  UseHands: 1
+--- !u!114 &8615569817459953246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e74b21409f5a346ad924e7f004d98e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerDefaultDistance: 1
+  controllerMaxDistance: 3
+  controllerMinDistance: 0
+  scrollWheelToDistance: 0.1
+  selectKey: 324
+  activateKey: 13
+  switchControllerKey: 9
+  DefaultController: 1
+--- !u!114 &8615569817459953249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615569817459953248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c35af68711833f488efe2e7d8fe3414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  Height: 1.7
+  FowardKey: 119
+  LeftKey: 97
+  BackwardKey: 115
+  RightKey: 100
+  mouseSensitivityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 3.8503706
+      outSlope: 3.8503706
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.04226452
+    - serializedVersion: 3
+      time: 0.9984131
+      value: 1.8849144
+      inSlope: 0.006586095
+      outSlope: 0.006586095
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.58851904
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  rotationLerpTime: 0.01

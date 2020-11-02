@@ -8,16 +8,18 @@ public class Dais : MonoBehaviour
 
     public Computer.States State { get; private set; }
 
-    private Dictionary<GameObject, float> Objects;
-
+    [SerializeField]
+    private List<Rigidbody> Bodies;
 
     // Start is called before the first frame update
     void Start()
     {
         this.Computer = this.transform.parent.GetComponent<Computer>();
 
-        this.Objects = new Dictionary<GameObject, float>();
+        this.Bodies = new List<Rigidbody>();
     }
+
+    public float factor = 6;
 
     // Update is called once per frame
     void Update()
@@ -25,75 +27,101 @@ public class Dais : MonoBehaviour
         this.State = this.Computer.State;
     }
 
-
-    private void OnTriggerEnter(Collider collider)
+    private void FixedUpdate()
     {
-        if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
+        var rate = 1 - factor * (Time.fixedDeltaTime / Time.timeScale);
 
-        switch(this.State)
+        foreach (var body in this.Bodies)
         {
-            default:
-                break;
+            var vel = body.velocity;
+            var ang = body.angularVelocity;
 
-            case Computer.States.StartUp: //Make them lift off the ground
-                if(collider.attachedRigidbody.velocity.y < 0.5)
-                    collider.attachedRigidbody.AddForce(new Vector3(0, 4, 0));
-                break;
+            switch (this.State)
+            {
+                default:
+                    break;
 
-            case Computer.States.Active: // Turn off their gravity
-                break;
+                case Computer.States.StartUp:
+                    body.AddForce(new Vector3(0, 15f, 0));
+
+                    if (vel.magnitude > 0)
+                        body.velocity *= rate;
+
+                    if (ang.magnitude > 0)
+                        body.angularVelocity *= rate;
+                    break;
+
+                case Computer.States.Active:
+                    body.useGravity = false;
+
+                    if (vel.magnitude > 0)
+                        body.velocity *= rate;
+
+                    if (ang.magnitude > 0)
+                        body.angularVelocity *= rate;
+                    break;
+            }
         }
     }
 
-    private void OnTriggerStay(Collider collider)
+
+    public void Release()
     {
-        if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
-
-        var vel = collider.attachedRigidbody.velocity;
-
-        switch (this.State)
+        foreach(var body in this.Bodies)
         {
-            default:
-                break;
-
-            case Computer.States.StartUp: //Make them lift off the ground
-                if (vel.y < 0.5)
-                    collider.attachedRigidbody.AddForce(new Vector3(0, 4, 0));
-
-                if (vel.magnitude > 0.5)
-                {
-                    collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.95f, vel.y * 0.95f, vel.z * 0.95f);
-                }
-                break;
-
-            case Computer.States.Active:
-                if (vel.magnitude > 0)
-                {
-                    collider.attachedRigidbody.velocity = new Vector3(vel.x * 0.7f, vel.y * 0.7f, vel.z * 0.7f);
-                }
-                    
-                collider.attachedRigidbody.useGravity = false;
-                break;
-
-            case Computer.States.Idle:
-                collider.attachedRigidbody.useGravity  = true;
-                break;
+            body.useGravity = true;
         }
 
-        if (collider.gameObject.name == "StartBlock")
-        {
-            this.Computer.StartBlock = collider.gameObject.GetComponent<ProgrammingBlock>();
-        }
+        this.State = Computer.States.Idle;
+    }
+
+
+    #region Gravity Field
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.attachedRigidbody      == null || 
+            collider.attachedRigidbody.mass >= 10f  || 
+            collider.transform.parent       != null) return;
+
+        var body = collider.attachedRigidbody;
+
+        this.BodyEntered(body);
     }
 
     private void OnTriggerExit(Collider collider)
     {
+        if (collider.attachedRigidbody      == null ||
+            collider.attachedRigidbody.mass >= 10f  ||
+            collider.transform.parent       != null) return;
+
         if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
 
-        if (this.Computer.StartBlock != null && collider.gameObject == this.Computer.StartBlock)
-            this.Computer.StartBlock = null;
+        var body = collider.attachedRigidbody;
 
-        // Make sure Gravity are right
-         collider.attachedRigidbody.useGravity  = true;
+        this.BodyExited(body);
     }
+
+
+    private void BodyEntered(Rigidbody body)
+    {
+        if (this.Bodies.Contains(body)) return;
+
+        this.Bodies.Add(body);
+
+        if (body.name == "StartBlock")
+            this.Computer.StartBlock = body.gameObject.GetComponent<ProgrammingBlock>();
+    }
+
+    private void BodyExited(Rigidbody body)
+    {
+        if (!this.Bodies.Contains(body)) return;
+
+        this.Bodies.Remove(body);
+
+        body.useGravity = true;
+
+        if (body.name == "StartBlock")
+            this.Computer.StartBlock = null;
+    }
+    #endregion
 }

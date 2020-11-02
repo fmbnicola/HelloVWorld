@@ -18,6 +18,7 @@ public class SimmulatorManager : MonoBehaviour
     // Hands
     public HandPhysics rightHand = null;
     public HandPhysics leftHand = null;
+    public bool UseHands = true;
 
     // Simmulators
     private HeadsetSimmulator HMDSimulator         = null;
@@ -38,12 +39,12 @@ public class SimmulatorManager : MonoBehaviour
             if (controller.name == "RightHand Controller")
             {
                 RightController = controller;
-                RightController.GetComponent<HandHider>().setForceValid(true);
+                RightController.GetComponent<HandHider>().setForceValid(UseHands);
             }
             if (controller.name == "LeftHand Controller")
             {
                 LeftController = controller;
-                LeftController.GetComponent<HandHider>().setForceValid(true);
+                LeftController.GetComponent<HandHider>().setForceValid(UseHands);
             }
         }
 
@@ -54,12 +55,34 @@ public class SimmulatorManager : MonoBehaviour
         var lhand = transform.parent.Find("Hand_Left").gameObject;
         leftHand = lhand.GetComponent<HandPhysics>();
 
+        setForceValid(true);
+
         //Simulatros
         HMDSimulator = GetComponent<HeadsetSimmulator>();
         if (HMDSimulator != null) HMDSimulator.Init(this);
 
         ControllerSimulator = GetComponent<ControllerSimulator>();
         if (ControllerSimulator != null) ControllerSimulator.Init(this);
+    }
+
+    private void setUseHands(bool _useHands)
+    {
+        if(RightController != null)
+            RightController.GetComponent<HandHider>().setUseHands(UseHands);
+
+        if (LeftController != null)
+            LeftController.GetComponent<HandHider>().setUseHands(UseHands);
+    }
+
+    private void setForceValid(bool _forceValid)
+    {
+        RightController.GetComponent<HandHider>().setForceValid(UseHands);
+        LeftController.GetComponent<HandHider>().setForceValid(UseHands);
+    }
+
+    private void OnValidate()
+    {
+        setUseHands(UseHands);
     }
 #endif
 }

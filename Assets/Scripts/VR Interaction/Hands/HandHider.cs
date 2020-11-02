@@ -14,8 +14,10 @@ public class HandHider : MonoBehaviour
     private Collider hand_collider = null;
     private Renderer hand_renderer = null;
 
+    //flags
     private bool disconnected = true;
     private bool forceValid = false;
+    public bool useHands = true;
 
     private void Awake()
     {
@@ -25,13 +27,17 @@ public class HandHider : MonoBehaviour
 
         hand_collider = handObject.GetComponent<Collider>();
         hand_renderer = handObject.GetComponentInChildren<Renderer>();
-
     }
 
     private void OnEnable()
     {
         interactor.onSelectEnter.AddListener(InteractorHide);
         interactor.onSelectExit.AddListener(InteractorShow);
+    }
+
+    private void Start()
+    {
+        controller.hideControllerModel = true;
     }
 
     private void OnDisable()
@@ -53,6 +59,9 @@ public class HandHider : MonoBehaviour
             disconnected = true;
             this.Hide();
         }
+
+        //Turn on and off Indicators
+        controller.hideControllerModel = useHands;
     }
 
     private void InteractorShow(XRBaseInteractable interactable)
@@ -67,7 +76,7 @@ public class HandHider : MonoBehaviour
 
     private void Show()
     {
-        if (!disconnected)
+        if (!disconnected && useHands)
         {
             handPhysics.TeleportToTarget();
 
@@ -85,5 +94,17 @@ public class HandHider : MonoBehaviour
     public void setForceValid(bool _forceValid)
     {
         forceValid = _forceValid;
+    }
+
+    public void setUseHands(bool _useHands)
+    {
+        useHands = _useHands;
+
+        // Fake input device
+        setForceValid(useHands);
+
+        // Show or hide
+        if (useHands) Show();
+        else Hide();
     }
 }

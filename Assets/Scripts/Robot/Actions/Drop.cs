@@ -8,7 +8,7 @@ namespace Robot.Actions
 {
     public class Drop : Action
     {
-        public Drop(Transform robot, Instruction drop) : base(robot, drop) { }
+        public Drop(RobotController robot, Instruction drop) : base(robot, drop) { }
 
 
         override public void Execute()
