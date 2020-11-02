@@ -8,26 +8,28 @@ namespace Robot.Actions
 {
     public class Walk : Action
     {
-        private Vector3 TargetPos { get; set; }
-
-        private float Margin { get; set; }
-        private float Force { get; set; }
+        private float StepSize { get; set; }
         private float MaxSpeed { get; set; }
+        private float Force { get; set; }
+        private float Margin { get; set; }
+
+        private Vector3 TargetPos { get; set; }
 
         private Rigidbody RobotBody { get; set; }
 
 
 
-        public Walk(RobotController robot, Instruction walk, float margin, float force, float maxSpeed) : 
+        public Walk(RobotController robot, Instruction walk, float stepSize, float maxSpeed, float force, float margin) : 
             base(robot, walk)
         {
-            Vector3 pos = robot.GetPosition();
-            float zTarget = pos.z + robot.Dimensions.z;
-            this.TargetPos = new Vector3(pos.x, pos.y, zTarget);
-
-            this.Margin = margin;
-            this.Force = force;
+            this.StepSize = stepSize;
             this.MaxSpeed = maxSpeed;
+            this.Force = force;
+            this.Margin = margin;
+
+            Vector3 pos = robot.GetPosition();
+            float zTarget = pos.z + this.StepSize;
+            this.TargetPos = new Vector3(pos.x, pos.y, zTarget);
 
             this.RobotBody = this.Robot.Rigidbody;
             this.RobotBody.useGravity = false;
@@ -53,13 +55,13 @@ namespace Robot.Actions
             float dist = Vector3.Distance(this.Robot.GetPosition(), this.TargetPos);
 
 
-            if (dist <= this.Margin)
+            if (dist < this.Margin)
             {
                 this.ProgramLine.Complete = true;
 
                 this.Terminate();
 
-                Debug.Log("Target Reached");
+                Debug.Log("Walk End");
             }
 
             return this.ProgramLine.Complete;

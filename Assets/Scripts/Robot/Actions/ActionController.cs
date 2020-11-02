@@ -18,9 +18,19 @@ namespace Robot.Actions
 
         #region /* Attributes defined on Editor */
 
+        #region Walk
+        public float StepSize;
+        public float MaxWalkSpeed;
+        public float WalkForce;
         public float WalkMargin;
-        public float Force;
-        public float MaxSpeed;
+        #endregion
+
+        #region Rotate
+        public float RotationAngle;
+        public float MaxRotationSpeed;
+        public float RotationTorque;
+        public float RotationMargin;
+        #endregion
 
         #endregion
 
@@ -88,7 +98,7 @@ namespace Robot.Actions
             switch (programLine.Id)
             {
                 case Instruction.ID.Walk:
-                    this.CurrentAction = new Walk(this.Robot, programLine, this.WalkMargin, this.Force, this.MaxSpeed);
+                    this.CurrentAction = new Walk(this.Robot, programLine, this.StepSize, this.MaxWalkSpeed, this.WalkForce, this.WalkMargin);
                     break;
                 
                 case Instruction.ID.Grab:
@@ -100,7 +110,7 @@ namespace Robot.Actions
                     break;
                 
                 case Instruction.ID.Rotate:
-                    this.CurrentAction = new Rotate(this.Robot, programLine);
+                    this.CurrentAction = new Rotate(this.Robot, programLine, this.RotationAngle, this.MaxRotationSpeed, this.RotationTorque, this.RotationMargin);
                     break;
 
                 default:

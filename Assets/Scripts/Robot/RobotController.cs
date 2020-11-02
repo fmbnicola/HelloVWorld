@@ -12,8 +12,6 @@ namespace Robot
     public class RobotController : MonoBehaviour
     {
         #region /* Robot Info */
-        
-        public Vector3 Dimensions { get; private set; }
 
         public Rigidbody Rigidbody { get; private set; }
         
@@ -48,11 +46,6 @@ namespace Robot
             this.PrepareActionController();
 
             this.PrepareForProgram();
-
-            //this.createProgram();
-            //this.ProgramRunning = true;
-            //this.Program.Execute(this.ActionController);
-
         }
 
 
@@ -73,9 +66,6 @@ namespace Robot
 
         private void InitializeRobotInfo()
         {
-            BoxCollider robotCollider = this.transform.GetComponent<BoxCollider>();
-            this.Dimensions = robotCollider.size;
-
             this.Rigidbody = this.transform.GetComponent<Rigidbody>();
         }
 
@@ -83,6 +73,12 @@ namespace Robot
         public Vector3 GetPosition()
         {
             return this.transform.position;
+        }
+
+
+        public Vector3 GetRotation()
+        {
+            return this.transform.rotation.eulerAngles;
         }
 
         #endregion

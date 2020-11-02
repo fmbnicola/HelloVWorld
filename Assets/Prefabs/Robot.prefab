@@ -122,9 +122,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bad86ff8276ba4cb3a2ea3d061223c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkMargin: 0.1
-  Force: 1
-  MaxSpeed: 5
+  StepSize: 1
+  MaxWalkSpeed: 5
+  WalkForce: 1
+  WalkMargin: 0.01
+  RotationAngle: 90
+  MaxRotationSpeed: 1.5
+  RotationTorque: 15
+  RotationMargin: 0.1
 --- !u!54 &4457255944752067972
 Rigidbody:
   m_ObjectHideFlags: 0

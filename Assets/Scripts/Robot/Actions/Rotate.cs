@@ -8,15 +8,67 @@ namespace Robot.Actions
 {
     public class Rotate : Action
     {
-        public Rotate(RobotController robot, Instruction rotate) : base(robot, rotate) { }
+        private float Angle { get; set; }
+        private float MaxSpeed { get; set; }
+        private float Torque { get; set; }
+        private float Margin { get; set; }
+
+        private Vector3 Target { get; set; }
+
+        private Rigidbody RobotBody { get; set; }
+
+
+
+        public Rotate(RobotController robot, Instruction rotate, float angle, float maxSpeed, float torque, float margin) :
+            base(robot, rotate)
+        {
+            this.Angle = angle;
+            this.MaxSpeed = maxSpeed;
+            this.Torque = torque;
+            this.Margin = margin;
+
+            Vector3 ori = this.Robot.GetRotation();
+            float yTarget = ori.y + this.Angle;
+            this.Target = new Vector3(ori.x, yTarget, ori.z);
+
+            this.RobotBody = this.Robot.Rigidbody;
+
+            Debug.Log(base.ProgramLine.ToString() + " -> " + this.ToString());
+        }
+
 
 
         override public void Execute()
         {
-            Debug.Log(base.ProgramLine.ToString() + " -> " + this.ToString());
+            this.RobotBody.AddRelativeTorque(Vector3.up * this.Torque);
 
-            // the line is done because the robot does not need to do nothing
-            this.ProgramLine.Complete = true;
+            if (this.RobotBody.angularVelocity.magnitude > this.MaxSpeed)
+            {
+                this.RobotBody.angularVelocity = this.RobotBody.angularVelocity.normalized * this.MaxSpeed;
+            }
+        }
+
+
+        public override bool Completed()
+        {
+            float dist = Vector3.Distance(this.Robot.GetRotation(), this.Target);
+
+            if (dist < this.Margin)
+            {
+                this.ProgramLine.Complete = true;
+
+                this.Terminate();
+
+                Debug.Log("Rotate End");
+            }
+
+            return this.ProgramLine.Complete;
+        }
+
+
+        public override void Terminate()
+        {
+            this.RobotBody.angularVelocity = Vector3.zero;
         }
 
     }

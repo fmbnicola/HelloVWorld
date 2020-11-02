@@ -623,6 +623,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot
       objectReference: {fileID: 0}
+    - target: {fileID: 3068340435428685172, guid: 3e356e8c9cad8004db8534288ae46ff7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3068340435428685174, guid: 3e356e8c9cad8004db8534288ae46ff7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -677,6 +682,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3068340435428685192, guid: 3e356e8c9cad8004db8534288ae46ff7,
+        type: 3}
+      propertyPath: RotationMargin
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6363310977767825316, guid: 3e356e8c9cad8004db8534288ae46ff7,
         type: 3}
