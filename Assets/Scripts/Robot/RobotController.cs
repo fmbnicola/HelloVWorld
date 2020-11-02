@@ -14,6 +14,8 @@ namespace Robot
         #region /* Robot Info */
 
         public Rigidbody Rigidbody { get; private set; }
+
+        public bool DebugInfo;
         
         #endregion
 
@@ -110,7 +112,7 @@ namespace Robot
         {
             this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
             this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
-            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram(disk));
+            this.DiskSocket.onSelectExit.AddListener((disk) => this.AbortProgram(disk));
 
             this.Program = null;
             this.ProgramRunning = false;
@@ -162,6 +164,11 @@ namespace Robot
                 {
                     this.createProgram();
                 }
+
+                if (this.DebugInfo)
+                {
+                    Debug.Log("Program Loaded");
+                }
             }
         }
 
@@ -170,23 +177,33 @@ namespace Robot
         {
             if (this.Disk != null && this.Program != null)
             {
+                if (this.DebugInfo)
+                {
+                    Debug.Log("Progam Started");
+                }
+
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
             }
         }
 
 
-        private void CloseProgram(XRBaseInteractable disk)
+        private void AbortProgram(XRBaseInteractable disk)
         {
             FloppyDisk floppy = disk.transform.GetComponent<FloppyDisk>();
 
             if (this.Disk == floppy)
             {
-                this.ActionController.TerminateAction();
+                this.ActionController.AbortAction();
 
                 this.Disk = null;
                 this.Program = null;
                 this.ProgramRunning = false;
+
+                if (this.DebugInfo)
+                {
+                    Debug.Log("Program Aborted");
+                }
             }
         }
 
@@ -210,6 +227,11 @@ namespace Robot
                     if (this.Program == null)
                     {
                         this.createProgram();
+                    }
+
+                    if (this.DebugInfo)
+                    {
+                        Debug.Log("Program Ended");
                     }
                 }
             }

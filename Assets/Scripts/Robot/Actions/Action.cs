@@ -23,6 +23,11 @@ namespace Robot.Actions
 
         virtual public void Execute()
         {
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+            }
+
             this.ProgramLine.Complete = true;
         }
 

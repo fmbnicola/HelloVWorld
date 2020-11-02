@@ -32,6 +32,11 @@ namespace Robot.Actions
             this.Target = new Vector3(ori.x, yTarget, ori.z);
 
             this.RobotBody = this.Robot.Rigidbody;
+
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+            }
         }
 
 

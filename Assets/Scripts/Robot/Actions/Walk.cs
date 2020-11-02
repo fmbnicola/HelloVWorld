@@ -33,6 +33,11 @@ namespace Robot.Actions
 
             this.RobotBody = this.Robot.Rigidbody;
             this.RobotBody.useGravity = false;
+
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+            }
         }
 
 
