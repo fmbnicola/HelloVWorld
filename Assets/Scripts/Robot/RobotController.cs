@@ -26,11 +26,12 @@ namespace Robot
         #region /* Progam Attributes */
 
         private XRSocketInteractor DiskSocket { get; set; }
-
         private FloppyDisk Disk { get; set; }
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
+
+        private StartButton StartButton { get; set; }
 
         #endregion
 
@@ -107,6 +108,9 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
+
+            this.StartButton = this.transform.GetComponentInChildren<StartButton>();
+            this.StartButton.Initialize(this);
         }
 
 
@@ -148,10 +152,18 @@ namespace Robot
                 }
 
                 Debug.Log("Program loaded");
+            }
+        }
 
-                // TODO: only start execution after clicking the start button
+
+        public void StartProgram()
+        {
+            if (this.Disk != null && this.Program != null)
+            {
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
+
+                Debug.Log("Program Start");
             }
         }
 
@@ -187,6 +199,13 @@ namespace Robot
                 {
                     this.ProgramRunning = false;
                     this.Program = this.Disk.codeHead;
+
+                    // TODO: remove if
+                    if (this.Program == null)
+                    {
+                        this.createProgram();
+                    }
+
                     Debug.Log("Program ended");
                 }
             }

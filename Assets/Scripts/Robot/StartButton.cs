@@ -7,27 +7,34 @@ namespace Robot
 {
     public class StartButton : MonoBehaviour
     {
-        #region === Unity Events ===
+        private RobotController Robot { get; set; }
+
+        public bool Clicked;
+
+
 
         // Start is called before the first frame update
         void Start()
         {
-
+            this.Clicked = false;
         }
 
 
         // Update is called once per frame
         void Update()
         {
-
+            if (this.Clicked)
+            {
+                this.Clicked = false;
+                this.Robot.StartProgram();
+            }
         }
 
 
-        private void OnTriggerEnter(Collider other)
+        
+        public void Initialize(RobotController robot)
         {
-            //Debug.Log("Start program");    
+            this.Robot = robot;
         }
-
-        #endregion
     }
 }
