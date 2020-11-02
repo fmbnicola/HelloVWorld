@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2081944685945890416}
   - component: {fileID: 4789898631456733073}
   - component: {fileID: 2536193317151007416}
-  - component: {fileID: 4968036345756288540}
   - component: {fileID: 2170668411021950753}
   m_Layer: 0
   m_Name: Plug
@@ -112,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Block: {fileID: 0}
   ConnectedTo: {fileID: 0}
-  AnchorPoint: {x: 0, y: 0.5, z: 0}
+  AnchorPoint: {fileID: 0}
   OnSocket: 0
 --- !u!54 &2536193317151007416
 Rigidbody:
@@ -130,20 +129,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!138 &4968036345756288540
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6694067393853715883}
-  m_ConnectedBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!114 &2170668411021950753
 MonoBehaviour:
   m_ObjectHideFlags: 0

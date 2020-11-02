@@ -24,7 +24,11 @@ public class Socket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.ConnectedTo != null)
+        {
+            this.ConnectedTo.transform.position = this.transform.position;
+            this.ConnectedTo.transform.rotation = this.transform.rotation;
+        }
     }
 
   
@@ -43,6 +47,8 @@ public class Socket : MonoBehaviour
         var plug = interactable.GetComponent<Plug>();
 
         if (plug == null) return;
+
+        this.ConnectedTo = plug;
 
         plug.ConnectTo(this);
     }

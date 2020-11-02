@@ -31,28 +31,11 @@ public class Plug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.Interactable.isSelected)
+        if (!this.Interactable.isSelected && !this.OnSocket)
         {
-            this.DisconnectJoint();
+            this.transform.position    = this.AnchorPoint.position;
+            this.transform.eulerAngles = this.AnchorPoint.eulerAngles;
         }
-        else
-        {
-            this.ReconnectJoint();
-        }
-
-
-    }
-
-
-    private void DisconnectJoint()
-    {
-        return;
-    }
-
-    private void ReconnectJoint()
-    {
-        this.transform.position    = this.AnchorPoint.position;
-        this.transform.eulerAngles = this.AnchorPoint.eulerAngles;
     }
 
 
