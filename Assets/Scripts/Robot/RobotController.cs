@@ -12,8 +12,6 @@ namespace Robot
     public class RobotController : MonoBehaviour
     {
         #region /* Robot Info */
-        
-        public Vector3 Dimensions { get; private set; }
 
         public Rigidbody Rigidbody { get; private set; }
         
@@ -48,11 +46,6 @@ namespace Robot
             this.PrepareActionController();
 
             this.PrepareForProgram();
-
-            this.createProgram();
-            this.ProgramRunning = true;
-            this.Program.Execute(this.ActionController);
-
         }
 
 
@@ -73,9 +66,6 @@ namespace Robot
 
         private void InitializeRobotInfo()
         {
-            BoxCollider robotCollider = this.transform.GetComponent<BoxCollider>();
-            this.Dimensions = robotCollider.size;
-
             this.Rigidbody = this.transform.GetComponent<Rigidbody>();
         }
 
@@ -83,6 +73,12 @@ namespace Robot
         public Vector3 GetPosition()
         {
             return this.transform.position;
+        }
+
+
+        public Vector3 GetRotation()
+        {
+            return this.transform.rotation.eulerAngles;
         }
 
         #endregion
@@ -107,7 +103,7 @@ namespace Robot
         {
             this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
             this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
-            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram());
+            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram(disk));
 
             this.Program = null;
             this.ProgramRunning = false;
@@ -139,34 +135,41 @@ namespace Robot
 
         private void LoadProgram(XRBaseInteractable disk)
         {
-            disk.transform.parent = this.transform;
-
             this.Disk = disk.GetComponent<FloppyDisk>();
-            this.Program = this.Disk.codeHead;
 
-            // TODO: remove if
-            if (this.Program == null)
+            if (this.Disk != null)
             {
-                this.createProgram();
+                this.Program = this.Disk.codeHead;
+
+                // TODO: remove if
+                if (this.Program == null)
+                {
+                    this.createProgram();
+                }
+
+                Debug.Log("Program loaded");
+
+                // TODO: only start execution after clicking the start button
+                this.ProgramRunning = true;
+                this.Program.Execute(this.ActionController);
             }
-
-            Debug.Log("Program loaded");
-
-            // TODO: only start execution after clicking the start button
-            this.ProgramRunning = true;
-            this.Program.Execute(this.ActionController);
         }
 
 
-        private void CloseProgram()
+        private void CloseProgram(XRBaseInteractable disk)
         {
-            this.ActionController.TerminateAction();
+            FloppyDisk floppy = disk.transform.GetComponent<FloppyDisk>();
 
-            this.Disk = null;
-            this.Program = null;
-            this.ProgramRunning = false;
+            if (this.Disk == floppy)
+            {
+                this.ActionController.TerminateAction();
 
-            Debug.Log("Program info cleaned");
+                this.Disk = null;
+                this.Program = null;
+                this.ProgramRunning = false;
+
+                Debug.Log("Program info cleaned");
+            }
         }
 
 

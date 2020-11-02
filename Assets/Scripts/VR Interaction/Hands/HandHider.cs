@@ -5,19 +5,43 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandHider : MonoBehaviour
 {
+    // Hands
     public GameObject handObject = null;
-
-    private HandPhysics handPhysics = null;
-    private XRDirectInteractor interactor = null;
-    private XRController controller = null;
-
     private Collider hand_collider = null;
     private Renderer hand_renderer = null;
+    private HandPhysics handPhysics = null;
 
-    //flags
+    // Controller
+    private XRDirectInteractor interactor = null;
+    private XRController controller = null;
+    private GameObject indicator = null;
+
+    // Flags
     private bool disconnected = true;
     private bool forceValid = false;
     public bool useHands = true;
+
+    // Flag Setters
+    public void setForceValid(bool _forceValid)
+    {
+        forceValid = _forceValid;
+    }
+
+    public void setUseHands(bool _useHands)
+    {
+        useHands = _useHands;
+
+        if (useHands)
+        {
+            HideIndicator();
+            ShowHand();
+        }
+        else
+        {
+            HideHand();
+            ShowIndicator();
+        }
+    }
 
     private void Awake()
     {
@@ -25,19 +49,21 @@ public class HandHider : MonoBehaviour
         interactor = GetComponent<XRDirectInteractor>();
         controller = GetComponent<XRController>();
 
+        indicator = transform.Find("ModelTransform").gameObject;
+
         hand_collider = handObject.GetComponent<Collider>();
         hand_renderer = handObject.GetComponentInChildren<Renderer>();
+    }
+
+    private void Start()
+    {
+        setUseHands(useHands);
     }
 
     private void OnEnable()
     {
         interactor.onSelectEnter.AddListener(InteractorHide);
         interactor.onSelectExit.AddListener(InteractorShow);
-    }
-
-    private void Start()
-    {
-        controller.hideControllerModel = true;
     }
 
     private void OnDisable()
@@ -49,19 +75,19 @@ public class HandHider : MonoBehaviour
     private void Update()
     {
         var device = controller.inputDevice;
+
+        //device is active
         if (disconnected && (device.isValid || forceValid))
         {
             disconnected = false;
             this.Show();
         }
+        //device is inactive (controllers lost tracking or are sleeping)
         else if (!disconnected && !(device.isValid || forceValid))
         {
             disconnected = true;
             this.Hide();
         }
-
-        //Turn on and off Indicators
-        controller.hideControllerModel = useHands;
     }
 
     private void InteractorShow(XRBaseInteractable interactable)
@@ -73,38 +99,40 @@ public class HandHider : MonoBehaviour
     {
         this.Hide();
     }
-
+    
     private void Show()
     {
-        if (!disconnected && useHands)
-        {
-            handPhysics.TeleportToTarget();
-
-            hand_collider.enabled = true;
-            hand_renderer.enabled = true;
-        }
+        if (useHands) ShowHand();
+        else ShowIndicator();
     }
 
     private void Hide()
+    {
+        if (useHands) HideHand();
+        else HideIndicator();
+    }
+
+    private void ShowHand()
+    {
+        handPhysics.TeleportToTarget();
+        hand_collider.enabled = true;
+        hand_renderer.enabled = true;
+    }
+
+    private void HideHand()
     {
         hand_collider.enabled = false;
         hand_renderer.enabled = false;
     }
 
-    public void setForceValid(bool _forceValid)
+    private void ShowIndicator()
     {
-        forceValid = _forceValid;
+        indicator.SetActive(true);
     }
 
-    public void setUseHands(bool _useHands)
+    private void HideIndicator()
     {
-        useHands = _useHands;
-
-        // Fake input device
-        setForceValid(useHands);
-
-        // Show or hide
-        if (useHands) Show();
-        else Hide();
+        indicator.SetActive(false);
     }
+
 }

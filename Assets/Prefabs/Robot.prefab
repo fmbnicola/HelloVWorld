@@ -122,9 +122,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bad86ff8276ba4cb3a2ea3d061223c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkMargin: 0.1
-  Force: 1
-  MaxSpeed: 5
+  StepSize: 1
+  MaxWalkSpeed: 5
+  WalkForce: 1
+  WalkMargin: 0.01
+  RotationAngle: 90
+  MaxRotationSpeed: 1.5
+  RotationTorque: 15
+  RotationMargin: 0.1
 --- !u!54 &4457255944752067972
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -169,8 +174,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240825007749510161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 3068340435428685174}
   m_RootOrder: 1
@@ -250,7 +255,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   m_AttachTransform: {fileID: 6575620687133937859}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
