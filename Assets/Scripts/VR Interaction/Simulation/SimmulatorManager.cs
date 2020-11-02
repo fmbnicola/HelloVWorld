@@ -55,14 +55,18 @@ public class SimmulatorManager : MonoBehaviour
         var lhand = transform.parent.Find("Hand_Left").gameObject;
         leftHand = lhand.GetComponent<HandPhysics>();
 
-        setForceValid(true);
-
         //Simulatros
         HMDSimulator = GetComponent<HeadsetSimmulator>();
         if (HMDSimulator != null) HMDSimulator.Init(this);
 
         ControllerSimulator = GetComponent<ControllerSimulator>();
         if (ControllerSimulator != null) ControllerSimulator.Init(this);
+    }
+
+    private void Start()
+    {
+        setForceValid(true);
+        setUseHands(UseHands);
     }
 
     private void setUseHands(bool _useHands)
