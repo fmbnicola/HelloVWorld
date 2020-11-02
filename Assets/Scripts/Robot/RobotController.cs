@@ -82,6 +82,12 @@ namespace Robot
             return this.transform.rotation.eulerAngles;
         }
 
+
+        public Vector3 GetFoward()
+        {
+            return this.transform.forward;
+        }
+
         #endregion
 
 
@@ -116,22 +122,28 @@ namespace Robot
 
         private void createProgram()
         {
-            CodeNode Line1 = new CodeNode(null, null);
+            CodeNode Line1 = new Instruction(Instruction.ID.Walk, null, null);
 
-            CodeNode Line2 = new CodeNode(null, Line1);
+            CodeNode Line2 = new Instruction(Instruction.ID.Rotate, null, Line1);
             Line1.Next = Line2;
 
             CodeNode Line3 = new Instruction(Instruction.ID.Walk, null, Line2);
             Line2.Next = Line3;
 
-            CodeNode Line4 = new Instruction(Instruction.ID.Grab, null, Line3);
+            CodeNode Line4 = new Instruction(Instruction.ID.Rotate, null, Line3);
             Line3.Next = Line4;
-
-            CodeNode Line5 = new Instruction(Instruction.ID.Drop, null, Line4);
+            
+            CodeNode Line5 = new Instruction(Instruction.ID.Walk, null, Line4);
             Line4.Next = Line5;
 
             CodeNode Line6 = new Instruction(Instruction.ID.Rotate, null, Line5);
             Line5.Next = Line6;
+
+            CodeNode Line7 = new Instruction(Instruction.ID.Walk, null, Line6);
+            Line6.Next = Line7;
+
+            CodeNode Line8 = new Instruction(Instruction.ID.Rotate, null, Line7);
+            Line7.Next = Line8;
 
             this.Program = Line1;
         }
@@ -150,8 +162,6 @@ namespace Robot
                 {
                     this.createProgram();
                 }
-
-                Debug.Log("Program loaded");
             }
         }
 
@@ -162,8 +172,6 @@ namespace Robot
             {
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
-
-                Debug.Log("Program Start");
             }
         }
 
@@ -179,8 +187,6 @@ namespace Robot
                 this.Disk = null;
                 this.Program = null;
                 this.ProgramRunning = false;
-
-                Debug.Log("Program info cleaned");
             }
         }
 
@@ -205,8 +211,6 @@ namespace Robot
                     {
                         this.createProgram();
                     }
-
-                    Debug.Log("Program ended");
                 }
             }
             else

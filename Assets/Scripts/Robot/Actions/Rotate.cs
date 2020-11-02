@@ -32,8 +32,6 @@ namespace Robot.Actions
             this.Target = new Vector3(ori.x, yTarget, ori.z);
 
             this.RobotBody = this.Robot.Rigidbody;
-
-            Debug.Log(base.ProgramLine.ToString() + " -> " + this.ToString());
         }
 
 
@@ -58,8 +56,6 @@ namespace Robot.Actions
                 this.ProgramLine.Complete = true;
 
                 this.Terminate();
-
-                Debug.Log("Rotate End");
             }
 
             return this.ProgramLine.Complete;
