@@ -28,7 +28,7 @@ namespace Robot.Actions
             this.Margin = margin;
 
             Vector3 ori = this.Robot.GetRotation();
-            float yTarget = ori.y + this.Angle;
+            float yTarget = (ori.y + this.Angle) % 360;
             this.Target = new Vector3(ori.x, yTarget, ori.z);
 
             this.RobotBody = this.Robot.Rigidbody;
