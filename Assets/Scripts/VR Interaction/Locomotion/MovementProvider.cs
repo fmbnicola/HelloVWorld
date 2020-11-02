@@ -13,12 +13,22 @@ public class MovementProvider : LocomotionProvider
     public List<XRController> controllers = null;
 
     private CharacterController characterController = null;
+
     private GameObject head = null;
+    private HandPhysics rightHand = null;
+    private HandPhysics leftHand = null;
 
     protected override void Awake()
     {
         characterController = GetComponent<CharacterController>();
+
         head = GetComponent<XRRig>().cameraGameObject;
+
+        var rhand = transform.parent.Find("Hand_Right").gameObject;
+        rightHand = rhand.GetComponent<HandPhysics>();
+
+        var lhand = transform.parent.Find("Hand_Left").gameObject;
+        leftHand = lhand.GetComponent<HandPhysics>();
     }
 
     private void Start()
@@ -26,7 +36,7 @@ public class MovementProvider : LocomotionProvider
         PositionController();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         PositionController();
         CheckForInput();
@@ -84,6 +94,13 @@ public class MovementProvider : LocomotionProvider
         // Apply speed and move
         Vector3 movement = direction * speed;
         characterController.Move(movement *Time.fixedDeltaTime);
+
+        //Make sure Controllers are teleported when mooving (So they dont lag behind)
+        if (position != Vector2.zero)
+        {
+            rightHand.TeleportToTarget();
+            leftHand.TeleportToTarget();
+        }
     }
 
     private void ApplyGravity()

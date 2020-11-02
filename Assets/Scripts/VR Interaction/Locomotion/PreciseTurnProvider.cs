@@ -9,12 +9,7 @@ public class PreciseTurnProvider : LocomotionProvider
     // Turn angle and time to complete turn
     public float turnSpeed = 3.0f;
 
-    // Input left and right
-    public InputHelpers.Button rightTurnButton = InputHelpers.Button.PrimaryAxis2DRight;
-    public InputHelpers.Button leftTurnButton = InputHelpers.Button.PrimaryAxis2DLeft;
-
     public List<XRController> controllers = new List<XRController>();
-
 
     void FixedUpdate()
     {

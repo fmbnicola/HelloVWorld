@@ -15,8 +15,6 @@ public class ControllerSimulator : MonoBehaviour
 
     public KeyCode selectKey            = KeyCode.Mouse1;
     public KeyCode activateKey          = KeyCode.Return;
-    public KeyCode triggerKey           = KeyCode.Return;
-    public KeyCode gripKey              = KeyCode.Mouse1;
     public KeyCode switchControllerKey  = KeyCode.BackQuote;
 
     [System.Serializable]
@@ -110,13 +108,50 @@ public class ControllerSimulator : MonoBehaviour
         switch (button)
         {
             case InputHelpers.Button.Trigger:
-                return Input.GetKey(triggerKey);
+                return Input.GetKey(KeyCode.Alpha0); //FIXME
 
             case InputHelpers.Button.Grip:
-                return Input.GetKey(gripKey);
+                return Input.GetKey(KeyCode.Alpha0); //FIXME
 
             default:
             return false;
+        }
+    }
+
+    private void Update()
+    {
+        // Controller Movement
+        float scroll = Input.mouseScrollDelta.y;
+        if (Input.GetMouseButton(0) || scroll != 0)
+        {
+            // Scroll wheel controls distance
+            m_distance += scroll * scrollWheelToDistance;
+            float depthOffset = Mathf.Clamp(controllerDefaultDistance + m_distance, controllerMinDistance, controllerMaxDistance);
+
+            // Mouse position sets position in XY plane at current depth
+            Vector3 screenPos = Input.mousePosition;
+            Ray ray = Manager.HMDCamera.ScreenPointToRay(screenPos);
+            
+            // Position controller
+            Vector3 position = ray.origin + ray.direction * depthOffset;
+            ActiveController.XRController.transform.position = position;
+
+            //Reset y rotation
+            var rot = ActiveController.XRController.transform.eulerAngles;
+            rot.y = Manager.HMDCamera.transform.eulerAngles.y;
+            ActiveController.XRController.transform.eulerAngles = rot;
+        }
+
+        // Controller Rotation
+        if (Input.GetMouseButton(2))
+        {
+            var mouseMovement = new Vector2(Input.GetAxis("Mouse X") * -1, Input.GetAxis("Mouse Y"));
+
+            var transform = ActiveController.XRController.transform;
+
+            transform.RotateAround(transform.position, Vector3.up, mouseMovement.x);
+            var axis = Vector3.Cross(Vector3.up, Manager.HMDCamera.transform.forward);
+            transform.RotateAround(transform.position, axis, mouseMovement.y);
         }
     }
 
@@ -136,46 +171,13 @@ public class ControllerSimulator : MonoBehaviour
 
             Debug.LogFormat("Switched controller: {0}", ActiveController.XRController.name);
         }
-    
+
         // Ensure we are overriding ControllerInput as well, which is our wrapper for direct button press detection
         ControllerInput controllerInput = ActiveController.XRController.GetComponent<ControllerInput>();
         if (controllerInput)
         {
             controllerInput.SetButtonPressProvider(GetButtonPressed);
         }
-    
-        // Controller Movement
-        float scroll = Input.mouseScrollDelta.y;
-        if (Input.GetMouseButton(0) || scroll != 0)
-        {
-            // Scroll wheel controls distance
-            m_distance += scroll * scrollWheelToDistance;
-            float depthOffset = Mathf.Clamp(controllerDefaultDistance + m_distance, controllerMinDistance, controllerMaxDistance);
-
-            // Mouse position sets position in XY plane at current depth
-            Vector3 screenPos = Input.mousePosition;
-            Ray ray = Manager.HMDCamera.ScreenPointToRay(screenPos);
-            
-            // Position controller
-            Vector3 position = ray.origin + ray.direction * depthOffset;
-            ActiveController.XRController.transform.position = position;
-        }
-
-        // Controller Rotation
-        if (Input.GetMouseButton(2))
-        {
-            var mouseMovement = new Vector2(Input.GetAxis("Mouse X") * -1, Input.GetAxis("Mouse Y"));
-
-            var transform = ActiveController.XRController.transform;
-
-            transform.RotateAround(transform.position, Vector3.up, mouseMovement.x);
-            var axis = Vector3.Cross(Vector3.up, Manager.HMDCamera.transform.forward);
-            transform.RotateAround(transform.position, axis, mouseMovement.y);
-        }
-
-        // Interaction states
-        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
-        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
 
         //Hold input state for inactive controllers
         foreach(Controller controller in Controllers)
@@ -184,6 +186,11 @@ public class ControllerSimulator : MonoBehaviour
                 HoldXRControllerState(controller.XRController, "select");
             }
         }
+
+        // Interaction states
+        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
+        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
+
     }
 
 #endif

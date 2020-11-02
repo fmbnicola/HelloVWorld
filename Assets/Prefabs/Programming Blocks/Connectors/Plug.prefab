@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4789898631456733073}
   - component: {fileID: 2536193317151007416}
   - component: {fileID: 4968036345756288540}
-  - component: {fileID: 4856613503479227392}
+  - component: {fileID: 2170668411021950753}
   m_Layer: 0
   m_Name: Plug
   m_TagString: Untagged
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Block: {fileID: 0}
   ConnectedTo: {fileID: 0}
+  AnchorPoint: {x: 0, y: 0.5, z: 0}
   OnSocket: 0
 --- !u!54 &2536193317151007416
 Rigidbody:
@@ -143,7 +144,7 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4856613503479227392
+--- !u!114 &2170668411021950753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6694067393853715883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: b1cf195879396a74d8dbfc44fa776745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}

@@ -113,6 +113,12 @@ public class HeadsetSimmulator : MonoBehaviour
         // Apply speed and move
         Vector3 movement = direction * Speed;
         Manager.CharController.Move(movement * Time.fixedDeltaTime);
+
+        if(position != Vector2.zero)
+        {
+            Manager.rightHand.TeleportToTarget();
+            Manager.leftHand.TeleportToTarget();
+        }
     }
 
     private void CheckForViewChange()

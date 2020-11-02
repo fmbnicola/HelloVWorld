@@ -13,8 +13,8 @@ public class Plug : MonoBehaviour
     protected Socket ConnectedTo;
 
     private XRGrabInteractable Interactable;
-    private FixedJoint Joint;
-    private Vector3 AnchorPoint;
+    
+    public Transform AnchorPoint;
     private Rigidbody RigidBody;
 
     public bool OnSocket;
@@ -25,12 +25,7 @@ public class Plug : MonoBehaviour
     {
         this.Block.RegisterPlug(this);
         this.Interactable = transform.GetComponent<XRGrabInteractable>();
-        this.Joint = transform.GetComponent<FixedJoint>();
-        this.RigidBody = this.Joint.connectedBody; 
-        this.AnchorPoint = this.Joint.connectedAnchor;
         this.OnSocket = false;
-
-
     }
 
     // Update is called once per frame
@@ -42,13 +37,7 @@ public class Plug : MonoBehaviour
         }
         else
         {
-            if ( this.OnSocket == false) this.ReconnectJoint();
-
-            else
-            {
-               Debug.Log("else");
-            }
-
+            this.ReconnectJoint();
         }
 
 
@@ -57,22 +46,13 @@ public class Plug : MonoBehaviour
 
     private void DisconnectJoint()
     {
-        Destroy(this.Joint);
+        return;
     }
 
     private void ReconnectJoint()
     {
-        if (this.Joint != null) return;
-
-        this.transform.position = this.Block.transform.position + this.AnchorPoint;
-        this.transform.eulerAngles = this.Block.transform.eulerAngles;
-
-        this.Joint = this.gameObject.AddComponent<FixedJoint>();
-        this.Joint.autoConfigureConnectedAnchor = false;
-        this.Joint.enableCollision = false;
-        this.Joint.connectedBody = this.RigidBody;
-        this.Joint.connectedAnchor = this.AnchorPoint;
-
+        this.transform.position    = this.AnchorPoint.position;
+        this.transform.eulerAngles = this.AnchorPoint.eulerAngles;
     }
 
 
