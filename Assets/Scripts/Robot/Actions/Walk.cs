@@ -32,11 +32,12 @@ namespace Robot.Actions
             this.TargetPos = robotPos + moveDir * this.StepSize;
 
             this.RobotBody = this.Robot.Rigidbody;
-            this.RobotBody.useGravity = false;
 
             if (this.Robot.DebugInfo)
             {
                 Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+
+                GameObject.Find("Debug").transform.position = this.TargetPos;
             }
         }
 
@@ -72,7 +73,6 @@ namespace Robot.Actions
         public override void Terminate()
         {
             this.RobotBody.velocity = Vector3.zero;
-            this.RobotBody.useGravity = true;
         }
 
     }

@@ -1329,6 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb00429a8ece0a44be0076b952007ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Height: 0
   DebugInfo: 1
 --- !u!114 &8398872638906317856
 MonoBehaviour:
@@ -1342,14 +1343,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bad86ff8276ba4cb3a2ea3d061223c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepSize: 1
+  StepSize: 1.5
   MaxWalkSpeed: 5
-  WalkForce: 1
-  WalkMargin: 0.01
+  WalkForce: 12
+  WalkMargin: 0.1
   RotationAngle: 90
   MaxRotationSpeed: 1.5
-  RotationTorque: 15
-  RotationMargin: 0.1
+  RotationTorque: 12
+  RotationMargin: 0.5
 --- !u!54 &7188167073724529708
 Rigidbody:
   m_ObjectHideFlags: 0
