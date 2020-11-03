@@ -918,17 +918,12 @@ PrefabInstance:
     - target: {fileID: 1421722237697507594, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.44989106
+      value: 0.44989088
       objectReference: {fileID: 0}
     - target: {fileID: 1421722237697507594, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.018999746
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398872638906317856, guid: 0b5d523063771044f8a8c60d3387df8c,
-        type: 3}
-      propertyPath: RotationMargin
-      value: 0.75
+      value: -0.018999916
       objectReference: {fileID: 0}
     - target: {fileID: 8398872638906318042, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
