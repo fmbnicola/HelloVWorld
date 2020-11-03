@@ -14,6 +14,8 @@ namespace Robot
         #region /* Robot Info */
 
         public Rigidbody Rigidbody { get; private set; }
+
+        public bool DebugInfo;
         
         #endregion
 
@@ -26,11 +28,12 @@ namespace Robot
         #region /* Progam Attributes */
 
         private XRSocketInteractor DiskSocket { get; set; }
-
         private FloppyDisk Disk { get; set; }
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
+
+        private StartButton StartButton { get; set; }
 
         #endregion
 
@@ -81,6 +84,12 @@ namespace Robot
             return this.transform.rotation.eulerAngles;
         }
 
+
+        public Vector3 GetFoward()
+        {
+            return this.transform.forward;
+        }
+
         #endregion
 
 
@@ -103,31 +112,40 @@ namespace Robot
         {
             this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
             this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
-            this.DiskSocket.onSelectExit.AddListener((disk) => this.CloseProgram(disk));
+            this.DiskSocket.onSelectExit.AddListener((disk) => this.AbortProgram(disk));
 
             this.Program = null;
             this.ProgramRunning = false;
+
+            this.StartButton = this.transform.GetComponentInChildren<StartButton>();
+            this.StartButton.Initialize(this);
         }
 
 
         private void createProgram()
         {
-            CodeNode Line1 = new CodeNode(null, null);
+            CodeNode Line1 = new Instruction(Instruction.ID.Walk, null, null);
 
-            CodeNode Line2 = new CodeNode(null, Line1);
+            CodeNode Line2 = new Instruction(Instruction.ID.Rotate, null, Line1);
             Line1.Next = Line2;
 
             CodeNode Line3 = new Instruction(Instruction.ID.Walk, null, Line2);
             Line2.Next = Line3;
 
-            CodeNode Line4 = new Instruction(Instruction.ID.Grab, null, Line3);
+            CodeNode Line4 = new Instruction(Instruction.ID.Rotate, null, Line3);
             Line3.Next = Line4;
-
-            CodeNode Line5 = new Instruction(Instruction.ID.Drop, null, Line4);
+            
+            CodeNode Line5 = new Instruction(Instruction.ID.Walk, null, Line4);
             Line4.Next = Line5;
 
             CodeNode Line6 = new Instruction(Instruction.ID.Rotate, null, Line5);
             Line5.Next = Line6;
+
+            CodeNode Line7 = new Instruction(Instruction.ID.Walk, null, Line6);
+            Line6.Next = Line7;
+
+            CodeNode Line8 = new Instruction(Instruction.ID.Rotate, null, Line7);
+            Line7.Next = Line8;
 
             this.Program = Line1;
         }
@@ -147,28 +165,45 @@ namespace Robot
                     this.createProgram();
                 }
 
-                Debug.Log("Program loaded");
+                if (this.DebugInfo)
+                {
+                    Debug.Log("Program Loaded");
+                }
+            }
+        }
 
-                // TODO: only start execution after clicking the start button
+
+        public void StartProgram()
+        {
+            if (this.Disk != null && this.Program != null)
+            {
+                if (this.DebugInfo)
+                {
+                    Debug.Log("Progam Started");
+                }
+
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
             }
         }
 
 
-        private void CloseProgram(XRBaseInteractable disk)
+        private void AbortProgram(XRBaseInteractable disk)
         {
             FloppyDisk floppy = disk.transform.GetComponent<FloppyDisk>();
 
             if (this.Disk == floppy)
             {
-                this.ActionController.TerminateAction();
+                this.ActionController.AbortAction();
 
                 this.Disk = null;
                 this.Program = null;
                 this.ProgramRunning = false;
 
-                Debug.Log("Program info cleaned");
+                if (this.DebugInfo)
+                {
+                    Debug.Log("Program Aborted");
+                }
             }
         }
 
@@ -187,7 +222,17 @@ namespace Robot
                 {
                     this.ProgramRunning = false;
                     this.Program = this.Disk.codeHead;
-                    Debug.Log("Program ended");
+
+                    // TODO: remove if
+                    if (this.Program == null)
+                    {
+                        this.createProgram();
+                    }
+
+                    if (this.DebugInfo)
+                    {
+                        Debug.Log("Program Ended");
+                    }
                 }
             }
             else

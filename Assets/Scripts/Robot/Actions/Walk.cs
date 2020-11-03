@@ -27,14 +27,17 @@ namespace Robot.Actions
             this.Force = force;
             this.Margin = margin;
 
-            Vector3 pos = robot.GetPosition();
-            float zTarget = pos.z + this.StepSize;
-            this.TargetPos = new Vector3(pos.x, pos.y, zTarget);
+            Vector3 robotPos = robot.GetPosition();
+            Vector3 moveDir = robot.GetFoward();
+            this.TargetPos = robotPos + moveDir * this.StepSize;
 
             this.RobotBody = this.Robot.Rigidbody;
             this.RobotBody.useGravity = false;
 
-            Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+            }
         }
 
 
@@ -60,8 +63,6 @@ namespace Robot.Actions
                 this.ProgramLine.Complete = true;
 
                 this.Terminate();
-
-                Debug.Log("Walk End");
             }
 
             return this.ProgramLine.Complete;

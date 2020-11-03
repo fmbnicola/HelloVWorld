@@ -28,12 +28,15 @@ namespace Robot.Actions
             this.Margin = margin;
 
             Vector3 ori = this.Robot.GetRotation();
-            float yTarget = ori.y + this.Angle;
+            float yTarget = (ori.y + this.Angle) % 360;
             this.Target = new Vector3(ori.x, yTarget, ori.z);
 
             this.RobotBody = this.Robot.Rigidbody;
 
-            Debug.Log(base.ProgramLine.ToString() + " -> " + this.ToString());
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+            }
         }
 
 
@@ -58,8 +61,6 @@ namespace Robot.Actions
                 this.ProgramLine.Complete = true;
 
                 this.Terminate();
-
-                Debug.Log("Rotate End");
             }
 
             return this.ProgramLine.Complete;
