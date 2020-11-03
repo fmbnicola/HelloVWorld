@@ -925,11 +925,6 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.018999746
       objectReference: {fileID: 0}
-    - target: {fileID: 1421722238030067988, guid: 0b5d523063771044f8a8c60d3387df8c,
-        type: 3}
-      propertyPath: pressLength
-      value: 0.025
-      objectReference: {fileID: 0}
     - target: {fileID: 8398872638906318042, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: m_Name
@@ -993,11 +988,6 @@ PrefabInstance:
     - target: {fileID: 8398872638906318047, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: gravityHeight
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398872638906318047, guid: 0b5d523063771044f8a8c60d3387df8c,
-        type: 3}
-      propertyPath: Height
       value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []

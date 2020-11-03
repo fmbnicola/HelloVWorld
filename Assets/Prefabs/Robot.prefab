@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  pressLength: 0.03
+  pressLength: 0.025
   pressed: 0
   speedLock: 1
   speedlockThreshold: 0.2
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb00429a8ece0a44be0076b952007ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Height: 0
+  Height: 0.35
   DebugInfo: 1
 --- !u!114 &8398872638906317856
 MonoBehaviour:
@@ -1349,8 +1349,8 @@ MonoBehaviour:
   WalkMargin: 0.1
   RotationAngle: 90
   MaxRotationSpeed: 1.5
-  RotationTorque: 12
-  RotationMargin: 0.5
+  RotationTorque: 10
+  RotationMargin: 1
 --- !u!54 &7188167073724529708
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ namespace Robot.Actions
         {
             float dist = Vector3.Distance(this.Robot.GetRotation(), this.Target);
 
-            if (dist < this.Margin)
+            if (dist <= this.Margin)
             {
                 this.ProgramLine.Complete = true;
 
