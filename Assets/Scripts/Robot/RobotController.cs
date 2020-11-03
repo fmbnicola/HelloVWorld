@@ -15,6 +15,8 @@ namespace Robot
 
         public Rigidbody Rigidbody { get; private set; }
 
+        public float Height;
+
         public bool DebugInfo;
         
         #endregion
@@ -32,8 +34,6 @@ namespace Robot
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
-
-        private StartButton StartButton { get; set; }
 
         #endregion
 
@@ -70,6 +70,7 @@ namespace Robot
         private void InitializeRobotInfo()
         {
             this.Rigidbody = this.transform.GetComponent<Rigidbody>();
+            this.Rigidbody.centerOfMass = new Vector3(0, -this.Height, 0);
         }
 
 
@@ -116,9 +117,6 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
-
-            this.StartButton = this.transform.GetComponentInChildren<StartButton>();
-            this.StartButton.Initialize(this);
         }
 
 
@@ -175,7 +173,7 @@ namespace Robot
 
         public void StartProgram()
         {
-            if (this.Disk != null && this.Program != null)
+            if (this.Disk != null && this.Program != null && !this.ProgramRunning)
             {
                 if (this.DebugInfo)
                 {
