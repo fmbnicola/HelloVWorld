@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using SplineMesh;
+using System.Threading;
 
 public class Plug : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class Plug : MonoBehaviour
     private SplineSmoother Smoother;
 
     private float LastAdded;
+    private Vector3 InitialBlockPos;
+
+    private SplineNode FirstNode;
 
     private enum States
     {
@@ -66,7 +70,11 @@ public class Plug : MonoBehaviour
 
             case States.Grabbed:
                 if (!this.Interactable.isSelected) this.State = States.OnAnchor;
-                if (this.OnSocket) this.State = States.OnSocket;
+                if (this.OnSocket)
+                {
+                    this.State = States.OnSocket;
+                    this.InitialBlockPos = this.Block.transform.position;
+                }
 
                 if (this.Cable == null)
                 {
@@ -79,11 +87,15 @@ public class Plug : MonoBehaviour
                 break;
 
             case States.OnSocket:
-                if (this.Interactable.isSelected) this.State = States.Grabbed;
+                if (this.Interactable.isSelected && !this.OnSocket) this.State = States.Grabbed;
 
                 this.ExtendCable();
+                this.CompensateCable();
+
                 break;
         }
+
+
     }
 
 
@@ -120,7 +132,9 @@ public class Plug : MonoBehaviour
 
         var spline = gameObject.AddComponent<Spline>();
 
-        spline.nodes.Add(new SplineNode(worldPosition, worldPosition));
+        this.FirstNode = new SplineNode(worldPosition, worldPosition);
+
+        spline.nodes.Add(this.FirstNode);
 
         worldPosition += Vector3.down * 0.1f;
         spline.nodes.Add(new SplineNode(worldPosition, worldPosition));
@@ -160,14 +174,57 @@ public class Plug : MonoBehaviour
 
             if (vector.magnitude > 0.2)
             {
-                this.Cable.AddNode(new SplineNode(worldPosition, worldPosition));
+                var node = new SplineNode(worldPosition, worldPosition);
+                this.Cable.AddNode(node);
+
+                this.Smoother.SmoothNode(node);
 
                 this.LastAdded = Time.time;
 
                 return true;
             }
+
         }
 
+       
         return false;
     }
+
+
+
+    private bool CompensateCable()
+    {
+        if (this.OnSocket && this.InitialBlockPos != this.Block.transform.position)
+        {
+            if (Time.time - this.LastAdded > 0.5)
+            {
+                var firstNode = this.FirstNode;
+
+                var worldPosition = this.Block.transform.TransformPoint(Vector3.zero);
+
+                var vector = firstNode.Position - worldPosition;
+
+                if (vector.magnitude > 0.5)
+                {
+                    var node = new SplineNode(worldPosition, worldPosition);
+                    this.Cable.InsertNode(1, node);
+                    this.Cable.RemoveNode(this.FirstNode);
+                    
+                    
+                    this.Cable.RefreshCurves();
+                    this.FirstNode = node;
+
+                    this.Smoother.SmoothNode(node);
+
+                    this.LastAdded = Time.time;
+
+                    return true;
+                }
+
+            }
+            return false;
+        }
+        return false;
+    }
+
 }
