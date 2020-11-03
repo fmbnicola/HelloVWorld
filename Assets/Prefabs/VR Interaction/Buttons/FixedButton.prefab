@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5839616426390667268}
   - component: {fileID: 5101427818572525941}
   - component: {fileID: 1415236724755195234}
-  m_Layer: 0
-  m_Name: Button
+  m_Layer: 8
+  m_Name: FixedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,9 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ac59d306f93fd49b4644213e9c9191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawGizmos: 0
   pressLength: 0.025
   pressed: 0
-  drawGizmos: 0
+  clickEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6937798212651653654
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +130,7 @@ GameObject:
   - component: {fileID: 6937798212651653651}
   - component: {fileID: 6937798212651653648}
   - component: {fileID: 6937798212651653650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
