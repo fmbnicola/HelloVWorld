@@ -110,9 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Block: {fileID: 0}
-  ConnectedTo: {fileID: 0}
-  AnchorPoint: {fileID: 0}
   OnSocket: 0
+  AnchorPoint: {fileID: 0}
+  Cable: {fileID: 0}
+  CableMesh: {fileID: 4300000, guid: 500594a39d643774c8e028335ee33da7, type: 3}
+  CableMaterial: {fileID: 2100000, guid: c4874cd5feb313e44a9c89e5dbdd5dc0, type: 2}
 --- !u!54 &2536193317151007416
 Rigidbody:
   m_ObjectHideFlags: 0
