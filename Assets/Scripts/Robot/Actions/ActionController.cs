@@ -81,7 +81,10 @@ namespace Robot.Actions
 
         public void AbortAction()
         {
-            this.CurrentAction.Terminate();
+            if (this.CurrentAction != null)
+            {
+                this.CurrentAction.Terminate();
+            }
         }
 
 
