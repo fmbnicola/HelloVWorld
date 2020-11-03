@@ -1350,7 +1350,7 @@ MonoBehaviour:
   RotationAngle: 90
   MaxRotationSpeed: 1
   RotationTorque: 10
-  RotationMargin: 1
+  RotationMargin: 0.5
 --- !u!54 &7188167073724529708
 Rigidbody:
   m_ObjectHideFlags: 0
