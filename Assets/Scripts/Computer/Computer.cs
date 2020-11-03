@@ -30,7 +30,6 @@ public class Computer : MonoBehaviour
     {
         this.State = States.Idle;
 
-        this.Socket = transform.Find("FloppyDiskSocket").GetComponent<XRSocketInteractor>();
         this.Socket.showInteractableHoverMeshes = true;
 
         this.Socket.onSelectEnter.AddListener((interactable) => DetectFloppyIn(interactable));

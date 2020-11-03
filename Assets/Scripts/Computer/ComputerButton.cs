@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ComputerButton : MonoBehaviour
@@ -9,6 +10,8 @@ public class ComputerButton : MonoBehaviour
 
     [SerializeField]
     private Computer Computer = null;
+
+    private FixedButton Button;
 
     public enum Types
     {
@@ -29,9 +32,8 @@ public class ComputerButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.Clicked)
+        if(this.Button.pressed)
         {
-            this.Clicked = false;
 
             switch(this.Type)
             {
