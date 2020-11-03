@@ -175,16 +175,19 @@ namespace Robot
 
         public void StartProgram()
         {
-            if (this.Disk != null && this.Program != null)
-            {
-                if (this.DebugInfo)
-                {
-                    Debug.Log("Progam Started");
-                }
+            //if (this.Disk != null && this.Program != null)
+            //{
+            //    if (this.DebugInfo)
+            //    {
+            //        Debug.Log("Progam Started");
+            //    }
 
-                this.ProgramRunning = true;
-                this.Program.Execute(this.ActionController);
-            }
+            //    this.ProgramRunning = true;
+            //    this.Program.Execute(this.ActionController);
+            //}
+
+            Debug.Log("Progam Started");
+
         }
 
 
