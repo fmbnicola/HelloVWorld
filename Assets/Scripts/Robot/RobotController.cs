@@ -164,12 +164,10 @@ namespace Robot
             CodeNode Line4 = new Instruction(Instruction.ID.Rotate, null, Line3);
             Line3.Next = Line4;
 
-            CodeNode Line5 = new Instruction(Instruction.ID.Rotate, null, Line4);
-            Line4.Next = Line5;
+            this.HappyDance = true;
 
             this.Program = Line1;
-
-            this.HappyDance = true;
+            this.Program.Execute(this.ActionController);
 
             if (this.DebugInfo)
             {
