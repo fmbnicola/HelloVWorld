@@ -13,7 +13,7 @@ namespace Robot.Actions
         private float Torque { get; set; }
         private float Margin { get; set; }
 
-        private Vector3 Target { get; set; }
+        private float TargetAngle { get; set; }
 
         private Rigidbody RobotBody { get; set; }
 
@@ -28,8 +28,7 @@ namespace Robot.Actions
             this.Margin = margin;
 
             Vector3 ori = this.Robot.GetRotation();
-            float yTarget = (ori.y + this.Angle) % 360;
-            this.Target = new Vector3(ori.x, yTarget, ori.z);
+            this.TargetAngle = (ori.y + this.Angle) % 360;
 
             this.RobotBody = this.Robot.Rigidbody;
 
@@ -54,9 +53,9 @@ namespace Robot.Actions
 
         public override bool Completed()
         {
-            float dist = Vector3.Distance(this.Robot.GetRotation(), this.Target);
+            float diff = Mathf.Abs(this.TargetAngle - this.Robot.GetRotation().y);
 
-            if (dist <= this.Margin)
+            if (diff <= this.Margin)
             {
                 this.ProgramLine.Complete = true;
 
