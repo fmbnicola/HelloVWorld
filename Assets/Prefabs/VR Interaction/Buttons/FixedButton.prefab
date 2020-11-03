@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5839616426390667268}
   - component: {fileID: 5101427818572525941}
   - component: {fileID: 1415236724755195234}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: FixedButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 6937798212651653651}
   - component: {fileID: 6937798212651653648}
   - component: {fileID: 6937798212651653650}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Clicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
