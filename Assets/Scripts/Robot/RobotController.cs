@@ -34,6 +34,7 @@ namespace Robot
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
+        private bool HappyDance { get; set; }
 
         #endregion
 
@@ -117,6 +118,7 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
+            this.HappyDance = false;
         }
 
 
@@ -146,6 +148,33 @@ namespace Robot
             Line7.Next = Line8;
 
             this.Program = Line1;
+        }
+
+
+        private void DoHappyDance()
+        {
+            CodeNode Line1 = new Instruction(Instruction.ID.Rotate, null, null);
+
+            CodeNode Line2 = new Instruction(Instruction.ID.Rotate, null, Line1);
+            Line1.Next = Line2;
+
+            CodeNode Line3 = new Instruction(Instruction.ID.Rotate, null, Line2);
+            Line2.Next = Line3;
+
+            CodeNode Line4 = new Instruction(Instruction.ID.Rotate, null, Line3);
+            Line3.Next = Line4;
+
+            CodeNode Line5 = new Instruction(Instruction.ID.Rotate, null, Line4);
+            Line4.Next = Line5;
+
+            this.Program = Line1;
+
+            this.HappyDance = true;
+
+            if (this.DebugInfo)
+            {
+                Debug.Log("Happy Dance Started");
+            }
         }
 
 
@@ -197,6 +226,7 @@ namespace Robot
                 this.Disk = null;
                 this.Program = null;
                 this.ProgramRunning = false;
+                this.HappyDance = false;
 
                 if (this.DebugInfo)
                 {
@@ -218,19 +248,33 @@ namespace Robot
                 }
                 else
                 {
-                    this.ProgramRunning = false;
-                    this.Program = this.Disk.codeHead;
-
-                    // TODO: remove if
-                    if (this.Program == null)
+                    if (this.HappyDance)
                     {
-                        this.createProgram();
+                        if (this.DebugInfo)
+                        {
+                            Debug.Log("Happy Dance Ended");
+                        }
+
+                        this.ProgramRunning = false;
+                        this.HappyDance = false;
+                        this.Program = this.Disk.codeHead;
+
+                        // TODO: remove if
+                        if (this.Program == null)
+                        {
+                            this.createProgram();
+                        }
+                    }
+                    else
+                    {
+                        if (this.DebugInfo)
+                        {
+                            Debug.Log("Program Ended");
+                        }
+
+                        this.DoHappyDance();
                     }
 
-                    if (this.DebugInfo)
-                    {
-                        Debug.Log("Program Ended");
-                    }
                 }
             }
             else
