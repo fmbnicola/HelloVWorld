@@ -118,8 +118,43 @@ public class ControllerSimulator : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        // Switch to a different controller?
+        if (Input.GetKeyDown(switchControllerKey))
+        {
+            //save input state
+            ActiveController.Select = (bool)Input.GetKey(selectKey);
+
+            int[] ControllerTypes = (int[])System.Enum.GetValues(typeof(ControllerType));
+            int n = ControllerTypes.Length;
+            int i = (int)ActiveControllerType;
+            ActiveControllerType = (ControllerType)((i + 1) % n);
+            SetController();
+
+            Debug.LogFormat("Switched controller: {0}", ActiveController.XRController.name);
+        }
+
+        // Ensure we are overriding ControllerInput as well, which is our wrapper for direct button press detection
+        ControllerInput controllerInput = ActiveController.XRController.GetComponent<ControllerInput>();
+        if (controllerInput)
+        {
+            controllerInput.SetButtonPressProvider(GetButtonPressed);
+        }
+
+        //Hold input state for inactive controllers
+        foreach (Controller controller in Controllers)
+        {
+            if (controller != ActiveController && controller.Select)
+            {
+                HoldXRControllerState(controller.XRController, "select");
+            }
+        }
+
+        // Interaction states
+        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
+        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
+
         // Controller Movement
         float scroll = Input.mouseScrollDelta.y;
         if (Input.GetMouseButton(0) || scroll != 0)
@@ -153,44 +188,6 @@ public class ControllerSimulator : MonoBehaviour
             var axis = Vector3.Cross(Vector3.up, Manager.HMDCamera.transform.forward);
             transform.RotateAround(transform.position, axis, mouseMovement.y);
         }
-    }
-
-    private void LateUpdate()
-    {
-        // Switch to a different controller?
-        if (Input.GetKeyDown(switchControllerKey))
-        {
-            //save input state
-            ActiveController.Select = (bool) Input.GetKey(selectKey);
-
-            int[] ControllerTypes = (int[]) System.Enum.GetValues(typeof(ControllerType));
-            int n = ControllerTypes.Length;
-            int i = (int) ActiveControllerType;
-            ActiveControllerType = (ControllerType) ((i + 1) % n);
-            SetController();
-
-            Debug.LogFormat("Switched controller: {0}", ActiveController.XRController.name);
-        }
-
-        // Ensure we are overriding ControllerInput as well, which is our wrapper for direct button press detection
-        ControllerInput controllerInput = ActiveController.XRController.GetComponent<ControllerInput>();
-        if (controllerInput)
-        {
-            controllerInput.SetButtonPressProvider(GetButtonPressed);
-        }
-
-        //Hold input state for inactive controllers
-        foreach(Controller controller in Controllers)
-        {
-            if (controller != ActiveController && controller.Select) {
-                HoldXRControllerState(controller.XRController, "select");
-            }
-        }
-
-        // Interaction states
-        UpdateXRControllerState(ActiveController.XRController, "select", selectKey);
-        UpdateXRControllerState(ActiveController.XRController, "activate", activateKey);
-
     }
 
 #endif
