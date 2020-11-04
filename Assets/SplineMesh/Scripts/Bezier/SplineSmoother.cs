@@ -65,7 +65,7 @@ namespace SplineMesh {
             }
         }
 
-        private void SmoothNode(SplineNode node) {
+        public void SmoothNode(SplineNode node) {
             var index = Spline.nodes.IndexOf(node);
             var pos = node.Position;
             // For the direction, we need to compute a smooth vector.
@@ -98,7 +98,7 @@ namespace SplineMesh {
         }
 
 
-        private void SmoothAll() {
+        public void SmoothAll() {
             foreach(var node in Spline.nodes) {
                 SmoothNode(node);
             }

@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 8220382582513428222}
   - component: {fileID: 8220382583221551340}
   - component: {fileID: 8220382583221551336}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Hand_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

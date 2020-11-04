@@ -12,7 +12,7 @@ public class ConnectorCable : MonoBehaviour
 
     public List<ConnectorNode> Nodes;
 
-    private float Range = 1;
+    private readonly float Range = 1;
 
     private GameObject NodeParent;
 
@@ -38,6 +38,7 @@ public class ConnectorCable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region Head
         var vector = this.Head.transform.position - this.Head.Next.transform.position;
 
         if (vector.magnitude < this.Range)
@@ -59,7 +60,9 @@ public class ConnectorCable : MonoBehaviour
 
             this.ExtendHead();
         }
+        #endregion
 
+        #region Tail
         this.Tail.transform.position = this.Plug.position;
 
         vector = this.Tail.transform.position - this.Tail.Prev.transform.position;
@@ -83,13 +86,15 @@ public class ConnectorCable : MonoBehaviour
 
             this.ExtendTail();
         }
+        #endregion
 
         this.Renderer.positionCount = this.Nodes.Count;
         this.Renderer.SetPositions(this.GetPositions());
     }
 
 
-    public ConnectorNode CreateNode(Vector3 position)
+    #region Nodes
+    private ConnectorNode CreateNode(Vector3 position)
     {
         var node = new GameObject("CableNode");
         var script = node.AddComponent<ConnectorNode>();
@@ -101,7 +106,7 @@ public class ConnectorCable : MonoBehaviour
         return script;
     }
 
-    public ConnectorNode AddNode(Vector3 position, ConnectorNode prev = null)
+    private ConnectorNode AddNode(Vector3 position, ConnectorNode prev = null)
     {
         var node = this.CreateNode(position);
 
@@ -114,7 +119,7 @@ public class ConnectorCable : MonoBehaviour
         return node;
     }
 
-    public void InsertNode(int index, ConnectorNode node)
+    private void InsertNode(int index, ConnectorNode node)
     {
         var count = this.Nodes.Count;
 
@@ -131,7 +136,7 @@ public class ConnectorCable : MonoBehaviour
         }
     }
 
-    public void RemoveNode(int index)
+    private void RemoveNode(int index)
     {
         if (index <= 0 || this.Nodes.Count <= index) return;
 
@@ -148,14 +153,15 @@ public class ConnectorCable : MonoBehaviour
         if (this.Tail == node) this.Tail = prev;
     }
 
-    public void ConnectNodes(ConnectorNode first, ConnectorNode second)
+    private void ConnectNodes(ConnectorNode first, ConnectorNode second)
     {
         first.Next  = second;
         second.Prev = first;
     }
+    #endregion
 
-
-    public void ExtendHead()
+    #region Extend
+    private void ExtendHead()
     {
         var node = this.CreateNode(this.AnchorPoint.position);
 
@@ -164,21 +170,33 @@ public class ConnectorCable : MonoBehaviour
         this.Head = node;
     }
 
-    public void ExtendTail()
+    private void ExtendTail()
     {
         var node = this.AddNode(this.Plug.position, this.Tail);
 
         this.Tail = node;
     }
+    #endregion
 
-    public void ContractHead()
+    #region Contract
+    private void ContractHead()
     {
         this.RemoveNode(this.Head.Next.Index);
     }
 
-    public void ContractTail()
+    private void ContractTail()
     {
         this.RemoveNode(this.Tail.Prev.Index);
+    }
+    #endregion
+
+
+    public void Clear()
+    {
+        this.Nodes.Clear();
+
+        this.Head = this.AddNode(this.AnchorPoint.position);
+        this.Tail = this.AddNode(this.Plug.position, this.Head);
     }
 
 
