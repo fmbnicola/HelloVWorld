@@ -8,7 +8,7 @@ public class Computer : MonoBehaviour
 {
     public ProgrammingBlock StartBlock;
 
-    public XRSocketInteractor Socket;
+    public SocketPlus Socket;
 
     public Dais Dais;
 
