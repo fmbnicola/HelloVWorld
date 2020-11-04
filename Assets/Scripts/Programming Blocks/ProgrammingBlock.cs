@@ -13,7 +13,6 @@ public class ProgrammingBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -52,6 +51,8 @@ public class ProgrammingBlock : MonoBehaviour
 
     public ProgrammingBlock GetNext()
     {
+        if (this.Plugs == null) return null;
+
         foreach(var plug in this.Plugs)
         {
             var connectedTo = plug.GetConnectedTo();
