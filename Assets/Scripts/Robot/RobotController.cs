@@ -185,10 +185,10 @@ namespace Robot
                 this.Program = this.Disk.codeHead;
 
                 // TODO: remove if
-                //if (this.Program == null)
-                //{
-                //    this.createProgram();
-                //}
+                if (this.Program == null)
+                {
+                    this.createProgram();
+                }
 
                 if (this.DebugInfo)
                 {
@@ -258,10 +258,10 @@ namespace Robot
                         this.Program = this.Disk.codeHead;
 
                         // TODO: remove if
-                        //if (this.Program == null)
-                        //{
-                        //    this.createProgram();
-                        //}
+                        if (this.Program == null)
+                        {
+                            this.createProgram();
+                        }
                     }
                     else
                     {
