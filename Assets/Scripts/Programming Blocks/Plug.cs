@@ -104,4 +104,17 @@ public class Plug : MonoBehaviour
     {
         return this.Block;
     }
+
+    public void Eject()
+    {
+        if (this.OnSocket)
+        {
+            this.OnSocket = false;
+            this.State = States.Grabbed;
+            this.transform.position = this.AnchorPoint.position;
+            this.transform.rotation = this.AnchorPoint.rotation;
+            this.Cable.Clear();
+            this.ConnectedTo = null;
+        }
+    }
 }
