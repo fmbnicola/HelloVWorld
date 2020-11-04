@@ -89,6 +89,13 @@ public class Plug : MonoBehaviour
             case States.OnSocket:
                 if (this.Interactable.isSelected && !this.OnSocket) this.State = States.Grabbed;
 
+                if (this.Cable == null)
+                {
+                    this.Cable = this.MakeCable();
+
+                    this.LastAdded = Time.time;
+                }
+
                 this.ExtendCable();
                 this.CompensateCable();
 
