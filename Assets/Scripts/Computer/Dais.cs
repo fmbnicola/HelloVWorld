@@ -70,6 +70,14 @@ public class Dais : MonoBehaviour
         foreach(var body in this.Bodies)
         {
             body.useGravity = true;
+
+
+            /*var socket = body.gameObject.GetComponentInChildren<Socket>();
+            if ( socket != null )
+            {
+                socket.ForgetPlug();
+                socket.SetConnectedTo(null);
+            }*/
         }
 
         this.State = Computer.States.Idle;

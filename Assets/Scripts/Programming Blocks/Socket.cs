@@ -37,6 +37,11 @@ public class Socket : MonoBehaviour
         return this.ConnectedTo;
     }
 
+    public void SetConnectedTo(Plug plug)
+    {
+        this.ConnectedTo = plug;
+    }
+
     public ProgrammingBlock GetBlock()
     {
         return this.Block;
@@ -61,6 +66,17 @@ public class Socket : MonoBehaviour
 
         this.ConnectedTo = null;
         plug.OnSocket    = false;
+    }
+
+    public void ForgetPlug()
+    {
+        if (this.ConnectedTo != null)
+        {
+            this.ConnectedTo.OnSocket = false;
+            this.ConnectedTo.transform.position = this.ConnectedTo.AnchorPoint.position;
+            this.ConnectedTo.transform.rotation = this.ConnectedTo.AnchorPoint.rotation;
+        }
+
     }
 
 
