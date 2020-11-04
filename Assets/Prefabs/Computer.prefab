@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartBlock: {fileID: 0}
-  Socket: {fileID: 1834927136019137689}
+  Socket: {fileID: 366788574134822309}
   Dais: {fileID: 5295783045414967475}
   FloppyDisk: {fileID: 0}
 --- !u!1 &5845085183216137362
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 5366440933374751629}
   - component: {fileID: 2784930363246958389}
   - component: {fileID: 2777501822836450185}
-  - component: {fileID: 1834927136019137689}
+  - component: {fileID: 366788574134822309}
   m_Layer: 8
   m_Name: FloppyDiskSocket
   m_TagString: Disk
@@ -386,7 +386,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1834927136019137689
+--- !u!114 &366788574134822309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,14 +395,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7789652144049842935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60523e0647cc6ab43acc73cb266a32a7, type: 3}
+  m_Script: {fileID: 11500000, guid: dfbfb1684126721469d49820cc0039fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  m_AttachTransform: {fileID: 8190511203331683355}
+  m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
     m_PersistentCalls:
@@ -419,8 +419,10 @@ MonoBehaviour:
   m_ShowInteractableHoverMeshes: 1
   m_InteractableHoverMeshMaterial: {fileID: 0}
   m_SocketActive: 1
-  m_InteractableHoverScale: 0.54
+  m_InteractableHoverScale: 1
   m_RecycleDelayTime: 1
+  SnapInteractorPosition: 1
+  SnapInteractorRotation: 1
 --- !u!1 &8575966058746443772
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +858,7 @@ PrefabInstance:
     - target: {fileID: 6937798212651653648, guid: 58b1c59ba9d96ae42a04f6da12c9d705,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.00000065719877
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58b1c59ba9d96ae42a04f6da12c9d705, type: 3}
