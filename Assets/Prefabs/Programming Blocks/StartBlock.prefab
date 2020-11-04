@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &930931875955333611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1046339965626728121}
+  m_Layer: 0
+  m_Name: AnchorPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1046339965626728121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930931875955333611}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.57, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_Children: []
+  m_Father: {fileID: 7946321447899552734}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7281425517678330212
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +65,7 @@ Transform:
   m_Children:
   - {fileID: 730033546027798965}
   - {fileID: 1376216661169971472}
+  - {fileID: 1046339965626728121}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -281,7 +312,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ab359b3020c72b54eb613d7631fc724f,
         type: 3}
       propertyPath: m_Name
-      value: AnchorPoint
+      value: PlugHole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab359b3020c72b54eb613d7631fc724f, type: 3}
@@ -367,7 +398,7 @@ PrefabInstance:
         type: 3}
       propertyPath: AnchorPoint
       value: 
-      objectReference: {fileID: 730033546027798965}
+      objectReference: {fileID: 1046339965626728121}
     - target: {fileID: 5615979952881456490, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
       propertyPath: Block

@@ -17,6 +17,6 @@ public class FloppyDisk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.codeHead != null) Debug.Log(this.codeHead);
     }
 }

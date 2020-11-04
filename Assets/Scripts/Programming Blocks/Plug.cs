@@ -10,7 +10,7 @@ public class Plug : MonoBehaviour
 {
     [SerializeField]
     protected ProgrammingBlock Block;
-
+    [SerializeField]
     private Socket ConnectedTo;
     public bool OnSocket;
 
