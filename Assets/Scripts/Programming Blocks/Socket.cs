@@ -68,16 +68,6 @@ public class Socket : MonoBehaviour
         plug.OnSocket    = false;
     }
 
-    public void ForgetPlug()
-    {
-        if (this.ConnectedTo != null)
-        {
-            this.ConnectedTo.OnSocket = false;
-            this.ConnectedTo.transform.position = this.ConnectedTo.AnchorPoint.position;
-            this.ConnectedTo.transform.rotation = this.ConnectedTo.AnchorPoint.rotation;
-        }
-
-    }
 
 
 }

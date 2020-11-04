@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Dais : MonoBehaviour
@@ -7,6 +8,8 @@ public class Dais : MonoBehaviour
     private Computer Computer;
 
     public Computer.States State { get; private set; }
+
+    private float ReleaseTime;
 
     [SerializeField]
     private List<Rigidbody> Bodies;
@@ -17,6 +20,8 @@ public class Dais : MonoBehaviour
         this.Computer = this.transform.parent.GetComponent<Computer>();
 
         this.Bodies = new List<Rigidbody>();
+
+        this.ReleaseTime = -1;
     }
 
     public float factor = 6;
@@ -25,6 +30,8 @@ public class Dais : MonoBehaviour
     void Update()
     {
         this.State = this.Computer.State;
+
+        if ( (Time.time - this.ReleaseTime) >= 1 && this.ReleaseTime > 0 ) this.TurnOn();
     }
 
     private void FixedUpdate()
@@ -72,15 +79,34 @@ public class Dais : MonoBehaviour
             body.useGravity = true;
 
 
-            /*var socket = body.gameObject.GetComponentInChildren<Socket>();
+            var socket = body.gameObject.GetComponentInChildren<Socket>();
             if ( socket != null )
             {
-                socket.ForgetPlug();
-                socket.SetConnectedTo(null);
-            }*/
+                
+                var plug = socket.GetConnectedTo();
+                if ( plug != null)
+                {
+                    socket.GetComponent<SocketPlus>().socketActive = false;
+                    plug.Eject();
+                    socket.SetConnectedTo(null);
+                }
+               
+
+            }
         }
 
         this.State = Computer.States.Idle;
+        this.ReleaseTime = Time.time;
+    }
+
+    public void TurnOn()
+    {
+        this.ReleaseTime = -1;
+        foreach (var body in this.Bodies)
+        {
+            var socket = body.gameObject.GetComponentInChildren<Socket>();
+            if ( socket != null )    socket.GetComponent<SocketPlus>().socketActive = true;
+        }
     }
 
 
