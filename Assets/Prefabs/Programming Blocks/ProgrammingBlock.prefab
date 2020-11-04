@@ -318,6 +318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plug
       objectReference: {fileID: 0}
+    - target: {fileID: 7227152332093169352, guid: dc493f9af3103bc419291b36e17d216c,
+        type: 3}
+      propertyPath: AnchorPoint
+      value: 
+      objectReference: {fileID: 1000574560833641970}
     m_RemovedComponents:
     - {fileID: 4968036345756288540, guid: dc493f9af3103bc419291b36e17d216c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc493f9af3103bc419291b36e17d216c, type: 3}

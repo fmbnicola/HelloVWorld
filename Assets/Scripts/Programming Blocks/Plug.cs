@@ -68,20 +68,20 @@ public class Plug : MonoBehaviour
                 if (!this.Interactable.isSelected) this.State = States.OnAnchor;
                 if (this.OnSocket) this.State = States.OnSocket;
 
-                if (this.Cable == null)
+                /*if (this.Cable == null)
                 {
                     this.Cable = this.MakeCable();
 
                     this.LastAdded = Time.time;
-                }
+                }*/
 
-                this.ExtendCable();
+                //this.ExtendCable();
                 break;
 
             case States.OnSocket:
                 if (this.Interactable.isSelected) this.State = States.Grabbed;
 
-                this.ExtendCable();
+                //this.ExtendCable();
                 break;
         }
     }
