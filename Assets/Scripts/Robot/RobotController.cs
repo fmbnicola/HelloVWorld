@@ -194,6 +194,29 @@ namespace Robot
         }
 
 
+        public void ResetProgram()
+        {
+            this.ProgramRunning = false;
+            this.HappyDance = false;
+
+            if (this.Disk == null)
+            {
+                this.Program = null;
+            }
+            else
+            {
+                this.Program = this.Disk.codeHead;
+            }
+
+            if (this.DebugProgram && this.Program == null)
+            {
+                this.Program = ProgramHelper.DebugProgram();
+
+                Debug.Log("Program Reset");
+            }
+        }
+
+
         private void ExecuteProgram()
         {
             if (this.ActionController.ActionCompleted())
@@ -213,14 +236,7 @@ namespace Robot
                             Debug.Log("Happy Dance Ended");
                         }
 
-                        this.ProgramRunning = false;
-                        this.HappyDance = false;
-                        this.Program = this.Disk.codeHead;
-
-                        if (this.DebugProgram && this.Program == null)
-                        {
-                            this.Program = ProgramHelper.DebugProgram();
-                        }
+                        this.ResetProgram();
                     }
                     else
                     {
