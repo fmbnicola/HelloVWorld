@@ -915,6 +915,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 613043924377484729, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722236922055584, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722237522152509, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722237633763223, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1421722237697507594, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -925,15 +945,80 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.018999916
       objectReference: {fileID: 0}
+    - target: {fileID: 1421722237697507703, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722237706995968, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722237716973265, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238030067986, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238216048272, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238378598169, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238423585069, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238615536824, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238658645407, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421722238717636010, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647275585294620397, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5368062866897469622, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 113511195}
+    - target: {fileID: 6221608123043107045, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8398872638906318042, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
       propertyPath: m_Name
       value: Robot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8398872638906318042, guid: 0b5d523063771044f8a8c60d3387df8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8398872638906318046, guid: 0b5d523063771044f8a8c60d3387df8c,
         type: 3}
@@ -1397,6 +1482,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e944fffad53d741bff8a7ca48fc4f3, type: 3}
+--- !u!1 &1403003558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8398872638906318042, guid: 0b5d523063771044f8a8c60d3387df8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 890125816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1403003563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403003558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1cf195879396a74d8dbfc44fa776745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InteractionManager: {fileID: 113511195}
+  m_Colliders: []
+  m_InteractionLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_OnFirstHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnLastHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSelectExit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnDeactivate:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CustomReticle: {fileID: 0}
+  m_AttachTransform: {fileID: 0}
+  m_AttachEaseInTime: 0.15
+  m_MovementType: 1
+  m_TrackPosition: 1
+  m_SmoothPosition: 0
+  m_SmoothPositionAmount: 5
+  m_TightenPosition: 0.5
+  m_TrackRotation: 1
+  m_SmoothRotation: 0
+  m_SmoothRotationAmount: 5
+  m_TightenRotation: 0.5
+  m_ThrowOnDetach: 1
+  m_ThrowSmoothingDuration: 0.1
+  m_ThrowSmoothingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_ThrowVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 0.5
+  m_GravityOnDetach: 1
+  m_RetainTransformParent: 1
 --- !u!1 &1790614948
 GameObject:
   m_ObjectHideFlags: 0
