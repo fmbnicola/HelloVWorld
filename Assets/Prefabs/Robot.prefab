@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 386018028307323243}
   - component: {fileID: 8686713826856660791}
   - component: {fileID: 5368062866897469622}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: New Disk Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1421722236922055585}
   - component: {fileID: 1421722236922055587}
   - component: {fileID: 1421722236922055586}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1421722237522152510}
   - component: {fileID: 1421722237522152496}
   - component: {fileID: 1421722237522152511}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: smile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 1421722237633763240}
   - component: {fileID: 1421722237633763242}
   - component: {fileID: 1421722237633763241}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: eye_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 1421722237697507595}
   - component: {fileID: 1421722237697507594}
   - component: {fileID: 1421722237697507593}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Clicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1421722237706995969}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 1421722237716973266}
   - component: {fileID: 1421722237716973268}
   - component: {fileID: 1421722237716973267}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 1421722238030067989}
   - component: {fileID: 1421722238030067987}
   - component: {fileID: 1421722238030067988}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: DynamicButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1421722238216048273}
   - component: {fileID: 1421722238216048275}
   - component: {fileID: 1421722238216048274}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 1421722238378598170}
   - component: {fileID: 1421722238378598172}
   - component: {fileID: 1421722238378598171}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: forklift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 1421722238423585070}
   - component: {fileID: 1421722238423585056}
   - component: {fileID: 1421722238423585071}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: threads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1421722238766276330}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 1421722238658645392}
   - component: {fileID: 1421722238658645394}
   - component: {fileID: 1421722238658645393}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: headset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1065,7 +1065,7 @@ GameObject:
   - component: {fileID: 1421722238717636011}
   - component: {fileID: 1421722238717636013}
   - component: {fileID: 1421722238717636012}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: eye_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 3961583731464377962}
   - component: {fileID: 6375284367939913679}
   - component: {fileID: 8216183003011783577}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Disk Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1223,7 +1223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7926630413265969970}
   - component: {fileID: 5334271671877008911}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1269,7 @@ GameObject:
   - component: {fileID: 8398872638906318047}
   - component: {fileID: 8398872638906317856}
   - component: {fileID: 7188167073724529708}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
