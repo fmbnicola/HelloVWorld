@@ -93,6 +93,13 @@ namespace Robot
             return this.transform.forward;
         }
 
+
+        public void SummonRobot(Vector3 desiredPos, Vector3 desiredRotation)
+        {
+            this.transform.position = desiredPos;
+            this.transform.rotation = Quaternion.Euler(desiredRotation);
+        }
+
         #endregion
 
 
