@@ -269,7 +269,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 1421722238030067987}
   m_Anchor: {x: 0, y: 0.44989073, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000003193106, y: 0.44989088, z: -0.018999916}
+  m_ConnectedAnchor: {x: -0.00000003193106, y: 0.44989073, z: -0.019000001}
   serializedVersion: 2
   m_Spring: 200
   m_Damper: 10
@@ -904,7 +904,6 @@ GameObject:
   - component: {fileID: 8844773660404425780}
   - component: {fileID: 1374809863775283480}
   - component: {fileID: 8152356324083659894}
-  - component: {fileID: 737767166752191650}
   m_Layer: 8
   m_Name: Face
   m_TagString: Untagged
@@ -973,20 +972,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &737767166752191650
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2291179434519239162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4647275585294620397
 GameObject:
   m_ObjectHideFlags: 0
