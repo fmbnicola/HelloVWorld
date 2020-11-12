@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloppyDisk : MonoBehaviour
+public class ComparatorBlock : ProgrammingBlock
 {
+    [SerializeField]
+    private Comparator.ID Id = Comparator.ID.Equals;
 
-    public bool inserted = false;
 
-    public CodeNode codeHead = null;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.inserted)
-        {
-            Debug.Log(this.name);
-        }
+
+    }
+
+
+    public Comparator Parse()
+    {
+        return new Comparator(this.Id);
     }
 }
+

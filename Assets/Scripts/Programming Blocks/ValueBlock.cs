@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloppyDisk : MonoBehaviour
+public class ValueBlock : ProgrammingBlock
 {
+    [SerializeField]
+    private Value.ID Id = Value.ID.Wall;
 
-    public bool inserted = false;
 
-    public CodeNode codeHead = null;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.inserted)
-        {
-            Debug.Log(this.name);
-        }
+
+    }
+
+
+    public Value Parse()
+    {
+        return new Value(this.Id);
     }
 }

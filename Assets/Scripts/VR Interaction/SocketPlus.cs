@@ -9,13 +9,36 @@ public class SocketPlus : XRSocketInteractor
 
     public bool SnapInteractorRotation = false;
 
+    private Collider collider;
+    private void Start()
+    {
+        this.collider = this.GetComponent<Collider>();
+    }
 
     protected override void OnSelectEnter(XRBaseInteractable interactable)
     {
-        if (this.SnapInteractorPosition) interactable.transform.position = this.transform.position;
+        if (tag.Equals(interactable.gameObject.tag))
+        {
+            var colPos = this.collider.bounds.center;
+            var colRot = this.collider.transform.rotation;
+            base.OnSelectEnter(interactable);
+            if (this.SnapInteractorPosition) interactable.transform.position = colPos;
 
-        if (this.SnapInteractorRotation) interactable.transform.rotation = this.transform.rotation;
+            if (this.SnapInteractorRotation)
+            {
+                interactable.transform.rotation = colRot;
+            }
 
-        base.OnSelectEnter(interactable);
+            interactable.GetComponent<Collider>().isTrigger = true;
+        }
+        else Debug.Log("tipos errados");
+
+        
+    }
+    protected override void OnSelectExit(XRBaseInteractable interactable)
+    {
+        interactable.GetComponent<Collider>().isTrigger = false;
+
+        base.OnSelectExit(interactable);
     }
 }
