@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloppyDisk : MonoBehaviour
+public class SensorBlock : ProgrammingBlock
 {
+    [SerializeField]
+    private Sensor.ID Id = Sensor.ID.Camera;
 
-    public bool inserted = false;
 
-    public CodeNode codeHead = null;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.inserted)
-        {
-            Debug.Log(this.name);
-        }
+
+    }
+
+
+    public Sensor Parse()
+    {
+        return new Sensor(this.Id);
     }
 }
+
