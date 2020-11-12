@@ -96,6 +96,8 @@ namespace Robot
 
         public void SummonRobot(Vector3 desiredPos, Vector3 desiredRotation)
         {
+            this.ResetProgram();
+
             this.transform.position = desiredPos;
             this.transform.rotation = Quaternion.Euler(desiredRotation);
         }
