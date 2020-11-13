@@ -18,7 +18,7 @@ public class ConditionBlock : ProgrammingBlock
       
     }
 
-    protected void FixCondition()
+    protected void FixRotation()
     {
         if (this.Selected) transform.rotation = Quaternion.Euler(this.SocketPos);
     }

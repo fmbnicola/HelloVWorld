@@ -17,7 +17,7 @@ public class SensorBlock : ConditionBlock
     // Update is called once per frame
     void Update()
     {
-        base.FixCondition();
+        base.FixRotation();
     }
 
 

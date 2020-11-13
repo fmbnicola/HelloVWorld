@@ -33,9 +33,8 @@ public class IfBlock : ProgrammingBlock
 
     public void RegisterSensor(XRBaseInteractable interactable)
     {
-        Debug.Log("RegisterSensor");
-       
         this.Sensor = interactable.GetComponent<SensorBlock>();
+        Debug.Log(this.Sensor.GetId());
     }
 
     public void DeregisterSensor(XRBaseInteractable interactable)
@@ -44,12 +43,10 @@ public class IfBlock : ProgrammingBlock
 
         if (interactableSensor.Equals(this.Sensor)) this.Sensor = null;
 
-        Debug.Log("unregisterrrS");
     }
 
     public void RegisterComparator(XRBaseInteractable interactable)
     {
-        Debug.Log("RegisterComparator");
         this.Comparator = interactable.GetComponent<ComparatorBlock>();
         Debug.Log(this.Comparator.GetId());
     }
@@ -59,13 +56,10 @@ public class IfBlock : ProgrammingBlock
         var interactableComp = interactable.GetComponent<ComparatorBlock>();
 
         if (interactableComp.Equals(this.Comparator)) this.Comparator = null;
-
-        Debug.Log("unregisterrrC");
     }
 
     public void RegisterValue(XRBaseInteractable interactable)
     {
-        Debug.Log("RegisterValue");
         this.Value = interactable.GetComponent<ValueBlock>();
         Debug.Log(this.Value.GetId());
     }
@@ -75,7 +69,6 @@ public class IfBlock : ProgrammingBlock
         var interactableVal = interactable.GetComponent<ValueBlock>();
 
         if (interactableVal.Equals(this.Value)) this.Value = null;
-        Debug.Log("unregisterrrV");
     }
 
 

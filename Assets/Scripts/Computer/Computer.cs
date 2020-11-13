@@ -127,7 +127,7 @@ public class Computer : MonoBehaviour
             {
                 this.FloppyDisk.codeHead = head;
             }
-            else Debug.Log("Nao ha disquete");
+            else Debug.Log("No Floppy Disk inserted");
             return head;
         }
 
@@ -137,7 +137,6 @@ public class Computer : MonoBehaviour
 
     void DetectFloppyIn(XRBaseInteractable interactable)
     {
-        Debug.Log("helo");
         var floppy = interactable.GetComponent<FloppyDisk>();
 
         if (floppy == null) return;
@@ -145,9 +144,6 @@ public class Computer : MonoBehaviour
         floppy.inserted = true;
 
         this.FloppyDisk = floppy;
-        Debug.Log("on detectFloppy");
-        Debug.Log(interactable.transform.rotation);
-        Debug.Log(floppy.transform.rotation);
     }
 
     void DetectFloppyOut(XRBaseInteractable interactable)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ValueBlock : ProgrammingBlock
+public class ValueBlock : ConditionBlock
 {
     [SerializeField]
     private Value.ID Id = Value.ID.Wall;
@@ -17,7 +17,7 @@ public class ValueBlock : ProgrammingBlock
     // Update is called once per frame
     void Update()
     {
-
+        base.FixRotation();
     }
 
 

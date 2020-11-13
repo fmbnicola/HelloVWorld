@@ -18,11 +18,6 @@ public class FloppyDisk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.inserted)
-        {
-            Debug.Log(this.name);
-        }
         if (this.Selected) transform.rotation = Quaternion.Euler(this.SocketPos);
-
     }
 }
