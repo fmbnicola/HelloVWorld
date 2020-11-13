@@ -8,6 +8,14 @@ namespace Puzzle
 {
     public class StartTile : MonoBehaviour
     {
+        #region /* Set in Editor */
+
+        public Vector3 StartRotation;
+        
+        #endregion
+
+
+
         #region === Unity Events ===
 
         // Start is called before the first frame update
@@ -28,6 +36,7 @@ namespace Puzzle
         
         public void RobotAtStart()
         {
+
             Debug.Log("Robot in start position");
         }
         
