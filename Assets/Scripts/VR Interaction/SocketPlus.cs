@@ -32,15 +32,14 @@ public class SocketPlus : XRSocketInteractor
             {
                 interactable.transform.rotation = colRot;
 
-
                 if (interactable.gameObject.name == "FloppyDisk")
                 {
                     interactable.GetComponent<FloppyDisk>().Selected = true;
                     interactable.GetComponent<FloppyDisk>().SocketPos = this.transform.rotation.eulerAngles;
                 }
 
-                else if (interactable.gameObject.name == "SensorBlock" ||
-                         interactable.gameObject.name == "ValueBlock")
+                else if (interactable.gameObject.name.Contains("SensorBlock") ||
+                         interactable.gameObject.name.Contains("ValueBlock"))
                 {
                     interactable.GetComponent<ConditionBlock>().Selected = true;
                     interactable.GetComponent<ConditionBlock>().SocketPos = this.transform.rotation.eulerAngles;
