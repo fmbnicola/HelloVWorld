@@ -8,6 +8,8 @@ public class FloppyDisk : MonoBehaviour
     public bool inserted = false;
 
     public CodeNode codeHead = null;
+    public bool Selected = false;
+    public Vector3 SocketPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,7 @@ public class FloppyDisk : MonoBehaviour
         {
             Debug.Log(this.name);
         }
+        if (this.Selected) transform.rotation = Quaternion.Euler(this.SocketPos);
+
     }
 }
