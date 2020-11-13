@@ -25,5 +25,10 @@ public class ComparatorBlock : ProgrammingBlock
     {
         return new Comparator(this.Id);
     }
+
+    public Comparator.ID GetId()
+    {
+        return this.Id;
+    }
 }
 

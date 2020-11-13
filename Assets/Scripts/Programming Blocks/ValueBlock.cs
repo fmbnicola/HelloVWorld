@@ -25,4 +25,9 @@ public class ValueBlock : ProgrammingBlock
     {
         return new Value(this.Id);
     }
+
+    public Value.ID GetId()
+    {
+        return this.Id;
+    }
 }

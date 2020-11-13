@@ -25,5 +25,10 @@ public class SensorBlock : ProgrammingBlock
     {
         return new Sensor(this.Id);
     }
+
+    public Sensor.ID GetId()
+    {
+        return this.Id;
+    }
 }
 

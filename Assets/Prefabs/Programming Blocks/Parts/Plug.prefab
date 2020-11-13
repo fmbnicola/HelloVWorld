@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1335009002103821192}
   m_Layer: 0
   m_Name: Plug
-  m_TagString: Untagged
+  m_TagString: Plug
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 256
   m_OnFirstHoverEnter:
     m_PersistentCalls:
       m_Calls: []

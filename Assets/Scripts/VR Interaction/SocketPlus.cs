@@ -17,7 +17,10 @@ public class SocketPlus : XRSocketInteractor
 
     protected override void OnSelectEnter(XRBaseInteractable interactable)
     {
-        if (tag.Equals(interactable.gameObject.tag))
+        Debug.Log(this.gameObject.name);
+        Debug.Log(this.gameObject.tag);
+        Debug.Log(interactable.gameObject.tag);
+        if (this.gameObject.CompareTag(interactable.gameObject.tag))
         {
             var colPos = this.collider.bounds.center;
             var colRot = this.collider.transform.rotation;
@@ -31,7 +34,13 @@ public class SocketPlus : XRSocketInteractor
 
             interactable.GetComponent<Collider>().isTrigger = true;
         }
-        else Debug.Log("tipos errados");
+        else
+        {
+            var Vec = new Vector3(0, 0.1f, 0);
+            Debug.Log("tipos errados");
+            interactable.transform.position = interactable.transform.position + Vec;
+            interactable.transform.rotation = interactable.transform.rotation;
+        }
 
         
     }
