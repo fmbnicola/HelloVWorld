@@ -187,7 +187,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 1421722238030067987}
   m_Anchor: {x: 0, y: 0.44989073, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000022351742, y: 0.4498908, z: -0.018999994}
+  m_ConnectedAnchor: {x: 0.000000037252903, y: 0.44989127, z: -0.019000053}
   serializedVersion: 2
   m_Spring: 200
   m_Damper: 10
@@ -1026,11 +1026,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8398872638906318046}
   - component: {fileID: 8398872638906318047}
+  - component: {fileID: 383848412741150303}
   - component: {fileID: 8398872638906317856}
   - component: {fileID: 7188167073724529708}
   - component: {fileID: 7515277365180992415}
   m_Layer: 8
-  m_Name: RobotVelho
+  m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,6 +1071,22 @@ MonoBehaviour:
   Height: 0.23
   DebugProgram: 0
   DebugInfo: 1
+--- !u!114 &383848412741150303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398872638906318042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742642288e0bf8b41bc83e1b5a6f1cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threads: {fileID: 1421722238423585069}
+  speed: 0.3
+  face: {fileID: 2291179434519239162}
+  expression: 0
 --- !u!114 &8398872638906317856
 MonoBehaviour:
   m_ObjectHideFlags: 0

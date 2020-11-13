@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 814778971573290668}
   - component: {fileID: 2098991363501852948}
   m_Layer: 0
-  m_Name: socket
+  m_Name: Socket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,9 +61,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3016479151454471876, guid: e7a2d077cb3c7d341a19031dff7059f4, type: 3}
-  - {fileID: -8274133419916619345, guid: e7a2d077cb3c7d341a19031dff7059f4, type: 3}
-  - {fileID: 880774007180850119, guid: e7a2d077cb3c7d341a19031dff7059f4, type: 3}
+  - {fileID: 2100000, guid: a9f7f35c3614dd149bbe165c098256d4, type: 2}
+  - {fileID: 0}
+  - {fileID: 2100000, guid: aa6dc06f15eee9e488edb1ade738b5c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
