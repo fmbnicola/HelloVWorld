@@ -51,5 +51,11 @@ namespace Robot
 
             return Line1;
         }
+
+
+        public static CodeNode Rotate()
+        {
+            return new Instruction(Instruction.ID.Rotate, null, null);
+        }
     }
 }

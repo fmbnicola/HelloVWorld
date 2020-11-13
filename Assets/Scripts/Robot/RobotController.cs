@@ -114,6 +114,15 @@ namespace Robot
             this.ActionController.Initialize(this);
         }
 
+
+        public void Rotate(float angle)
+        {
+            this.ActionController.RotationAngle = angle;
+
+            this.Program = ProgramHelper.Rotate();
+            this.Program.Execute(this.ActionController);
+        }
+
         #endregion
 
 
