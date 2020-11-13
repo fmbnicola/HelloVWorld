@@ -187,7 +187,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 1421722238030067987}
   m_Anchor: {x: 0, y: 0.44989073, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000037252903, y: 0.44989127, z: -0.019000053}
+  m_ConnectedAnchor: {x: 0.000000037252903, y: 0.4498908, z: -0.018999994}
   serializedVersion: 2
   m_Spring: 200
   m_Damper: 10
@@ -841,7 +841,7 @@ Transform:
   m_LocalScale: {x: 0.05, y: 0.2, z: 0.28}
   m_Children: []
   m_Father: {fileID: 8398872638906318046}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &5377149776100877299
 BoxCollider:
@@ -923,7 +923,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8398872638906318046}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &1374809863775283480
 MeshFilter:
@@ -972,50 +972,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &6221608123043107045
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7926630413265969970}
-  - component: {fileID: 5334271671877008911}
-  m_Layer: 8
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7926630413265969970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6221608123043107045}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: 0, z: 0.02}
-  m_LocalScale: {x: 0.51, y: 0.435, z: 0.45}
-  m_Children: []
-  m_Father: {fileID: 8398872638906318046}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5334271671877008911
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6221608123043107045}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8398872638906318042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,9 +986,10 @@ GameObject:
   - component: {fileID: 8398872638906317856}
   - component: {fileID: 7188167073724529708}
   - component: {fileID: 7515277365180992415}
+  - component: {fileID: 1185726274372722130}
   m_Layer: 8
   m_Name: Robot
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1050,7 +1007,6 @@ Transform:
   m_Children:
   - {fileID: 1421722238766276330}
   - {fileID: 1421722237813324618}
-  - {fileID: 7926630413265969970}
   - {fileID: 8844773660404425780}
   - {fileID: 6916904764497134535}
   m_Father: {fileID: 0}
@@ -1208,3 +1164,16 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 0.5
   m_GravityOnDetach: 1
   m_RetainTransformParent: 1
+--- !u!65 &1185726274372722130
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398872638906318042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.51, y: 0.435, z: 0.45}
+  m_Center: {x: 0.003, y: 0, z: 0.02}
