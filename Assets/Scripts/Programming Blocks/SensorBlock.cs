@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SensorBlock : ProgrammingBlock
+public class SensorBlock : ConditionBlock
 {
     [SerializeField]
     private Sensor.ID Id = Sensor.ID.Camera;
@@ -11,14 +11,15 @@ public class SensorBlock : ProgrammingBlock
     // Start is called before the first frame update
     void Start()
     {
-
+        //this.GetComponent<Rigidbody>().freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        base.FixCondition();
     }
+
 
 
     public Sensor Parse()
