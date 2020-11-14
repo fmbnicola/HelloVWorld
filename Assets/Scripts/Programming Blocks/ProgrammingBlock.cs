@@ -49,24 +49,26 @@ public class ProgrammingBlock : MonoBehaviour
         return false;
     }
 
-    public ProgrammingBlock GetNext()
+    public virtual ProgrammingBlock GetNext()
     {
-        if (this.Plugs == null) return null;
+        if (this.Plugs == null || this.Plugs.Count == 0) return null;
 
-        foreach(var plug in this.Plugs)
+        var plug = this.Plugs[0];
+
+        if (plug != null)
         {
             var connectedTo = plug.GetConnectedTo();
 
-            if(connectedTo != null) {
+            if (connectedTo != null)
+            {
                 return connectedTo.GetBlock();
             }
-            
         }
 
         return null;
     }
 
-    public virtual CodeNode Parse(CodeNode context, CodeNode next)
+    public virtual CodeNode Parse(CodeNode context, CodeNode prev)
     {
         return null;
     }

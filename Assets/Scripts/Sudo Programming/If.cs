@@ -5,7 +5,7 @@ using UnityEngine;
 public class If : CodeNode
 {
     public Condition Condition { get; protected set; }
-    public CodeNode NextIfTrue { get; protected set; }
+    public CodeNode NextIfTrue;
 
 
     public If(CodeNode context, CodeNode prev, Condition cond) : base(context, prev)
