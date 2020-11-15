@@ -7,8 +7,6 @@ public class ProgrammingBlock : MonoBehaviour
     protected List<Plug> Plugs;
     protected Socket Socket;
 
-    [SerializeField]
-    float id;
 
     // Start is called before the first frame update
     void Start()

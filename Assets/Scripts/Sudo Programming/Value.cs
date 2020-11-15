@@ -6,9 +6,9 @@ public class Value
 {
     public enum ID
     {
+        Empty,
         Box,
         Wall,
-        Empty
     }
 
     public ID Id { get; protected set; }

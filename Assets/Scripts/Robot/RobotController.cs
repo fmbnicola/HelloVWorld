@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Robot.Actions;
 using UnityEngine.XR.Interaction.Toolkit;
+using Robot.Actions;
+using Robot.Sensors;
 
 
 
@@ -22,6 +23,7 @@ namespace Robot
         #region /* Actions Attributes */
 
         private ActionController ActionController { get; set; }
+        private SensorController SensorController { get; set; }
 
         #endregion
 
@@ -111,7 +113,9 @@ namespace Robot
         private void PrepareActionController()
         {
             this.ActionController = this.transform.GetComponent<ActionController>();
-            this.ActionController.Initialize(this);
+            this.SensorController = this.transform.GetComponentInChildren<SensorController>();
+
+            this.ActionController.Initialize(this, this.SensorController);
         }
 
         #endregion
