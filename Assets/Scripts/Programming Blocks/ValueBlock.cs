@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ValueBlock : ProgrammingBlock
+public class ValueBlock : ConditionBlock
 {
     [SerializeField]
-    private Value.ID Id = Value.ID.Wall;
+    private Value.ID Id = Value.ID.Empty;
 
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class ValueBlock : ProgrammingBlock
     // Update is called once per frame
     void Update()
     {
-
+        base.FixRotation();
     }
 
 

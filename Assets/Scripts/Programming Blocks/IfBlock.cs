@@ -11,6 +11,9 @@ public class IfBlock : ProgrammingBlock
 
     public SocketPlus SensorSocket, ComparatorSocket, ValueSocket;
 
+    private Plug PlugTrue;
+    private Plug Plug;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,9 @@ public class IfBlock : ProgrammingBlock
 
         this.ValueSocket.onSelectEnter.AddListener((interactable) => RegisterValue(interactable));
         this.ValueSocket.onSelectExit.AddListener((interactable) => DeregisterValue(interactable));
+
+        this.PlugTrue = this.transform.Find("PlugTrue").GetComponent<Plug>();
+        this.Plug = this.transform.Find("Plug").GetComponent<Plug>();
     }
 
     // Update is called once per frame
@@ -33,9 +39,8 @@ public class IfBlock : ProgrammingBlock
 
     public void RegisterSensor(XRBaseInteractable interactable)
     {
-        Debug.Log("RegisterSensor");
-       
         this.Sensor = interactable.GetComponent<SensorBlock>();
+        Debug.Log(this.Sensor.GetId());
     }
 
     public void DeregisterSensor(XRBaseInteractable interactable)
@@ -44,12 +49,10 @@ public class IfBlock : ProgrammingBlock
 
         if (interactableSensor.Equals(this.Sensor)) this.Sensor = null;
 
-        Debug.Log("unregisterrrS");
     }
 
     public void RegisterComparator(XRBaseInteractable interactable)
     {
-        Debug.Log("RegisterComparator");
         this.Comparator = interactable.GetComponent<ComparatorBlock>();
         Debug.Log(this.Comparator.GetId());
     }
@@ -59,13 +62,10 @@ public class IfBlock : ProgrammingBlock
         var interactableComp = interactable.GetComponent<ComparatorBlock>();
 
         if (interactableComp.Equals(this.Comparator)) this.Comparator = null;
-
-        Debug.Log("unregisterrrC");
     }
 
     public void RegisterValue(XRBaseInteractable interactable)
     {
-        Debug.Log("RegisterValue");
         this.Value = interactable.GetComponent<ValueBlock>();
         Debug.Log(this.Value.GetId());
     }
@@ -75,14 +75,92 @@ public class IfBlock : ProgrammingBlock
         var interactableVal = interactable.GetComponent<ValueBlock>();
 
         if (interactableVal.Equals(this.Value)) this.Value = null;
-        Debug.Log("unregisterrrV");
+    }
+
+
+    public override ProgrammingBlock GetNext()
+    {
+        //var plugObj = this.transform.Find("Plug");
+
+        if (this.Plug != null)
+        //if (plugObj != null)
+        {
+            //var plug = this.Plug.GetComponent<Plug>();
+            //var plug = plugObj.GetComponent<Plug>();
+
+            var connectedTo = this.Plug.GetConnectedTo();
+
+            if(connectedTo != null)
+            {
+                return connectedTo.GetBlock();
+            }
+        }
+
+        return null;
+    }
+
+    public ProgrammingBlock GetNextIfTrue()
+    {
+        //var plugObj = this.transform.Find("PlugTrue");
+
+        if (this.PlugTrue != null)
+        //if (plugObj != null)
+        {
+            //var plug = this.PlugTrue.GetComponent<Plug>();
+            //var plug = plugObj.GetComponent<Plug>();
+
+            var connectedTo = this.PlugTrue.GetConnectedTo();
+
+            if (connectedTo != null)
+            {
+                return connectedTo.GetBlock();
+            }
+        }
+
+        return null;
+    }
+
+
+    public CodeNode ParseInnerCode(CodeNode context)
+    {
+        var firstBlock = this.GetNextIfTrue();
+
+        if (firstBlock == null)
+        {
+            return null;
+        }
+
+        var currentBlock = firstBlock;
+
+        var firstNode = firstBlock.Parse(context, context);
+        var currentNode = firstNode;
+
+        currentBlock = currentBlock.GetNext();
+
+        while(currentBlock != null)
+        {
+            var newNode = currentBlock.Parse(context, currentNode);
+
+            currentNode.Next = newNode;
+            currentNode = newNode;
+
+            currentBlock = currentBlock.GetNext();
+        }
+
+        return firstNode;
     }
 
 
     public override CodeNode Parse(CodeNode context, CodeNode prev)
     {
-        
         var cond = new Condition(this.Sensor.Parse(), this.Value.Parse(), this.Comparator.Parse());
-        return new If(context, prev, cond);
+
+        var ifNode = new If(context, prev, cond);
+
+        var nextIfTrue = this.ParseInnerCode(ifNode);
+
+        ifNode.NextIfTrue = nextIfTrue;
+
+        return ifNode;
     }
 }
