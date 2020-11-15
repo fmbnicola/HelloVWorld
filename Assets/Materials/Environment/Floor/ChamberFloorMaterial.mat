@@ -100,7 +100,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAmmount: 0.5
-    - _DetailImpact: 0.28
+    - _DetailImpact: 0.38
     - _DetailNumber: 16
     - _DstBlend: 0
     - _EnvironmentReflections: 1
@@ -109,7 +109,7 @@ Material:
     - _GlossyReflections: 0
     - _LuminanceModulator: 0.44309103
     - _Metallic: 0
-    - _NoiseImpact: 0.2
+    - _NoiseImpact: 0.3
     - _NoiseScale: 8
     - _NoiseSmoothness: 0.57
     - _NoiseVariation: 0.2

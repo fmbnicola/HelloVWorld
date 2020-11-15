@@ -105,7 +105,7 @@ Material:
     - _NoiseImpact: 0
     - _NoiseScale: 0
     - _NoiseSmoothness: 0.57
-    - _NoiseVariation: 0
+    - _NoiseVariation: 1.42
     - _NormalStrength: 1.5
     - _OcclusionStrength: 1
     - _QueueOffset: 0
