@@ -122,6 +122,15 @@ namespace Robot.Actions
         }
 
 
+        public void Execute(If programLine)
+        {
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log("IF");
+            }
+        }
+
+
         public void Execute(CodeNode programLine)
         {
             this.CurrentAction = new Action(this.Robot, programLine);
@@ -130,5 +139,12 @@ namespace Robot.Actions
         }
 
         #endregion
+
+
+
+        public Value Sense(Sensor.ID sensor)
+        {
+            return new Value(Value.ID.Empty);
+        }
     }
 }

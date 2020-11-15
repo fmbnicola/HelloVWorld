@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Actions;
+
+
+
 public class Sensor
 {
     public enum ID
@@ -19,9 +23,9 @@ public class Sensor
     }
 
 
-    public Value GetValue(Transform robot) // Change to the MonoBehaviour class
+    public Value GetValue(ActionController robot)
     {
-        // return robot.Sense(this.Id);
+        return robot.Sense(this.Id);
 
         return null;
     }

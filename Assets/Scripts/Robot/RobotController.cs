@@ -230,33 +230,42 @@ namespace Robot
         {
             if (this.ActionController.ActionCompleted())
             {
-                this.Program = this.Program.Next;
+                CodeNode next = this.Program.GetNext(this.ActionController);
 
-                if (this.Program != null)
+                if (next != null)
                 {
+                    this.Program = next;
                     this.Program.Execute(this.ActionController);
                 }
                 else
                 {
-                    if (this.HappyDance)
+                    if (this.Program.ContextNode != null)
                     {
-                        if (this.DebugInfo)
-                        {
-                            Debug.Log("Happy Dance Ended");
-                        }
-
-                        this.ResetProgram();
+                        this.Program = this.Program.ContextNode.AfterBreak();
                     }
                     else
                     {
+                        this.ResetProgram();
+
                         if (this.DebugInfo)
                         {
                             Debug.Log("Program Ended");
                         }
-
-                        this.DoHappyDance();
                     }
 
+                    //if (this.HappyDance)
+                    //{
+                    //    if (this.DebugInfo)
+                    //    {
+                    //        Debug.Log("Happy Dance Ended");
+                    //    }
+
+                    //    this.ResetProgram();
+                    //}
+                    //else
+                    //{
+                    //    this.DoHappyDance();
+                    //}
                 }
             }
             else
