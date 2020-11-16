@@ -602,7 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f80de749640344ea7f93bea03eff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
   SensorSocket: {fileID: 4881781335524212803}
   ComparatorSocket: {fileID: 159042147639169386}
   ValueSocket: {fileID: 3178874981313319993}
