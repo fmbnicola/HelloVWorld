@@ -36,6 +36,7 @@ public class SocketPlus : XRSocketInteractor
                 {
                     interactable.GetComponent<FloppyDisk>().Selected = true;
                     interactable.GetComponent<FloppyDisk>().SocketPos = this.transform.rotation.eulerAngles;
+                    interactable.GetComponent<FloppyDisk>().SocketConnected = this;
                 }
 
                 else if (interactable.gameObject.name.Contains("SensorBlock") ||
@@ -43,6 +44,7 @@ public class SocketPlus : XRSocketInteractor
                 {
                     interactable.GetComponent<ConditionBlock>().Selected = true;
                     interactable.GetComponent<ConditionBlock>().SocketPos = this.transform.rotation.eulerAngles;
+                    interactable.GetComponent<ConditionBlock>().SocketConnected = this;
                 }
 
             }
@@ -68,6 +70,7 @@ public class SocketPlus : XRSocketInteractor
         {
             interactable.GetComponent<FloppyDisk>().Selected = false;
             interactable.GetComponent<FloppyDisk>().SocketPos = Vec;
+            interactable.GetComponent<FloppyDisk>().SocketConnected = null;
         }
 
 
@@ -76,6 +79,7 @@ public class SocketPlus : XRSocketInteractor
         {
             interactable.GetComponent<ConditionBlock>().Selected = false;
             interactable.GetComponent<ConditionBlock>().SocketPos = Vec;
+            interactable.GetComponent<ConditionBlock>().SocketConnected = null;
         }
 
         base.OnSelectExit(interactable);
