@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class ValueBlock : ConditionBlock
 {
@@ -18,6 +19,17 @@ public class ValueBlock : ConditionBlock
     void Update()
     {
         base.FixRotation();
+
+        if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+        {
+            this.GetComponent<BoxCollider>().isTrigger = true;
+        }
+
+        if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+        {
+            this.GetComponent<BoxCollider>().isTrigger = false;
+        }
+
     }
 
 
