@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Sensors;
+
 
 
 namespace Robot.Actions
@@ -11,6 +13,7 @@ namespace Robot.Actions
         #region /* Action Control */
 
         private RobotController Robot { get; set; }
+        private SensorController Sensors { get; set; }
 
         private Action CurrentAction { get; set; }
 
@@ -57,9 +60,10 @@ namespace Robot.Actions
 
         #region === Initialization ===
         
-        public void Initialize(RobotController Robot)
+        public void Initialize(RobotController Robot, SensorController sensor)
         {
             this.Robot = Robot;
+            this.Sensors = sensor;
         }
         
         #endregion
@@ -122,6 +126,15 @@ namespace Robot.Actions
         }
 
 
+        public void Execute(If programLine)
+        {
+            if (this.Robot.DebugInfo)
+            {
+                Debug.Log("IF");
+            }
+        }
+
+
         public void Execute(CodeNode programLine)
         {
             this.CurrentAction = new Action(this.Robot, programLine);
@@ -130,5 +143,12 @@ namespace Robot.Actions
         }
 
         #endregion
+
+
+
+        public Value Sense(Sensor.ID sensor)
+        {
+            return this.Sensors.Sense(sensor);
+        }
     }
 }

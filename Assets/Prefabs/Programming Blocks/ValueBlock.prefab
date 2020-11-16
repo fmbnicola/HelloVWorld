@@ -199,4 +199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  Id: 1
+  Selected: 0
+  SocketPos: {x: 0, y: 0, z: 0}
+  Id: 2

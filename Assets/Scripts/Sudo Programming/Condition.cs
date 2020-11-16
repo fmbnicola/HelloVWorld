@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Actions;
+
+
+
 public class Condition
 {
     public Sensor Sensor { get; protected set; }
@@ -17,7 +21,7 @@ public class Condition
     }
 
 
-    public bool Check(Transform robot) // Needs to be changed to the MonoBehaviour class
+    public bool Check(ActionController robot)
     {
         var sensed = this.Sensor.GetValue(robot);
 

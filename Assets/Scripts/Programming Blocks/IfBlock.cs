@@ -11,6 +11,9 @@ public class IfBlock : ProgrammingBlock
 
     public SocketPlus SensorSocket, ComparatorSocket, ValueSocket;
 
+    private Plug PlugTrue;
+    private Plug Plug;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,9 @@ public class IfBlock : ProgrammingBlock
 
         this.ValueSocket.onSelectEnter.AddListener((interactable) => RegisterValue(interactable));
         this.ValueSocket.onSelectExit.AddListener((interactable) => DeregisterValue(interactable));
+
+        this.PlugTrue = this.transform.Find("PlugTrue").GetComponent<Plug>();
+        this.Plug = this.transform.Find("Plug").GetComponent<Plug>();
     }
 
     // Update is called once per frame
@@ -74,13 +80,15 @@ public class IfBlock : ProgrammingBlock
 
     public override ProgrammingBlock GetNext()
     {
-        var plugObj = this.transform.Find("Plug");
+        //var plugObj = this.transform.Find("Plug");
 
-        if (plugObj != null)
+        if (this.Plug != null)
+        //if (plugObj != null)
         {
-            var plug = plugObj.GetComponent<Plug>();
+            //var plug = this.Plug.GetComponent<Plug>();
+            //var plug = plugObj.GetComponent<Plug>();
 
-            var connectedTo = plug.GetConnectedTo();
+            var connectedTo = this.Plug.GetConnectedTo();
 
             if(connectedTo != null)
             {
@@ -93,13 +101,15 @@ public class IfBlock : ProgrammingBlock
 
     public ProgrammingBlock GetNextIfTrue()
     {
-        var plugObj = this.transform.Find("PlugTrue");
+        //var plugObj = this.transform.Find("PlugTrue");
 
-        if (plugObj != null)
+        if (this.PlugTrue != null)
+        //if (plugObj != null)
         {
-            var plug = plugObj.GetComponent<Plug>();
+            //var plug = this.PlugTrue.GetComponent<Plug>();
+            //var plug = plugObj.GetComponent<Plug>();
 
-            var connectedTo = plug.GetConnectedTo();
+            var connectedTo = this.PlugTrue.GetConnectedTo();
 
             if (connectedTo != null)
             {
@@ -114,6 +124,12 @@ public class IfBlock : ProgrammingBlock
     public CodeNode ParseInnerCode(CodeNode context)
     {
         var firstBlock = this.GetNextIfTrue();
+
+        if (firstBlock == null)
+        {
+            return null;
+        }
+
         var currentBlock = firstBlock;
 
         var firstNode = firstBlock.Parse(context, context);

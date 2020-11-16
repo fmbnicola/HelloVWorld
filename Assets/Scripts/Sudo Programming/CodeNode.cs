@@ -34,4 +34,18 @@ public class CodeNode
 
         return this.Complete;
     }
+
+
+    virtual public CodeNode GetNext(ActionController robotActuator)
+    {
+        return this.Next;
+    }
+
+
+    virtual public CodeNode AfterBreak()
+    {
+        Debug.LogError("Isto nao devia de ter acontecido");
+        return null;
+    }
+
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using Robot.Actions;
 using UnityEngine.XR.Interaction.Toolkit;
+using Robot.Actions;
+using Robot.Sensors;
 
 
 
@@ -22,6 +23,7 @@ namespace Robot
         #region /* Actions Attributes */
 
         private ActionController ActionController { get; set; }
+        private SensorController SensorController { get; set; }
 
         #endregion
 
@@ -111,7 +113,9 @@ namespace Robot
         private void PrepareActionController()
         {
             this.ActionController = this.transform.GetComponent<ActionController>();
-            this.ActionController.Initialize(this);
+            this.SensorController = this.transform.GetComponentInChildren<SensorController>();
+
+            this.ActionController.Initialize(this, this.SensorController);
         }
 
         #endregion
@@ -230,33 +234,42 @@ namespace Robot
         {
             if (this.ActionController.ActionCompleted())
             {
-                this.Program = this.Program.Next;
+                CodeNode next = this.Program.GetNext(this.ActionController);
 
-                if (this.Program != null)
+                if (next != null)
                 {
+                    this.Program = next;
                     this.Program.Execute(this.ActionController);
                 }
                 else
                 {
-                    if (this.HappyDance)
+                    if (this.Program.ContextNode != null)
                     {
-                        if (this.DebugInfo)
-                        {
-                            Debug.Log("Happy Dance Ended");
-                        }
-
-                        this.ResetProgram();
+                        this.Program = this.Program.ContextNode.AfterBreak();
                     }
                     else
                     {
+                        this.ResetProgram();
+
                         if (this.DebugInfo)
                         {
                             Debug.Log("Program Ended");
                         }
-
-                        this.DoHappyDance();
                     }
 
+                    //if (this.HappyDance)
+                    //{
+                    //    if (this.DebugInfo)
+                    //    {
+                    //        Debug.Log("Happy Dance Ended");
+                    //    }
+
+                    //    this.ResetProgram();
+                    //}
+                    //else
+                    //{
+                    //    this.DoHappyDance();
+                    //}
                 }
             }
             else

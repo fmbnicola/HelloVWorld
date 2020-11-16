@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Robot.Actions;
+
+
+
 public class While : CodeNode
 {
     public Condition Condition { get; protected set; }
@@ -12,7 +16,7 @@ public class While : CodeNode
         this.Condition = cond;
     }
 
-    public CodeNode GetNext(Transform robot) // Replace with the MonoBehaviour class
+    public override CodeNode GetNext(ActionController robot)
     {
         if (this.Condition.Check(robot)) return this.NextIfTrue;
 

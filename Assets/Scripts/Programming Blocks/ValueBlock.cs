@@ -5,7 +5,7 @@ using UnityEngine;
 public class ValueBlock : ConditionBlock
 {
     [SerializeField]
-    private Value.ID Id = Value.ID.Wall;
+    private Value.ID Id = Value.ID.Empty;
 
 
     // Start is called before the first frame update

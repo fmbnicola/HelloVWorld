@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8884967289623468264}
   - component: {fileID: 5540101789874378573}
   - component: {fileID: 7712012422976316295}
+  - component: {fileID: 6841000323205436292}
+  - component: {fileID: 6310152399883060290}
   m_Layer: 0
   m_Name: RobotBox
   m_TagString: Untagged
@@ -79,3 +81,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6841000323205436292
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072260330405266002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019999998, y: 0.019999994, z: 0.018662132}
+  m_Center: {x: -0.0000014398246, y: 0.0000020219009, z: 0.0000000032596281}
+--- !u!114 &6310152399883060290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072260330405266002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e54a855048fa4c419a7ab1095322c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1
