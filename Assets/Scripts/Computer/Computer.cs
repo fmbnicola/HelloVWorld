@@ -14,6 +14,8 @@ public class Computer : MonoBehaviour
 
     public FloppyDisk FloppyDisk;
 
+    private ComputerAnimator Animator;
+
     public enum States
     {
         Idle,
@@ -38,6 +40,8 @@ public class Computer : MonoBehaviour
         this.Dais = this.transform.Find("Dais").GetComponent<Dais>();
 
         this.FloppyDisk = null;
+
+        this.Animator = this.GetComponent<ComputerAnimator>();
     }
 
     // Update is called once per frame
@@ -68,6 +72,8 @@ public class Computer : MonoBehaviour
             this.State = States.StartUp;
 
             this.StartTime = Time.time;
+
+            this.Animator.TurnOn();
         }
     }
 
@@ -92,6 +98,8 @@ public class Computer : MonoBehaviour
             this.Clear();
 
             this.State = States.Idle;
+
+            this.Animator.TurnOff();
         }
     }
 
