@@ -118,15 +118,6 @@ namespace Robot
             this.ActionController.Initialize(this, this.SensorController);
         }
 
-
-        public void Rotate(float angle)
-        {
-            this.ActionController.RotationAngle = angle;
-
-            this.Program = ProgramHelper.Rotate();
-            this.Program.Execute(this.ActionController);
-        }
-
         #endregion
 
 
@@ -179,6 +170,10 @@ namespace Robot
                 {
                     Debug.Log("Progam Started");
                 }
+
+                CodeNode firstLine = ProgramHelper.InitialProgramLine();
+                firstLine.Next = this.Program;
+                this.Program = firstLine;
 
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);

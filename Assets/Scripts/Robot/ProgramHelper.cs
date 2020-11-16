@@ -53,9 +53,9 @@ namespace Robot
         }
 
 
-        public static CodeNode Rotate()
+        public static CodeNode InitialProgramLine()
         {
-            return new Instruction(Instruction.ID.Rotate, null, null);
+            return new Instruction(Instruction.ID.Walk, null, null);
         }
     }
 }
