@@ -34,7 +34,7 @@ namespace Robot
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
-        public bool InStartPosition { get; set; }
+        private bool InStartPosition { get; set; }
 
         public bool DebugProgram;
         public bool DebugInfo;
@@ -132,6 +132,20 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
+            this.InStartPosition = false;
+        }
+
+
+        public void AtStartPosition(Vector3 startPos, Vector3 startRot)
+        {
+            this.SummonRobot(startPos, startRot);
+            this.InStartPosition = true;
+            this.StartProgram();
+        }
+
+
+        public void LeaveStartPosition()
+        {
             this.InStartPosition = false;
         }
 
