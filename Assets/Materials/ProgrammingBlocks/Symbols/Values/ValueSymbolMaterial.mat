@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InstructionSymbolMaterial
-  m_Shader: {fileID: 4800000, guid: b46e2a3c82e08604399957d8fc9bf026, type: 3}
+  m_Name: ValueSymbolMaterial
+  m_Shader: {fileID: 4800000, guid: 912f4bfc78e8a0a4487e5b6e50a6030b, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -45,8 +45,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Equals:
+        m_Texture: {fileID: 2800000, guid: a7fd6954383577b44b496418b477de97, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Grab:
         m_Texture: {fileID: 2800000, guid: a96b52f3f2de5ba43a1b9e8bdc338db1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LessThan:
+        m_Texture: {fileID: 2800000, guid: 1000869f3e5176845843359e6e78ef95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mad:
@@ -63,6 +71,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Move:
         m_Texture: {fileID: 2800000, guid: a96b52f3f2de5ba43a1b9e8bdc338db1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NotEquals:
+        m_Texture: {fileID: 2800000, guid: e2374ecb5c09ea0409a727cb6214724c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -102,6 +114,7 @@ Material:
     - _AlphaCutoff: 0.5
     - _Blend: 0
     - _BumpScale: 1
+    - _Comparator: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 10
@@ -119,10 +132,12 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
+    - _Value: 0
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color0: {r: 0.9800716, g: 0.6509804, b: 1, a: 1}
     - _EmissionColor: {r: 0.7578583, g: 0.7578583, b: 0.7578583, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

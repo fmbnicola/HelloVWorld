@@ -7,6 +7,7 @@ public class SensorBlock : ConditionBlock
     [SerializeField]
     private Sensor.ID Id = Sensor.ID.Camera;
 
+    private MaterialPropertyBlock propertyBlock;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,17 @@ public class SensorBlock : ConditionBlock
         }
     }
 
+    private void OnValidate()
+    {
+        if (propertyBlock == null)
+            propertyBlock = new MaterialPropertyBlock();
 
+        propertyBlock.SetInt("_Sensor", (int)Id);
+
+        var symbol = transform.Find("Symbol");
+        var renderer = symbol.GetComponent<Renderer>();
+        renderer.SetPropertyBlock(propertyBlock);
+    }
 
     public Sensor Parse()
     {
