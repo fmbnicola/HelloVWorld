@@ -11,8 +11,9 @@ namespace Puzzle
     {
         #region /* Set in Editor */
 
-        [SerializeField]
         public DetectableTags DesiredTag;
+
+        public bool DebugInfo;
 
         #endregion
 
@@ -27,9 +28,13 @@ namespace Puzzle
         public DetectEvent OnDetectEnd;
         #endregion
 
-        public enum DetectableTags { Robot }
+        public enum DetectableTags { Everything,
+                                     Untagged,
+                                     Robot      }
 
         public GameObject ObjectDetected { get; private set; }
+
+        public BoxCollider DetectBox { get; private set; }
 
         #endregion
 
@@ -40,6 +45,7 @@ namespace Puzzle
         // Start is called before the first frame update
         void Start()
         {
+            this.DetectBox = this.transform.GetComponent<BoxCollider>();
         }
 
 
@@ -52,24 +58,32 @@ namespace Puzzle
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(this.DesiredTag.ToString()))
+            if (this.DesiredTag == DetectableTags.Everything ||
+                other.CompareTag(this.DesiredTag.ToString()))
             {
                 this.ObjectDetected = other.gameObject;
                 this.OnDetect.Invoke();
 
-                Debug.Log("Tile Detected a " + this.DesiredTag);
+                if (this.DebugInfo)
+                {
+                    Debug.Log(other.gameObject.name + " Detected");
+                }
             }
         }
 
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.CompareTag(this.DesiredTag.ToString()))
+            if (this.DesiredTag == DetectableTags.Everything ||
+                other.CompareTag(this.DesiredTag.ToString()))
             {
                 this.ObjectDetected = null;
                 this.OnDetectEnd.Invoke();
 
-                Debug.Log(this.DesiredTag + " no longer on detection tile");
+                if (this.DebugInfo)
+                {
+                    Debug.Log(other.gameObject.name + "No Longer Detected");
+                }
             }
         }
 

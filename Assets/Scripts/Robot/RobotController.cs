@@ -34,7 +34,7 @@ namespace Robot
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
-        private bool HappyDance { get; set; }
+        public bool InStartPosition { get; set; }
 
         public bool DebugProgram;
         public bool DebugInfo;
@@ -141,21 +141,7 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
-            this.HappyDance = false;
-        }
-
-
-        private void DoHappyDance()
-        {
-            this.HappyDance = true;
-
-            this.Program = ProgramHelper.HappyDance();
-            this.Program.Execute(this.ActionController);
-
-            if (this.DebugInfo)
-            {
-                Debug.Log("Happy Dance Started");
-            }
+            this.InStartPosition = false;
         }
 
 
@@ -175,6 +161,11 @@ namespace Robot
                 if (this.DebugInfo)
                 {
                     Debug.Log("Program Loaded");
+                }
+
+                if (this.InStartPosition)
+                {
+                    this.StartProgram();
                 }
             }
         }
@@ -206,7 +197,6 @@ namespace Robot
                 this.Disk = null;
                 this.Program = null;
                 this.ProgramRunning = false;
-                this.HappyDance = false;
 
                 if (this.DebugInfo)
                 {
@@ -219,7 +209,6 @@ namespace Robot
         public void ResetProgram()
         {
             this.ProgramRunning = false;
-            this.HappyDance = false;
 
             if (this.Disk == null)
             {
@@ -265,20 +254,6 @@ namespace Robot
                             Debug.Log("Program Ended");
                         }
                     }
-
-                    //if (this.HappyDance)
-                    //{
-                    //    if (this.DebugInfo)
-                    //    {
-                    //        Debug.Log("Happy Dance Ended");
-                    //    }
-
-                    //    this.ResetProgram();
-                    //}
-                    //else
-                    //{
-                    //    this.DoHappyDance();
-                    //}
                 }
             }
             else
