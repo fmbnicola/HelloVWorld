@@ -60,7 +60,7 @@ namespace Puzzle
                 this.DefineStartPosition();
             }
 
-            this.StartExecution();
+            this.Robot.AtStartPosition(this.StartPos, this.StartRotation);
 
             if (this.DebugInfo)
             {
@@ -71,7 +71,7 @@ namespace Puzzle
 
         public void LeaveStart()
         {
-            this.Robot.InStartPosition = false;
+            this.Robot.LeaveStartPosition();
             this.Robot = null;
 
             if (this.DebugInfo)
@@ -92,21 +92,7 @@ namespace Puzzle
             this.StartPos = new Vector3(detectCenter.x, this.Robot.Height, detectCenter.z);
         }
 
-
-        private void StartExecution()
-        {
-            this.Robot.SummonRobot(this.StartPos, this.StartRotation);
-            this.Robot.InStartPosition = true;
-            this.Robot.StartProgram();
-        }
-
         #endregion
-    
-    
-        public void Presure()
-        {
-            Debug.Log("Pessoa detetada");
-        }
     
     }
 }

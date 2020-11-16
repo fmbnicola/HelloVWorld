@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2408827050097365526
+--- !u!1 &4087509296004156451
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,56 +8,62 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2408827050097365527}
-  - component: {fileID: 2408827050097365520}
+  - component: {fileID: 4087509296004156450}
+  - component: {fileID: 966713362244152716}
   m_Layer: 0
-  m_Name: StartTile
+  m_Name: PresureTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2408827050097365527
+--- !u!4 &4087509296004156450
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2408827050097365526}
+  m_GameObject: {fileID: 4087509296004156451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2408827051915303248}
+  - {fileID: 4087509295137802085}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2408827050097365520
+--- !u!114 &966713362244152716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2408827050097365526}
+  m_GameObject: {fileID: 4087509296004156451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fe36f5c825303848ae65101ecc09d53, type: 3}
+  m_Script: {fileID: 11500000, guid: c583e58814af6a04897d238692726f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartRotation: {x: 0, y: 0, z: 0}
-  DebugInfo: 0
---- !u!1001 &2371924606217109718
+  DebugInfo: 1
+  PressedMaterial: {fileID: 2100000, guid: 88ecd999925743a409e2f1c6add012c8, type: 2}
+  UnpressedMaterial: {fileID: 2100000, guid: 67208355f6086734c8b89da8142389a7, type: 2}
+--- !u!1001 &4124975789254696675
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2408827050097365527}
+    m_TransformParent: {fileID: 4087509296004156450}
     m_Modifications:
     - target: {fileID: 110087142269983105, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
       propertyPath: m_Name
       value: Detection Tile
       objectReference: {fileID: 0}
+    - target: {fileID: 110087142269983108, guid: 0ee8af44481286f488d64fa8a22c7642,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67208355f6086734c8b89da8142389a7, type: 2}
     - target: {fileID: 110087142269983110, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -137,11 +143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnDetect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2408827050097365520}
+      objectReference: {fileID: 966713362244152716}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
       propertyPath: OnDetect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RobotAtStart
+      value: Pressed
       objectReference: {fileID: 0}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
@@ -150,8 +156,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
-      propertyPath: DesiredTag
-      value: 2
+      propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 966713362244152716}
+    - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
+        type: 3}
+      propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unpressed
       objectReference: {fileID: 0}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
@@ -160,29 +171,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
-      propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
-        type: 3}
-      propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2408827050097365520}
-    - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
-        type: 3}
-      propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LeaveStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
-        type: 3}
       propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
+        type: 3}
+      propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ee8af44481286f488d64fa8a22c7642, type: 3}
---- !u!4 &2408827051915303248 stripped
+--- !u!4 &4087509295137802085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 110087142269983110, guid: 0ee8af44481286f488d64fa8a22c7642,
     type: 3}
-  m_PrefabInstance: {fileID: 2371924606217109718}
+  m_PrefabInstance: {fileID: 4124975789254696675}
   m_PrefabAsset: {fileID: 0}

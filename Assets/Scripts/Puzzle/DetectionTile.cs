@@ -39,6 +39,12 @@ namespace Puzzle
         #endregion
 
 
+        #region /* Tile Attributes */
+        private Renderer TileRenderer { get; set; }
+
+        #endregion
+
+
 
         #region === Unity Events ===
 
@@ -46,6 +52,8 @@ namespace Puzzle
         void Start()
         {
             this.DetectBox = this.transform.GetComponent<BoxCollider>();
+
+            this.TileRenderer = this.transform.GetComponentInChildren<MeshRenderer>();
         }
 
 
@@ -85,6 +93,20 @@ namespace Puzzle
                     Debug.Log(other.gameObject.name + "No Longer Detected");
                 }
             }
+        }
+
+        #endregion
+
+
+        #region === Tile Methods ===
+
+        public void ChangeTileMaterial(Material newMat)
+        {
+            Material[] mats = this.TileRenderer.materials;
+
+            mats[0] = newMat;
+
+            this.TileRenderer.materials = mats;
         }
 
         #endregion
