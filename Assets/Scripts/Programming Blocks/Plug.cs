@@ -100,6 +100,11 @@ public class Plug : MonoBehaviour
         return this.ConnectedTo;
     }
 
+    public void SetConnectedTo(Socket s)
+    {
+        this.ConnectedTo = s;
+    }
+
     public ProgrammingBlock GetBlock()
     {
         return this.Block;
@@ -116,5 +121,21 @@ public class Plug : MonoBehaviour
             this.Cable.Clear();
             this.ConnectedTo = null;
         }
+    }
+
+    public void NotMySelf()
+    {
+        this.OnSocket = false;
+        this.State = States.Grabbed;
+        this.transform.position = this.AnchorPoint.position;
+        this.transform.rotation = this.AnchorPoint.rotation;
+        this.Cable.Clear();
+        this.ConnectedTo = null;
+        this.transform.SetParent(this.Block.transform);
+    }
+
+    public void SetState(string st)
+    {
+        if (st == "Grabbed")     this.State = States.Grabbed;
     }
 }
