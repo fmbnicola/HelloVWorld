@@ -7,6 +7,7 @@ public class ComparatorBlock : ProgrammingBlock
     [SerializeField]
     private Comparator.ID Id = Comparator.ID.Equals;
 
+    private MaterialPropertyBlock propertyBlock;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,17 @@ public class ComparatorBlock : ProgrammingBlock
 
     }
 
+    private void OnValidate()
+    {
+        if (propertyBlock == null)
+            propertyBlock = new MaterialPropertyBlock();
+
+        propertyBlock.SetInt("_Comparator", (int)Id);
+
+        var symbol = transform.Find("Symbol");
+        var renderer = symbol.GetComponent<Renderer>();
+        renderer.SetPropertyBlock(propertyBlock);
+    }
 
     public Comparator Parse()
     {
