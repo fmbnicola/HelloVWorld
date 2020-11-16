@@ -101,5 +101,12 @@ namespace Puzzle
         }
 
         #endregion
+    
+    
+        public void Presure()
+        {
+            Debug.Log("Pessoa detetada");
+        }
+    
     }
 }
