@@ -42,7 +42,7 @@ namespace Robot.Sensors
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject == this.Obstacule.gameObject)
+            if (this.Obstacule != null && other.gameObject == this.Obstacule.gameObject)
             {
                 this.Obstacule = null;
             }
