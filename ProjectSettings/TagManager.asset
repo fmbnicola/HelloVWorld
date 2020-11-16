@@ -9,6 +9,7 @@ TagManager:
   - Comparator
   - Value
   - Plug
+  - Robot
   layers:
   - Default
   - TransparentFX

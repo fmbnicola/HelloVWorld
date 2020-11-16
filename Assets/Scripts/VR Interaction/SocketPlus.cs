@@ -21,6 +21,24 @@ public class SocketPlus : XRSocketInteractor
 
         if (this.gameObject.CompareTag(interactable.gameObject.tag))
         {
+
+            if (this.gameObject.CompareTag("Plug"))
+            {
+               var Myself = this.gameObject.GetComponent<Socket>();
+               var Plug = interactable.gameObject.GetComponent<Plug>();
+               if (  Myself.GetBlock() == Plug.GetBlock())
+               {
+                    Debug.Log("I cant connect to myself");
+
+                    Plug.NotMySelf();
+ 
+                    return;     
+               }
+            }
+
+
+
+
             var colPos = this.collider.bounds.center;
             var colRot = this.collider.transform.rotation;
 

@@ -51,5 +51,11 @@ namespace Robot
 
             return Line1;
         }
+
+
+        public static CodeNode InitialProgramLine()
+        {
+            return new Instruction(Instruction.ID.Walk, null, null);
+        }
     }
 }

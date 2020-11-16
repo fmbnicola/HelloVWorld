@@ -126,12 +126,9 @@ namespace Robot.Actions
         }
 
 
-        public void Execute(If programLine)
+        public void Execute(End programLine)
         {
-            if (this.Robot.DebugInfo)
-            {
-                Debug.Log("IF");
-            }
+            this.CurrentAction = new HappyDance(this.Robot, programLine);
         }
 
 
