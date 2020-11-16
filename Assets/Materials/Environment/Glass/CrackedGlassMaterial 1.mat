@@ -66,6 +66,7 @@ Material:
     - _Distance: 0.33
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Float1: 1
     - _FresnelStrength: 3
     - _GlareIntensity: 0.1
     - _GlarePower: 25
