@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrackedGlassMaterial
-  m_Shader: {fileID: 4800000, guid: 6f4fb5e81b3d621468414bd28a925439, type: 3}
+  m_Name: ComputerDaisMaterial
+  m_Shader: {fileID: 4800000, guid: bfad98a99c6747840a2543892af110d5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: db19665a49c1b9e40ac47606c381b47b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -35,6 +39,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MaskTexture:
+        m_Texture: {fileID: 2800000, guid: 59d197d3f7f693543a2410e67a7d9a81, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,7 +56,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 4930adcb42bbbe546ab6f5a2f4a9a8e3, type: 3}
+        m_Texture: {fileID: 2800000, guid: db19665a49c1b9e40ac47606c381b47b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: e8dc75f9993a27040bee313539d2c2d1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 59d197d3f7f693543a2410e67a7d9a81, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -56,53 +72,37 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha: 0.4
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
+    - _AnimationTime: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Distance: 0.33
     - _DstBlend: 0
+    - _EmissionStrength: 3
     - _EnvironmentReflections: 1
-    - _Float1: 1
-    - _FresnelStrength: 3
-    - _GlareIntensity: 0.1
-    - _GlarePower: 25
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Length: 100
-    - _MainStreakCompleteness: 0.53
-    - _MainStreakIntensity: 0.38
-    - _MainStreakWidth: 0.7
+    - _Metalic: 0.5
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Offset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SecondStreakOffset: 1.43
-    - _SecondStreakWidth: 0.33
-    - _Smoothness: 0.5
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StreakCompleteness: 1
-    - _StreakIntensity: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1, g: 1, b: 1, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.7783019, g: 1, b: 1, a: 0}
-    - _GlassColor: {r: 0.495283, g: 0.8053706, b: 1, a: 0}
+    - _EmissionColor: {r: 0, g: 0.6392157, b: 0.9607844, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _StreakColor: {r: 1, g: 1, b: 1, a: 0}
---- !u!114 &592317187842183071
+--- !u!114 &6394525156507148609
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

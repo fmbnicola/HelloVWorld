@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8143713192027599291
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrackedGlassMaterial
-  m_Shader: {fileID: 4800000, guid: 6f4fb5e81b3d621468414bd28a925439, type: 3}
+  m_Name: ComputerHoloMaterial
+  m_Shader: {fileID: 4800000, guid: d8b04c86eb9e26241831311229722fbe, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -31,6 +44,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HoloFieldTexture:
+        m_Texture: {fileID: 2800000, guid: e6e69756fd0bdd44ea9cddc8fee63f5f, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,70 +65,46 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 4930adcb42bbbe546ab6f5a2f4a9a8e3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: e6e69756fd0bdd44ea9cddc8fee63f5f, type: 3}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha: 0.4
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
+    - _AnimationTime: 0.08
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Distance: 0.33
+    - _DepthLength: 4
+    - _DepthOffset: 0
+    - _Distance: 18.9
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Float1: 1
-    - _FresnelStrength: 3
-    - _GlareIntensity: 0.1
-    - _GlarePower: 25
+    - _FieldBackAlpha: 0.7
+    - _FieldLinesAlpha: 0.5
+    - _FieldSpeed: 0.1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Length: 100
-    - _MainStreakCompleteness: 0.53
-    - _MainStreakIntensity: 0.38
-    - _MainStreakWidth: 0.7
     - _Metallic: 0
+    - _NoiseScale: 20
     - _OcclusionStrength: 1
-    - _Offset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SecondStreakOffset: 1.43
-    - _SecondStreakWidth: 0.33
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _StreakCompleteness: 1
-    - _StreakIntensity: 1
+    - _StepValue: 0.22
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.7783019, g: 1, b: 1, a: 0}
-    - _GlassColor: {r: 0.495283, g: 0.8053706, b: 1, a: 0}
+    - _FieldColor: {r: 0, g: 1, b: 0.9910373, a: 0}
+    - _HoloFieldColor: {r: 0.2783016, g: 1, b: 0.9576426, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _StreakColor: {r: 1, g: 1, b: 1, a: 0}
---- !u!114 &592317187842183071
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
+    - _Speed: {r: 1.3, g: 0.75, b: 0, a: 0}

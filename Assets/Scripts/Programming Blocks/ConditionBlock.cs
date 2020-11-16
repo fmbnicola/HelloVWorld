@@ -7,6 +7,7 @@ public class ConditionBlock : ProgrammingBlock
     // Start is called before the first frame update
     public bool Selected = false;
     public Vector3 SocketPos;
+    public SocketPlus SocketConnected = null;
     void Start()
     {
         
@@ -20,6 +21,11 @@ public class ConditionBlock : ProgrammingBlock
 
     protected void FixRotation()
     {
-        if (this.Selected) transform.rotation = Quaternion.Euler(this.SocketPos);
+        if (this.Selected)
+        {
+            if (this.SocketConnected != null)   transform.rotation = Quaternion.Euler(this.SocketConnected.transform.rotation.eulerAngles);
+        
+            else transform.rotation = Quaternion.Euler(this.SocketPos);
+        }
     }
 }

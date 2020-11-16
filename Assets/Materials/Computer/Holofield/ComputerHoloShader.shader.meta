@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: d8b04c86eb9e26241831311229722fbe
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _HoloFieldTexture: {fileID: 2800000, guid: e6e69756fd0bdd44ea9cddc8fee63f5f, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
