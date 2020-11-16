@@ -20,8 +20,6 @@ namespace Puzzle
         #region /* Tile Info */
         
         private DetectionTile DetectTile { get; set; }
-
-        private Renderer TileRenderer { get; set; }
         
         #endregion
 
@@ -33,8 +31,6 @@ namespace Puzzle
         void Start()
         {
             this.DetectTile = this.transform.GetComponentInChildren<DetectionTile>();
-
-           this.TileRenderer = this.transform.GetComponentInChildren<MeshRenderer>();
         }
 
 
@@ -56,7 +52,7 @@ namespace Puzzle
                 Debug.Log("Tile Pressed");
             }
 
-            this.ChangeTileMaterial(this.PressedMaterial);
+            this.DetectTile.ChangeTileMaterial(this.PressedMaterial);
         }
 
 
@@ -67,23 +63,9 @@ namespace Puzzle
                 Debug.Log("Tile No Longer Pressed");
             }
 
-            this.ChangeTileMaterial(this.UnpressedMaterial);
+            this.DetectTile.ChangeTileMaterial(this.UnpressedMaterial);
         }
 
-        #endregion
-
-
-        #region === Tile Functions ===
-
-        private void ChangeTileMaterial(Material newMat)
-        {
-            Material[] mats = this.TileRenderer.materials;
-
-            mats[0] = newMat;
-
-            this.TileRenderer.materials = mats;
-        }
-        
         #endregion
     }
 
