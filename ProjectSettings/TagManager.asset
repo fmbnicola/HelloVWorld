@@ -25,10 +25,10 @@ TagManager:
   - ProgrammingBlocks
   - InteractableComponent
   - Hands
-  - 
-  - 
-  - 
-  - 
+  - Plugs
+  - SensorBlocks
+  - Comparators
+  - ValueBlocks
   - 
   - 
   - 
