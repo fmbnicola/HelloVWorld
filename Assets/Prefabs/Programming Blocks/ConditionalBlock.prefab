@@ -49,7 +49,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 131072
   m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 32768
   m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 65536
   m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
@@ -422,7 +422,7 @@ Transform:
   m_GameObject: {fileID: 6224775002854923049}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.25, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.125, z: 0.1}
   m_Children:
   - {fileID: 4129694940468055032}
   - {fileID: 2339421873056136029}
@@ -554,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f80de749640344ea7f93bea03eff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Active: 0
   SensorSocket: {fileID: 4881781335524212803}
   ComparatorSocket: {fileID: 159042147639169386}
   ValueSocket: {fileID: 3178874981313319993}
@@ -779,6 +780,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ab359b3020c72b54eb613d7631fc724f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9f7f35c3614dd149bbe165c098256d4, type: 2}
     - target: {fileID: 919132149155446097, guid: ab359b3020c72b54eb613d7631fc724f,
         type: 3}
       propertyPath: m_Name
@@ -1279,6 +1285,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ab359b3020c72b54eb613d7631fc724f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9f7f35c3614dd149bbe165c098256d4, type: 2}
     - target: {fileID: 919132149155446097, guid: ab359b3020c72b54eb613d7631fc724f,
         type: 3}
       propertyPath: m_Name

@@ -57,7 +57,8 @@ public class SocketPlus : XRSocketInteractor
             }
 
             else if (interactable.gameObject.name.Contains("SensorBlock") ||
-                        interactable.gameObject.name.Contains("ValueBlock"))
+                     interactable.gameObject.name.Contains("ValueBlock")  ||
+                     interactable.gameObject.name.Contains("Comparator"))
             {
                 interactable.GetComponent<ConditionBlock>().Selected = true;
                 interactable.GetComponent<ConditionBlock>().SocketPos = this.transform.rotation.eulerAngles;
@@ -84,7 +85,8 @@ public class SocketPlus : XRSocketInteractor
 
 
         else if (interactable.gameObject.name.Contains("SensorBlock") ||
-                 interactable.gameObject.name.Contains("ValueBlock"))
+                 interactable.gameObject.name.Contains("ValueBlock")  ||
+                 interactable.gameObject.name.Contains("Comparator"))
         {
             interactable.GetComponent<ConditionBlock>().Selected = false;
             interactable.GetComponent<ConditionBlock>().SocketPos = Vec;
