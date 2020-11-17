@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bad86ff8276ba4cb3a2ea3d061223c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StepSize: 1
+  StepSize: 1.1
   MaxWalkSpeed: 5
   WalkForce: 12
   WalkMargin: 0.1
