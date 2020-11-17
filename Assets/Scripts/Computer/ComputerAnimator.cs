@@ -30,15 +30,6 @@ public class ComputerAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.H))
-        {
-            TurnOn();
-        }
-        if (Input.GetKeyUp(KeyCode.J))
-        {
-            TurnOff();
-        }
-
 
         //Animate animTime parameter
         animTime = Mathf.Lerp(animTime, target_animTime, animSpeed * Time.deltaTime);

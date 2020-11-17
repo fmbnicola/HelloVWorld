@@ -20,24 +20,29 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RobotChamberFloorMaterial
-  m_Shader: {fileID: 4800000, guid: 54524476dd52398489bcde466891ed14, type: 3}
+  m_Name: SlabFloorMaterial
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2050
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 308a7e2c102fa42479a3d10b89f57f49, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailsTexture:
+        m_Texture: {fileID: 2800000, guid: cfbda74a6f3086740a88a3fe7937a62c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -49,16 +54,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FloorTileTexture:
-        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Texture: {fileID: 2800000, guid: 619f136ec89a94746afbcad40c2f0414, type: 3}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _FloorTileTexture1:
         m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 308a7e2c102fa42479a3d10b89f57f49, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -85,8 +90,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TileTexture:
-        m_Texture: {fileID: 2800000, guid: 619f136ec89a94746afbcad40c2f0414, type: 3}
-        m_Scale: {x: 10, y: 10}
+        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
@@ -95,6 +100,9 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailAmmount: 0.5
+    - _DetailImpact: 0.38
+    - _DetailNumber: 16
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -102,10 +110,10 @@ Material:
     - _GlossyReflections: 0
     - _LuminanceModulator: 0.44309103
     - _Metallic: 0
-    - _NoiseImpact: 0.1
-    - _NoiseScale: 0
+    - _NoiseImpact: 0.95
+    - _NoiseScale: 8
     - _NoiseSmoothness: 0.57
-    - _NoiseVariation: 1.42
+    - _NoiseVariation: 0.2
     - _NormalStrength: 1.5
     - _OcclusionStrength: 1
     - _QueueOffset: 0
