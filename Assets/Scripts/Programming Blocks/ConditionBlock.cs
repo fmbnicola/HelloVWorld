@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ConditionBlock : ProgrammingBlock
 {
     // Start is called before the first frame update
@@ -16,7 +17,6 @@ public class ConditionBlock : ProgrammingBlock
     // Update is called once per frame
     void Update()
     {
-      
     }
 
     protected void FixRotation()

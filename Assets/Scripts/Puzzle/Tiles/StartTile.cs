@@ -6,13 +6,11 @@ using Robot;
 
 
 
-namespace Puzzle
+namespace Puzzle.Tiles
 {
     public class StartTile : MonoBehaviour
     {
         #region /* Set in Editor */
-
-        public Vector3 StartRotation;
 
         public bool DebugInfo;
 
@@ -25,8 +23,16 @@ namespace Puzzle
         private RobotController Robot { get; set; }
         
         private Vector3 StartPos { get; set; }
-        
+
         #endregion
+
+
+        #region /* Barrier Info */
+        
+        private StartBarrier Barrier { get; set; }
+
+        #endregion
+
 
 
         #region === Unity Events ===
@@ -35,6 +41,8 @@ namespace Puzzle
         void Start()
         {
             this.DetectTile = this.transform.GetComponentInChildren<DetectionTile>();
+
+            this.Barrier = this.transform.GetComponentInChildren<StartBarrier>();
 
             this.StartPos = Vector3.zero;
         }
@@ -60,7 +68,8 @@ namespace Puzzle
                 this.DefineStartPosition();
             }
 
-            this.Robot.AtStartPosition(this.StartPos, this.StartRotation);
+            this.Barrier.Open();
+            this.Robot.AtStartPosition(this.StartPos, this.transform.rotation.eulerAngles);
 
             if (this.DebugInfo)
             {
@@ -73,6 +82,7 @@ namespace Puzzle
         {
             this.Robot.LeaveStartPosition();
             this.Robot = null;
+            this.Barrier.Close();
 
             if (this.DebugInfo)
             {

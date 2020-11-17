@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
 public class SensorBlock : ConditionBlock
 {
     [SerializeField]
@@ -19,6 +19,16 @@ public class SensorBlock : ConditionBlock
     void Update()
     {
         base.FixRotation();
+
+        if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+        {
+            this.GetComponent<BoxCollider>().isTrigger = true;
+        }
+
+        if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+        {
+            this.GetComponent<BoxCollider>().isTrigger = false;
+        }
     }
 
     private void OnValidate()

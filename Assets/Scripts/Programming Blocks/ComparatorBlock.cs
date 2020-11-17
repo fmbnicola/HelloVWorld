@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class ComparatorBlock : ProgrammingBlock
+public class ComparatorBlock : ConditionBlock
 {
     [SerializeField]
     private Comparator.ID Id = Comparator.ID.Equals;
@@ -18,7 +19,17 @@ public class ComparatorBlock : ProgrammingBlock
     // Update is called once per frame
     void Update()
     {
+        base.FixRotation();
 
+        if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+        {
+            this.GetComponent<SphereCollider>().isTrigger = true;
+        }
+
+        if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+        {
+            this.GetComponent<SphereCollider>().isTrigger = false;
+        }
     }
 
     private void OnValidate()
