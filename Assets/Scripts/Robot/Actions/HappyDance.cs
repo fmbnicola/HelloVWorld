@@ -19,7 +19,7 @@ namespace Robot.Actions
                 Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
             }
 
-            this.AnimationController.FaceExcited();
+            this.AnimationController.FaceExcited(4);
 
             this.ProgramLine.Next = ProgramHelper.HappyDance();
 

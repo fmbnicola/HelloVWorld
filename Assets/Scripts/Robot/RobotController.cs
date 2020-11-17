@@ -171,6 +171,8 @@ namespace Robot
                     this.Program = ProgramHelper.DebugProgram();
                 }
 
+                this.AnimationController.FaceExcited();
+
                 if (this.DebugInfo)
                 {
                     Debug.Log("Program Loaded");
@@ -219,6 +221,8 @@ namespace Robot
                 {
                     Debug.Log("Program Aborted");
                 }
+
+                this.AnimationController.FaceSad();
             }
         }
 
