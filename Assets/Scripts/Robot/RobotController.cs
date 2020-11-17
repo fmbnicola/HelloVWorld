@@ -34,7 +34,7 @@ namespace Robot
 
         private CodeNode Program { get; set; }
         private bool ProgramRunning { get; set; }
-        private bool HappyDance { get; set; }
+        private bool InStartPosition { get; set; }
 
         public bool DebugProgram;
         public bool DebugInfo;
@@ -132,21 +132,21 @@ namespace Robot
 
             this.Program = null;
             this.ProgramRunning = false;
-            this.HappyDance = false;
+            this.InStartPosition = false;
         }
 
 
-        private void DoHappyDance()
+        public void AtStartPosition(Vector3 startPos, Vector3 startRot)
         {
-            this.HappyDance = true;
+            this.SummonRobot(startPos, startRot);
+            this.InStartPosition = true;
+            this.StartProgram();
+        }
 
-            this.Program = ProgramHelper.HappyDance();
-            this.Program.Execute(this.ActionController);
 
-            if (this.DebugInfo)
-            {
-                Debug.Log("Happy Dance Started");
-            }
+        public void LeaveStartPosition()
+        {
+            this.InStartPosition = false;
         }
 
 
@@ -167,6 +167,11 @@ namespace Robot
                 {
                     Debug.Log("Program Loaded");
                 }
+
+                if (this.InStartPosition)
+                {
+                    this.StartProgram();
+                }
             }
         }
 
@@ -179,6 +184,10 @@ namespace Robot
                 {
                     Debug.Log("Progam Started");
                 }
+
+                CodeNode firstLine = ProgramHelper.InitialProgramLine();
+                firstLine.Next = this.Program;
+                this.Program = firstLine;
 
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
@@ -197,7 +206,6 @@ namespace Robot
                 this.Disk = null;
                 this.Program = null;
                 this.ProgramRunning = false;
-                this.HappyDance = false;
 
                 if (this.DebugInfo)
                 {
@@ -210,7 +218,6 @@ namespace Robot
         public void ResetProgram()
         {
             this.ProgramRunning = false;
-            this.HappyDance = false;
 
             if (this.Disk == null)
             {
@@ -256,20 +263,6 @@ namespace Robot
                             Debug.Log("Program Ended");
                         }
                     }
-
-                    //if (this.HappyDance)
-                    //{
-                    //    if (this.DebugInfo)
-                    //    {
-                    //        Debug.Log("Happy Dance Ended");
-                    //    }
-
-                    //    this.ResetProgram();
-                    //}
-                    //else
-                    //{
-                    //    this.DoHappyDance();
-                    //}
                 }
             }
             else

@@ -12,7 +12,7 @@ namespace Robot.Sensors
     {
         #region /* Sensors */
 
-        private Camera Camera { get; set; }
+        private RobotCamera Camera { get; set; }
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Robot.Sensors
         // Start is called before the first frame update
         void Start()
         {
-            this.Camera = this.transform.GetComponentInChildren<Camera>();
+            this.Camera = this.transform.GetComponentInChildren<RobotCamera>();
         }
 
 

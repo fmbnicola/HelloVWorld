@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class ComparatorBlock : ProgrammingBlock
+public class ComparatorBlock : ConditionBlock
 {
     [SerializeField]
     private Comparator.ID Id = Comparator.ID.Equals;
 
+    private MaterialPropertyBlock propertyBlock;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +19,30 @@ public class ComparatorBlock : ProgrammingBlock
     // Update is called once per frame
     void Update()
     {
+        base.FixRotation();
 
+        if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+        {
+            this.GetComponent<SphereCollider>().isTrigger = true;
+        }
+
+        if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+        {
+            this.GetComponent<SphereCollider>().isTrigger = false;
+        }
     }
 
+    private void OnValidate()
+    {
+        if (propertyBlock == null)
+            propertyBlock = new MaterialPropertyBlock();
+
+        propertyBlock.SetInt("_Comparator", (int)Id);
+
+        var symbol = transform.Find("Symbol");
+        var renderer = symbol.GetComponent<Renderer>();
+        renderer.SetPropertyBlock(propertyBlock);
+    }
 
     public Comparator Parse()
     {

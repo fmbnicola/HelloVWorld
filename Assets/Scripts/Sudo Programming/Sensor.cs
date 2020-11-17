@@ -26,7 +26,5 @@ public class Sensor
     public Value GetValue(ActionController robot)
     {
         return robot.Sense(this.Id);
-
-        return null;
     }
 }
