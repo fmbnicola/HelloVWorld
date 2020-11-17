@@ -69,7 +69,8 @@ namespace Puzzle.Tiles
 
         private void OnTriggerStay(Collider other)
         {
-            if (this.DesiredTag == DetectableTags.Everything ||
+            if (!other.isTrigger ||
+                this.DesiredTag == DetectableTags.Everything ||
                 other.CompareTag(this.DesiredTag.ToString()))
             {
                 this.ObjectDetected = other.gameObject;
@@ -85,7 +86,8 @@ namespace Puzzle.Tiles
 
         private void OnTriggerExit(Collider other)
         {
-            if (this.DesiredTag == DetectableTags.Everything ||
+            if (!other.isTrigger ||
+                this.DesiredTag == DetectableTags.Everything ||
                 other.CompareTag(this.DesiredTag.ToString()))
             {
                 this.ObjectDetected = null;
