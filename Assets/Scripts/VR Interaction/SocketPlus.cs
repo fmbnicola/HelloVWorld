@@ -10,79 +10,70 @@ public class SocketPlus : XRSocketInteractor
 
     public bool SnapInteractorRotation = false;
 
-    private Collider collider;
-    private void Start()
+    private bool WasTrigger = false;
+
+    private Collider Collider;
+
+    private new void Start()
     {
-        this.collider = this.GetComponent<Collider>();
+        base.Start();
+
+        this.Collider = this.GetComponent<Collider>();
     }
 
     protected override void OnSelectEnter(XRBaseInteractable interactable)
     {
-
-        if (this.gameObject.CompareTag(interactable.gameObject.tag))
+        if (this.gameObject.CompareTag("Plug"))
         {
+            var self  = this.gameObject.GetComponent<Socket>();
+            var other = interactable.gameObject.GetComponent<Plug>();
 
-            if (this.gameObject.CompareTag("Plug"))
+            if (self.GetBlock() == other.GetBlock())
             {
-               var Myself = this.gameObject.GetComponent<Socket>();
-               var Plug = interactable.gameObject.GetComponent<Plug>();
-               if (  Myself.GetBlock() == Plug.GetBlock())
-               {
-                    Debug.Log("I cant connect to myself");
+                Debug.Log("I cant connect to myself");
 
-                    Plug.NotMySelf();
+                other.Disconnect();
  
-                    return;     
-               }
+                return;     
             }
-
-
-
-
-            var colPos = this.collider.bounds.center;
-            var colRot = this.collider.transform.rotation;
-
-            base.OnSelectEnter(interactable);
-
-            if (this.SnapInteractorPosition) interactable.transform.position = colPos;
-
-            if (this.SnapInteractorRotation)
-            {
-                interactable.transform.rotation = colRot;
-
-                if (interactable.gameObject.name.Contains("FloppyDisk"))
-                {
-                    interactable.GetComponent<FloppyDisk>().Selected = true;
-                    interactable.GetComponent<FloppyDisk>().SocketPos = this.transform.rotation.eulerAngles;
-                    interactable.GetComponent<FloppyDisk>().SocketConnected = this;
-                }
-
-                else if (interactable.gameObject.name.Contains("SensorBlock") ||
-                         interactable.gameObject.name.Contains("ValueBlock"))
-                {
-                    interactable.GetComponent<ConditionBlock>().Selected = true;
-                    interactable.GetComponent<ConditionBlock>().SocketPos = this.transform.rotation.eulerAngles;
-                    interactable.GetComponent<ConditionBlock>().SocketConnected = this;
-                }
-
-            }
-
-            interactable.GetComponent<Collider>().isTrigger = true;
         }
-        else
+
+        var colPos = this.Collider.bounds.center;
+        var colRot = this.Collider.transform.rotation;
+
+        base.OnSelectEnter(interactable);
+
+        if (this.SnapInteractorPosition) interactable.transform.position = colPos;
+
+        if (this.SnapInteractorRotation)
         {
-            var Vec = new Vector3(0, 0.1f, 0);
-            Debug.Log("tipos errados");
-            interactable.transform.position = interactable.transform.position + Vec;
-            interactable.transform.rotation = interactable.transform.rotation;
+            interactable.transform.rotation = colRot;
+
+            if (interactable.gameObject.name.Contains("FloppyDisk"))
+            {
+                interactable.GetComponent<FloppyDisk>().Selected = true;
+                interactable.GetComponent<FloppyDisk>().SocketPos = this.transform.rotation.eulerAngles;
+                interactable.GetComponent<FloppyDisk>().SocketConnected = this;
+            }
+
+            else if (interactable.gameObject.name.Contains("SensorBlock") ||
+                        interactable.gameObject.name.Contains("ValueBlock"))
+            {
+                interactable.GetComponent<ConditionBlock>().Selected = true;
+                interactable.GetComponent<ConditionBlock>().SocketPos = this.transform.rotation.eulerAngles;
+                interactable.GetComponent<ConditionBlock>().SocketConnected = this;
+            }
         }
 
-        
+        var body = interactable.GetComponent<Collider>();
+        this.WasTrigger = body.isTrigger;
+        body.isTrigger = true;
     }
+
     protected override void OnSelectExit(XRBaseInteractable interactable)
     {
         var Vec = new Vector3(0, 0, 0);
-        interactable.GetComponent<Collider>().isTrigger = false;
+        interactable.GetComponent<Collider>().isTrigger = this.WasTrigger;
 
         if (interactable.gameObject.name.Contains("FloppyDisk"))
         {
