@@ -60,8 +60,11 @@ namespace Puzzle.Tiles
         
         public void RobotAtStart()
         {
-            GameObject detected = this.DetectTile.ObjectDetected;
-            this.Robot = detected.GetComponent<RobotController>();
+            if (this.Robot == null)
+            {
+                GameObject detected = this.DetectTile.ObjectDetected;
+                this.Robot = detected.GetComponentInParent<RobotController>();
+            }
 
             if (this.StartPos == Vector3.zero)
             {
@@ -82,6 +85,7 @@ namespace Puzzle.Tiles
         {
             this.Robot.LeaveStartPosition();
             this.Robot = null;
+
             this.Barrier.Close();
 
             if (this.DebugInfo)

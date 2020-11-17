@@ -146,9 +146,13 @@ namespace Robot
 
         public void AtStartPosition(Vector3 startPos, Vector3 startRot)
         {
-            this.SummonRobot(startPos, startRot);
-            this.InStartPosition = true;
-            this.StartProgram();
+            if (!this.ProgramRunning)
+            {
+                this.SummonRobot(startPos, startRot);
+                this.InStartPosition = true;
+
+                this.StartProgram();
+            }
         }
 
 
