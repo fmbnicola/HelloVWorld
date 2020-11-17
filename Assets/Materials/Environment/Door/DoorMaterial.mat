@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7050681714873821569
+--- !u!114 &-6336103106799679031
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RobotChamberFloorMaterial
-  m_Shader: {fileID: 4800000, guid: 54524476dd52398489bcde466891ed14, type: 3}
+  m_Name: DoorMaterial
+  m_Shader: {fileID: 4800000, guid: e964676a0e66f2848829853d81beedba, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,8 +33,8 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 308a7e2c102fa42479a3d10b89f57f49, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Texture: {fileID: 2800000, guid: 11ac53c6a4772c749b54a3dc26559a4c, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
@@ -44,28 +44,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _FloorTile:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _FloorTileTexture:
-        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
-        m_Scale: {x: 5, y: 5}
-        m_Offset: {x: 0, y: 0}
-    - _FloorTileTexture1:
-        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 308a7e2c102fa42479a3d10b89f57f49, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Texture: {fileID: 2800000, guid: 11ac53c6a4772c749b54a3dc26559a4c, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalTexture:
-        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -76,47 +60,41 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture0:
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 11ac53c6a4772c749b54a3dc26559a4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: dbf54e2178c97264da9449fecb190d6c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TileTexture:
-        m_Texture: {fileID: 2800000, guid: 619f136ec89a94746afbcad40c2f0414, type: 3}
-        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
+    - _AnimationTime: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DoorHeightMap: 0
+    - _DoorHeightOffset: 0.92
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Exponent: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LuminanceModulator: 0.44309103
     - _Metallic: 0
-    - _NoiseImpact: 0.1
-    - _NoiseScale: 0
-    - _NoiseSmoothness: 0.57
-    - _NoiseVariation: 1.42
-    - _NormalStrength: 1.5
     - _OcclusionStrength: 1
+    - _Offset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.2
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _TileNumber: 4
-    - _VariationAmmount: 1
+    - _VertexOffset: 0.45
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -124,4 +102,3 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 10, g: 10, b: 0, a: 0}

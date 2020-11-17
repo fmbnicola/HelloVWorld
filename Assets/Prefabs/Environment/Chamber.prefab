@@ -37,7 +37,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2174955059806034893}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5231, y: 0.0037787, z: 2.4769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -520,11 +520,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5742632445136303480}
     m_Modifications:
+    - target: {fileID: 248533031678121463, guid: 74f40ea1cec21004db3948b3e446d795,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80fc82135c73e3d4bb9913145fceaac4, type: 2}
     - target: {fileID: 4903630202863334773, guid: 74f40ea1cec21004db3948b3e446d795,
         type: 3}
       propertyPath: m_Name
       value: ChamberRobotDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5041837066846670260, guid: 74f40ea1cec21004db3948b3e446d795,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80fc82135c73e3d4bb9913145fceaac4, type: 2}
     - target: {fileID: 5314093930634856566, guid: 74f40ea1cec21004db3948b3e446d795,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -580,6 +590,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5334702714386935355, guid: 74f40ea1cec21004db3948b3e446d795,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80fc82135c73e3d4bb9913145fceaac4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74f40ea1cec21004db3948b3e446d795, type: 3}
 --- !u!4 &390804518141119191 stripped
