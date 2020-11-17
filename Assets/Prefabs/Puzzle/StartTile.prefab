@@ -222,12 +222,12 @@ PrefabInstance:
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
       propertyPath: OnDetect.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
       propertyPath: OnDetectEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 110087142269983115, guid: 0ee8af44481286f488d64fa8a22c7642,
         type: 3}
