@@ -7,6 +7,9 @@ public class ProgrammingBlock : MonoBehaviour
     protected List<Plug> Plugs;
     protected Socket Socket;
 
+    [SerializeField]
+    public bool Active;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,5 +72,16 @@ public class ProgrammingBlock : MonoBehaviour
     public virtual CodeNode Parse(CodeNode context, CodeNode prev)
     {
         return null;
+    }
+
+
+    public void Activate()
+    {
+        if (!this.Active) this.Active = true;
+    }
+
+    public void Deactivate()
+    {
+        if (this.Active) this.Active = false;
     }
 }
