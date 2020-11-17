@@ -40,7 +40,9 @@ namespace Puzzle.Tiles
 
 
         #region /* Tile Attributes */
+        
         private Renderer TileRenderer { get; set; }
+        private Material TileMaterial { get; set; }
 
         #endregion
 
@@ -54,6 +56,7 @@ namespace Puzzle.Tiles
             this.DetectBox = this.transform.GetComponent<BoxCollider>();
 
             this.TileRenderer = this.transform.GetComponentInChildren<MeshRenderer>();
+            this.TileMaterial = this.TileRenderer.materials[0];
         }
 
 
@@ -64,9 +67,10 @@ namespace Puzzle.Tiles
         }
 
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            if (this.DesiredTag == DetectableTags.Everything ||
+            if (!other.isTrigger ||
+                this.DesiredTag == DetectableTags.Everything ||
                 other.CompareTag(this.DesiredTag.ToString()))
             {
                 this.ObjectDetected = other.gameObject;
@@ -82,7 +86,8 @@ namespace Puzzle.Tiles
 
         private void OnTriggerExit(Collider other)
         {
-            if (this.DesiredTag == DetectableTags.Everything ||
+            if (!other.isTrigger ||
+                this.DesiredTag == DetectableTags.Everything ||
                 other.CompareTag(this.DesiredTag.ToString()))
             {
                 this.ObjectDetected = null;
@@ -90,7 +95,7 @@ namespace Puzzle.Tiles
 
                 if (this.DebugInfo)
                 {
-                    Debug.Log(other.gameObject.name + "No Longer Detected");
+                    Debug.Log(other.gameObject.name + " No Longer Detected");
                 }
             }
         }
@@ -102,11 +107,14 @@ namespace Puzzle.Tiles
 
         public void ChangeTileMaterial(Material newMat)
         {
-            Material[] mats = this.TileRenderer.materials;
+            if (newMat != this.TileMaterial)
+            {
+                Material[] mats = this.TileRenderer.materials;
 
-            mats[0] = newMat;
+                mats[0] = newMat;
 
-            this.TileRenderer.materials = mats;
+                this.TileRenderer.materials = mats;
+            }
         }
 
         #endregion

@@ -51,6 +51,8 @@ namespace Robot.Actions
             {
                 this.RobotBody.velocity = this.RobotBody.velocity.normalized * this.MaxSpeed; 
             }
+
+            this.AnimationController.ThreadsFoward();
         }
 
 
@@ -72,6 +74,8 @@ namespace Robot.Actions
         public override void Terminate()
         {
             this.RobotBody.velocity = Vector3.zero;
+            
+            this.AnimationController.ThreadsStop();
         }
 
     }
