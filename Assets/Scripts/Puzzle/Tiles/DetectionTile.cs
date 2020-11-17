@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 
 
-namespace Puzzle
+namespace Puzzle.Tiles
 {
     public class DetectionTile : MonoBehaviour
     {

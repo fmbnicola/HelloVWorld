@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-namespace Puzzle
+namespace Puzzle.Tiles
 {
     public class PressureTile : MonoBehaviour
     {

@@ -6,7 +6,7 @@ using Robot;
 
 
 
-namespace Puzzle
+namespace Puzzle.Tiles
 {
     public class StartTile : MonoBehaviour
     {
