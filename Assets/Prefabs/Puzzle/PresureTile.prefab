@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c583e58814af6a04897d238692726f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugInfo: 1
+  DebugInfo: 0
   PressedMaterial: {fileID: 2100000, guid: 88ecd999925743a409e2f1c6add012c8, type: 2}
   UnpressedMaterial: {fileID: 2100000, guid: 67208355f6086734c8b89da8142389a7, type: 2}
 --- !u!1001 &4124975789254696675
