@@ -8,6 +8,7 @@ namespace Robot.Actions
     public class Action 
     {
         protected RobotController Robot { get; set; }
+        protected RobotAnimationController AnimationController { get; set; }
 
         protected CodeNode ProgramLine { get; set; }
 
@@ -16,6 +17,8 @@ namespace Robot.Actions
         public Action(RobotController robot, CodeNode programLine)
         {
             this.Robot = robot;
+            this.AnimationController = this.Robot.AnimationController;
+
             this.ProgramLine = programLine;
         }
 

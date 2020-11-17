@@ -37,7 +37,7 @@ namespace Robot.Actions
             {
                 Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
 
-                //GameObject.Find("Debug").transform.position = this.TargetPos;
+                GameObject.Find("Debug").transform.position = this.TargetPos;
             }
         }
 

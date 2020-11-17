@@ -41,6 +41,12 @@ namespace Robot
 
         #endregion
 
+        #region /* Animation Attributes */
+        
+        public RobotAnimationController AnimationController { get; private set; }
+        
+        #endregion
+
 
 
         #region === Unity Events ===
@@ -53,6 +59,8 @@ namespace Robot
             this.PrepareActionController();
 
             this.PrepareForProgram();
+
+            this.PrepareAnimationController();
         }
 
 
@@ -271,6 +279,16 @@ namespace Robot
             }
         }
 
+        #endregion
+
+
+        #region === Animation Methods ===
+        
+        private void PrepareAnimationController()
+        {
+            this.AnimationController = this.transform.GetComponent<RobotAnimationController>();
+        }
+        
         #endregion
 
     }
