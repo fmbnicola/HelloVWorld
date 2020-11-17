@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e24f56e28fcc24587913097fb779e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConnectorNode: {fileID: 2783111617465725191, guid: f21eeb949042aa84e9200632a74ec67e,
+    type: 3}
   AnchorPoint: {fileID: 0}
   Plug: {fileID: 0}
   Renderer: {fileID: 4362420883963915516}

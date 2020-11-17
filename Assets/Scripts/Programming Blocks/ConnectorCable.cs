@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ConnectorCable : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject ConnectorNode;
+
     public Transform AnchorPoint;
 
-    public Transform Plug;
+    public Plug Plug;
 
     public LineRenderer Renderer;
 
@@ -31,62 +34,51 @@ public class ConnectorCable : MonoBehaviour
         this.NodeParent.transform.position = Vector3.zero;
 
         this.Head = this.AddNode(this.AnchorPoint.position);
-        this.Tail = this.AddNode(this.Plug.position, this.Head);
+        this.Tail = this.AddNode(this.Plug.transform.position, this.Head);
     }
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        #region Head
-        var vector = this.Head.transform.position - this.Head.Next.transform.position;
+        this.Head.transform.position = this.AnchorPoint.position;
+        this.Tail.transform.position = this.Plug.transform.position;
 
-        if (vector.magnitude < this.Range)
+        if (this.Plug.State != Plug.States.OnAnchor)
         {
-            this.Head.transform.position = this.AnchorPoint.position;
-        }
-        else if (vector.magnitude >= this.Range)
-        {
-            if (this.Head.Next.Next != null)
+            #region Head
+            var tooClose = this.CheckHeadProximity();
+
+            // Contract Cable
+            if (tooClose != null)
             {
-                vector = this.Head.transform.position - this.Head.Next.Next.transform.position;
-
-                if (vector.magnitude <= this.Range)
-                {
-                    // Contract
-                    return;
-                }
+                this.Snip(this.Head, tooClose);
             }
 
-            this.ExtendHead();
-        }
-        #endregion
-
-        #region Tail
-        this.Tail.transform.position = this.Plug.position;
-
-        vector = this.Tail.transform.position - this.Tail.Prev.transform.position;
-
-        if(vector.magnitude < this.Range)
-        {
-            this.Tail.transform.position = this.Plug.position;
-        }
-        else if(vector.magnitude >= this.Range)
-        {
-            if(this.Tail.Prev.Prev != null)
+            // Extend Cable
+            if (this.NodeDistance(this.Head, this.Head.Next) > this.Range)
             {
-                vector = this.Tail.transform.position - this.Tail.Prev.Prev.transform.position;
-
-                if(vector.magnitude <= this.Range)
-                {
-                    // Contract
-                    return;
-                }
+                this.ExtendHead();
             }
+            #endregion
 
-            this.ExtendTail();
+            #region Tail
+            tooClose = this.CheckTailProximity();
+
+            // Contract Cable
+            if (tooClose != null)
+            {
+                this.Snip(tooClose, this.Tail);
+            }
+            
+
+            // Extend Cable
+            if (this.NodeDistance(this.Tail, this.Tail.Prev) > this.Range)
+            {
+                this.ExtendTail();
+            }
+            #endregion
         }
-        #endregion
 
         this.Renderer.positionCount = this.Nodes.Count;
         this.Renderer.SetPositions(this.GetPositions());
@@ -96,14 +88,13 @@ public class ConnectorCable : MonoBehaviour
     #region Nodes
     private ConnectorNode CreateNode(Vector3 position)
     {
-        var node = new GameObject("CableNode");
-        var script = node.AddComponent<ConnectorNode>();
+        var node = Instantiate(this.ConnectorNode);
 
         node.transform.position = position;
 
         node.transform.parent = this.NodeParent.transform;
 
-        return script;
+        return node.GetComponent<ConnectorNode>();
     }
 
     private ConnectorNode AddNode(Vector3 position, ConnectorNode prev = null)
@@ -112,7 +103,7 @@ public class ConnectorCable : MonoBehaviour
 
         if(prev != null) this.ConnectNodes(prev, node);
 
-        node.Index = this.Nodes.Count;
+        node.Initialize(this, this.Nodes.Count);
 
         this.Nodes.Add(node);
 
@@ -141,6 +132,7 @@ public class ConnectorCable : MonoBehaviour
         if (index <= 0 || this.Nodes.Count <= index) return;
 
         var node = this.Nodes[index];
+        this.Nodes.RemoveAt(index);
 
         var prev = node.Prev;
         var next = node.Next;
@@ -151,6 +143,13 @@ public class ConnectorCable : MonoBehaviour
         }
 
         if (this.Tail == node) this.Tail = prev;
+
+        for(var i = index; i < this.Nodes.Count; i++)
+        {
+            this.Nodes[i].Index = i;
+        }
+
+        Destroy(node.gameObject);
     }
 
     private void ConnectNodes(ConnectorNode first, ConnectorNode second)
@@ -158,7 +157,46 @@ public class ConnectorCable : MonoBehaviour
         first.Next  = second;
         second.Prev = first;
     }
+
+
+    private float NodeDistance(ConnectorNode first, ConnectorNode second)
+    {
+        return (first.transform.position - second.transform.position).magnitude;
+    }
+
+    private ConnectorNode CheckHeadProximity()
+    {
+        foreach(var node in this.Nodes)
+        {
+            if (node == this.Head || node == this.Tail) continue;
+            if (node == this.Head.Next) continue;
+
+            if(this.NodeDistance(this.Head, node) < this.Range)
+            {
+                return node;
+            }
+        }
+
+        return null;
+    }
+
+    private ConnectorNode CheckTailProximity()
+    {
+        foreach (var node in this.Nodes)
+        {
+            if (node == this.Head || node == this.Tail) continue;
+            if (node == this.Tail.Prev) continue;
+
+            if (this.NodeDistance(this.Tail, node) < this.Range)
+            {
+                return node;
+            }
+        }
+
+        return null;
+    }
     #endregion
+
 
     #region Extend
     private void ExtendHead()
@@ -172,31 +210,40 @@ public class ConnectorCable : MonoBehaviour
 
     private void ExtendTail()
     {
-        var node = this.AddNode(this.Plug.position, this.Tail);
+        var node = this.AddNode(this.Plug.transform.position, this.Tail);
 
         this.Tail = node;
     }
     #endregion
 
-    #region Contract
-    private void ContractHead()
-    {
-        this.RemoveNode(this.Head.Next.Index);
-    }
 
-    private void ContractTail()
+    public void Snip(ConnectorNode from, ConnectorNode to)
     {
-        this.RemoveNode(this.Tail.Prev.Index);
+        if(from.Index > to.Index)
+        {
+            var temp = from;
+            from = to;
+            to = temp;
+        }
+
+        while(from.Next != to)
+        {
+            this.RemoveNode(from.Index + 1);
+        }
     }
-    #endregion
 
 
     public void Clear()
     {
         this.Nodes.Clear();
 
+        Destroy(this.NodeParent);
+
+        this.NodeParent = new GameObject("Generated By Connector Cable");
+        this.NodeParent.transform.position = Vector3.zero;
+
         this.Head = this.AddNode(this.AnchorPoint.position);
-        this.Tail = this.AddNode(this.Plug.position, this.Head);
+        this.Tail = this.AddNode(this.Plug.transform.position, this.Head);
     }
 
 

@@ -276,7 +276,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Plug
       value: 
-      objectReference: {fileID: 4122902837026464330}
+      objectReference: {fileID: 5615979952881456490}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e0eb801d7c831e4594a42dffe6dbc3e, type: 3}
 --- !u!4 &5804475578910227761 stripped
