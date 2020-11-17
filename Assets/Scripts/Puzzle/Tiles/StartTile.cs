@@ -23,8 +23,16 @@ namespace Puzzle.Tiles
         private RobotController Robot { get; set; }
         
         private Vector3 StartPos { get; set; }
-        
+
         #endregion
+
+
+        #region /* Barrier Info */
+        
+        private StartBarrier Barrier { get; set; }
+
+        #endregion
+
 
 
         #region === Unity Events ===
@@ -33,6 +41,8 @@ namespace Puzzle.Tiles
         void Start()
         {
             this.DetectTile = this.transform.GetComponentInChildren<DetectionTile>();
+
+            this.Barrier = this.transform.GetComponentInChildren<StartBarrier>();
 
             this.StartPos = Vector3.zero;
         }
@@ -58,6 +68,7 @@ namespace Puzzle.Tiles
                 this.DefineStartPosition();
             }
 
+            this.Barrier.Open();
             this.Robot.AtStartPosition(this.StartPos, this.transform.rotation.eulerAngles);
 
             if (this.DebugInfo)
@@ -71,6 +82,7 @@ namespace Puzzle.Tiles
         {
             this.Robot.LeaveStartPosition();
             this.Robot = null;
+            this.Barrier.Close();
 
             if (this.DebugInfo)
             {
