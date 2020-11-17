@@ -12,8 +12,6 @@ namespace Puzzle
     {
         #region /* Set in Editor */
 
-        public Vector3 StartRotation;
-
         public bool DebugInfo;
 
         #endregion
@@ -60,7 +58,7 @@ namespace Puzzle
                 this.DefineStartPosition();
             }
 
-            this.Robot.AtStartPosition(this.StartPos, this.StartRotation);
+            this.Robot.AtStartPosition(this.StartPos, this.transform.rotation.eulerAngles);
 
             if (this.DebugInfo)
             {
