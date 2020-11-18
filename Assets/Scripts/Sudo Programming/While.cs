@@ -6,20 +6,24 @@ using Robot.Actions;
 
 
 
-public class While : CodeNode
+public class While : Conditional
 {
-    public Condition Condition { get; protected set; }
-    public CodeNode NextIfTrue;
+    public While(CodeNode context, CodeNode prev, Condition cond) : base(context, prev, cond) { }
 
-    public While(CodeNode context, CodeNode prev, Condition cond) : base(context, prev)
+
+    public override CodeNode AfterBreak()
     {
-        this.Condition = cond;
-    }
+        var inBlock = this.NextIfTrue;
 
-    public override CodeNode GetNext(ActionController robot)
-    {
-        if (this.Condition.Check(robot)) return this.NextIfTrue;
+        inBlock.Complete = false;
 
-        return this.Next;
+        while(inBlock.Next != null)
+        {
+            inBlock = inBlock.Next;
+
+            inBlock.Complete = false;
+        }
+
+        return this;
     }
 }

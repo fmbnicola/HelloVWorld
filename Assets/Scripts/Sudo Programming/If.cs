@@ -5,24 +5,11 @@ using UnityEngine;
 using Robot.Actions;
 
 
-
-public class If : CodeNode
+public class If : Conditional
 {
-    public Condition Condition { get; protected set; }
-    public CodeNode NextIfTrue;
-
-
-    public If(CodeNode context, CodeNode prev, Condition cond) : base(context, prev)
+    public If(CodeNode context, CodeNode prev, Condition cond) : base(context, prev, cond)
     {
         this.Condition  = cond;
-    }
-
-
-    public override CodeNode GetNext(ActionController robot)
-    {
-        if (this.NextIfTrue != null && this.Condition.Check(robot)) return this.NextIfTrue;
-
-        return this.Next;
     }
 
 

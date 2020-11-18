@@ -9,6 +9,7 @@ public class ConditionBlock : ProgrammingBlock
     public bool Selected = false;
     public Vector3 SocketPos;
     public SocketPlus SocketConnected = null;
+
     void Start()
     {
         
