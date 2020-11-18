@@ -41,6 +41,12 @@ namespace Robot
 
         #endregion
 
+        #region /* Animation Attributes */
+        
+        public RobotAnimationController AnimationController { get; private set; }
+        
+        #endregion
+
 
 
         #region === Unity Events ===
@@ -53,6 +59,8 @@ namespace Robot
             this.PrepareActionController();
 
             this.PrepareForProgram();
+
+            this.PrepareAnimationController();
         }
 
 
@@ -138,9 +146,13 @@ namespace Robot
 
         public void AtStartPosition(Vector3 startPos, Vector3 startRot)
         {
-            this.SummonRobot(startPos, startRot);
-            this.InStartPosition = true;
-            this.StartProgram();
+            if (!this.ProgramRunning && this.Disk != null)
+            {
+                this.SummonRobot(startPos, startRot);
+                this.InStartPosition = true;
+
+                this.StartProgram();
+            }
         }
 
 
@@ -162,6 +174,8 @@ namespace Robot
                 {
                     this.Program = ProgramHelper.DebugProgram();
                 }
+
+                this.AnimationController.FaceExcited();
 
                 if (this.DebugInfo)
                 {
@@ -211,6 +225,8 @@ namespace Robot
                 {
                     Debug.Log("Program Aborted");
                 }
+
+                this.AnimationController.FaceSad();
             }
         }
 
@@ -271,6 +287,16 @@ namespace Robot
             }
         }
 
+        #endregion
+
+
+        #region === Animation Methods ===
+        
+        private void PrepareAnimationController()
+        {
+            this.AnimationController = this.transform.GetComponent<RobotAnimationController>();
+        }
+        
         #endregion
 
     }

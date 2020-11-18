@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ConnectorNode : MonoBehaviour
 {
+    public ConnectorCable Cable { get; private set; }
+
     public ConnectorNode Prev;
     public ConnectorNode Next;
 
@@ -16,13 +18,23 @@ public class ConnectorNode : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
     }
 
+
+    public void Initialize(ConnectorCable cable, int index)
+    {
+        this.Cable = cable;
+
+        this.Index = index;
+    }
+
+    /*
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(this.transform.position, 1);
+        Gizmos.DrawWireSphere(this.transform.position, 0.5f);
     }
+    */
 }

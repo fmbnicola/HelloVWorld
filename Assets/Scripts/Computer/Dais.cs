@@ -43,6 +43,8 @@ public class Dais : MonoBehaviour
             var vel = body.velocity;
             var ang = body.angularVelocity;
 
+            var block = body.GetComponent<ProgrammingBlock>();
+
             switch (this.State)
             {
                 default:
@@ -56,6 +58,8 @@ public class Dais : MonoBehaviour
 
                     if (ang.magnitude > 0)
                         body.angularVelocity *= rate;
+                    
+                    if (block != null) block.Activate();
                     break;
 
                 case Computer.States.Active:
@@ -66,6 +70,8 @@ public class Dais : MonoBehaviour
 
                     if (ang.magnitude > 0)
                         body.angularVelocity *= rate;
+
+                    if (block != null) block.Activate();
                     break;
             }
         }
@@ -82,7 +88,8 @@ public class Dais : MonoBehaviour
             var socket = body.gameObject.GetComponentInChildren<Socket>();
             if ( socket != null )
             {
-                
+                body.GetComponent<ProgrammingBlock>().Deactivate();
+
                 var plug = socket.GetConnectedTo();
                 if ( plug != null)
                 {
@@ -90,14 +97,13 @@ public class Dais : MonoBehaviour
                     plug.Eject();
                     socket.SetConnectedTo(null);
                 }
-               
-
             }
         }
 
         this.State = Computer.States.Idle;
         this.ReleaseTime = Time.time;
     }
+
 
     public void TurnOn()
     {
@@ -131,6 +137,9 @@ public class Dais : MonoBehaviour
         if (collider.attachedRigidbody == null || collider.attachedRigidbody.mass >= 10f) return;
 
         var body = collider.attachedRigidbody;
+
+        var block = body.GetComponent<ProgrammingBlock>();
+        if (block != null) block.Deactivate();
 
         this.BodyExited(body);
     }

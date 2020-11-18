@@ -38,39 +38,39 @@ public class RobotAnimationController : MonoBehaviour
     }
 
     // Set threads to moving foward
-    void ThreadsFoward()
+    public void ThreadsFoward()
     {
         ThreadMaterial.SetFloat("_Speed", speed);
     }
 
     // Set threads to moving in reverse
-    void ThreadsReverse()
+    public void ThreadsReverse()
     {
         ThreadMaterial.SetFloat("_Speed", -speed);
     }
 
     // Set threads to stop moving
-    void ThreadsStop()
+    public void ThreadsStop()
     {
         ThreadMaterial.SetFloat("_Speed", 0);
     }
 
     // Make sad face
-    void FaceSad(float expressionTime = 1.0f)
+    public void FaceSad(float expressionTime = 1.0f)
     {
         FaceMaterial.SetInt("_Face", (int) FaceExpression.Sad);
         StartCoroutine(ResetFace(expressionTime));
     }
 
     // Make excited face
-    void FaceExcited(float expressionTime = 1.0f)
+    public void FaceExcited(float expressionTime = 1.0f)
     {
         FaceMaterial.SetInt("_Face", (int)FaceExpression.Excited);
         StartCoroutine(ResetFace(expressionTime));
     }
 
     // Make mad face
-    void FaceMad(float expressionTime = 1.0f)
+    public void FaceMad(float expressionTime = 1.0f)
     {
         FaceMaterial.SetInt("_Face", (int)FaceExpression.Mad);
         StartCoroutine(ResetFace(expressionTime));

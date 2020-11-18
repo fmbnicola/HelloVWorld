@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 5498068472324352608}
   - component: {fileID: 4013779182562297579}
   - component: {fileID: 4463400866409103666}
+  - component: {fileID: 5827758668393080364}
   m_Layer: 0
   m_Name: ComputerSocket
   m_TagString: Disk
@@ -494,7 +495,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEnter:
@@ -516,6 +517,20 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   SnapInteractorPosition: 1
   SnapInteractorRotation: 1
+--- !u!64 &5827758668393080364
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845085183216137362}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7393605666247204724, guid: e91491949fe3f1247a758bf9989aba3b, type: 3}
 --- !u!1 &8575966058746443772
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +542,7 @@ GameObject:
   - component: {fileID: 3998636400746196545}
   - component: {fileID: 2492048971129261164}
   - component: {fileID: 7236694086549902845}
+  - component: {fileID: 8321269866150780944}
   m_Layer: 0
   m_Name: ComputerBody
   m_TagString: Untagged
@@ -595,6 +611,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8321269866150780944
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8575966058746443772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4493585093827132993, guid: e91491949fe3f1247a758bf9989aba3b, type: 3}
 --- !u!1001 &3594429806256445258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -809,15 +839,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86fe3be8f2aaf804eb0993f3b127c21b, type: 3}
---- !u!1 &4582090104192181073 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 86fe3be8f2aaf804eb0993f3b127c21b,
-    type: 3}
-  m_PrefabInstance: {fileID: 3699622972004769280}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3809211857752127979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 86fe3be8f2aaf804eb0993f3b127c21b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3699622972004769280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4582090104192181073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 86fe3be8f2aaf804eb0993f3b127c21b,
     type: 3}
   m_PrefabInstance: {fileID: 3699622972004769280}
   m_PrefabAsset: {fileID: 0}

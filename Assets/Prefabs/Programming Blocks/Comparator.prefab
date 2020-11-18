@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 187807790134070334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.71, z: 0}
-  m_LocalScale: {x: 0.13251032, y: 0.13251032, z: 0.13251032}
+  m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
   m_Children:
   - {fileID: 7614553854957883776}
   m_Father: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 65536
   m_OnFirstHoverEnter:
     m_PersistentCalls:
       m_Calls: []
@@ -199,6 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66a5aaff164cc3840b4a8078d1d1e915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Active: 0
+  Selected: 0
+  SocketPos: {x: 0, y: 0, z: 0}
+  SocketConnected: {fileID: 0}
   Id: 0
 --- !u!1001 &5642763483951244486
 PrefabInstance:

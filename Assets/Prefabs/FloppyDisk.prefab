@@ -77,6 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inserted: 0
+  Selected: 0
+  SocketPos: {x: 0, y: 0, z: 0}
+  SocketConnected: {fileID: 0}
 --- !u!114 &6887642074211120923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +96,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   m_OnFirstHoverEnter:
     m_PersistentCalls:
       m_Calls: []
