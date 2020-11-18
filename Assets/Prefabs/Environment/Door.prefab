@@ -104,6 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5474672935060127021}
   - component: {fileID: 8996070417463374497}
+  - component: {fileID: 5295824942527659362}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -144,6 +145,49 @@ MonoBehaviour:
   FrameRenderer: {fileID: 0}
   ShutterRenderer: {fileID: 0}
   animSpeed: 1
+--- !u!114 &5295824942527659362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223078771555004063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963a90b54cf97b544851f675c43f28f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  connectState: 1
+  connectPercent: 0
+  OnTurnOn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8996070417463374497}
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnTurnOff:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8996070417463374497}
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7797923287578054279
 GameObject:
   m_ObjectHideFlags: 0

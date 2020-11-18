@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+
     public Material OpenLightMaterial;
     public Material ClosedLightMaterial;
 
