@@ -80,14 +80,8 @@ public class IfBlock : ProgrammingBlock
 
     public override ProgrammingBlock GetNext()
     {
-        //var plugObj = this.transform.Find("Plug");
-
         if (this.Plug != null)
-        //if (plugObj != null)
         {
-            //var plug = this.Plug.GetComponent<Plug>();
-            //var plug = plugObj.GetComponent<Plug>();
-
             var connectedTo = this.Plug.GetConnectedTo();
 
             if(connectedTo != null)
@@ -101,14 +95,8 @@ public class IfBlock : ProgrammingBlock
 
     public ProgrammingBlock GetNextIfTrue()
     {
-        //var plugObj = this.transform.Find("PlugTrue");
-
         if (this.PlugTrue != null)
-        //if (plugObj != null)
         {
-            //var plug = this.PlugTrue.GetComponent<Plug>();
-            //var plug = plugObj.GetComponent<Plug>();
-
             var connectedTo = this.PlugTrue.GetConnectedTo();
 
             if (connectedTo != null)
