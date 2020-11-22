@@ -48,7 +48,8 @@ namespace Puzzle.Connectors
                         combinedVal = true;
                         foreach (Connector _input in inputs)
                         {
-                            var val = (_input.connectState == ConnectorState.On);
+                            var val = ( _input.connectState == ConnectorState.On && 
+                                        _input.connectPercent == 1.0f);
                             combinedVal = combinedVal && val;
                         }
                         break;
@@ -58,7 +59,8 @@ namespace Puzzle.Connectors
                         combinedVal = false;
                         foreach (Connector _input in inputs)
                         {
-                            var val = (_input.connectState == ConnectorState.On);
+                            var val = ( _input.connectState == ConnectorState.On &&
+                                        _input.connectPercent == 1.0f);
                             combinedVal = combinedVal || val;
                         }
                         break;

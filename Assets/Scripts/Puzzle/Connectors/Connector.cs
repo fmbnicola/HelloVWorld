@@ -7,7 +7,7 @@ namespace Puzzle.Connectors
     public class Connector : MonoBehaviour
     {
         public Connector input = null;
-        private List<Connector> outputs = new List<Connector>();
+        protected List<Connector> outputs = new List<Connector>();
 
         public enum ConnectorState { On, Off };
         public ConnectorState connectState = ConnectorState.Off;
