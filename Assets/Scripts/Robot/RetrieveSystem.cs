@@ -16,8 +16,10 @@ namespace Robot
 
         public Vector3 DesiredRot;
 
+        public Material TeleportMaterial;
         #endregion
 
+        private SpawnEffect Effect;
 
 
         #region === Unity Events ===
@@ -25,10 +27,19 @@ namespace Robot
         // Start is called before the first frame update
         void Start()
         {
-            FixedButton button = this.GetComponentInChildren<FixedButton>();
-            button.clickEvent.AddListener(() => this.Robot.SummonRobot(this.DesiredPos.position, this.DesiredRot));
-        }
+            // Handle spawn effect
+            Effect = gameObject.AddComponent<SpawnEffect>();
+            Effect.Initialize(this.Robot.gameObject, this.TeleportMaterial);
 
+            FixedButton button = this.GetComponentInChildren<FixedButton>();
+            button.clickEvent.AddListener(() => this.CallbackFunc(this.DesiredPos.position, this.DesiredRot));
+        }
+        
+        void CallbackFunc(Vector3 pos, Vector3 rot)
+        {
+            this.Robot.SummonRobot(pos, rot);
+            this.Effect.Execute();
+        }
 
         // Update is called once per frame
         void Update()

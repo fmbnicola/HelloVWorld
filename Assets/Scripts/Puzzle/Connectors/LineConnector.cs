@@ -59,11 +59,6 @@ namespace Puzzle.Connectors
 
                 if (canPowerOn) targetPerccent = 1.0f;
 
-                if(transform.name == "LineConnector (4)")
-                {
-                    Debug.Log("heyo");
-                }
-
                 // Evaluate outputs to find if wire should power off
                 if (outputs.Count != 0) {
 

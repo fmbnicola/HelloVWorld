@@ -44,7 +44,7 @@ namespace Robot
         #region /* Animation Attributes */
         
         public RobotAnimationController AnimationController { get; private set; }
-        
+
         #endregion
 
 
