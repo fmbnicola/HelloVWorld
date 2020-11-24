@@ -29,10 +29,9 @@ namespace Robot
 
         #region /* Progam Attributes */
 
-        private XRSocketInteractor DiskSocket { get; set; }
-        private FloppyDisk Disk { get; set; }
-
         private CodeNode Program { get; set; }
+        private CodeNode InitialLine { get; set; }
+
         private bool ProgramRunning { get; set; }
         private bool InStartPosition { get; set; }
 
@@ -134,10 +133,6 @@ namespace Robot
 
         private void PrepareForProgram()
         {
-            this.DiskSocket = this.transform.GetComponentInChildren<XRSocketInteractor>();
-            this.DiskSocket.onSelectEnter.AddListener((disk) => this.LoadProgram(disk));
-            this.DiskSocket.onSelectExit.AddListener((disk) => this.AbortProgram(disk));
-
             this.Program = null;
             this.ProgramRunning = false;
             this.InStartPosition = false;
@@ -146,7 +141,7 @@ namespace Robot
 
         public void AtStartPosition(Vector3 startPos, Vector3 startRot)
         {
-            if (!this.ProgramRunning && this.Disk != null)
+            if (!this.ProgramRunning)
             {
                 this.SummonRobot(startPos, startRot);
                 this.InStartPosition = true;
@@ -162,37 +157,33 @@ namespace Robot
         }
 
 
-        private void LoadProgram(XRBaseInteractable disk)
+        public void LoadProgram(CodeNode codeHead)
         {
-            this.Disk = disk.GetComponent<FloppyDisk>();
+            this.InitialLine = codeHead;
+            this.Program = this.InitialLine;
 
-            if (this.Disk != null)
+            if (this.DebugProgram && this.Program == null)
             {
-                this.Program = this.Disk.codeHead;
+                this.Program = ProgramHelper.DebugProgram();
+            }
 
-                if (this.DebugProgram && this.Program == null)
-                {
-                    this.Program = ProgramHelper.DebugProgram();
-                }
+            this.AnimationController.FaceExcited();
 
-                this.AnimationController.FaceExcited();
+            if (this.DebugInfo)
+            {
+                Debug.Log("Program Loaded");
+            }
 
-                if (this.DebugInfo)
-                {
-                    Debug.Log("Program Loaded");
-                }
-
-                if (this.InStartPosition)
-                {
-                    this.StartProgram();
-                }
+            if (this.InStartPosition)
+            {
+                this.StartProgram();
             }
         }
 
 
         public void StartProgram()
         {
-            if (this.Disk != null && this.Program != null && !this.ProgramRunning)
+            if (this.Program != null && !this.ProgramRunning)
             {
                 if (this.DebugInfo)
                 {
@@ -209,40 +200,10 @@ namespace Robot
         }
 
 
-        private void AbortProgram(XRBaseInteractable disk)
-        {
-            FloppyDisk floppy = disk.transform.GetComponent<FloppyDisk>();
-
-            if (this.Disk == floppy)
-            {
-                this.ActionController.AbortAction();
-
-                this.Disk = null;
-                this.Program = null;
-                this.ProgramRunning = false;
-
-                if (this.DebugInfo)
-                {
-                    Debug.Log("Program Aborted");
-                }
-
-                this.AnimationController.FaceSad();
-            }
-        }
-
-
         public void ResetProgram()
         {
             this.ProgramRunning = false;
-
-            if (this.Disk == null)
-            {
-                this.Program = null;
-            }
-            else
-            {
-                this.Program = this.Disk.codeHead;
-            }
+            this.Program = this.InitialLine;
 
             if (this.DebugProgram && this.Program == null)
             {
@@ -263,6 +224,7 @@ namespace Robot
                 {
                     this.Program = next;
                     this.Program.Execute(this.ActionController);
+                    //this.Program.highlightBlock
                 }
                 else
                 {

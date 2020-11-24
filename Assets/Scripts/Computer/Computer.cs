@@ -4,15 +4,17 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine;
 
+using Robot;
+
+
+
 public class Computer : MonoBehaviour
 {
     public ProgrammingBlock StartBlock;
 
-    public SocketPlus Socket;
-
     public Dais Dais;
 
-    public FloppyDisk FloppyDisk;
+    public RobotController Robot;
 
     private ComputerAnimator Animator;
 
@@ -32,14 +34,7 @@ public class Computer : MonoBehaviour
     {
         this.State = States.Idle;
 
-        this.Socket.showInteractableHoverMeshes = true;
-
-        this.Socket.onSelectEnter.AddListener((interactable) => DetectFloppyIn(interactable));
-        this.Socket.onSelectExit.AddListener((interactable) => DetectFloppyOut(interactable));
-
         this.Dais = this.transform.Find("Dais").GetComponent<Dais>();
-
-        this.FloppyDisk = null;
 
         this.Animator = this.GetComponent<ComputerAnimator>();
     }
@@ -130,38 +125,14 @@ public class Computer : MonoBehaviour
                 block = block.GetNext();
             }
 
-
-            if (this.FloppyDisk != null)
+            if (this.Robot != null)
             {
-                this.FloppyDisk.codeHead = head;
+                this.Robot.LoadProgram(head);
             }
-            else Debug.Log("No Floppy Disk inserted");
+            else Debug.Log("No robot associated");
             return head;
         }
 
         return null;
-    }
-
-
-    void DetectFloppyIn(XRBaseInteractable interactable)
-    {
-        var floppy = interactable.GetComponent<FloppyDisk>();
-
-        if (floppy == null) return;
-
-        floppy.inserted = true;
-
-        this.FloppyDisk = floppy;
-    }
-
-    void DetectFloppyOut(XRBaseInteractable interactable)
-    {
-        var floppy = interactable.GetComponent<FloppyDisk>();
-
-        if (floppy == null) return;
-
-        floppy.inserted = false;
-
-        this.FloppyDisk = null;
     }
 }

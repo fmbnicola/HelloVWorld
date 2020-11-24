@@ -4052,11 +4052,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 630950589715711785, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000013143975
+      objectReference: {fileID: 0}
+    - target: {fileID: 630950589715711785, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00000065719877
+      objectReference: {fileID: 0}
     - target: {fileID: 1735035491714509672, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b754c949909e4fc4cabbf1b4551fd0c6, type: 2}
+    - target: {fileID: 4278381691416293591, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000013143975
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278381691416293591, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000013143975
+      objectReference: {fileID: 0}
     - target: {fileID: 5646155838643307464, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4117,10 +4137,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Computer
       objectReference: {fileID: 0}
+    - target: {fileID: 5646155838643307467, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: Robot
+      value: 
+      objectReference: {fileID: 2103158290}
     - target: {fileID: 5884507523352677722, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.0000013143975
+      value: 0.000002628795
+      objectReference: {fileID: 0}
+    - target: {fileID: 5884507523352677722, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000019715962
       objectReference: {fileID: 0}
     - target: {fileID: 6991181163396057563, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}

@@ -13,6 +13,8 @@ public class CodeNode
 
     public CodeNode Next;
 
+    // blockCode 
+
     // added by miguel
     public bool Complete = false;
 
