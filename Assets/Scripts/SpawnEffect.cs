@@ -7,7 +7,7 @@ public class SpawnEffect : MonoBehaviour
 
     public Material spawnMaterial;
     public float delayTime = 0.0f; 
-    public float durationTime = 5.0f;
+    public float durationTime = 2.0f;
 
     public bool executing = false;
 
@@ -20,7 +20,7 @@ public class SpawnEffect : MonoBehaviour
     private List<Renderer> renderers = new List<Renderer>();
 
     public void Initialize(GameObject obj, Material mat)
-    {
+    {   
         realObject = obj;
         spawnMaterial = mat;
 
@@ -52,7 +52,14 @@ public class SpawnEffect : MonoBehaviour
         if (real_renderer != null)
         {
             var fake_renderer = fake_transform.gameObject.AddComponent<MeshRenderer>();
-            fake_renderer.material = spawnMaterial;
+
+            var mats = real_renderer.sharedMaterials;
+            for(var i = 0; i < mats.Length; i++)
+            {
+                mats[i] = spawnMaterial;
+            }
+            fake_renderer.materials = mats;
+
             renderers.Add(fake_renderer);
         }
         
@@ -83,11 +90,18 @@ public class SpawnEffect : MonoBehaviour
         StartEffect();
     }
 
+    private void CopyTransform()
+    {
+        fakeObject.transform.position = realObject.transform.position;
+        fakeObject.transform.rotation = realObject.transform.rotation;
+        fakeObject.transform.localScale = realObject.transform.lossyScale;
+    }
+
     private void StartEffect()
     {
         Debug.Log("Start Effect");
-        fakeObject.transform.position = realObject.transform.position;
-        fakeObject.transform.rotation = realObject.transform.rotation;
+
+        CopyTransform();
 
         realObject.SetActive(false);
         fakeObject.SetActive(true);
@@ -96,10 +110,14 @@ public class SpawnEffect : MonoBehaviour
         executing = true;
     }
 
+    private void SpawnRealObject()
+    {
+        realObject.SetActive(true);
+    }
+
     private void EndEffect()
     {
         Debug.Log("End Effect");
-        realObject.SetActive(true);
         fakeObject.SetActive(false);
 
         executing = false;
@@ -110,7 +128,13 @@ public class SpawnEffect : MonoBehaviour
     {
         if (executing)
         {
+            CopyTransform();
+
             elapsedTime += Time.deltaTime;
+            if(elapsedTime >= durationTime * 0.5)
+            {
+                SpawnRealObject();
+            }
             if(elapsedTime > durationTime)
             {
                 EndEffect();
@@ -119,7 +143,6 @@ public class SpawnEffect : MonoBehaviour
             var animTime = elapsedTime / durationTime;
 
             //set property
-
             if (propertyBlock == null)
                 propertyBlock = new MaterialPropertyBlock();
 

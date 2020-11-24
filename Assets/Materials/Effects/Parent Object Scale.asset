@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: Parent Object Scale
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity
+    Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=15408\n1167;92;1393;926;1572.777;428.337;1.200938;True;False\nNode;AmplifyShaderEditor.ComponentMaskNode;6;-736,176;Float;False;True;True;True;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.WorldToObjectMatrix;1;-1264,96;Float;False;0;1;FLOAT4x4;0\nNode;AmplifyShaderEditor.ComponentMaskNode;5;-736,16;Float;False;True;True;True;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.ComponentMaskNode;7;-736,96;Float;False;True;True;True;False;1;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.DynamicAppendNode;12;-336,64;Float;False;FLOAT3;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.RangedFloatNode;11;-336,-32;Float;False;Constant;_Float0;Float
+    0;2;0;Create;True;0;0;False;0;1;0;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleDivideOpNode;15;-160,0;Float;False;2;0;FLOAT;0;False;1;FLOAT3;0,0,0;False;1;FLOAT3;0\nNode;AmplifyShaderEditor.LengthOpNode;8;-512,160;Float;False;1;0;FLOAT3;0,0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.LengthOpNode;9;-512,96;Float;False;1;0;FLOAT3;0,0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.LengthOpNode;10;-512,32;Float;False;1;0;FLOAT3;0,0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.VectorFromMatrixNode;2;-976,-96;Float;False;Row;0;1;0;FLOAT4x4;1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.VectorFromMatrixNode;3;-976,64;Float;False;Row;1;1;0;FLOAT4x4;1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.VectorFromMatrixNode;4;-976,224;Float;False;Row;2;1;0;FLOAT4x4;1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1;False;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.FunctionOutput;0;0,0;Float;False;True;XYZ;0;False;1;0;FLOAT3;0,0,0;False;1;FLOAT3;0\nWireConnection;6;0;4;0\nWireConnection;5;0;2;0\nWireConnection;7;0;3;0\nWireConnection;12;0;10;0\nWireConnection;12;1;9;0\nWireConnection;12;2;8;0\nWireConnection;15;0;11;0\nWireConnection;15;1;12;0\nWireConnection;8;0;6;0\nWireConnection;9;0;7;0\nWireConnection;10;0;5;0\nWireConnection;2;0;1;0\nWireConnection;3;0;1;0\nWireConnection;4;0;1;0\nWireConnection;0;0;15;0\nASEEND*/\n//CHKSM=96337068C80A6EF345EC778E89B66B03EC74F5AB"
+  m_functionName: 
+  m_description: Gets Object Scale values from the world to object matrix which are
+    dependent on the relative size and rotations of the object's parent
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 0
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_additionalDirectives: []
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems: []
+  m_nodeCategory: 3
+  m_customNodeCategory: 
+  m_previewPosition: 0
+  m_hidden: 0

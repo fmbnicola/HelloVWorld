@@ -75,15 +75,15 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _AlphaCutoff: 0.5
-    - _AnimationTime: 0.7
-    - _BackFill: 0.7
+    - _AnimationTime: 0.114
+    - _BackFill: 0.2
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Float0: 16.94
+    - _Float0: 0
     - _FresnelBias: 0
     - _FresnelPower: 5
     - _FresnelStrength: 0.5
@@ -104,8 +104,10 @@ Material:
     - _Surface: 0
     - _Transparency: 1
     - _VertexOffset: 0
+    - _Vertexoffset: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _offset: 0.0001
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0, g: 0.79859585, b: 0.8584906, a: 0}
