@@ -19,6 +19,6 @@ public class EndBlock : ProgrammingBlock
 
     public override CodeNode Parse(CodeNode context, CodeNode next)
     {
-        return new End(context, next);
+        return new End(context, next, this);
     }
 }

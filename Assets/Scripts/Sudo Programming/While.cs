@@ -8,7 +8,8 @@ using Robot.Actions;
 
 public class While : Conditional
 {
-    public While(CodeNode context, CodeNode prev, Condition cond) : base(context, prev, cond) { }
+    public While(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
+        base(context, prev, cond, block) { }
 
 
     public override CodeNode AfterBreak()

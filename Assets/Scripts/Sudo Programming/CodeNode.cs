@@ -13,41 +13,48 @@ public class CodeNode
 
     public CodeNode Next;
 
-    // blockCode 
+    public ProgrammingBlock Block { get; private set; }
 
-    // added by miguel
     public bool Complete = false;
 
 
 
-    public CodeNode(CodeNode context, CodeNode prev)
+    public CodeNode(CodeNode context, CodeNode prev, ProgrammingBlock block)
     {
         this.ContextNode = context;
 
         this.Previous = prev;
+
+        this.Block = block;
     }
 
 
-    virtual public bool Execute(ActionController robotActuator)
+    public virtual bool Execute(ActionController robotActuator)
     {
-        // TODO: backend stuff
-
         robotActuator.Execute(this);
 
         return this.Complete;
     }
 
 
-    virtual public CodeNode GetNext(ActionController robotActuator)
+    public virtual CodeNode GetNext(ActionController robotActuator)
     {
         return this.Next;
     }
 
 
-    virtual public CodeNode AfterBreak()
+    public virtual CodeNode AfterBreak()
     {
         Debug.LogError("Isto nao devia de ter acontecido");
         return null;
     }
 
+
+    public virtual void Highlight()
+    {
+        if (this.Block != null)
+        {
+            this.Block.Highlight();
+        }
+    }
 }

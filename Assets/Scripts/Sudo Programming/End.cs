@@ -8,7 +8,8 @@ using Robot.Actions;
 
 public class End : CodeNode
 {
-    public End(CodeNode context, CodeNode prev) : base(context, prev) { }
+    public End(CodeNode context, CodeNode prev, ProgrammingBlock block) :
+        base(context, prev, block) { }
 
 
 

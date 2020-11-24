@@ -21,7 +21,8 @@ public class Instruction : CodeNode
     //public bool Complete = false;
 
 
-    public Instruction(ID id, CodeNode context, CodeNode prev) : base(context, prev)
+    public Instruction(ID id, CodeNode context, CodeNode prev, ProgrammingBlock block) :
+        base(context, prev, block)
     {
         this.Id = id;
     }

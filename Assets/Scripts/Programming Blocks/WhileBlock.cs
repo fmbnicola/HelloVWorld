@@ -9,7 +9,7 @@ public class WhileBlock : ConditionalBlock
     {
         var cond = this.ParseCondition();
 
-        var whileNode = new While(context, prev, cond);
+        var whileNode = new While(context, prev, cond, this);
 
         var nextIfTrue = this.ParseInnerCode(whileNode);
 

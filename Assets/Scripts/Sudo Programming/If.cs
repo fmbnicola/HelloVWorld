@@ -7,7 +7,8 @@ using Robot.Actions;
 
 public class If : Conditional
 {
-    public If(CodeNode context, CodeNode prev, Condition cond) : base(context, prev, cond)
+    public If(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
+        base(context, prev, cond, block)
     {
         this.Condition  = cond;
     }

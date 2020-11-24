@@ -69,6 +69,7 @@ public class ProgrammingBlock : MonoBehaviour
         return null;
     }
 
+
     public virtual CodeNode Parse(CodeNode context, CodeNode prev)
     {
         return null;
@@ -80,8 +81,15 @@ public class ProgrammingBlock : MonoBehaviour
         if (!this.Active) this.Active = true;
     }
 
+
     public void Deactivate()
     {
         if (this.Active) this.Active = false;
+    }
+
+
+    public virtual void Highlight()
+    {
+        Debug.Log(this.ToString() + " highlighted");
     }
 }

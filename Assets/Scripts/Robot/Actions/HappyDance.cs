@@ -21,7 +21,7 @@ namespace Robot.Actions
 
             this.AnimationController.FaceExcited(4);
 
-            this.ProgramLine.Next = ProgramHelper.HappyDance();
+            this.ProgramLine.Next = ProgramHelper.HappyDance(this.ProgramLine.Block);
 
             this.ProgramLine.Complete = true;
         }

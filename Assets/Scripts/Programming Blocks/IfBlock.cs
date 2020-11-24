@@ -9,7 +9,7 @@ public class IfBlock : ConditionalBlock
     {
         var cond = this.ParseCondition();
 
-        var ifNode = new If(context, prev, cond);
+        var ifNode = new If(context, prev, cond, this);
 
         var nextIfTrue = this.ParseInnerCode(ifNode);
 

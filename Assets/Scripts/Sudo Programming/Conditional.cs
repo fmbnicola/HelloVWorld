@@ -11,7 +11,8 @@ public abstract class Conditional : CodeNode
     public CodeNode NextIfTrue;
 
 
-    public Conditional(CodeNode context, CodeNode prev, Condition cond) : base(context, prev)
+    public Conditional(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
+        base(context, prev, block)
     {
         this.Condition  = cond;
     }

@@ -36,6 +36,6 @@ public class InstructionBlock : ProgrammingBlock
 
     public override CodeNode Parse(CodeNode context, CodeNode prev)
     {
-        return new Instruction(this.Id, context, prev);
+        return new Instruction(this.Id, context, prev, this);
     }
 }

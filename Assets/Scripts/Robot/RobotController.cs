@@ -224,7 +224,7 @@ namespace Robot
                 {
                     this.Program = next;
                     this.Program.Execute(this.ActionController);
-                    //this.Program.highlightBlock
+                    this.Program.Highlight();
                 }
                 else
                 {
