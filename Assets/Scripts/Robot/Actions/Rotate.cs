@@ -34,7 +34,7 @@ namespace Robot.Actions
 
             if (this.Robot.DebugInfo)
             {
-                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString());
+                Debug.Log(this.ProgramLine.ToString() + " -> " + this.ToString() + ": " + this.TargetAngle.ToString());
             }
         }
 

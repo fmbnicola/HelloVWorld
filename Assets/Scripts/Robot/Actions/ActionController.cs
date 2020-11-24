@@ -114,8 +114,12 @@ namespace Robot.Actions
                     this.CurrentAction = new Drop(this.Robot, programLine);
                     break;
                 
-                case Instruction.ID.Rotate:
+                case Instruction.ID.TurnRight:
                     this.CurrentAction = new Rotate(this.Robot, programLine, this.RotationAngle, this.MaxRotationSpeed, this.RotationTorque, this.RotationMargin);
+                    break;
+
+                case Instruction.ID.TurnLeft:
+                    this.CurrentAction = new Rotate(this.Robot, programLine, -this.RotationAngle, this.MaxRotationSpeed, -this.RotationTorque, this.RotationMargin);
                     break;
 
                 default:

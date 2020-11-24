@@ -13,7 +13,8 @@ public class Instruction : CodeNode
         Walk,
         Grab,
         Drop,
-        Rotate
+        TurnRight,
+        TurnLeft
     }
 
     public ID Id { get; protected set; }
