@@ -5,7 +5,9 @@ using UnityEngine;
 public class SpawnEffect : MonoBehaviour
 {
 
-    public Material spawnMaterial;
+    private Material spawnMaterial;
+    private GameObject particles;
+
     public float delayTime = 0.0f; 
     public float durationTime = 2.0f;
 
@@ -19,10 +21,11 @@ public class SpawnEffect : MonoBehaviour
     private MaterialPropertyBlock propertyBlock;
     private List<Renderer> renderers = new List<Renderer>();
 
-    public void Initialize(GameObject obj, Material mat)
+    public void Initialize(GameObject obj, Material mat, GameObject part)
     {   
         realObject = obj;
         spawnMaterial = mat;
+        particles = part;
 
         //make fake copy of gameobject
         SaveFakeObject();
@@ -75,6 +78,11 @@ public class SpawnEffect : MonoBehaviour
     {
         fakeObject = new GameObject();
         SaveFakeObjectAux(null, fakeObject.transform, realObject.transform);
+
+        particles = Instantiate(particles);
+        particles.transform.parent = fakeObject.transform;
+        particles.transform.position = fakeObject.transform.position;
+
         fakeObject.SetActive(false);
     }
 
@@ -99,8 +107,6 @@ public class SpawnEffect : MonoBehaviour
 
     private void StartEffect()
     {
-        Debug.Log("Start Effect");
-
         CopyTransform();
 
         realObject.SetActive(false);
@@ -117,7 +123,6 @@ public class SpawnEffect : MonoBehaviour
 
     private void EndEffect()
     {
-        Debug.Log("End Effect");
         fakeObject.SetActive(false);
 
         executing = false;
@@ -151,8 +156,6 @@ public class SpawnEffect : MonoBehaviour
             {
                 renderer.SetPropertyBlock(propertyBlock);
             }
-
-            Debug.Log(animTime);
         }
     }
 }

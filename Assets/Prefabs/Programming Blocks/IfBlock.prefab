@@ -403,11 +403,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6712904751586361747}
   - component: {fileID: 2972246957695272716}
+  - component: {fileID: 8512549845460189290}
   - component: {fileID: 3422068576989376306}
   - component: {fileID: 3602266388223672437}
   - component: {fileID: 170745632171874226}
   m_Layer: 0
-  m_Name: ConditionalBlock
+  m_Name: IfBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,8 +451,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.750604, y: 1.9243827, z: 1.6396563}
-  m_Center: {x: -1.4206281, y: 0.032574415, z: 0.08571632}
+  m_Size: {x: 4.6469536, y: 1.3294125, z: 1.8034095}
+  m_Center: {x: -1.4724534, y: 0.33005953, z: 0.0038400665}
+--- !u!65 &8512549845460189290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224775002854923049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.659595, y: 0.6758561, z: 1.7746776}
+  m_Center: {x: 0.01884535, y: -0.67467093, z: 0.0031491742}
 --- !u!54 &3422068576989376306
 Rigidbody:
   m_ObjectHideFlags: 0
