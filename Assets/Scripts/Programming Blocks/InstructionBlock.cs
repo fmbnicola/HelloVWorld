@@ -38,4 +38,11 @@ public class InstructionBlock : ProgrammingBlock
     {
         return new Instruction(this.Id, context, prev, this);
     }
+
+    public void Convert(Instruction.ID newType)
+    {
+        this.Id = newType;
+
+        this.OnValidate();
+    }
 }

@@ -53,5 +53,12 @@ public class ComparatorBlock : ConditionBlock
     {
         return this.Id;
     }
+
+    public void Convert(Comparator.ID newType)
+    {
+        this.Id = newType;
+
+        this.OnValidate();
+    }
 }
 
