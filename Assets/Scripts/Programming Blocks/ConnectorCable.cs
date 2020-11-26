@@ -39,7 +39,7 @@ public class ConnectorCable : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         this.Head.transform.position = this.AnchorPoint.position;
         this.Tail.transform.position = this.Plug.transform.position;
