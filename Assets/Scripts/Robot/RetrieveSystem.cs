@@ -17,6 +17,7 @@ namespace Robot
         public Vector3 DesiredRot;
 
         public Material TeleportMaterial;
+        public GameObject ParticleSystem;
         #endregion
 
         private SpawnEffect Effect;
@@ -29,7 +30,7 @@ namespace Robot
         {
             // Handle spawn effect
             Effect = gameObject.AddComponent<SpawnEffect>();
-            Effect.Initialize(this.Robot.gameObject, this.TeleportMaterial);
+            Effect.Initialize(this.Robot.gameObject, this.TeleportMaterial, this.ParticleSystem);
 
             FixedButton button = this.GetComponentInChildren<FixedButton>();
             button.clickEvent.AddListener(() => this.CallbackFunc(this.DesiredPos.position, this.DesiredRot));

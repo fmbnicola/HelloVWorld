@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424285344116649944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.73, z: 0}
+  m_LocalPosition: {x: 0, y: 2.9, z: 0}
   m_LocalScale: {x: 1, y: 2.2, z: 1}
   m_Children: []
   m_Father: {fileID: 424285344975461787}
@@ -186,6 +186,9 @@ MonoBehaviour:
   Robot: {fileID: 0}
   DesiredPos: {fileID: 424285344116649945}
   DesiredRot: {x: 0, y: 90, z: 0}
+  TeleportMaterial: {fileID: 2100000, guid: b902fdcd3813f3e439dfb16aa5580e2c, type: 2}
+  ParticleSystem: {fileID: 4364549086185804719, guid: 2ebb071841f14c5448fd931c026d232f,
+    type: 3}
 --- !u!1 &424285344975461786
 GameObject:
   m_ObjectHideFlags: 0

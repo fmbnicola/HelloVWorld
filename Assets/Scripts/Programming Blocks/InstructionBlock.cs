@@ -18,7 +18,7 @@ public class InstructionBlock : ProgrammingBlock
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnValidate()
