@@ -991,12 +991,12 @@ PrefabInstance:
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.967
+      value: -0.9719509
       objectReference: {fileID: 0}
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8397763
+      value: 2.8392024
       objectReference: {fileID: 0}
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
@@ -1016,12 +1016,12 @@ PrefabInstance:
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.07782115
       objectReference: {fileID: 0}
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9969673
       objectReference: {fileID: 0}
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
@@ -1041,7 +1041,7 @@ PrefabInstance:
     - target: {fileID: 5142233188525329409, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 8.927
       objectReference: {fileID: 0}
     - target: {fileID: 5142233188525329437, guid: 5ef92ddae3ae5d14a862e3469fe2ce3f,
         type: 3}
@@ -4608,11 +4608,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 424285344116649945, guid: a691cb2c8f18a8d4594cad63bb132cf6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.9
-      objectReference: {fileID: 0}
     - target: {fileID: 424285344810636809, guid: a691cb2c8f18a8d4594cad63bb132cf6,
         type: 3}
       propertyPath: m_Name
@@ -4678,22 +4673,6 @@ PrefabInstance:
       propertyPath: Robot
       value: 
       objectReference: {fileID: 1875115055}
-    - target: {fileID: 424285344810636811, guid: a691cb2c8f18a8d4594cad63bb132cf6,
-        type: 3}
-      propertyPath: TeleportMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b902fdcd3813f3e439dfb16aa5580e2c, type: 2}
-    - target: {fileID: 424285344810636811, guid: a691cb2c8f18a8d4594cad63bb132cf6,
-        type: 3}
-      propertyPath: ParticleSystem
-      value: 
-      objectReference: {fileID: 4364549086185804719, guid: 2ebb071841f14c5448fd931c026d232f,
-        type: 3}
-    - target: {fileID: 7326054715037819690, guid: a691cb2c8f18a8d4594cad63bb132cf6,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a691cb2c8f18a8d4594cad63bb132cf6, type: 3}
 --- !u!114 &1992858299 stripped
