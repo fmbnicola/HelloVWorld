@@ -4154,6 +4154,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Computer
       objectReference: {fileID: 0}
+    - target: {fileID: 5646155838643307467, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: Robot
+      value: 
+      objectReference: {fileID: 2103158290}
     - target: {fileID: 5884507523352677722, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: m_ConnectedAnchor.x

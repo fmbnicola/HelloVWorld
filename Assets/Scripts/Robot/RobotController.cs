@@ -218,6 +218,8 @@ namespace Robot
         {
             if (this.ActionController.ActionCompleted())
             {
+                this.Program.UnHighlight();
+
                 CodeNode next = this.Program.GetNext(this.ActionController);
 
                 if (next != null)
