@@ -7,6 +7,9 @@ public class ProgrammingBlock : MonoBehaviour
     protected List<Plug> Plugs;
     protected Socket Socket;
 
+    protected MaterialPropertyBlock propertyBlock;
+    protected Renderer materialRenderer;
+
     [SerializeField]
     public bool Active;
 
@@ -20,6 +23,11 @@ public class ProgrammingBlock : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Awake()
+    {
+        materialRenderer = transform.GetComponent<Renderer>();
     }
 
 
@@ -90,6 +98,23 @@ public class ProgrammingBlock : MonoBehaviour
 
     public virtual void Highlight()
     {
+        if (propertyBlock == null)
+            propertyBlock = new MaterialPropertyBlock();
+
+        propertyBlock.SetFloat("_OutlineWidth", 0.1f);
+        materialRenderer.SetPropertyBlock(propertyBlock);
+
         Debug.Log(this.ToString() + " highlighted");
+    }
+
+    public virtual void UnHighlight()
+    {
+        if (propertyBlock == null)
+            propertyBlock = new MaterialPropertyBlock();
+
+        propertyBlock.SetFloat("_OutlineWidth", 0.0f);
+        materialRenderer.SetPropertyBlock(propertyBlock);
+
+        Debug.Log(this.ToString() + " remove highlight");
     }
 }
