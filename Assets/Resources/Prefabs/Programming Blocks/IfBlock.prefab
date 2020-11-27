@@ -568,6 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f80de749640344ea7f93bea03eff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockRenderer: {fileID: 2326055480597425477}
   Active: 0
   SensorSocket: {fileID: 4881781335524212803}
   ComparatorSocket: {fileID: 159042147639169386}
@@ -1219,6 +1220,12 @@ PrefabInstance:
 --- !u!4 &3462392893950645802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cea282cf9fbaf84c89146d83c741652,
+    type: 3}
+  m_PrefabInstance: {fileID: 4000984839439167937}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2326055480597425477 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 9cea282cf9fbaf84c89146d83c741652,
     type: 3}
   m_PrefabInstance: {fileID: 4000984839439167937}
   m_PrefabAsset: {fileID: 0}

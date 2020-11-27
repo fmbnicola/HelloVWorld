@@ -8,7 +8,7 @@ public class ProgrammingBlock : MonoBehaviour
     protected Socket Socket;
 
     protected MaterialPropertyBlock propertyBlock;
-    protected Renderer materialRenderer;
+    public Renderer BlockRenderer;
 
     [SerializeField]
     public bool Active;
@@ -24,12 +24,6 @@ public class ProgrammingBlock : MonoBehaviour
     {
         
     }
-
-    private void Awake()
-    {
-        materialRenderer = transform.GetComponent<Renderer>();
-    }
-
 
     public bool RegisterSocket(Socket socket)
     {
@@ -102,7 +96,7 @@ public class ProgrammingBlock : MonoBehaviour
             propertyBlock = new MaterialPropertyBlock();
 
         propertyBlock.SetFloat("_OutlineWidth", 0.1f);
-        materialRenderer.SetPropertyBlock(propertyBlock);
+        BlockRenderer.SetPropertyBlock(propertyBlock);
 
         Debug.Log(this.ToString() + " highlighted");
     }
@@ -113,7 +107,7 @@ public class ProgrammingBlock : MonoBehaviour
             propertyBlock = new MaterialPropertyBlock();
 
         propertyBlock.SetFloat("_OutlineWidth", 0.0f);
-        materialRenderer.SetPropertyBlock(propertyBlock);
+        BlockRenderer.SetPropertyBlock(propertyBlock);
 
         Debug.Log(this.ToString() + " remove highlight");
     }
