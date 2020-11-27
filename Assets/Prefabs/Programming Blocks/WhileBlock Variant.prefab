@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b695b359d73a4b64fb3f119edf6bed69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockRenderer: {fileID: 4193749640235589800}
   Active: 0
   SensorSocket: {fileID: 6470384535941647790}
   ComparatorSocket: {fileID: 1747952781436591239}
@@ -153,3 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbfb1684126721469d49820cc0039fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &4193749640235589800 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2326055480597425477, guid: e979db8634662a040ae4d79cf5972d88,
+    type: 3}
+  m_PrefabInstance: {fileID: 1906428053252607469}
+  m_PrefabAsset: {fileID: 0}

@@ -11,8 +11,8 @@ namespace Block
         protected List<Plug> Plugs;
         protected Socket Socket;
 
-        protected MaterialPropertyBlock propertyBlock;
-        protected Renderer materialRenderer;
+    protected MaterialPropertyBlock propertyBlock;
+    public Renderer BlockRenderer;
 
         [SerializeField]
         public bool Active;
@@ -105,8 +105,8 @@ namespace Block
             if (propertyBlock == null)
                 propertyBlock = new MaterialPropertyBlock();
 
-            propertyBlock.SetFloat("_OutlineWidth", 0.1f);
-            materialRenderer.SetPropertyBlock(propertyBlock);
+        propertyBlock.SetFloat("_OutlineWidth", 0.1f);
+        BlockRenderer.SetPropertyBlock(propertyBlock);
 
             Debug.Log(this.ToString() + " highlighted");
         }
@@ -116,8 +116,8 @@ namespace Block
             if (propertyBlock == null)
                 propertyBlock = new MaterialPropertyBlock();
 
-            propertyBlock.SetFloat("_OutlineWidth", 0.0f);
-            materialRenderer.SetPropertyBlock(propertyBlock);
+        propertyBlock.SetFloat("_OutlineWidth", 0.0f);
+        BlockRenderer.SetPropertyBlock(propertyBlock);
 
             Debug.Log(this.ToString() + " remove highlight");
         }

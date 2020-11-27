@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c982d27ac951244387d300d26d0155c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlockRenderer: {fileID: 950787436346009434}
   Active: 0
   Selected: 0
   SocketPos: {x: 0, y: 0, z: 0}
