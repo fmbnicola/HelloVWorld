@@ -52,5 +52,12 @@ public class SensorBlock : ConditionBlock
     {
         return this.Id;
     }
+
+    public void Convert(Sensor.ID newType)
+    {
+        this.Id = newType;
+
+        this.OnValidate();
+    }
 }
 

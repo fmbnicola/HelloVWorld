@@ -54,4 +54,11 @@ public class ValueBlock : ConditionBlock
     {
         return this.Id;
     }
+
+    public void Convert(Value.ID newType)
+    {
+        this.Id = newType;
+
+        this.OnValidate();
+    }
 }
