@@ -93,7 +93,7 @@ namespace Robot
 
         public Vector3 GetRotation()
         {
-            return this.transform.rotation.eulerAngles;
+            return this.transform.localRotation.eulerAngles;
         }
 
 
@@ -190,9 +190,9 @@ namespace Robot
                     Debug.Log("Progam Started");
                 }
 
-                CodeNode firstLine = ProgramHelper.InitialProgramLine();
-                firstLine.Next = this.Program;
-                this.Program = firstLine;
+                //CodeNode firstLine = ProgramHelper.InitialProgramLine();
+                //firstLine.Next = this.Program;
+                //this.Program = firstLine;
 
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
@@ -218,6 +218,8 @@ namespace Robot
         {
             if (this.ActionController.ActionCompleted())
             {
+                this.Program.UnHighlight();
+
                 CodeNode next = this.Program.GetNext(this.ActionController);
 
                 if (next != null)
