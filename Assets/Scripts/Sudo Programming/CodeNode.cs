@@ -57,4 +57,13 @@ public class CodeNode
             this.Block.Highlight();
         }
     }
+
+
+    public virtual void UnHighlight()
+    {
+        if (this.Block != null)
+        {
+            this.Block.UnHighlight();
+        }
+    }
 }
