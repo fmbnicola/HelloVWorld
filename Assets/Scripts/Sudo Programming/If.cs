@@ -4,18 +4,23 @@ using UnityEngine;
 
 using Robot.Actions;
 
+using Block;
 
-public class If : Conditional
+
+namespace SudoProgram
 {
-    public If(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
-        base(context, prev, cond, block)
+    public class If : Conditional
     {
-        this.Condition  = cond;
-    }
+        public If(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
+            base(context, prev, cond, block)
+        {
+            this.Condition = cond;
+        }
 
 
-    public override CodeNode AfterBreak()
-    {
-        return this.Next;
+        public override CodeNode AfterBreak()
+        {
+            return this.Next;
+        }
     }
 }

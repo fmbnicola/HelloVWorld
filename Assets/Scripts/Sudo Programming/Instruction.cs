@@ -4,35 +4,40 @@ using UnityEngine;
 
 using Robot.Actions;
 
+using Block;
 
 
-public class Instruction : CodeNode
+namespace SudoProgram
 {
-    public enum ID
+
+    public class Instruction : CodeNode
     {
-        Walk,
-        Grab,
-        Drop,
-        TurnRight,
-        TurnLeft
-    }
+        public enum ID
+        {
+            Walk,
+            Grab,
+            Drop,
+            TurnRight,
+            TurnLeft
+        }
 
-    public ID Id { get; protected set; }
+        public ID Id { get; protected set; }
 
-    //public bool Complete = false;
-
-
-    public Instruction(ID id, CodeNode context, CodeNode prev, ProgrammingBlock block) :
-        base(context, prev, block)
-    {
-        this.Id = id;
-    }
+        //public bool Complete = false;
 
 
-    override public bool Execute(ActionController robotActuator)
-    {
-        robotActuator.Execute(this);
+        public Instruction(ID id, CodeNode context, CodeNode prev, ProgrammingBlock block) :
+            base(context, prev, block)
+        {
+            this.Id = id;
+        }
 
-        return this.Complete;
+
+        override public bool Execute(ActionController robotActuator)
+        {
+            robotActuator.Execute(this);
+
+            return this.Complete;
+        }
     }
 }

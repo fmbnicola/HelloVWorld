@@ -3,62 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ValueBlock : ConditionBlock
+using SudoProgram;
+
+namespace Block
 {
-    [SerializeField]
-    private Value.ID Id = Value.ID.Empty;
-
-    private MaterialPropertyBlock propertyBlock;
-
-    // Start is called before the first frame update
-    void Start()
+    public class ValueBlock : ConditionBlock
     {
+        [SerializeField]
+        private Value.ID Id = Value.ID.Empty;
 
-    }
+        private MaterialPropertyBlock propertyBlock;
 
-    // Update is called once per frame
-    void Update()
-    {
-        base.FixRotation();
-
-        if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+        // Start is called before the first frame update
+        void Start()
         {
-            this.GetComponent<BoxCollider>().isTrigger = true;
+
         }
 
-        if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+        // Update is called once per frame
+        void Update()
         {
-            this.GetComponent<BoxCollider>().isTrigger = false;
+            base.FixRotation();
+
+            if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+            {
+                this.GetComponent<BoxCollider>().isTrigger = true;
+            }
+
+            if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+            {
+                this.GetComponent<BoxCollider>().isTrigger = false;
+            }
+
         }
 
-    }
+        private void OnValidate()
+        {
+            if (propertyBlock == null)
+                propertyBlock = new MaterialPropertyBlock();
 
-    private void OnValidate()
-    {
-        if (propertyBlock == null)
-            propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetInt("_Value", (int)Id);
 
-        propertyBlock.SetInt("_Value", (int)Id);
+            var symbol = transform.Find("Symbol");
+            var renderer = symbol.GetComponent<Renderer>();
+            renderer.SetPropertyBlock(propertyBlock);
+        }
 
-        var symbol = transform.Find("Symbol");
-        var renderer = symbol.GetComponent<Renderer>();
-        renderer.SetPropertyBlock(propertyBlock);
-    }
+        public Value Parse()
+        {
+            return new Value(this.Id);
+        }
 
-    public Value Parse()
-    {
-        return new Value(this.Id);
-    }
+        public Value.ID GetId()
+        {
+            return this.Id;
+        }
 
-    public Value.ID GetId()
-    {
-        return this.Id;
-    }
+        public void Convert(Value.ID newType)
+        {
+            this.Id = newType;
 
-    public void Convert(Value.ID newType)
-    {
-        this.Id = newType;
-
-        this.OnValidate();
+            this.OnValidate();
+        }
     }
 }

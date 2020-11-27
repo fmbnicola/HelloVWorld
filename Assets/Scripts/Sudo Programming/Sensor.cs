@@ -5,26 +5,31 @@ using UnityEngine;
 using Robot.Actions;
 
 
+using Block;
 
-public class Sensor
+
+namespace SudoProgram
 {
-    public enum ID
+    public class Sensor
     {
-        Camera,
-        Microphone
-    }
+        public enum ID
+        {
+            Camera,
+            Microphone
+        }
 
-    public ID Id { get; protected set; }
-
-
-    public Sensor(ID id)
-    {
-        this.Id = id;
-    }
+        public ID Id { get; protected set; }
 
 
-    public Value GetValue(ActionController robot)
-    {
-        return robot.Sense(this.Id);
+        public Sensor(ID id)
+        {
+            this.Id = id;
+        }
+
+
+        public Value GetValue(ActionController robot)
+        {
+            return robot.Sense(this.Id);
+        }
     }
 }

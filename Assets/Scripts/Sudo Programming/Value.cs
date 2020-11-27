@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Block;
 
-public class Value
+
+namespace SudoProgram
 {
-    public enum ID
+    public class Value
     {
-        Empty,
-        Box,
-        Wall,
-    }
+        public enum ID
+        {
+            Empty,
+            Box,
+            Wall,
+        }
 
-    public ID Id { get; protected set; }
+        public ID Id { get; protected set; }
 
-    public Value(ID id)
-    {
-        this.Id = id;
+        public Value(ID id)
+        {
+            this.Id = id;
+        }
     }
 }

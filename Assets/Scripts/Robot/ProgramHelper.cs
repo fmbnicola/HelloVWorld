@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using SudoProgram;
+using Block;
 
 namespace Robot
 {

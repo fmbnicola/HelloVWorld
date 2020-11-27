@@ -4,27 +4,32 @@ using UnityEngine;
 
 using Robot.Actions;
 
+using Block;
 
 
-public class Condition
+namespace SudoProgram
 {
-    public Sensor Sensor { get; protected set; }
-    public Value Value { get; protected set; }
-    public Comparator Comparator { get; protected set; }
 
-
-    public Condition(Sensor sensor, Value value, Comparator comparator)
+    public class Condition
     {
-        this.Sensor = sensor;
-        this.Value = value;
-        this.Comparator = comparator;
-    }
+        public Sensor Sensor { get; protected set; }
+        public Value Value { get; protected set; }
+        public Comparator Comparator { get; protected set; }
 
 
-    public bool Check(ActionController robot)
-    {
-        var sensed = this.Sensor.GetValue(robot);
+        public Condition(Sensor sensor, Value value, Comparator comparator)
+        {
+            this.Sensor = sensor;
+            this.Value = value;
+            this.Comparator = comparator;
+        }
 
-        return this.Comparator.Compare(sensed, this.Value);
+
+        public bool Check(ActionController robot)
+        {
+            var sensed = this.Sensor.GetValue(robot);
+
+            return this.Comparator.Compare(sensed, this.Value);
+        }
     }
 }

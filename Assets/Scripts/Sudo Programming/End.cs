@@ -4,20 +4,26 @@ using UnityEngine;
 
 using Robot.Actions;
 
+using Block;
 
 
-public class End : CodeNode
+namespace SudoProgram
 {
-    public End(CodeNode context, CodeNode prev, ProgrammingBlock block) :
-        base(context, prev, block) { }
 
-
-
-    public override bool Execute(ActionController robotActuator)
+    public class End : CodeNode
     {
-        robotActuator.Execute(this);
+        public End(CodeNode context, CodeNode prev, ProgrammingBlock block) :
+            base(context, prev, block)
+        { }
 
-        return this.Complete;
+
+
+        public override bool Execute(ActionController robotActuator)
+        {
+            robotActuator.Execute(this);
+
+            return this.Complete;
+        }
+
     }
-
 }

@@ -2,56 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Comparator
+using Block;
+
+
+namespace SudoProgram
 {
-    public enum ID
+    public class Comparator
     {
-        Equals,
-        NotEquals,
-        LessThan,
-        MoreThan,
-        LessEquals,
-        MoreEquals
-    }
-
-    public ID Id { get; protected set; }
-
-
-    public Comparator(ID id)
-    {
-        this.Id = id;
-    }
-
-    
-    public bool Compare(Value one, Value two)
-    {
-        switch (this.Id)
+        public enum ID
         {
-            case Comparator.ID.Equals:
-                if (one.Id == two.Id) return true;
-                break;
-
-            case Comparator.ID.NotEquals:
-                if (one.Id != two.Id) return true;
-                break;
-
-            case Comparator.ID.LessThan:
-                if (one.Id < two.Id) return true;
-                break;
-
-            case Comparator.ID.MoreThan:
-                if (one.Id > two.Id) return true;
-                break;
-
-            case Comparator.ID.LessEquals:
-                if (one.Id <= two.Id) return true;
-                break;
-
-            case Comparator.ID.MoreEquals:
-                if (one.Id >= two.Id) return true;
-                break;
+            Equals,
+            NotEquals,
+            LessThan,
+            MoreThan,
+            LessEquals,
+            MoreEquals
         }
 
-        return false;
+        public ID Id { get; protected set; }
+
+
+        public Comparator(ID id)
+        {
+            this.Id = id;
+        }
+
+
+        public bool Compare(Value one, Value two)
+        {
+            switch (this.Id)
+            {
+                case Comparator.ID.Equals:
+                    if (one.Id == two.Id) return true;
+                    break;
+
+                case Comparator.ID.NotEquals:
+                    if (one.Id != two.Id) return true;
+                    break;
+
+                case Comparator.ID.LessThan:
+                    if (one.Id < two.Id) return true;
+                    break;
+
+                case Comparator.ID.MoreThan:
+                    if (one.Id > two.Id) return true;
+                    break;
+
+                case Comparator.ID.LessEquals:
+                    if (one.Id <= two.Id) return true;
+                    break;
+
+                case Comparator.ID.MoreEquals:
+                    if (one.Id >= two.Id) return true;
+                    break;
+            }
+
+            return false;
+        }
     }
 }

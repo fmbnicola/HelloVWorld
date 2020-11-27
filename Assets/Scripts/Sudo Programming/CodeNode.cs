@@ -3,67 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Robot.Actions;
+using Block;
 
 
-
-public class CodeNode
+namespace SudoProgram
 {
-    public CodeNode ContextNode { get; protected set; }
-    public CodeNode Previous { get; protected set; }
-
-    public CodeNode Next;
-
-    public ProgrammingBlock Block { get; private set; }
-
-    public bool Complete = false;
-
-
-
-    public CodeNode(CodeNode context, CodeNode prev, ProgrammingBlock block)
+    public class CodeNode
     {
-        this.ContextNode = context;
+        public CodeNode ContextNode { get; protected set; }
+        public CodeNode Previous { get; protected set; }
 
-        this.Previous = prev;
+        public CodeNode Next;
 
-        this.Block = block;
-    }
+        public ProgrammingBlock Block { get; private set; }
 
-
-    public virtual bool Execute(ActionController robotActuator)
-    {
-        robotActuator.Execute(this);
-
-        return this.Complete;
-    }
+        public bool Complete = false;
 
 
-    public virtual CodeNode GetNext(ActionController robotActuator)
-    {
-        return this.Next;
-    }
 
-
-    public virtual CodeNode AfterBreak()
-    {
-        Debug.LogError("Isto nao devia de ter acontecido");
-        return null;
-    }
-
-
-    public virtual void Highlight()
-    {
-        if (this.Block != null)
+        public CodeNode(CodeNode context, CodeNode prev, ProgrammingBlock block)
         {
-            this.Block.Highlight();
+            this.ContextNode = context;
+
+            this.Previous = prev;
+
+            this.Block = block;
         }
-    }
 
 
-    public virtual void UnHighlight()
-    {
-        if (this.Block != null)
+        public virtual bool Execute(ActionController robotActuator)
         {
-            this.Block.UnHighlight();
+            robotActuator.Execute(this);
+
+            return this.Complete;
+        }
+
+
+        public virtual CodeNode GetNext(ActionController robotActuator)
+        {
+            return this.Next;
+        }
+
+
+        public virtual CodeNode AfterBreak()
+        {
+            Debug.LogError("Isto nao devia de ter acontecido");
+            return null;
+        }
+
+
+        public virtual void Highlight()
+        {
+            if (this.Block != null)
+            {
+                this.Block.Highlight();
+            }
+        }
+
+
+        public virtual void UnHighlight()
+        {
+            if (this.Block != null)
+            {
+                this.Block.UnHighlight();
+            }
         }
     }
 }

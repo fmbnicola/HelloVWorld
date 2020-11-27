@@ -2,62 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-public class SensorBlock : ConditionBlock
+
+using SudoProgram;
+
+namespace Block
 {
-    [SerializeField]
-    private Sensor.ID Id = Sensor.ID.Camera;
-
-    private MaterialPropertyBlock propertyBlock;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SensorBlock : ConditionBlock
     {
-        //this.GetComponent<Rigidbody>().freezeRotation = true;
-    }
+        [SerializeField]
+        private Sensor.ID Id = Sensor.ID.Camera;
 
-    // Update is called once per frame
-    void Update()
-    {
-        base.FixRotation();
+        private MaterialPropertyBlock propertyBlock;
 
-        if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+        // Start is called before the first frame update
+        void Start()
         {
-            this.GetComponent<BoxCollider>().isTrigger = true;
+            //this.GetComponent<Rigidbody>().freezeRotation = true;
         }
 
-        if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+        // Update is called once per frame
+        void Update()
         {
-            this.GetComponent<BoxCollider>().isTrigger = false;
+            base.FixRotation();
+
+            if (transform.GetComponent<XRGrabInteractable>().isSelected && !this.Selected)
+            {
+                this.GetComponent<BoxCollider>().isTrigger = true;
+            }
+
+            if (!transform.GetComponent<XRGrabInteractable>().isSelected)
+            {
+                this.GetComponent<BoxCollider>().isTrigger = false;
+            }
         }
-    }
 
-    private void OnValidate()
-    {
-        if (propertyBlock == null)
-            propertyBlock = new MaterialPropertyBlock();
+        private void OnValidate()
+        {
+            if (propertyBlock == null)
+                propertyBlock = new MaterialPropertyBlock();
 
-        propertyBlock.SetInt("_Sensor", (int)Id);
+            propertyBlock.SetInt("_Sensor", (int)Id);
 
-        var symbol = transform.Find("Symbol");
-        var renderer = symbol.GetComponent<Renderer>();
-        renderer.SetPropertyBlock(propertyBlock);
-    }
+            var symbol = transform.Find("Symbol");
+            var renderer = symbol.GetComponent<Renderer>();
+            renderer.SetPropertyBlock(propertyBlock);
+        }
 
-    public Sensor Parse()
-    {
-        return new Sensor(this.Id);
-    }
+        public Sensor Parse()
+        {
+            return new Sensor(this.Id);
+        }
 
-    public Sensor.ID GetId()
-    {
-        return this.Id;
-    }
+        public Sensor.ID GetId()
+        {
+            return this.Id;
+        }
 
-    public void Convert(Sensor.ID newType)
-    {
-        this.Id = newType;
+        public void Convert(Sensor.ID newType)
+        {
+            this.Id = newType;
 
-        this.OnValidate();
+            this.OnValidate();
+        }
     }
 }
 

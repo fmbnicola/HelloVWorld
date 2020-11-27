@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class IfBlock : ConditionalBlock
-{ 
-    public override CodeNode Parse(CodeNode context, CodeNode prev)
+using SudoProgram;
+
+namespace Block
+{
+    public class IfBlock : ConditionalBlock
     {
-        var cond = this.ParseCondition();
+        public override CodeNode Parse(CodeNode context, CodeNode prev)
+        {
+            var cond = this.ParseCondition();
 
-        var ifNode = new If(context, prev, cond, this);
+            var ifNode = new If(context, prev, cond, this);
 
-        var nextIfTrue = this.ParseInnerCode(ifNode);
+            var nextIfTrue = this.ParseInnerCode(ifNode);
 
-        ifNode.NextIfTrue = nextIfTrue;
+            ifNode.NextIfTrue = nextIfTrue;
 
-        return ifNode;
+            return ifNode;
+        }
     }
 }

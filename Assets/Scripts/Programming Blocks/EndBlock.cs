@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndBlock : ProgrammingBlock
+using SudoProgram;
+
+namespace Block
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EndBlock : ProgrammingBlock
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
 
 
-    public override CodeNode Parse(CodeNode context, CodeNode next)
-    {
-        return new End(context, next, this);
+        public override CodeNode Parse(CodeNode context, CodeNode next)
+        {
+            return new End(context, next, this);
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+using Block;
+
 public class SocketPlus : XRSocketInteractor
 {
     public bool SnapInteractorPosition = false;
@@ -49,14 +51,8 @@ public class SocketPlus : XRSocketInteractor
         {
             interactable.transform.rotation = colRot;
 
-            if (interactable.gameObject.name.Contains("FloppyDisk"))
-            {
-                interactable.GetComponent<FloppyDisk>().Selected = true;
-                interactable.GetComponent<FloppyDisk>().SocketPos = this.transform.rotation.eulerAngles;
-                interactable.GetComponent<FloppyDisk>().SocketConnected = this;
-            }
 
-            else if (interactable.gameObject.name.Contains("SensorBlock") ||
+            if (interactable.gameObject.name.Contains("SensorBlock") ||
                      interactable.gameObject.name.Contains("ValueBlock")  ||
                      interactable.gameObject.name.Contains("Comparator"))
             {
@@ -76,15 +72,9 @@ public class SocketPlus : XRSocketInteractor
         var Vec = new Vector3(0, 0, 0);
         interactable.GetComponent<Collider>().isTrigger = this.WasTrigger;
 
-        if (interactable.gameObject.name.Contains("FloppyDisk"))
-        {
-            interactable.GetComponent<FloppyDisk>().Selected = false;
-            interactable.GetComponent<FloppyDisk>().SocketPos = Vec;
-            interactable.GetComponent<FloppyDisk>().SocketConnected = null;
-        }
 
 
-        else if (interactable.gameObject.name.Contains("SensorBlock") ||
+        if (interactable.gameObject.name.Contains("SensorBlock") ||
                  interactable.gameObject.name.Contains("ValueBlock")  ||
                  interactable.gameObject.name.Contains("Comparator"))
         {

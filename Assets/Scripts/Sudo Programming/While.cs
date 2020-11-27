@@ -4,27 +4,33 @@ using UnityEngine;
 
 using Robot.Actions;
 
+using Block;
 
 
-public class While : Conditional
+namespace SudoProgram
 {
-    public While(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
-        base(context, prev, cond, block) { }
 
-
-    public override CodeNode AfterBreak()
+    public class While : Conditional
     {
-        var inBlock = this.NextIfTrue;
+        public While(CodeNode context, CodeNode prev, Condition cond, ProgrammingBlock block) :
+            base(context, prev, cond, block)
+        { }
 
-        inBlock.Complete = false;
 
-        while(inBlock.Next != null)
+        public override CodeNode AfterBreak()
         {
-            inBlock = inBlock.Next;
+            var inBlock = this.NextIfTrue;
 
             inBlock.Complete = false;
-        }
 
-        return this;
+            while (inBlock.Next != null)
+            {
+                inBlock = inBlock.Next;
+
+                inBlock.Complete = false;
+            }
+
+            return this;
+        }
     }
 }

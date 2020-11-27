@@ -4,7 +4,7 @@ using UnityEngine;
 
 using Puzzle;
 
-
+using SudoProgram;
 
 namespace Robot.Sensors
 {
