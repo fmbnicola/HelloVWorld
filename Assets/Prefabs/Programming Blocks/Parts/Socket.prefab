@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7593901392487802777}
   - component: {fileID: 814778971573290668}
   - component: {fileID: 2098991363501852948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Socket
   m_TagString: Plug
   m_Icon: {fileID: 0}
