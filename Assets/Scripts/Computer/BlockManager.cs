@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using SudoProgram;
 
@@ -8,7 +9,9 @@ using SudoProgram;
 
 
 public class BlockManager : MonoBehaviour
-{ 
+{
+    [SerializeField]
+    private GameObject ButtonPrefab;
 
     [System.Serializable]
     public struct ProgrammingBlock
@@ -71,14 +74,39 @@ public class BlockManager : MonoBehaviour
         }
     }
 
+    
+    public enum States
+    {
+        Categories,
+        Programming,
+        Condition
+    }
+
+    public States State = States.Categories;
 
 
     public List<ProgrammingBlock> AvailableProgrammingBlocks;
     public List<ConditionBlock> AvailableConditionBlocks;
 
-
     public Transform SpawnPoint;
 
+
+    [SerializeField]
+    public GameObject CategoriesParent;
+
+    [SerializeField]
+    public GameObject ProgrammingParent;
+
+    [SerializeField]
+    public GameObject ConditionParent;
+
+
+    private Vector2 CanvasSize;
+    private Vector2 ButtonSize;
+
+    public Vector2Int GridDimensions = new Vector2Int(4, 3);
+
+    private Vector2 Margins = new Vector2(0,0);
 
     // Start is called before the first frame update
     void Start()
@@ -100,20 +128,167 @@ public class BlockManager : MonoBehaviour
 
             this.AvailableConditionBlocks[i] = block;
         }
+
+        this.GenerateButtonsProgramming();
+
+        this.GenerateButtonsCondition();
+
+
+        this.InitGridDimensions();
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.Display();
+        
     }
 
 
-    // Renders the Block Grid
-    void Display()
+    #region Button Generation
+    private void InitGridDimensions()
     {
+        var rect = this.GetComponent<RectTransform>();
+
+        this.CanvasSize = rect.sizeDelta;
+
+        var buttonRect = this.ButtonPrefab.GetComponent<RectTransform>();
+
+        this.ButtonSize = buttonRect.sizeDelta;
+
+
+        var maxButtonH = Mathf.FloorToInt(((this.CanvasSize.x / this.ButtonSize.x) - 0.25f) / 1.25f);
+        var maxButtonV = Mathf.FloorToInt(((this.CanvasSize.y / this.ButtonSize.y) - 0.25f) / 1.25f);
+
+        this.GridDimensions.x = (int) Mathf.Min(this.GridDimensions.x, maxButtonH);
+        this.GridDimensions.y = (int) Mathf.Min(this.GridDimensions.y, maxButtonV);
+
+        //this.Margins.x = this.CanvasSize.x 
+    }
+
+
+    private GameObject GenerateButton(Transform parent, float x, float y, int index)
+    {
+        var button = Instantiate(this.ButtonPrefab);
+
+        button.transform.parent = parent;
+
+        button.name = index.ToString();
+
+        var rectTransform = button.GetComponent<RectTransform>();
+
+        rectTransform.localPosition = new Vector3(x,y,0);
+
+        var uiButton = button.GetComponent<Button>();
+        if (parent.name == "ProgrammingBlocks") uiButton.onClick.AddListener(() => this.SpawnProgrammingBlock(index));
+        if (parent.name == "ConditionBlocks")   uiButton.onClick.AddListener(() => this.SpawnConditionBlock(index));
+
+        return button.gameObject;
+    }
+
+    private void GenerateButtonsProgramming()
+    {
+        var x = -1.21f;
+        var y = 0.63f;
+
+        var size = 0.5f;
+
+        var hMargin = 0.3f;
+        var vMargin = 0.125f;
+
+        var rowI = 0;
+        var columnI = 0;
+
+        var rowLimit = 3;
+        var columnLimit = 4;
+
+        for(var i = 0; i < this.AvailableProgrammingBlocks.Count; i++)
+        {
+            var block = this.AvailableProgrammingBlocks[i];
+
+            float buttonX = x + columnI * (size + hMargin);
+            float buttonY = y - rowI * (size + vMargin);
+
+            this.GenerateButton(this.ProgrammingParent.transform, buttonX, buttonY, i);
+
+            columnI++;
+            if(columnI == columnLimit)
+            {
+                columnI = 0;
+                rowI++;
+
+                if (rowI == rowLimit) break;
+            }
+        }
+    }
+
+    private void GenerateButtonsCondition()
+    {
+        var x = -1.21f;
+        var y = 0.63f;
+
+        var size = 0.5f;
+
+        var hMargin = 0.3f;
+        var vMargin = 0.125f;
+
+        var rowI = 0;
+        var columnI = 0;
+
+        var rowLimit = 3;
+        var columnLimit = 4;
+
+        for (var i = 0; i < this.AvailableConditionBlocks.Count; i++)
+        {
+            var block = this.AvailableConditionBlocks[i];
+
+            float buttonX = x + columnI * (size + hMargin);
+            float buttonY = y - rowI * (size + vMargin);
+
+            this.GenerateButton(this.ConditionParent.transform, buttonX, buttonY, i);
+
+            columnI++;
+            if (columnI == columnLimit)
+            {
+                columnI = 0;
+                rowI++;
+
+                if (rowI == rowLimit) break;
+            }
+        }
+    }
+    #endregion
+
+
+    #region State Transitions
+    public void Return()
+    {
+        this.State = States.Categories;
+
+        this.CategoriesParent.SetActive(true);
+
+        this.ProgrammingParent.SetActive(false);
+        this.ConditionParent.SetActive(false);
+    }
+
+    public void GoToProgramming()
+    {
+        this.State = States.Programming;
+
+        this.CategoriesParent.SetActive(false);
+
+        this.ProgrammingParent.SetActive(true);
+    }
+
+    public void GoToCondition()
+    {
+        this.State = States.Condition;
+
+        this.CategoriesParent.SetActive(false);
+
+        this.ConditionParent.SetActive(true);
 
     }
+    #endregion
 
 
     #region Spawning

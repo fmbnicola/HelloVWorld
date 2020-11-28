@@ -31,7 +31,7 @@ namespace Block
 
         private void Awake()
         {
-            materialRenderer = transform.GetComponent<Renderer>();
+            BlockRenderer = transform.GetComponent<Renderer>();
         }
 
 
