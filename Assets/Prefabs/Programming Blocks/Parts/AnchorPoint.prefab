@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6306568977579099630}
   - component: {fileID: 6929549468745779787}
   - component: {fileID: 5174147577696108161}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnchorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

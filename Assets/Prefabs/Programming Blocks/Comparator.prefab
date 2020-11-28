@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6687462938237365341}
   - component: {fileID: 3969279402813173680}
   - component: {fileID: 2254503162997457555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Comparator
   m_TagString: Comparator
   m_Icon: {fileID: 0}
@@ -216,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}

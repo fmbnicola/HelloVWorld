@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2652549919759412736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnchorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8526466642993869499}
   - component: {fileID: 7553780329794854396}
   - component: {fileID: 2129297472225612445}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InstructionBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,10 +253,20 @@ PrefabInstance:
       propertyPath: AnchorPoint
       value: 
       objectReference: {fileID: 1508683932241379082}
+    - target: {fileID: 3504839694622705006, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
       propertyPath: m_Name
       value: Plug
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4122902837026464330, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
@@ -408,6 +418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlugHole
       objectReference: {fileID: 0}
+    - target: {fileID: 6687493323057897300, guid: f23d9e23ebf02b943b0d9a6cc1c49e08,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f23d9e23ebf02b943b0d9a6cc1c49e08, type: 3}
 --- !u!4 &1508683932241379082 stripped
@@ -488,6 +503,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Socket
       objectReference: {fileID: 0}
+    - target: {fileID: 6785029038859518922, guid: a83d5fa2c64bbec499a44fd463706371,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7593901392487802777, guid: a83d5fa2c64bbec499a44fd463706371,
         type: 3}
       propertyPath: m_InteractionManager
@@ -512,6 +532,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}

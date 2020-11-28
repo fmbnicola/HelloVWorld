@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 740305690223279239}
   - component: {fileID: 8133723758636966058}
   - component: {fileID: 4362420883963915516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ConnectorCable
   m_TagString: Untagged
   m_Icon: {fileID: 0}

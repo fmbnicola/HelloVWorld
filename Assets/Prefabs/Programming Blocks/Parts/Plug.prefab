@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7475085070057004049}
   - component: {fileID: 616734353875602782}
   - component: {fileID: 1335009002103821192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plug
   m_TagString: Plug
   m_Icon: {fileID: 0}
@@ -271,6 +271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ConnectorCable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667390396976465112, guid: 3e0eb801d7c831e4594a42dffe6dbc3e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8133723758636966058, guid: 3e0eb801d7c831e4594a42dffe6dbc3e,
         type: 3}

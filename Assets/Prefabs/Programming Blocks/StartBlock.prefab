@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1046339965626728121}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnchorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1896451757012229441}
   - component: {fileID: 2023144491148572031}
   - component: {fileID: 185725375428319800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StartBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,10 +251,20 @@ PrefabInstance:
       propertyPath: AnchorPoint
       value: 
       objectReference: {fileID: 1479996567640953092}
+    - target: {fileID: 3504839694622705006, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
       propertyPath: m_Name
       value: Plug
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4122902837026464330, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
@@ -340,6 +350,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}
@@ -480,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlugHole
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687493323057897300, guid: f23d9e23ebf02b943b0d9a6cc1c49e08,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f23d9e23ebf02b943b0d9a6cc1c49e08, type: 3}
