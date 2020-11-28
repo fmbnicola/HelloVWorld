@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using SudoProgram;
 
@@ -129,12 +130,13 @@ public class BlockManager : MonoBehaviour
             this.AvailableConditionBlocks[i] = block;
         }
 
+
+        this.InitGridDimensions();
+
+
         this.GenerateButtonsProgramming();
 
         this.GenerateButtonsCondition();
-
-
-        this.InitGridDimensions();
     }
 
     // Update is called once per frame
@@ -144,7 +146,7 @@ public class BlockManager : MonoBehaviour
     }
 
 
-    #region Button Generation
+    #region Buttons
     private void InitGridDimensions()
     {
         var rect = this.GetComponent<RectTransform>();
@@ -162,99 +164,137 @@ public class BlockManager : MonoBehaviour
         this.GridDimensions.x = (int) Mathf.Min(this.GridDimensions.x, maxButtonH);
         this.GridDimensions.y = (int) Mathf.Min(this.GridDimensions.y, maxButtonV);
 
-        //this.Margins.x = this.CanvasSize.x 
+        this.Margins.x = (this.CanvasSize.x - this.GridDimensions.x * this.ButtonSize.x) / (this.GridDimensions.x + 1);
+        this.Margins.y = (this.CanvasSize.y - this.GridDimensions.y * this.ButtonSize.y) / (this.GridDimensions.y + 1);
     }
 
 
-    private GameObject GenerateButton(Transform parent, float x, float y, int index)
+    private GameObject GenerateButton(Transform parent, float x, float y, int index, int quantity)
     {
         var button = Instantiate(this.ButtonPrefab);
 
-        button.transform.parent = parent;
+        #region Transform SetUp
+        button.transform.SetParent(parent, false);
 
         button.name = index.ToString();
 
         var rectTransform = button.GetComponent<RectTransform>();
 
-        rectTransform.localPosition = new Vector3(x,y,0);
+        rectTransform.localPosition    = new Vector3( x, y, 0);
+        rectTransform.localEulerAngles = Vector3.zero;
+        #endregion
 
+        #region Stock
+        var stockObj = button.transform.Find("Stock");
+
+        var str = quantity.ToString();
+
+        stockObj.GetComponent<TextMeshProUGUI>().text = str + "/" + str;
+        #endregion
+
+        #region Call Back
         var uiButton = button.GetComponent<Button>();
         if (parent.name == "ProgrammingBlocks") uiButton.onClick.AddListener(() => this.SpawnProgrammingBlock(index));
         if (parent.name == "ConditionBlocks")   uiButton.onClick.AddListener(() => this.SpawnConditionBlock(index));
+        #endregion
 
         return button.gameObject;
     }
 
+
     private void GenerateButtonsProgramming()
     {
-        var x = -1.21f;
-        var y = 0.63f;
+        var x = -this.CanvasSize.x / 2;
+        var y =  this.CanvasSize.y / 2;
 
-        var size = 0.5f;
-
-        var hMargin = 0.3f;
-        var vMargin = 0.125f;
-
-        var rowI = 0;
+        var rowI    = 0;
         var columnI = 0;
-
-        var rowLimit = 3;
-        var columnLimit = 4;
 
         for(var i = 0; i < this.AvailableProgrammingBlocks.Count; i++)
         {
             var block = this.AvailableProgrammingBlocks[i];
 
-            float buttonX = x + columnI * (size + hMargin);
-            float buttonY = y - rowI * (size + vMargin);
+            float buttonX = x + (columnI + 1) * this.Margins.x + (columnI + 0.5f) * this.ButtonSize.x;
+            float buttonY = y - (rowI    + 1) * this.Margins.y - (rowI    + 0.5f) * this.ButtonSize.y;
 
-            this.GenerateButton(this.ProgrammingParent.transform, buttonX, buttonY, i);
+            this.GenerateButton(this.ProgrammingParent.transform, buttonX, buttonY, i, block.GetAvailable());
 
             columnI++;
-            if(columnI == columnLimit)
+            if(columnI == this.GridDimensions.x)
             {
                 columnI = 0;
                 rowI++;
 
-                if (rowI == rowLimit) break;
+                if (rowI == this.GridDimensions.y) break;
             }
         }
     }
 
     private void GenerateButtonsCondition()
     {
-        var x = -1.21f;
-        var y = 0.63f;
-
-        var size = 0.5f;
-
-        var hMargin = 0.3f;
-        var vMargin = 0.125f;
+        var x = -this.CanvasSize.x / 2;
+        var y = this.CanvasSize.y / 2;
 
         var rowI = 0;
         var columnI = 0;
-
-        var rowLimit = 3;
-        var columnLimit = 4;
 
         for (var i = 0; i < this.AvailableConditionBlocks.Count; i++)
         {
             var block = this.AvailableConditionBlocks[i];
 
-            float buttonX = x + columnI * (size + hMargin);
-            float buttonY = y - rowI * (size + vMargin);
+            float buttonX = x + (columnI + 1) * this.Margins.x + (columnI + 0.5f) * this.ButtonSize.x;
+            float buttonY = y - (rowI    + 1) * this.Margins.y - (rowI    + 0.5f) * this.ButtonSize.y;
 
-            this.GenerateButton(this.ConditionParent.transform, buttonX, buttonY, i);
+            this.GenerateButton(this.ConditionParent.transform, buttonX, buttonY, i, block.GetAvailable());
 
             columnI++;
-            if (columnI == columnLimit)
+            if (columnI == this.GridDimensions.x)
             {
                 columnI = 0;
                 rowI++;
 
-                if (rowI == rowLimit) break;
+                if (rowI == this.GridDimensions.y) break;
             }
         }
+    }
+
+
+    private void UpdateStockProgramming(int index)
+    {
+        var block = this.AvailableProgrammingBlocks[index];
+
+        var stored    = block.Stored;
+        var available = block.GetAvailable();
+
+        var buttonObj = this.ProgrammingParent.transform.Find(index.ToString());
+
+        var stockObj = buttonObj.transform.Find("Stock");
+
+        stockObj.GetComponent<TextMeshProUGUI>().text = stored + "/" + available;
+
+        var uiButton = buttonObj.GetComponent<Button>();
+
+        if (uiButton.interactable == false && stored > 0) uiButton.interactable = true;
+        if (stored == 0) uiButton.interactable = false;
+    }
+
+    private void UpdateStockCondition(int index)
+    {
+        var block = this.AvailableConditionBlocks[index];
+
+        var stored = block.Stored;
+        var available = block.GetAvailable();
+
+        var buttonObj = this.ConditionParent.transform.Find(index.ToString());
+
+        var stockObj = buttonObj.transform.Find("Stock");
+
+        stockObj.GetComponent<TextMeshProUGUI>().text = stored + "/" + available;
+
+        var uiButton = buttonObj.GetComponent<Button>();
+
+        if (uiButton.interactable == false && stored > 0) uiButton.interactable = true;
+        if (stored == 0) uiButton.interactable = false;
     }
     #endregion
 
@@ -388,7 +428,6 @@ public class BlockManager : MonoBehaviour
 
 
     #region Block Methods
-
     bool WithdrawProgrammingBlock(int index)
     {
         var block = this.AvailableProgrammingBlocks[index];
@@ -398,6 +437,8 @@ public class BlockManager : MonoBehaviour
             block.Stored -= 1;
 
             this.AvailableProgrammingBlocks[index] = block;
+
+            this.UpdateStockProgramming(index);
 
             return true;
         }
@@ -415,11 +456,14 @@ public class BlockManager : MonoBehaviour
 
             this.AvailableConditionBlocks[index] = block;
 
+            this.UpdateStockCondition(index);
+
             return true;
         }
 
         return false;
     }
+
 
     void DepositProgrammingBlock(int index)
     {
@@ -429,6 +473,10 @@ public class BlockManager : MonoBehaviour
 
         var available = block.GetAvailable();
         if (block.Stored > available) block.Stored = available;
+
+        this.AvailableProgrammingBlocks[index] = block;
+
+        this.UpdateStockProgramming(index);
     }
 
     void DepositConditionBlock(int index)
@@ -439,6 +487,10 @@ public class BlockManager : MonoBehaviour
 
         var available = block.GetAvailable();
         if (block.Stored > available) block.Stored = available;
+
+        this.AvailableConditionBlocks[index] = block;
+
+        this.UpdateStockCondition(index);
     }
     #endregion
 
