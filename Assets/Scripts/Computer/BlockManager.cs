@@ -5,20 +5,22 @@ using UnityEngine.UI;
 using TMPro;
 
 using SudoProgram;
-
-
-
+using Block;
 
 public class BlockManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject ButtonPrefab;
 
+
     [System.Serializable]
     public struct ProgrammingBlock
     {
         [SerializeField]
         GameObject Prefab;
+
+        [SerializeField]
+        Sprite Icon;
 
         [SerializeField]
         int Available;
@@ -35,6 +37,11 @@ public class BlockManager : MonoBehaviour
             return this.Prefab;
         }
 
+        public Sprite GetIcon()
+        {
+            return this.Icon;
+        }
+
         public int GetAvailable()
         {
             return this.Available;
@@ -42,12 +49,14 @@ public class BlockManager : MonoBehaviour
     }
 
 
-
     [System.Serializable]
     public struct ConditionBlock
     {
         [SerializeField]
         GameObject Prefab;
+
+        [SerializeField]
+        Sprite Icon;
 
         [SerializeField]
         int Available;
@@ -69,6 +78,11 @@ public class BlockManager : MonoBehaviour
             return this.Prefab;
         }
 
+        public Sprite GetIcon()
+        {
+            return this.Icon;
+        }
+
         public int GetAvailable()
         {
             return this.Available;
@@ -78,10 +92,12 @@ public class BlockManager : MonoBehaviour
     
     public enum States
     {
+        Off,
         Categories,
         Programming,
         Condition
     }
+
 
     public States State = States.Categories;
 
@@ -142,7 +158,32 @@ public class BlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch(this.State)
+        {
+            case States.Off:
+                if (this.CategoriesParent.activeSelf)  this.CategoriesParent.SetActive(false);
+                if (this.ProgrammingParent.activeSelf) this.ProgrammingParent.SetActive(false);
+                if (this.ConditionParent.activeSelf)   this.ConditionParent.SetActive(false);
+                break;
+
+            case States.Categories:
+                if (!this.CategoriesParent.activeSelf) this.CategoriesParent.SetActive(true);
+                if (this.ProgrammingParent.activeSelf) this.ProgrammingParent.SetActive(false);
+                if (this.ConditionParent.activeSelf) this.ConditionParent.SetActive(false);
+                break;
+
+            case States.Programming:
+                if (this.CategoriesParent.activeSelf) this.CategoriesParent.SetActive(false);
+                if (!this.ProgrammingParent.activeSelf) this.ProgrammingParent.SetActive(true);
+                if (this.ConditionParent.activeSelf) this.ConditionParent.SetActive(false);
+                break;
+
+            case States.Condition:
+                if (this.CategoriesParent.activeSelf) this.CategoriesParent.SetActive(false);
+                if (this.ProgrammingParent.activeSelf) this.ProgrammingParent.SetActive(false);
+                if (!this.ConditionParent.activeSelf) this.ConditionParent.SetActive(true);
+                break;
+        }
     }
 
 
@@ -169,7 +210,7 @@ public class BlockManager : MonoBehaviour
     }
 
 
-    private GameObject GenerateButton(Transform parent, float x, float y, int index, int quantity)
+    private GameObject GenerateButton(Transform parent, Sprite icon, float x, float y, int index, int quantity)
     {
         var button = Instantiate(this.ButtonPrefab);
 
@@ -182,6 +223,14 @@ public class BlockManager : MonoBehaviour
 
         rectTransform.localPosition    = new Vector3( x, y, 0);
         rectTransform.localEulerAngles = Vector3.zero;
+        #endregion
+
+        #region Icon
+        var iconObj = button.transform.Find("Icon");
+
+        var image = iconObj.GetComponent<Image>();
+
+        image.sprite = icon;
         #endregion
 
         #region Stock
@@ -217,7 +266,7 @@ public class BlockManager : MonoBehaviour
             float buttonX = x + (columnI + 1) * this.Margins.x + (columnI + 0.5f) * this.ButtonSize.x;
             float buttonY = y - (rowI    + 1) * this.Margins.y - (rowI    + 0.5f) * this.ButtonSize.y;
 
-            this.GenerateButton(this.ProgrammingParent.transform, buttonX, buttonY, i, block.GetAvailable());
+            this.GenerateButton(this.ProgrammingParent.transform, block.GetIcon(), buttonX, buttonY, i, block.GetAvailable());
 
             columnI++;
             if(columnI == this.GridDimensions.x)
@@ -245,7 +294,7 @@ public class BlockManager : MonoBehaviour
             float buttonX = x + (columnI + 1) * this.Margins.x + (columnI + 0.5f) * this.ButtonSize.x;
             float buttonY = y - (rowI    + 1) * this.Margins.y - (rowI    + 0.5f) * this.ButtonSize.y;
 
-            this.GenerateButton(this.ConditionParent.transform, buttonX, buttonY, i, block.GetAvailable());
+            this.GenerateButton(this.ConditionParent.transform, block.GetIcon(), buttonX, buttonY, i, block.GetAvailable());
 
             columnI++;
             if (columnI == this.GridDimensions.x)
@@ -361,7 +410,6 @@ public class BlockManager : MonoBehaviour
     }
 
 
-
     GameObject SpawnConditionBlock(int index)
     {
         if (!this.WithdrawConditionBlock(index)) return null;
@@ -399,30 +447,78 @@ public class BlockManager : MonoBehaviour
         return inst;
     }
 
-    void DeSpawn(GameObject obj)
+
+    public void DeSpawn(GameObject obj)
     {
         var name = obj.name;
         name = name.Split('(')[0];
 
-        Destroy(obj);
+        var found = false;
 
         for(var i = 0; i < this.AvailableProgrammingBlocks.Count; i++)
         {
-            if(this.AvailableProgrammingBlocks[i].GetPrefab().name == name)
+            var block = this.AvailableProgrammingBlocks[i];
+
+            if (block.GetPrefab().name == name)
             {
-                this.DepositProgrammingBlock(i);
-                return;
+                switch (name)
+                {
+                    default:
+                        this.DepositProgrammingBlock(i);
+                        found = true;
+                        break;
+
+                    case "InstructionBlock":
+                        if (obj.GetComponent<InstructionBlock>().GetId() == block.InstructionId)
+                        {
+                            this.DepositProgrammingBlock(i);
+                            found = true;
+                        }
+                        break;
+                }
             }
+
+            if (found) break;
         }
 
         for (var i = 0; i < this.AvailableConditionBlocks.Count; i++)
         {
-            if (this.AvailableConditionBlocks[i].GetPrefab().name == name)
+            var block = this.AvailableConditionBlocks[i];
+
+            if (block.GetPrefab().name == name)
             {
-                this.DepositConditionBlock(i);
-                return;
+                switch(name)
+                {
+                    case "Comparator":
+                        if (obj.GetComponent<ComparatorBlock>().GetId() == block.ComparatorId)
+                        {
+                            this.DepositConditionBlock(i);
+                            found = true;
+                        }
+                        break;
+
+                    case "ValueBlock":
+                        if (obj.GetComponent<ValueBlock>().GetId() == block.ValueId)
+                        {
+                            this.DepositConditionBlock(i);
+                            found = true;
+                        }
+                        break;
+
+                    case "SensorBlock":
+                        if (obj.GetComponent<SensorBlock>().GetId() == block.SensorId)
+                        {
+                            this.DepositConditionBlock(i);
+                            found = true;
+                        }
+                        break;
+                }
             }
+
+            if (found) break;
         }
+
+        Destroy(obj);
     }
     #endregion
 

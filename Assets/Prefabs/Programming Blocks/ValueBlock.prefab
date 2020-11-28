@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 8783801873047001970}
   - component: {fileID: 220609101477940445}
   - component: {fileID: 7510507190100708657}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ValueBlock
-  m_TagString: Value
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}

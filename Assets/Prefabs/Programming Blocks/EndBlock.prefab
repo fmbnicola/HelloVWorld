@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 3063781785197377626}
   - component: {fileID: 3748347571401971485}
   - component: {fileID: 4682554821733793552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EndBlock
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Socket
       objectReference: {fileID: 0}
+    - target: {fileID: 6785029038859518922, guid: a83d5fa2c64bbec499a44fd463706371,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7593901392487802777, guid: a83d5fa2c64bbec499a44fd463706371,
         type: 3}
       propertyPath: m_InteractionManager
@@ -298,6 +303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}

@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Disk
-  - Sensor
-  - Comparator
-  - Value
   - Plug
   - Robot
+  - Block
+  - Comparator
+  - Sensor
+  - Value
   layers:
   - Default
   - TransparentFX

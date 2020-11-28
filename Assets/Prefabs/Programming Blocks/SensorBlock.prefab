@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 6500064555730712016}
   - component: {fileID: 2368130113393959551}
   - component: {fileID: 1605195513920057544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SensorBlock
-  m_TagString: Sensor
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}

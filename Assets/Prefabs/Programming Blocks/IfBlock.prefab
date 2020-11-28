@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5138386114518282983}
   - component: {fileID: 2592478512231162466}
   - component: {fileID: 1700505910781022019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ValueSocket
   m_TagString: Value
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8869940943186635224}
   - component: {fileID: 3684391939904540586}
   - component: {fileID: 8826708951772275788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SensorSocket
   m_TagString: Sensor
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 8705211718945444829}
   - component: {fileID: 3230620339324217295}
   - component: {fileID: 544074335431371817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ComparatorSocket
   m_TagString: Comparator
   m_Icon: {fileID: 0}
@@ -407,9 +407,9 @@ GameObject:
   - component: {fileID: 3422068576989376306}
   - component: {fileID: 3602266388223672437}
   - component: {fileID: 170745632171874226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IfBlock
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9072071647009682313}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnchorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -612,7 +612,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 956906398167976218}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AnchorPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,6 +704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Socket
+      objectReference: {fileID: 0}
+    - target: {fileID: 6785029038859518922, guid: a83d5fa2c64bbec499a44fd463706371,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7593901392487802777, guid: a83d5fa2c64bbec499a44fd463706371,
         type: 3}
@@ -805,6 +810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlugHoleTrue
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab359b3020c72b54eb613d7631fc724f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab359b3020c72b54eb613d7631fc724f, type: 3}
 --- !u!4 &1418360988380200537 stripped
@@ -824,6 +834,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Symbol
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658117304640335355, guid: 34e6fb6f59db9a34890945d06e915907,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2874223583099172166, guid: 34e6fb6f59db9a34890945d06e915907,
         type: 3}
@@ -925,10 +940,20 @@ PrefabInstance:
       propertyPath: AnchorPoint
       value: 
       objectReference: {fileID: 4129694940468055032}
+    - target: {fileID: 3504839694622705006, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
       propertyPath: m_Name
       value: Plug
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4122902837026464330, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
@@ -1020,10 +1045,20 @@ PrefabInstance:
       propertyPath: AnchorPoint
       value: 
       objectReference: {fileID: 1418360988380200537}
+    - target: {fileID: 3504839694622705006, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
       propertyPath: m_Name
       value: PlugTrue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3637974901318088944, guid: 26b9c2e4f368f40459800ee91448df56,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4122902837026464330, guid: 26b9c2e4f368f40459800ee91448df56,
         type: 3}
@@ -1215,6 +1250,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: conditionalblock
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9cea282cf9fbaf84c89146d83c741652,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931383676848627121, guid: 9cea282cf9fbaf84c89146d83c741652,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791881076378386017, guid: 9cea282cf9fbaf84c89146d83c741652,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932915055384298274, guid: 9cea282cf9fbaf84c89146d83c741652,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cea282cf9fbaf84c89146d83c741652, type: 3}
 --- !u!4 &3462392893950645802 stripped
@@ -1315,6 +1370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlugHole
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab359b3020c72b54eb613d7631fc724f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab359b3020c72b54eb613d7631fc724f, type: 3}

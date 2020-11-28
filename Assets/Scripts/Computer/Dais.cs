@@ -16,6 +16,9 @@ public class Dais : MonoBehaviour
     [SerializeField]
     private List<Rigidbody> Bodies;
 
+    public float factor = 6;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +29,6 @@ public class Dais : MonoBehaviour
         this.ReleaseTime = -1;
     }
 
-    public float factor = 6;
-
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +37,7 @@ public class Dais : MonoBehaviour
         if ( (Time.time - this.ReleaseTime) >= 1 && this.ReleaseTime > 0 ) this.TurnOn();
     }
 
+    
     private void FixedUpdate()
     {
         var rate = 1 - factor * (Time.fixedDeltaTime / Time.timeScale);
@@ -86,7 +88,6 @@ public class Dais : MonoBehaviour
         {
             body.useGravity = true;
 
-
             var socket = body.gameObject.GetComponentInChildren<Socket>();
             if ( socket != null )
             {
@@ -115,6 +116,12 @@ public class Dais : MonoBehaviour
             var socket = body.gameObject.GetComponentInChildren<Socket>();
             if ( socket != null )    socket.GetComponent<SocketPlus>().socketActive = true;
         }
+    }
+
+
+    public List<Rigidbody> GetBodies()
+    {
+        return this.Bodies;
     }
 
 

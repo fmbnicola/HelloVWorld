@@ -11,6 +11,8 @@ using Block;
 
 public class Computer : MonoBehaviour
 {
+    public BlockManager BlockManager;
+
     public ProgrammingBlock StartBlock;
 
     public Dais Dais;
@@ -18,6 +20,7 @@ public class Computer : MonoBehaviour
     public RobotController Robot;
 
     private ComputerAnimator Animator;
+
 
     public enum States
     {
@@ -61,6 +64,7 @@ public class Computer : MonoBehaviour
     }
 
 
+    #region Button Call Backs
     public void StartUp()
     {
         if (this.State == States.Idle)
@@ -70,6 +74,8 @@ public class Computer : MonoBehaviour
             this.StartTime = Time.time;
 
             this.Animator.TurnOn();
+
+            this.BlockManager.State = BlockManager.States.Categories;
         }
     }
 
@@ -77,7 +83,11 @@ public class Computer : MonoBehaviour
     {
         var program = this.Parse();
 
-        //Send to Floppy
+        if (this.Robot != null)
+        {
+            this.Robot.LoadProgram(program);
+        }
+        else Debug.Log("No robot associated");
     }
 
     public void Clear()
@@ -93,9 +103,32 @@ public class Computer : MonoBehaviour
         {
             this.Clear();
 
+            this.StoreBlocks();
+
             this.State = States.Idle;
 
             this.Animator.TurnOff();
+
+            this.BlockManager.State = BlockManager.States.Off;
+        }
+    }
+    #endregion
+
+
+    public void StoreBlocks()
+    {
+        var bodies = this.Dais.GetBodies();
+
+        var size = bodies.Count;
+
+        for(var i = 0; i < size; i++)
+        {
+            var body = bodies[0];
+
+            if(body.CompareTag("Block"))
+                this.BlockManager.DeSpawn(body.gameObject);
+
+            bodies.RemoveAt(0);
         }
     }
 
@@ -111,7 +144,6 @@ public class Computer : MonoBehaviour
 
             while(block != null)
             {
-
                 var node = block.Parse(null, prev);
 
                 if (head == null) head = node;
@@ -126,11 +158,6 @@ public class Computer : MonoBehaviour
                 block = block.GetNext();
             }
 
-            if (this.Robot != null)
-            {
-                this.Robot.LoadProgram(head);
-            }
-            else Debug.Log("No robot associated");
             return head;
         }
 

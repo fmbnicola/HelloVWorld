@@ -11,7 +11,7 @@ namespace Block
         [SerializeField]
         private Instruction.ID Id = Instruction.ID.Drop;
 
-        private MaterialPropertyBlock propertyBlock;
+        private MaterialPropertyBlock PropertyBlock;
 
         // Start is called before the first frame update
         void Start()
@@ -27,14 +27,14 @@ namespace Block
 
         private void OnValidate()
         {
-            if (propertyBlock == null)
-                propertyBlock = new MaterialPropertyBlock();
+            if (this.PropertyBlock == null)
+                this.PropertyBlock = new MaterialPropertyBlock();
 
-            propertyBlock.SetInt("_Instruction", (int)Id);
+            this.PropertyBlock.SetInt("_Instruction", (int)Id);
 
             var symbol = transform.Find("Symbol");
             var renderer = symbol.GetComponent<Renderer>();
-            renderer.SetPropertyBlock(propertyBlock);
+            renderer.SetPropertyBlock(this.PropertyBlock);
         }
 
 
@@ -48,6 +48,11 @@ namespace Block
             this.Id = newType;
 
             this.OnValidate();
+        }
+
+        public Instruction.ID GetId()
+        {
+            return this.Id;
         }
     }
 
