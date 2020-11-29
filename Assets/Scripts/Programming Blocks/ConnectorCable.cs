@@ -86,6 +86,13 @@ public class ConnectorCable : MonoBehaviour
     }
 
 
+    public void OnDestroy()
+    {
+        Destroy(this.NodeParent);
+    }
+
+
+
     #region Nodes
     private ConnectorNode CreateNode(Vector3 position)
     {

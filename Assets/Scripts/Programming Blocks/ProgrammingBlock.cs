@@ -8,11 +8,16 @@ namespace Block
 {
     public class ProgrammingBlock : MonoBehaviour
     {
+        [SerializeField]
         protected List<Plug> Plugs;
+
+        [SerializeField]
         protected Socket Socket;
 
-    protected MaterialPropertyBlock propertyBlock;
-    public Renderer BlockRenderer;
+
+        protected MaterialPropertyBlock propertyBlock;
+        public Renderer BlockRenderer;
+
 
         [SerializeField]
         public bool Active;
@@ -29,39 +34,21 @@ namespace Block
 
         }
 
+
         private void Awake()
         {
             BlockRenderer = transform.GetComponent<Renderer>();
         }
 
 
-        public bool RegisterSocket(Socket socket)
+        private void OnDestroy()
         {
-
-            if (socket.transform.IsChildOf(this.transform) && this.Socket != null)
-            {
-                this.Socket = socket;
-                return true;
-            }
-            //adicionar erro caso nao seja null
-
-            return false;
+            foreach (var plug in this.Plugs)
+                Destroy(plug);
         }
 
 
-        public bool RegisterPlug(Plug plug)
-        {
-            if (this.Plugs == null) this.Plugs = new List<Plug>();
-
-            if (plug.transform.IsChildOf(this.transform) && !this.Plugs.Contains(plug))
-            {
-                this.Plugs.Add(plug);
-                return true;
-            }
-
-            return false;
-        }
-
+        #region Parsing
         public virtual ProgrammingBlock GetNext()
         {
             if (this.Plugs == null || this.Plugs.Count == 0) return null;
@@ -86,20 +73,46 @@ namespace Block
         {
             return null;
         }
+        #endregion
 
 
+        #region Activation
         public void Activate()
         {
-            if (!this.Active) this.Active = true;
+            if (this.Active) return; 
+                
+            this.Active = true;
+
+            foreach(var plug in this.Plugs)
+            {
+                plug.Activate();
+            }
+
+            if (this.Socket != null) this.Socket.Activate();
+
+            Debug.Log("Activated - " + this.name);
         }
 
 
         public void Deactivate()
         {
-            if (this.Active) this.Active = false;
+            if (!this.Active) return;
+            
+            this.Active = false;
+
+            foreach(var plug in this.Plugs)
+            {
+                plug.Deactivate();
+            }
+
+            if (this.Socket != null) this.Socket.Deactivate();
+
+            Debug.Log("Deactivated - " + this.name);
         }
+        #endregion
 
 
+        #region Highlight
         public virtual void Highlight()
         {
             if (propertyBlock == null)
@@ -121,5 +134,6 @@ namespace Block
 
             Debug.Log(this.ToString() + " remove highlight");
         }
+        #endregion
     }
 }

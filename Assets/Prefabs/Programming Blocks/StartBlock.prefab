@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb74e7cd3124994c82626f0d145b0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Plugs:
+  - {fileID: 7476480647534335536}
+  Socket: {fileID: 0}
   BlockRenderer: {fileID: 9082684704204857521}
   Active: 0
 --- !u!65 &1896451757012229441
@@ -204,7 +207,7 @@ MonoBehaviour:
   m_CustomReticle: {fileID: 0}
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_TrackPosition: 1
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 5
@@ -339,6 +342,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3039423467451253594}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7476480647534335536 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5615979952881456490, guid: 26b9c2e4f368f40459800ee91448df56,
+    type: 3}
+  m_PrefabInstance: {fileID: 3039423467451253594}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e141dc2b61f2e10438db25a144247516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3093376766618310586
 PrefabInstance:
   m_ObjectHideFlags: 0

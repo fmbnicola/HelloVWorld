@@ -98,8 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Block: {fileID: 0}
-  ConnectedTo: {fileID: 0}
-  OnSocket: 0
+  Socket: {fileID: 0}
   AnchorPoint: {fileID: 0}
 --- !u!54 &7475085070057004049
 Rigidbody:
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CustomReticle: {fileID: 0}
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_TrackPosition: 1
   m_SmoothPosition: 0
   m_SmoothPositionAmount: 5

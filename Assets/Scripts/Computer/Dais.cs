@@ -47,8 +47,6 @@ public class Dais : MonoBehaviour
             var vel = body.velocity;
             var ang = body.angularVelocity;
 
-            var block = body.GetComponent<ProgrammingBlock>();
-
             switch (this.State)
             {
                 default:
@@ -62,8 +60,6 @@ public class Dais : MonoBehaviour
 
                     if (ang.magnitude > 0)
                         body.angularVelocity *= rate;
-                    
-                    if (block != null) block.Activate();
                     break;
 
                 case Computer.States.Active:
@@ -74,48 +70,37 @@ public class Dais : MonoBehaviour
 
                     if (ang.magnitude > 0)
                         body.angularVelocity *= rate;
-
-                    if (block != null) block.Activate();
                     break;
             }
         }
     }
 
 
-    public void Release()
+    public void TurnOn()
     {
-        foreach(var body in this.Bodies)
+        this.ReleaseTime = -1;
+
+        foreach (var body in this.Bodies)
+        {
+            var block = body.GetComponent<ProgrammingBlock>();
+
+            if (block != null) block.Activate();
+        }
+    }
+
+    public void TurnOff()
+    {
+        foreach (var body in this.Bodies)
         {
             body.useGravity = true;
 
-            var socket = body.gameObject.GetComponentInChildren<Socket>();
-            if ( socket != null )
-            {
-                body.GetComponent<ProgrammingBlock>().Deactivate();
+            var block = body.GetComponent<ProgrammingBlock>();
 
-                var plug = socket.GetConnectedTo();
-                if ( plug != null)
-                {
-                    socket.GetComponent<SocketPlus>().socketActive = false;
-                    plug.Eject();
-                    socket.SetConnectedTo(null);
-                }
-            }
+            if (block != null) block.Deactivate();
         }
 
         this.State = Computer.States.Idle;
         this.ReleaseTime = Time.time;
-    }
-
-
-    public void TurnOn()
-    {
-        this.ReleaseTime = -1;
-        foreach (var body in this.Bodies)
-        {
-            var socket = body.gameObject.GetComponentInChildren<Socket>();
-            if ( socket != null )    socket.GetComponent<SocketPlus>().socketActive = true;
-        }
     }
 
 
@@ -125,10 +110,11 @@ public class Dais : MonoBehaviour
     }
 
 
-    #region Gravity Field
+    #region Holo-Field
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.attachedRigidbody      == null || 
+            collider.attachedRigidbody.mass <= 0.1f ||
             collider.attachedRigidbody.mass >= 10f  || 
             collider.transform.parent       != null) return;
 
@@ -136,6 +122,7 @@ public class Dais : MonoBehaviour
 
         this.BodyEntered(body);
     }
+
 
     private void OnTriggerExit(Collider collider)
     {
@@ -160,9 +147,19 @@ public class Dais : MonoBehaviour
 
         this.Bodies.Add(body);
 
-        if (body.name == "StartBlock")
-            this.Computer.StartBlock = body.gameObject.GetComponent<ProgrammingBlock>();
+        var block = body.GetComponent<ProgrammingBlock>();
+
+        if (block != null) this.BlockEntered(block);
     }
+
+    private void BlockEntered(ProgrammingBlock block)
+    {
+        block.Activate();
+
+        if (block.name.StartsWith("StartBlock"))
+            this.Computer.StartBlock = block;
+    }
+
 
     private void BodyExited(Rigidbody body)
     {
@@ -172,7 +169,16 @@ public class Dais : MonoBehaviour
 
         body.useGravity = true;
 
-        if (body.name == "StartBlock")
+        var block = body.GetComponent<ProgrammingBlock>();
+
+        if (block != null) this.BlockExited(block);
+    }
+
+    private void BlockExited(ProgrammingBlock block)
+    {
+        block.Deactivate();
+
+        if (block.name.StartsWith("StartBlock"))
             this.Computer.StartBlock = null;
     }
     #endregion

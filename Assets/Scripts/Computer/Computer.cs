@@ -92,9 +92,7 @@ public class Computer : MonoBehaviour
 
     public void Clear()
     {
-        //Clear Block Links
-
-        this.Dais.Release();
+        this.Dais.TurnOff();
     }
 
     public void ShutDown()

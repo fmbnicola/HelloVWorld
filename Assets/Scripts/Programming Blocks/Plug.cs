@@ -13,19 +13,21 @@ namespace Block
         protected ProgrammingBlock Block;
 
         [SerializeField]
-        private Socket ConnectedTo;
+        private Socket Socket;
 
-        public bool OnSocket;
 
-        private XRGrabInteractable Interactable;
+        // Interactable
+        private XRGrabInteractable Grabbable;
         private LayerMask Mask;
 
+
+        // Cable
         public Transform AnchorPoint;
 
         private ConnectorCable Cable;
 
-        private bool Active = true;
 
+        // State
         public enum States
         {
             OnAnchor,
@@ -39,142 +41,198 @@ namespace Block
         // Start is called before the first frame update
         void Start()
         {
-            this.Block.RegisterPlug(this);
-
             this.Cable = this.transform.Find("ConnectorCable").GetComponent<ConnectorCable>();
 
-            this.Mask = this.GetComponent<OffsetGrab>().interactionLayerMask;
-
-            this.OnSocket = false;
+            this.Grabbable = this.GetComponent<OffsetGrab>();
+            this.Mask = this.Grabbable.interactionLayerMask;
 
             this.State = States.OnAnchor;
         }
 
 
         // Update is called once per frame
-        void Update()
+        void LateUpdate()
         {
-            if (this.Block.Active != this.Active)
+            // If Plug is Active
+            if (this.Block.Active)
             {
-                if (this.Block.Active)
-                {
-                    this.Interactable = this.gameObject.AddComponent<OffsetGrab>();
+                if (this.Grabbable == null) this.MakeGrabbable();
 
-                    this.Interactable.interactionLayerMask = this.Mask;
-                }
-                else
-                {
-                    Destroy(this.GetComponent<OffsetGrab>());
-
-                    if (this.State == States.OnSocket)
-                    {
-                        this.Eject();
-                    }
-                    else if (this.State == States.Grabbed)
-                    {
-                        this.State = States.OnAnchor;
-                    }
-
-                    this.transform.position = this.AnchorPoint.position;
-                    this.transform.rotation = this.AnchorPoint.rotation;
-                }
-
-                this.Active = this.Block.Active;
-            }
-
-            if (this.Active)
-            {
                 switch (this.State)
                 {
                     default:
                         break;
 
+                    // And on its Anchor Point
                     case States.OnAnchor:
-                        if (this.Interactable.isSelected) this.State = States.Grabbed;
-                        if (this.OnSocket) this.State = States.OnSocket;
+                        if (this.Grabbable.isSelected) this.State = States.Grabbed;
+                        if (this.Socket != null) this.State = States.OnSocket;
 
+                        // Keep it on the Anchor Point
                         this.transform.position = this.AnchorPoint.position;
                         this.transform.rotation = this.AnchorPoint.rotation;
                         break;
 
+                    // And is on hand
                     case States.Grabbed:
-                        if (!this.Interactable.isSelected)
+                        // If it is let go
+                        if (!this.Grabbable.isSelected)
                         {
                             this.State = States.OnAnchor;
 
+                            // Return it the Anchor Point
                             this.transform.position = this.AnchorPoint.position;
                             this.transform.rotation = this.AnchorPoint.rotation;
 
+                            // Reset the Cable
                             this.Cable.Clear();
-                        }
-
-                        if (this.OnSocket)
-                        {
-                            this.State = States.OnSocket;
                         }
                         break;
 
+                    // And is on a Socket
                     case States.OnSocket:
-                        if (!this.OnSocket)
+                        // If it is Grabbed
+                        if (this.Grabbable.isSelected && this.Socket == null)
+                            this.State = States.Grabbed;
+                        else
                         {
-                            if (this.Interactable.isSelected) this.State = States.Grabbed;
-                            else
-                            {
-                                this.State = States.OnAnchor;
-
-                                this.Cable.Clear();
-                            }
+                            this.transform.position = this.Socket.transform.position;
+                            this.transform.rotation = this.Socket.transform.rotation;
                         }
                         break;
                 }
             }
+            // If Plug is Inactive
             else
             {
+                if(this.Grabbable != null) this.DestroyGrabbable();
+
+                // Keep it on Anchor Point
                 this.transform.position = this.AnchorPoint.position;
                 this.transform.rotation = this.AnchorPoint.rotation;
             }
         }
 
 
+        private void OnDestroy()
+        {
+            Destroy(this.Cable);
+        }
+
+
+        #region Getters
         public Socket GetConnectedTo()
         {
-            return this.ConnectedTo;
+            return this.Socket;
         }
 
         public ProgrammingBlock GetBlock()
         {
             return this.Block;
         }
+        #endregion
 
 
-        public void ConnectTo(Socket socket)
+        #region Activation
+        public void Activate()
         {
-            if (this.OnSocket == true || socket == null) return;
-
-            this.OnSocket = true;
-            this.ConnectedTo = socket;
+            this.MakeGrabbable();
         }
 
-        public void Disconnect()
+        public void Deactivate()
         {
-            this.OnSocket = false;
-            this.ConnectedTo = null;
+            if (this.Socket != null) this.Eject();
+            else this.DestroyGrabbable();
+
+            this.Cable.Clear();
 
             this.State = States.OnAnchor;
+        }
+        #endregion
 
-            this.transform.position = this.AnchorPoint.position;
-            this.transform.rotation = this.AnchorPoint.rotation;
+
+        #region Connect
+        public void ConnectTo(Socket socket)
+        {
+            if (this.Socket != null || socket == null) return;
+
+            this.ConnectedTo(socket);
+
+            socket.ConnectedTo(this);
+        }
+
+        public void ConnectedTo(Socket socket)
+        {
+            this.Socket = socket;
+
+            this.State = States.OnSocket;
+        }
+        #endregion
+
+
+        #region Disconnect
+        public void Disconnect()
+        {
+            var socket = this.Socket;
+
+            if (socket == null) return;
+
+            socket.Disconnected();
+
+            this.Disconnected();
+        }
+
+
+        public void Disconnected()
+        {
+            this.Socket = null;
+
+            if (this.Grabbable != null && this.Grabbable.isSelected) this.State = States.Grabbed;
+            else
+            {
+                this.State = States.OnAnchor;
+
+                this.transform.position = this.AnchorPoint.position;
+                this.transform.rotation = this.AnchorPoint.rotation;
+            }
 
             this.transform.SetParent(this.Block.transform);
 
             this.Cable.Clear();
         }
+        #endregion
+
+
+        #region Grabbable
+        public void MakeGrabbable()
+        {
+            if (this.Grabbable != null) return;
+
+            var grabbable = this.gameObject.AddComponent<OffsetGrab>();
+            if (grabbable == null) grabbable = this.gameObject.GetComponent<OffsetGrab>();
+
+            grabbable.interactionLayerMask = this.Mask;
+
+            this.Grabbable = grabbable;
+        }
+
+        public void DestroyGrabbable()
+        {
+            if (this.Grabbable == null) return;
+
+            Destroy(this.Grabbable);
+
+            this.Grabbable = null;
+        }
+        #endregion
 
 
         public void Eject()
         {
-            if (this.OnSocket)
+            if(this.Socket != null)
             {
+                this.DestroyGrabbable();
+
                 this.Disconnect();
             }
         }
