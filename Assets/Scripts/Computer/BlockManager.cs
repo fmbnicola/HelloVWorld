@@ -126,6 +126,8 @@ public class BlockManager : MonoBehaviour
 
     private SpawnEffect Effect = null;
 
+    public Image BackLight = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -185,6 +187,10 @@ public class BlockManager : MonoBehaviour
                 if (!this.ConditionParent.activeSelf) this.ConditionParent.SetActive(true);
                 break;
         }
+
+        if (this.State == States.Off) this.BackLight.color = Color.black;
+        else this.BackLight.color = new Color(0.0228f, 0.441f, 0.53f);
+
     }
 
 
@@ -423,6 +429,9 @@ public class BlockManager : MonoBehaviour
         var prefab = block.GetPrefab();
 
         var inst = Instantiate(prefab) as GameObject;
+
+        Effect.Initialize(inst);
+        Effect.Execute();
 
         inst.transform.position = this.SpawnPoint.position;
         inst.transform.rotation = this.SpawnPoint.rotation;

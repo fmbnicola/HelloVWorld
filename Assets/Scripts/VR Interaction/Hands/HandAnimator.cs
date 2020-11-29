@@ -10,6 +10,7 @@ public class HandAnimator : MonoBehaviour
 
     private Animator animator = null;
 
+    public GameObject PointerRay = null;
 
     // Finger Groups
     private readonly List<Finger> gripFingers = new List<Finger>()
@@ -35,6 +36,7 @@ public class HandAnimator : MonoBehaviour
         // Store Input
         CheckGrip();
         CheckPointer();
+        CheckThumb();
 
         // Smooth input values 
         SmoothFinger(gripFingers);
@@ -56,6 +58,40 @@ public class HandAnimator : MonoBehaviour
     {
         if (controller.inputDevice.TryGetFeatureValue(CommonUsages.trigger, out float pointerValue))
             SetFingerTargets(pointFingers, pointerValue);
+    }
+
+    private void CheckThumb()
+    {
+        var touching = false;
+        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool primary_touch_test))
+            touching |= primary_touch_test;
+        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool secondary_touch_test))
+            touching |= secondary_touch_test;
+        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primary2DAxisTouch, out bool axis_touch_test)) 
+            touching |= axis_touch_test;
+
+
+        bool gripping = false;
+        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
+            
+            gripping = (gripValue > 0.5f);
+
+        //Pointer ray
+        if (touching && gripping)
+        {
+            SetFingerTarget(pointFingers[1], 1.0f);
+
+            if (PointerRay != null) PointerRay.SetActive(true);
+        }
+        else
+        {
+            if (PointerRay != null && PointerRay.active) PointerRay.SetActive(false);
+        }
+    }
+
+    private void SetFingerTarget(Finger finger, float value)
+    {
+        finger.target = value;
     }
 
     private void SetFingerTargets(List<Finger> fingers, float value)
