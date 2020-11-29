@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GargageCan : MonoBehaviour
+public class BlockRetriever : MonoBehaviour
 {
     public BlockManager Manager;
 

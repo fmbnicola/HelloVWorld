@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlassMaterial
+  m_Name: TVGlassMaterial
   m_Shader: {fileID: 4800000, guid: 8f18478f25bbe6d4e8ce6128ba69a12b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
