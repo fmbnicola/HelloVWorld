@@ -104,7 +104,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 80fc82135c73e3d4bb9913145fceaac4, type: 2}
+  - {fileID: 2100000, guid: 23e5276b685bda5419e29759553a749a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424285344810636810}
   - component: {fileID: 424285344810636811}
+  - component: {fileID: 1492843388}
   m_Layer: 0
   m_Name: RetrieveSystem
   m_TagString: Untagged
@@ -185,10 +186,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Robot: {fileID: 0}
   DesiredPos: {fileID: 424285344116649945}
-  DesiredRot: {x: 0, y: 90, z: 0}
-  TeleportMaterial: {fileID: 2100000, guid: b902fdcd3813f3e439dfb16aa5580e2c, type: 2}
-  ParticleSystem: {fileID: 4364549086185804719, guid: 2ebb071841f14c5448fd931c026d232f,
+  DesiredRot: {x: 0, y: 180, z: 0}
+--- !u!114 &1492843388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424285344810636809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044701afe5b8cc54ea6510201411eda0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnMaterial: {fileID: 2100000, guid: b902fdcd3813f3e439dfb16aa5580e2c, type: 2}
+  particles: {fileID: 4364549086185804719, guid: 2ebb071841f14c5448fd931c026d232f,
     type: 3}
+  delayTime: 0
+  durationTime: 2
+  executing: 0
 --- !u!1 &424285344975461786
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +405,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6937798212651653648, guid: 58b1c59ba9d96ae42a04f6da12c9d705,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000002838316
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58b1c59ba9d96ae42a04f6da12c9d705, type: 3}
