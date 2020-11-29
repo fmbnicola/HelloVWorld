@@ -123,7 +123,7 @@ BoxCollider:
   m_GameObject: {fileID: 8184343067470008823}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -226,10 +226,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8184343067470008842}
     m_Modifications:
+    - target: {fileID: 1170977899428072216, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067480612090013654, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032242588255, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032322858886, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032618240966, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032737450645, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032743759142, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032826519818, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8767153032982971811, guid: 6ef2b644302d2ae4991f06cbdaf87052,
         type: 3}
       propertyPath: m_Name
       value: BlockDispenser
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153032982971811, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8767153032982971816, guid: 6ef2b644302d2ae4991f06cbdaf87052,
         type: 3}
@@ -336,26 +381,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8767153032982971816, guid: 6ef2b644302d2ae4991f06cbdaf87052,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.27624306
-      objectReference: {fileID: 0}
-    - target: {fileID: 8767153032982971816, guid: 6ef2b644302d2ae4991f06cbdaf87052,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.47619048
-      objectReference: {fileID: 0}
-    - target: {fileID: 8767153032982971816, guid: 6ef2b644302d2ae4991f06cbdaf87052,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8767153032982971817, guid: 6ef2b644302d2ae4991f06cbdaf87052,
         type: 3}
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 340293532262088360}
+    - target: {fileID: 8767153033344837826, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153033984635938, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153034149587645, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767153034288378458, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ef2b644302d2ae4991f06cbdaf87052, type: 3}
 --- !u!224 &1976456750940761719 stripped
