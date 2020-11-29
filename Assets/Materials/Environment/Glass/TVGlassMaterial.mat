@@ -63,10 +63,10 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Distance: 0.33
+    - _Distance: 0
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _FresnelStrength: 3
+    - _FresnelStrength: 5.01
     - _GlareIntensity: 0.1
     - _GlarePower: 25
     - _GlossMapScale: 0
@@ -75,14 +75,14 @@ Material:
     - _Length: 100
     - _MainStreakCompleteness: 0.53
     - _MainStreakIntensity: 0.38
-    - _MainStreakWidth: 0.7
+    - _MainStreakWidth: 0.633
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Offset: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SecondStreakOffset: 1.43
-    - _SecondStreakWidth: 0.33
+    - _SecondStreakWidth: 0.35
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
