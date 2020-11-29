@@ -28,7 +28,6 @@ public class BlockManager : MonoBehaviour
         [Header("Only used if Preafab is 'InstructionBlock'."), SerializeField]
         public Instruction.ID InstructionId;
 
-
         public int Stored;
 
 
@@ -125,6 +124,8 @@ public class BlockManager : MonoBehaviour
 
     private Vector2 Margins = new Vector2(0,0);
 
+    private SpawnEffect Effect = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -146,9 +147,9 @@ public class BlockManager : MonoBehaviour
             this.AvailableConditionBlocks[i] = block;
         }
 
+        Effect = transform.GetComponent<SpawnEffect>();
 
         this.InitGridDimensions();
-
 
         this.GenerateButtonsProgramming();
 
@@ -390,6 +391,9 @@ public class BlockManager : MonoBehaviour
         var prefab = block.GetPrefab();
 
         var inst = Instantiate(prefab) as GameObject;
+
+        Effect.Initialize(inst);
+        Effect.Execute();
 
         inst.transform.position = this.SpawnPoint.position;
         inst.transform.rotation = this.SpawnPoint.rotation;

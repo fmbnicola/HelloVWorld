@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnEffect : MonoBehaviour
 {
 
-    private Material spawnMaterial;
-    private GameObject particles;
+    public Material spawnMaterial;
+    public GameObject particles;
 
     public float delayTime = 0.0f; 
     public float durationTime = 2.0f;
@@ -21,11 +21,26 @@ public class SpawnEffect : MonoBehaviour
     private MaterialPropertyBlock propertyBlock;
     private List<Renderer> renderers = new List<Renderer>();
 
-    public void Initialize(GameObject obj, Material mat, GameObject part)
-    {   
+    public void Initialize(GameObject obj)
+    {
+        if(realObject != null)
+        {
+            realObject.SetActive(true);
+        }
+
+        if (fakeObject != null)
+        {
+            Destroy(fakeObject);
+            fakeObject = null;
+
+            renderers.Clear();
+            propertyBlock = null;
+
+            executing = false;
+            elapsedTime = 0.0f;
+        }
+
         realObject = obj;
-        spawnMaterial = mat;
-        particles = part;
 
         //make fake copy of gameobject
         SaveFakeObject();
@@ -82,6 +97,7 @@ public class SpawnEffect : MonoBehaviour
         particles = Instantiate(particles);
         particles.transform.parent = fakeObject.transform;
         particles.transform.position = fakeObject.transform.position;
+        particles.transform.localScale = Vector3.one;
 
         fakeObject.SetActive(false);
     }
@@ -131,7 +147,7 @@ public class SpawnEffect : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (executing)
+        if ( fakeObject != null && executing)
         {
             CopyTransform();
 
