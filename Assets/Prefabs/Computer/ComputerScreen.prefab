@@ -244,6 +244,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8184343067470008842}
     m_Modifications:
+    - target: {fileID: 4989044296605313506, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 4989044296605313506, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482587741773327850, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 6482587741773327850, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8767153032982971811, guid: 6ef2b644302d2ae4991f06cbdaf87052,
         type: 3}
       propertyPath: m_Name
@@ -359,6 +381,11 @@ PrefabInstance:
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 340293532262088360}
+    - target: {fileID: 8767153032982971817, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+        type: 3}
+      propertyPath: BackLight
+      value: 
+      objectReference: {fileID: 1976456749505708384}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ef2b644302d2ae4991f06cbdaf87052, type: 3}
 --- !u!1 &1976456750940761724 stripped
@@ -383,5 +410,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d47bbbeafaaafc9429837a1fe342755c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1976456749505708384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8767153034149587647, guid: 6ef2b644302d2ae4991f06cbdaf87052,
+    type: 3}
+  m_PrefabInstance: {fileID: 7117631119495752671}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
