@@ -24,7 +24,6 @@ namespace Robot.Actions
 
             this.AnimationController.FaceExcited(4);
 
-
             this.ProgramLine.Complete = true;
         }
 

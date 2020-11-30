@@ -21,9 +21,9 @@ namespace Block
         }
 
 
-        public override CodeNode Parse(CodeNode context, CodeNode next)
+        public override CodeNode Parse(CodeNode context, CodeNode prev)
         {
-            return new End(context, next, this);
+            return new End(context, prev, this);
         }
     }
 }

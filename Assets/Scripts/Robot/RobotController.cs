@@ -34,7 +34,6 @@ namespace Robot
         private CodeNode InitialLine { get; set; }
 
         private bool ProgramRunning { get; set; }
-        private bool InStartPosition { get; set; }
 
         public bool DebugProgram;
         public bool DebugInfo;
@@ -58,7 +57,7 @@ namespace Robot
 
             this.PrepareActionController();
 
-            this.PrepareForProgram();
+            this.ResetProgram();
 
             this.PrepareAnimationController();
         }
@@ -112,8 +111,13 @@ namespace Robot
             this.transform.rotation = Quaternion.Euler(desiredRotation);
         }
 
-        #endregion
 
+        public void Active(bool active)
+        {
+            this.gameObject.SetActive(active);
+        }
+
+        #endregion
 
 
         #region === Action Methods ===
@@ -129,34 +133,7 @@ namespace Robot
         #endregion
 
 
-
         #region === Program Methods ===
-
-        private void PrepareForProgram()
-        {
-            this.Program = null;
-            this.ProgramRunning = false;
-            this.InStartPosition = false;
-        }
-
-
-        public void AtStartPosition(Vector3 startPos, Vector3 startRot)
-        {
-            if (!this.ProgramRunning)
-            {
-                this.SummonRobot(startPos, startRot);
-                this.InStartPosition = true;
-
-                this.StartProgram();
-            }
-        }
-
-
-        public void LeaveStartPosition()
-        {
-            this.InStartPosition = false;
-        }
-
 
         public void LoadProgram(CodeNode codeHead)
         {
@@ -175,10 +152,7 @@ namespace Robot
                 Debug.Log("Program Loaded");
             }
 
-            if (this.InStartPosition)
-            {
-                this.StartProgram();
-            }
+            this.StartProgram();
         }
 
 
@@ -191,10 +165,6 @@ namespace Robot
                     Debug.Log("Progam Started");
                 }
 
-                //CodeNode firstLine = ProgramHelper.InitialProgramLine();
-                //firstLine.Next = this.Program;
-                //this.Program = firstLine;
-
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
             }
@@ -204,14 +174,7 @@ namespace Robot
         public void ResetProgram()
         {
             this.ProgramRunning = false;
-            this.Program = this.InitialLine;
-
-            if (this.DebugProgram && this.Program == null)
-            {
-                this.Program = ProgramHelper.DebugProgram();
-
-                Debug.Log("Program Reset");
-            }
+            this.Program = null;
         }
 
 
