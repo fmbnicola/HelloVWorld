@@ -34,7 +34,7 @@ namespace Robot
         private CodeNode InitialLine { get; set; }
 
         private bool ProgramRunning { get; set; }
-        private bool InStartPosition { get; set; }
+        //private bool InStartPosition { get; set; }
 
         public bool DebugProgram;
         public bool DebugInfo;
@@ -140,26 +140,26 @@ namespace Robot
         {
             this.Program = null;
             this.ProgramRunning = false;
-            this.InStartPosition = false;
+            //this.InStartPosition = false;
         }
 
 
-        public void AtStartPosition(Vector3 startPos, Vector3 startRot)
-        {
-            if (!this.ProgramRunning)
-            {
-                this.SummonRobot(startPos, startRot);
-                this.InStartPosition = true;
+        //public void AtStartPosition(Vector3 startPos, Vector3 startRot)
+        //{
+        //    if (!this.ProgramRunning)
+        //    {
+        //        this.SummonRobot(startPos, startRot);
+        //        this.InStartPosition = true;
 
-                this.StartProgram();
-            }
-        }
+        //        this.StartProgram();
+        //    }
+        //}
 
 
-        public void LeaveStartPosition()
-        {
-            this.InStartPosition = false;
-        }
+        //public void LeaveStartPosition()
+        //{
+        //    this.InStartPosition = false;
+        //}
 
 
         public void LoadProgram(CodeNode codeHead)
@@ -179,10 +179,11 @@ namespace Robot
                 Debug.Log("Program Loaded");
             }
 
-            if (this.InStartPosition)
-            {
-                this.StartProgram();
-            }
+            //if (this.InStartPosition)
+            //{
+            //    this.StartProgram();
+            //}
+            this.StartProgram();
         }
 
 

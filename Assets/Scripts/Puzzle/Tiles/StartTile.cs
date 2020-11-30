@@ -72,7 +72,7 @@ namespace Puzzle.Tiles
             }
 
             this.Barrier.Open();
-            this.Robot.AtStartPosition(this.StartPos, this.transform.rotation.eulerAngles);
+            //this.Robot.AtStartPosition(this.StartPos, this.transform.rotation.eulerAngles);
 
             if (this.DebugInfo)
             {
@@ -83,7 +83,7 @@ namespace Puzzle.Tiles
 
         public void LeaveStart()
         {
-            this.Robot.LeaveStartPosition();
+            //this.Robot.LeaveStartPosition();
             this.Robot = null;
 
             this.Barrier.Close();
