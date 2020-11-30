@@ -33,7 +33,7 @@ namespace Robot
         private CodeNode Program { get; set; }
         private CodeNode InitialLine { get; set; }
 
-        private bool ProgramRunning { get; set; }
+        public bool ProgramRunning { get; set; }
 
         public bool DebugProgram;
         public bool DebugInfo;
@@ -115,6 +115,12 @@ namespace Robot
         public void Active(bool active)
         {
             this.gameObject.SetActive(active);
+        }
+
+
+        public bool Active()
+        {
+            return this.gameObject.activeSelf;
         }
 
         #endregion

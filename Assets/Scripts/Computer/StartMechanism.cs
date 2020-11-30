@@ -25,6 +25,8 @@ namespace ComputerElements
         
         private SpawnEffect Effect { get; set; }
 
+        private bool RobotFullyInScene { get; set; }
+
         #endregion
 
 
@@ -44,18 +46,24 @@ namespace ComputerElements
             this.DefineDesiredPos();
 
             this.InitializeEffect();
-
-            this.Robot.Active(false);
         }
 
 
         // Update is called once per frame
         void Update()
         {
+            // Robot ready to start
             if (this.Program != null && !this.Effect.executing)
             {
+                this.RobotFullyInScene = true;
                 this.Robot.LoadProgram(this.Program);
                 this.Program = null;
+            }
+
+            // Robot ended execution
+            else if (this.RobotFullyInScene && !this.Robot.ProgramRunning)
+            {
+                this.MakeRobotDesapear();
             }
         }
 
@@ -81,13 +89,16 @@ namespace ComputerElements
         {
             this.Effect = this.transform.GetComponent<SpawnEffect>();
             this.Effect.Initialize(this.Robot.gameObject);
+
+            this.RobotFullyInScene = false;
+            this.Robot.Active(false);
         }
 
         #endregion
 
 
         #region === Execution Methods ===
-        
+
         public void StartProgram(CodeNode program)
         {
             this.Program = program;
@@ -99,7 +110,12 @@ namespace ComputerElements
         }
 
 
-        private void MakeRobotDesapear() { 
+        private void MakeRobotDesapear() 
+        {
+            //this.Effect.Execute();
+
+            this.Robot.Active(false);
+            this.RobotFullyInScene = false;
         }
         
         #endregion
