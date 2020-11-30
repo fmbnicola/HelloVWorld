@@ -167,6 +167,7 @@ namespace Robot
 
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);
+                this.Program.Highlight();
             }
         }
 
