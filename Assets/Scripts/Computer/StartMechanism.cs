@@ -55,6 +55,7 @@ namespace ComputerElements
             if (this.Program != null && !this.Effect.executing)
             {
                 this.Robot.LoadProgram(this.Program);
+                this.Program = null;
             }
         }
 
@@ -95,6 +96,10 @@ namespace ComputerElements
 
             this.Robot.SummonRobot(this.DesiredPos, this.DesiredRot);
             this.Effect.Execute();
+        }
+
+
+        private void MakeRobotDesapear() { 
         }
         
         #endregion

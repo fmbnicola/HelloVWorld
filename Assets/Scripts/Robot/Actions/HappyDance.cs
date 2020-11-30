@@ -10,7 +10,7 @@ namespace Robot.Actions
     {
         public HappyDance(RobotController robot, End end) : base(robot, end)
         {
-            this.ProgramLine.Next = ProgramHelper.HappyDance(this.ProgramLine.Block);
+            //this.ProgramLine.Next = ProgramHelper.HappyDance(this.ProgramLine.Block);
         }
 
 
@@ -23,7 +23,6 @@ namespace Robot.Actions
             }
 
             this.AnimationController.FaceExcited(4);
-
 
             this.ProgramLine.Complete = true;
         }

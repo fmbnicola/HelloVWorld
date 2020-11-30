@@ -155,7 +155,6 @@ public class Computer : MonoBehaviour
                 else
                 {
                     prev.Next = node;
-
                 }
 
                 prev = node;

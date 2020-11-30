@@ -205,14 +205,15 @@ namespace Robot
         public void ResetProgram()
         {
             this.ProgramRunning = false;
-            this.Program = this.InitialLine;
+            this.Program = null;
+            //this.Program = this.InitialLine;
 
-            if (this.DebugProgram && this.Program == null)
-            {
-                this.Program = ProgramHelper.DebugProgram();
+            //if (this.DebugProgram && this.Program == null)
+            //{
+            //    this.Program = ProgramHelper.DebugProgram();
 
-                Debug.Log("Program Reset");
-            }
+            //    Debug.Log("Program Reset");
+            //}
         }
 
 
