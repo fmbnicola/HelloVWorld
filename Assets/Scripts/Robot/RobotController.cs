@@ -112,8 +112,13 @@ namespace Robot
             this.transform.rotation = Quaternion.Euler(desiredRotation);
         }
 
-        #endregion
 
+        public void Active(bool active)
+        {
+            this.gameObject.SetActive(active);
+        }
+
+        #endregion
 
 
         #region === Action Methods ===
@@ -127,7 +132,6 @@ namespace Robot
         }
 
         #endregion
-
 
 
         #region === Program Methods ===
@@ -190,10 +194,6 @@ namespace Robot
                 {
                     Debug.Log("Progam Started");
                 }
-
-                //CodeNode firstLine = ProgramHelper.InitialProgramLine();
-                //firstLine.Next = this.Program;
-                //this.Program = firstLine;
 
                 this.ProgramRunning = true;
                 this.Program.Execute(this.ActionController);

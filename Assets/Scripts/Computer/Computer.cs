@@ -4,9 +4,11 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine;
 
-using Robot;
+//using Robot;
 using SudoProgram;
 using Block;
+using ComputerElements;
+
 
 
 public class Computer : MonoBehaviour
@@ -17,10 +19,11 @@ public class Computer : MonoBehaviour
 
     public Dais Dais;
 
-    public RobotController Robot;
+    //public RobotController Robot;
 
     private ComputerAnimator Animator;
 
+    public StartMechanism StartMechanism;
 
     public enum States
     {
@@ -79,16 +82,20 @@ public class Computer : MonoBehaviour
         }
     }
 
+
     public void Save()
     {
         var program = this.Parse();
 
-        if (this.Robot != null)
-        {
-            this.Robot.LoadProgram(program);
-        }
-        else Debug.Log("No robot associated");
+        //if (this.Robot != null)
+        //{
+        //    this.Robot.LoadProgram(program);
+        //}
+        //else Debug.Log("No robot associated");
+
+        this.StartMechanism.StartProgram(program);
     }
+
 
     public void Clear()
     {

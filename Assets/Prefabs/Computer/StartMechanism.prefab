@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531109330541360610}
+  - component: {fileID: 562296027213088531}
+  - component: {fileID: 8626397739365093072}
   m_Layer: 0
   m_Name: StartMechanism
   m_TagString: Untagged
@@ -33,6 +35,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &562296027213088531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531109330541360609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5430870435a0e9a4c8741dfe954de770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Robot: {fileID: 5911127209501197226}
+  DesiredRot: {x: 0, y: 0, z: 0}
+--- !u!114 &8626397739365093072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531109330541360609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044701afe5b8cc54ea6510201411eda0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnMaterial: {fileID: 2100000, guid: b902fdcd3813f3e439dfb16aa5580e2c, type: 2}
+  particles: {fileID: 4364549086185804719, guid: 2ebb071841f14c5448fd931c026d232f,
+    type: 3}
+  delayTime: 0
+  durationTime: 2
+  executing: 0
 --- !u!1 &3317333796236939197
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,3 +265,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2775977459126189941}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5911127209501197226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8398872638906318047, guid: 0b5d523063771044f8a8c60d3387df8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2775977459126189941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb00429a8ece0a44be0076b952007ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
