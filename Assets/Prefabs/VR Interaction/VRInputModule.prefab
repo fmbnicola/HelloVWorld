@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383651222324018104}
   - component: {fileID: 1383651222324018105}
-  - component: {fileID: 1383651222324018110}
+  - component: {fileID: 1805909159}
   m_Layer: 0
   m_Name: VRInputModule
   m_TagString: Untagged
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!114 &1383651222324018110
+--- !u!114 &1805909159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,10 +56,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383651222324018111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd8e3216a680ef84b9bef44ea893cd66, type: 3}
+  m_Script: {fileID: 11500000, guid: ab68ce6587aab0146b8dabefbd806791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  Button: 2
-  Controller: {fileID: 0}
-  Target: {fileID: 0}
+  clickSpeed: 0.3
+  moveDeadzone: 0.6
+  repeatDelay: 0.5
+  repeatRate: 0.1
+  trackedDeviceDragThresholdMultiplier: 2
+  m_MaxTrackedDeviceRaycastDistance: 1000
+  m_EnableXRInput: 1
+  m_EnableMouseInput: 1
+  m_EnableTouchInput: 1
