@@ -68,14 +68,8 @@ public class HandAnimator : MonoBehaviour
         if (controller.inputDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondary_touch_test))
             touching |= secondary_touch_test;
 
-
-        bool gripping = false;
-        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
-            
-            gripping = (gripValue > 0.5f);
-
         //Pointer ray
-        if (touching && gripping)
+        if (touching)
         {
             SetFingerTarget(pointFingers[1], 1.0f);
 

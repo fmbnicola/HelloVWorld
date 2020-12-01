@@ -35,12 +35,6 @@ namespace Block
         }
 
 
-        private void Awake()
-        {
-            BlockRenderer = transform.GetComponent<Renderer>();
-        }
-
-
         private void OnDestroy()
         {
             foreach (var plug in this.Plugs)
