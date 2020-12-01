@@ -63,12 +63,10 @@ public class HandAnimator : MonoBehaviour
     private void CheckThumb()
     {
         var touching = false;
-        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool primary_touch_test))
+        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primary_touch_test))
             touching |= primary_touch_test;
-        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool secondary_touch_test))
+        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondary_touch_test))
             touching |= secondary_touch_test;
-        if (controller.inputDevice.TryGetFeatureValue(CommonUsages.primary2DAxisTouch, out bool axis_touch_test)) 
-            touching |= axis_touch_test;
 
 
         bool gripping = false;

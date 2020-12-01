@@ -109,7 +109,7 @@ PrefabInstance:
     - target: {fileID: 8615569817459953248, guid: 5abc1651b93292a4c8b68f7b9fc49e81,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5abc1651b93292a4c8b68f7b9fc49e81, type: 3}
@@ -240,6 +240,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2936419475825464812}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4263364619106268286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1435173273361031570, guid: 46805a10d4f8f6d48bc729550b5a1a42,
+    type: 3}
+  m_PrefabInstance: {fileID: 2936419475825464812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7721085568579404419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,6 +258,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 8341821474658811826}
+    - target: {fileID: 573763192728940800, guid: 142de5c27643e9a4fa3f29573aedd1f9,
+        type: 3}
+      propertyPath: PointerRay
+      value: 
+      objectReference: {fileID: 4263364619106268286}
     - target: {fileID: 573763192728940802, guid: 142de5c27643e9a4fa3f29573aedd1f9,
         type: 3}
       propertyPath: m_Name
