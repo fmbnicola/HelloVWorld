@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class OffsetGrab : XRGrabInteractable
@@ -55,7 +56,7 @@ public class OffsetGrab : XRGrabInteractable
         var delColliders = new List<int>();
         var ind = 0;
 
-        foreach (var col in m_Colliders)
+        foreach (var col in colliders)
         {
             if (col == null)
             {
@@ -69,7 +70,7 @@ public class OffsetGrab : XRGrabInteractable
             ind++;
         }
 
-        foreach (var i in delColliders) m_Colliders.RemoveAt(i);
+        foreach (var i in delColliders) colliders.RemoveAt(i);
 
         return minDistanceSqr;
     }
