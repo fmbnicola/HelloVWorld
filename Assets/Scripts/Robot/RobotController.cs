@@ -151,7 +151,7 @@ namespace Robot
                 this.Program = ProgramHelper.DebugProgram();
             }
 
-            this.AnimationController.FaceExcited();
+            //this.AnimationController.FaceExcited();
 
             if (this.DebugInfo)
             {

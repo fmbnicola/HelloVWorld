@@ -6,11 +6,12 @@ Shader "ValueSymbolShader"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin]_Value("Value", Range( 0 , 2)) = 0
+		[ASEBegin]_Value("Value", Range( 0 , 3)) = 0
 		_Color0("Color 0", Color) = (0,0.9504251,0.9811321,0)
-		_Equals("Equals", 2D) = "white" {}
-		_NotEquals("NotEquals", 2D) = "white" {}
-		[ASEEnd]_LessThan("LessThan", 2D) = "white" {}
+		_Empty("Empty", 2D) = "white" {}
+		_Box("Box", 2D) = "white" {}
+		_Wall("Wall", 2D) = "white" {}
+		[ASEEnd]_Goal("Goal", 2D) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 		//_TransmissionShadow( "Transmission Shadow", Range( 0, 1 ) ) = 0.5
@@ -251,13 +252,15 @@ Shader "ValueSymbolShader"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _Equals;
-			sampler2D _NotEquals;
-			sampler2D _LessThan;
+			sampler2D _Empty;
+			sampler2D _Box;
+			sampler2D _Wall;
+			sampler2D _Goal;
 			UNITY_INSTANCING_BUFFER_START(ValueSymbolShader)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _Equals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _NotEquals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _LessThan_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Empty_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Box_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Wall_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Goal_ST)
 				UNITY_DEFINE_INSTANCED_PROP(float, _Value)
 			UNITY_INSTANCING_BUFFER_END(ValueSymbolShader)
 
@@ -449,16 +452,19 @@ Shader "ValueSymbolShader"
 	
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 _Equals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Equals_ST);
-				float2 uv_Equals = IN.ase_texcoord7.xy * _Equals_ST_Instance.xy + _Equals_ST_Instance.zw;
-				float4 _NotEquals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_NotEquals_ST);
-				float2 uv_NotEquals = IN.ase_texcoord7.xy * _NotEquals_ST_Instance.xy + _NotEquals_ST_Instance.zw;
+				float4 _Empty_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Empty_ST);
+				float2 uv_Empty = IN.ase_texcoord7.xy * _Empty_ST_Instance.xy + _Empty_ST_Instance.zw;
+				float4 _Box_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Box_ST);
+				float2 uv_Box = IN.ase_texcoord7.xy * _Box_ST_Instance.xy + _Box_ST_Instance.zw;
 				float _Value_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Value);
-				float4 lerpResult28 = lerp( tex2D( _Equals, uv_Equals ) , tex2D( _NotEquals, uv_NotEquals ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
-				float4 _LessThan_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_LessThan_ST);
-				float2 uv_LessThan = IN.ase_texcoord7.xy * _LessThan_ST_Instance.xy + _LessThan_ST_Instance.zw;
-				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _LessThan, uv_LessThan ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
-				float4 temp_output_41_0 = ( _Color0 * lerpResult42.a );
+				float4 lerpResult28 = lerp( tex2D( _Empty, uv_Empty ) , tex2D( _Box, uv_Box ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
+				float4 _Wall_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Wall_ST);
+				float2 uv_Wall = IN.ase_texcoord7.xy * _Wall_ST_Instance.xy + _Wall_ST_Instance.zw;
+				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _Wall, uv_Wall ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
+				float4 _Goal_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Goal_ST);
+				float2 uv_Goal = IN.ase_texcoord7.xy * _Goal_ST_Instance.xy + _Goal_ST_Instance.zw;
+				float4 lerpResult50 = lerp( lerpResult42 , tex2D( _Goal, uv_Goal ) , ( _Value_Instance == 3.0 ? 1.0 : 0.0 ));
+				float4 temp_output_41_0 = ( _Color0 * lerpResult50.a );
 				
 				float3 Albedo = temp_output_41_0.rgb;
 				float3 Normal = float3(0, 0, 1);
@@ -467,7 +473,7 @@ Shader "ValueSymbolShader"
 				float Metallic = 0;
 				float Smoothness = 0.5;
 				float Occlusion = 1;
-				float Alpha = lerpResult42.a;
+				float Alpha = lerpResult50.a;
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 				float3 BakedGI = 0;
@@ -691,13 +697,15 @@ Shader "ValueSymbolShader"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _Equals;
-			sampler2D _NotEquals;
-			sampler2D _LessThan;
+			sampler2D _Empty;
+			sampler2D _Box;
+			sampler2D _Wall;
+			sampler2D _Goal;
 			UNITY_INSTANCING_BUFFER_START(ValueSymbolShader)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _Equals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _NotEquals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _LessThan_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Empty_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Box_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Wall_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Goal_ST)
 				UNITY_DEFINE_INSTANCED_PROP(float, _Value)
 			UNITY_INSTANCING_BUFFER_END(ValueSymbolShader)
 
@@ -842,17 +850,20 @@ Shader "ValueSymbolShader"
 					#endif
 				#endif
 
-				float4 _Equals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Equals_ST);
-				float2 uv_Equals = IN.ase_texcoord2.xy * _Equals_ST_Instance.xy + _Equals_ST_Instance.zw;
-				float4 _NotEquals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_NotEquals_ST);
-				float2 uv_NotEquals = IN.ase_texcoord2.xy * _NotEquals_ST_Instance.xy + _NotEquals_ST_Instance.zw;
+				float4 _Empty_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Empty_ST);
+				float2 uv_Empty = IN.ase_texcoord2.xy * _Empty_ST_Instance.xy + _Empty_ST_Instance.zw;
+				float4 _Box_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Box_ST);
+				float2 uv_Box = IN.ase_texcoord2.xy * _Box_ST_Instance.xy + _Box_ST_Instance.zw;
 				float _Value_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Value);
-				float4 lerpResult28 = lerp( tex2D( _Equals, uv_Equals ) , tex2D( _NotEquals, uv_NotEquals ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
-				float4 _LessThan_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_LessThan_ST);
-				float2 uv_LessThan = IN.ase_texcoord2.xy * _LessThan_ST_Instance.xy + _LessThan_ST_Instance.zw;
-				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _LessThan, uv_LessThan ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
+				float4 lerpResult28 = lerp( tex2D( _Empty, uv_Empty ) , tex2D( _Box, uv_Box ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
+				float4 _Wall_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Wall_ST);
+				float2 uv_Wall = IN.ase_texcoord2.xy * _Wall_ST_Instance.xy + _Wall_ST_Instance.zw;
+				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _Wall, uv_Wall ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
+				float4 _Goal_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Goal_ST);
+				float2 uv_Goal = IN.ase_texcoord2.xy * _Goal_ST_Instance.xy + _Goal_ST_Instance.zw;
+				float4 lerpResult50 = lerp( lerpResult42 , tex2D( _Goal, uv_Goal ) , ( _Value_Instance == 3.0 ? 1.0 : 0.0 ));
 				
-				float Alpha = lerpResult42.a;
+				float Alpha = lerpResult50.a;
 				float AlphaClipThreshold = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -950,13 +961,15 @@ Shader "ValueSymbolShader"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _Equals;
-			sampler2D _NotEquals;
-			sampler2D _LessThan;
+			sampler2D _Empty;
+			sampler2D _Box;
+			sampler2D _Wall;
+			sampler2D _Goal;
 			UNITY_INSTANCING_BUFFER_START(ValueSymbolShader)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _Equals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _NotEquals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _LessThan_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Empty_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Box_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Wall_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Goal_ST)
 				UNITY_DEFINE_INSTANCED_PROP(float, _Value)
 			UNITY_INSTANCING_BUFFER_END(ValueSymbolShader)
 
@@ -1107,21 +1120,24 @@ Shader "ValueSymbolShader"
 					#endif
 				#endif
 
-				float4 _Equals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Equals_ST);
-				float2 uv_Equals = IN.ase_texcoord2.xy * _Equals_ST_Instance.xy + _Equals_ST_Instance.zw;
-				float4 _NotEquals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_NotEquals_ST);
-				float2 uv_NotEquals = IN.ase_texcoord2.xy * _NotEquals_ST_Instance.xy + _NotEquals_ST_Instance.zw;
+				float4 _Empty_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Empty_ST);
+				float2 uv_Empty = IN.ase_texcoord2.xy * _Empty_ST_Instance.xy + _Empty_ST_Instance.zw;
+				float4 _Box_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Box_ST);
+				float2 uv_Box = IN.ase_texcoord2.xy * _Box_ST_Instance.xy + _Box_ST_Instance.zw;
 				float _Value_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Value);
-				float4 lerpResult28 = lerp( tex2D( _Equals, uv_Equals ) , tex2D( _NotEquals, uv_NotEquals ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
-				float4 _LessThan_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_LessThan_ST);
-				float2 uv_LessThan = IN.ase_texcoord2.xy * _LessThan_ST_Instance.xy + _LessThan_ST_Instance.zw;
-				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _LessThan, uv_LessThan ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
-				float4 temp_output_41_0 = ( _Color0 * lerpResult42.a );
+				float4 lerpResult28 = lerp( tex2D( _Empty, uv_Empty ) , tex2D( _Box, uv_Box ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
+				float4 _Wall_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Wall_ST);
+				float2 uv_Wall = IN.ase_texcoord2.xy * _Wall_ST_Instance.xy + _Wall_ST_Instance.zw;
+				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _Wall, uv_Wall ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
+				float4 _Goal_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Goal_ST);
+				float2 uv_Goal = IN.ase_texcoord2.xy * _Goal_ST_Instance.xy + _Goal_ST_Instance.zw;
+				float4 lerpResult50 = lerp( lerpResult42 , tex2D( _Goal, uv_Goal ) , ( _Value_Instance == 3.0 ? 1.0 : 0.0 ));
+				float4 temp_output_41_0 = ( _Color0 * lerpResult50.a );
 				
 				
 				float3 Albedo = temp_output_41_0.rgb;
 				float3 Emission = temp_output_41_0.rgb;
-				float Alpha = lerpResult42.a;
+				float Alpha = lerpResult50.a;
 				float AlphaClipThreshold = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -1224,13 +1240,15 @@ Shader "ValueSymbolShader"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _Equals;
-			sampler2D _NotEquals;
-			sampler2D _LessThan;
+			sampler2D _Empty;
+			sampler2D _Box;
+			sampler2D _Wall;
+			sampler2D _Goal;
 			UNITY_INSTANCING_BUFFER_START(ValueSymbolShader)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _Equals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _NotEquals_ST)
-				UNITY_DEFINE_INSTANCED_PROP(float4, _LessThan_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Empty_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Box_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Wall_ST)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _Goal_ST)
 				UNITY_DEFINE_INSTANCED_PROP(float, _Value)
 			UNITY_INSTANCING_BUFFER_END(ValueSymbolShader)
 
@@ -1378,20 +1396,23 @@ Shader "ValueSymbolShader"
 					#endif
 				#endif
 
-				float4 _Equals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Equals_ST);
-				float2 uv_Equals = IN.ase_texcoord2.xy * _Equals_ST_Instance.xy + _Equals_ST_Instance.zw;
-				float4 _NotEquals_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_NotEquals_ST);
-				float2 uv_NotEquals = IN.ase_texcoord2.xy * _NotEquals_ST_Instance.xy + _NotEquals_ST_Instance.zw;
+				float4 _Empty_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Empty_ST);
+				float2 uv_Empty = IN.ase_texcoord2.xy * _Empty_ST_Instance.xy + _Empty_ST_Instance.zw;
+				float4 _Box_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Box_ST);
+				float2 uv_Box = IN.ase_texcoord2.xy * _Box_ST_Instance.xy + _Box_ST_Instance.zw;
 				float _Value_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Value);
-				float4 lerpResult28 = lerp( tex2D( _Equals, uv_Equals ) , tex2D( _NotEquals, uv_NotEquals ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
-				float4 _LessThan_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_LessThan_ST);
-				float2 uv_LessThan = IN.ase_texcoord2.xy * _LessThan_ST_Instance.xy + _LessThan_ST_Instance.zw;
-				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _LessThan, uv_LessThan ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
-				float4 temp_output_41_0 = ( _Color0 * lerpResult42.a );
+				float4 lerpResult28 = lerp( tex2D( _Empty, uv_Empty ) , tex2D( _Box, uv_Box ) , ( _Value_Instance == 1.0 ? 1.0 : 0.0 ));
+				float4 _Wall_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Wall_ST);
+				float2 uv_Wall = IN.ase_texcoord2.xy * _Wall_ST_Instance.xy + _Wall_ST_Instance.zw;
+				float4 lerpResult42 = lerp( lerpResult28 , tex2D( _Wall, uv_Wall ) , ( _Value_Instance == 2.0 ? 1.0 : 0.0 ));
+				float4 _Goal_ST_Instance = UNITY_ACCESS_INSTANCED_PROP(ValueSymbolShader,_Goal_ST);
+				float2 uv_Goal = IN.ase_texcoord2.xy * _Goal_ST_Instance.xy + _Goal_ST_Instance.zw;
+				float4 lerpResult50 = lerp( lerpResult42 , tex2D( _Goal, uv_Goal ) , ( _Value_Instance == 3.0 ? 1.0 : 0.0 ));
+				float4 temp_output_41_0 = ( _Color0 * lerpResult50.a );
 				
 				
 				float3 Albedo = temp_output_41_0.rgb;
-				float Alpha = lerpResult42.a;
+				float Alpha = lerpResult50.a;
 				float AlphaClipThreshold = 0.5;
 
 				half4 color = half4( Albedo, Alpha );
@@ -1413,37 +1434,44 @@ Shader "ValueSymbolShader"
 }
 /*ASEBEGIN
 Version=18600
-0;6;1266;733;1038.916;-362.9891;1;True;False
-Node;AmplifyShaderEditor.RangedFloatNode;22;-457.0776,887.1467;Inherit;False;InstancedProperty;_Value;Value;0;0;Create;True;0;0;False;0;False;0;0;0;2;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;18;-923.6343,-76.24682;Inherit;True;Property;_Equals;Equals;2;0;Create;True;0;0;False;0;False;-1;a96b52f3f2de5ba43a1b9e8bdc338db1;a7fd6954383577b44b496418b477de97;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;25;-929.7421,171.6191;Inherit;True;Property;_NotEquals;NotEquals;3;0;Create;True;0;0;False;0;False;-1;None;e2374ecb5c09ea0409a727cb6214724c;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+422;111;1159;908;2146.061;282.4081;3.313793;True;False
+Node;AmplifyShaderEditor.RangedFloatNode;22;-856.5167,1067.094;Inherit;False;InstancedProperty;_Value;Value;0;0;Create;True;0;0;False;0;False;0;0;0;3;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;25;-929.7421,171.6191;Inherit;True;Property;_Box;Box;3;0;Create;True;0;0;False;0;False;-1;None;e2374ecb5c09ea0409a727cb6214724c;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;18;-923.6343,-76.24682;Inherit;True;Property;_Empty;Empty;2;0;Create;True;0;0;False;0;False;-1;a96b52f3f2de5ba43a1b9e8bdc338db1;a7fd6954383577b44b496418b477de97;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.Compare;46;-28.27338,291.6821;Inherit;False;0;4;0;FLOAT;0;False;1;FLOAT;1;False;2;FLOAT;1;False;3;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;43;-916.5161,433.6331;Inherit;True;Property;_LessThan;LessThan;4;0;Create;True;0;0;False;0;False;-1;None;1000869f3e5176845843359e6e78ef95;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.LerpOp;28;178.4674,176.3938;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.Compare;47;347.4385,555.5248;Inherit;False;0;4;0;FLOAT;3;False;1;FLOAT;2;False;2;FLOAT;1;False;3;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;43;-916.5161,433.6331;Inherit;True;Property;_Wall;Wall;4;0;Create;True;0;0;False;0;False;-1;None;1000869f3e5176845843359e6e78ef95;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.LerpOp;28;178.4674,176.3938;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.LerpOp;42;537.0538,424.7477;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.BreakToComponentsNode;38;911.609,1347.365;Inherit;False;COLOR;1;0;COLOR;0,0,0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
-Node;AmplifyShaderEditor.ColorNode;40;959.8294,787.4536;Inherit;False;Property;_Color0;Color 0;1;0;Create;True;0;0;False;0;False;0,0.9504251,0.9811321,0;0.9800716,0.6509804,1,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;41;1191.781,1099.601;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;12;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;14;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;13;1486.686,1269.35;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;2;ValueSymbolShader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;17;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;0;True;1;5;False;-1;10;False;-1;1;1;False;-1;10;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;2;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;36;Workflow;1;Surface;1;  Refraction Model;0;  Blend;0;Two Sided;1;Fragment Normal Space,InvertActionOnDeselection;0;Transmission;0;  Transmission Shadow;0.5,False,-1;Translucency;0;  Translucency Strength;1,False,-1;  Normal Distortion;0.5,False,-1;  Scattering;2,False,-1;  Direct;0.9,False,-1;  Ambient;0.1,False,-1;  Shadow;0.5,False,-1;Cast Shadows;0;  Use Shadow Threshold;0;Receive Shadows;0;GPU Instancing;1;LOD CrossFade;1;Built-in Fog;1;_FinalColorxAlpha;0;Meta Pass;1;Override Baked GI;0;Extra Pre Pass;0;DOTS Instancing;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;6;False;True;False;True;True;True;False;;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;15;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;False;False;False;False;0;False;-1;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.Compare;49;637.7253,884.7421;Inherit;False;0;4;0;FLOAT;3;False;1;FLOAT;3;False;2;FLOAT;1;False;3;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;48;-909.2599,756.6401;Inherit;True;Property;_Goal;Goal;5;0;Create;True;0;0;False;0;False;-1;None;48fd25a290673bb4d8a22e868f1fe86b;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.LerpOp;50;837.006,742.787;Inherit;True;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.BreakToComponentsNode;38;1124.59,1339.477;Inherit;False;COLOR;1;0;COLOR;0,0,0,0;False;16;FLOAT;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4;FLOAT;5;FLOAT;6;FLOAT;7;FLOAT;8;FLOAT;9;FLOAT;10;FLOAT;11;FLOAT;12;FLOAT;13;FLOAT;14;FLOAT;15
+Node;AmplifyShaderEditor.ColorNode;40;1172.811,779.5654;Inherit;False;Property;_Color0;Color 0;1;0;Create;True;0;0;False;0;False;0,0.9504251,0.9811321,0;0.9800716,0.6509804,1,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;41;1404.762,1091.713;Inherit;True;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;13;1699.667,1261.462;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;2;ValueSymbolShader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;17;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;0;True;1;5;False;-1;10;False;-1;1;1;False;-1;10;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;2;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;36;Workflow;1;Surface;1;  Refraction Model;0;  Blend;0;Two Sided;1;Fragment Normal Space,InvertActionOnDeselection;0;Transmission;0;  Transmission Shadow;0.5,False,-1;Translucency;0;  Translucency Strength;1,False,-1;  Normal Distortion;0.5,False,-1;  Scattering;2,False,-1;  Direct;0.9,False,-1;  Ambient;0.1,False,-1;  Shadow;0.5,False,-1;Cast Shadows;0;  Use Shadow Threshold;0;Receive Shadows;0;GPU Instancing;1;LOD CrossFade;1;Built-in Fog;1;_FinalColorxAlpha;0;Meta Pass;1;Override Baked GI;0;Extra Pre Pass;0;DOTS Instancing;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;6;False;True;False;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;16;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;15;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;False;False;False;False;0;False;-1;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;14;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;12;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;17;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Universal2D;0;5;Universal2D;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;5;False;-1;10;False;-1;1;1;False;-1;10;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;False;True;2;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=Universal2D;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 WireConnection;46;0;22;0
+WireConnection;47;0;22;0
 WireConnection;28;0;18;0
 WireConnection;28;1;25;0
 WireConnection;28;2;46;0
-WireConnection;47;0;22;0
 WireConnection;42;0;28;0
 WireConnection;42;1;43;0
 WireConnection;42;2;47;0
-WireConnection;38;0;42;0
+WireConnection;49;0;22;0
+WireConnection;50;0;42;0
+WireConnection;50;1;48;0
+WireConnection;50;2;49;0
+WireConnection;38;0;50;0
 WireConnection;41;0;40;0
 WireConnection;41;1;38;3
 WireConnection;13;0;41;0
 WireConnection;13;2;41;0
 WireConnection;13;6;38;3
 ASEEND*/
-//CHKSM=63BD67DF051B10F611E8F59912515F7F66F51426
+//CHKSM=1489B2C51096F0BD3B5AC7CEE374C3C8FF654AC2

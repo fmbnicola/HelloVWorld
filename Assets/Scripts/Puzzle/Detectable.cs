@@ -14,6 +14,8 @@ namespace Puzzle
 
         public Value.ID Value;
 
+        public bool Active { get; set; }
+
         #endregion
 
 
@@ -23,7 +25,7 @@ namespace Puzzle
         // Start is called before the first frame update
         void Start()
         {
-
+            this.Active = true;
         }
 
         // Update is called once per frame

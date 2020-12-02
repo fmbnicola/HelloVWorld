@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1087566706699519488}
   - component: {fileID: 1087566706699519503}
   - component: {fileID: 1087566706699519502}
-  - component: {fileID: 1087566706699519501}
   - component: {fileID: 300979611234567004}
   m_Layer: 0
-  m_Name: Connector
+  m_Name: LineConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,20 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1087566706699519501
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087566706699519500}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &300979611234567004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,3 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c446564a03442884984919d2744f5db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  connectState: 1
+  connectPercent: 0

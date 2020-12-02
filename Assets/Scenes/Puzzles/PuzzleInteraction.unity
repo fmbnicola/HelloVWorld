@@ -1091,6 +1091,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8072260330405266002, guid: 0edb4d1d8f792b04a8565e7d4e239a23,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8884967289623468264, guid: 0edb4d1d8f792b04a8565e7d4e239a23,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1104,7 +1109,7 @@ PrefabInstance:
     - target: {fileID: 8884967289623468264, guid: 0edb4d1d8f792b04a8565e7d4e239a23,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.966
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8884967289623468264, guid: 0edb4d1d8f792b04a8565e7d4e239a23,
         type: 3}
@@ -2173,6 +2178,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2049264649}
+        m_MethodName: set_Active
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTurnOff:
     m_PersistentCalls:
       m_Calls:
@@ -2198,6 +2214,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2049264649}
+        m_MethodName: set_Active
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &2049264649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6310152399883060290, guid: 0edb4d1d8f792b04a8565e7d4e239a23,
+    type: 3}
+  m_PrefabInstance: {fileID: 1096131252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049264647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e54a855048fa4c419a7ab1095322c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &2049264650 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 6841000323205436292, guid: 0edb4d1d8f792b04a8565e7d4e239a23,
@@ -2383,6 +2422,16 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 113511195}
+    - target: {fileID: 8341821474708005130, guid: ebaeca112bd486d46b49d9841a811b7c,
+        type: 3}
+      propertyPath: gravityMultiplier
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8341821474708005130, guid: ebaeca112bd486d46b49d9841a811b7c,
+        type: 3}
+      propertyPath: speed
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8341821475860644310, guid: ebaeca112bd486d46b49d9841a811b7c,
         type: 3}
       propertyPath: m_InteractionManager

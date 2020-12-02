@@ -79,7 +79,6 @@ GameObject:
   - component: {fileID: 3505189480352583213}
   - component: {fileID: 5773126716925572691}
   - component: {fileID: 8242532191377987676}
-  - component: {fileID: 6220497895586351511}
   m_Layer: 0
   m_Name: GlassPanel
   m_TagString: Untagged
@@ -148,20 +147,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6220497895586351511
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707924298056579520}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3804686630331549888
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +158,6 @@ GameObject:
   - component: {fileID: 3722857614432322044}
   - component: {fileID: 5347447060366238282}
   - component: {fileID: 1937781531630950280}
-  - component: {fileID: 2335870929087204366}
   m_Layer: 0
   m_Name: GlassPanel
   m_TagString: Untagged
@@ -242,20 +226,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &2335870929087204366
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3804686630331549888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4833538761156307715
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +237,6 @@ GameObject:
   - component: {fileID: 2405996149576890895}
   - component: {fileID: 4640265253987264021}
   - component: {fileID: 8117046641934776947}
-  - component: {fileID: 6449256523355723400}
   m_Layer: 0
   m_Name: GlassPanel
   m_TagString: Untagged
@@ -336,20 +305,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &6449256523355723400
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4833538761156307715}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5511542332021796516
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +444,6 @@ GameObject:
   - component: {fileID: 7908087499937105966}
   - component: {fileID: 7908087499937105967}
   - component: {fileID: 7908087499937105964}
-  - component: {fileID: 7908087499937105965}
   m_Layer: 0
   m_Name: GlassPanel
   m_TagString: Untagged
@@ -558,20 +512,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7908087499937105965
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7908087499937105954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7908087501140317411
 GameObject:
   m_ObjectHideFlags: 0
