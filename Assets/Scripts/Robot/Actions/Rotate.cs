@@ -28,11 +28,13 @@ namespace Robot.Actions
             this.Margin = margin;
 
             Vector3 ori = this.Robot.GetRotation();
-            this.TargetAngle = (ori.y + this.Angle) % 360;
+            this.TargetAngle =  (ori.y + this.Angle) % 360;
             if (this.TargetAngle < 0)
             {
                 this.TargetAngle = (360 + this.TargetAngle) % 360;
             }
+
+            this.TargetAngle = Mathf.Round(this.TargetAngle / 10) * 10;
 
             this.RobotBody = this.Robot.Rigidbody;
 

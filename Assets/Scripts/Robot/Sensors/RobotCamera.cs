@@ -36,15 +36,33 @@ namespace Robot.Sensors
 
         private void OnTriggerStay(Collider other)
         {
-            this.Obstacule = other.transform.GetComponent<Detectable>();
+            var detectable = other.transform.GetComponent<Detectable>();
+
+            if (detectable != null)
+            {
+                if (this.Obstacule == null || 
+                   (this.Obstacule.gameObject != other.gameObject))
+                {
+                    this.Obstacule = detectable;
+                }
+
+                Debug.Log("Detected: " + other.ToString());
+            }
         }
 
 
         private void OnTriggerExit(Collider other)
         {
-            if (this.Obstacule != null && other.gameObject == this.Obstacule.gameObject)
+            var detectable = other.transform.GetComponent<Detectable>();
+
+            if (detectable != null)
             {
-                this.Obstacule = null;
+                if (this.Obstacule != null && this.Obstacule.gameObject == other.gameObject)
+                {
+                    this.Obstacule = null;
+                }
+
+                Debug.Log("No Longer Detected: " + other.ToString());
             }
         }
 
@@ -55,6 +73,11 @@ namespace Robot.Sensors
 
         public Value GetValue()
         {
+            if (this.Obstacule != null && !this.Obstacule.Active)
+            {
+                this.Obstacule = null;
+            }
+
             if (this.Obstacule == null)
             {
                 return new Value(Value.ID.Empty);
