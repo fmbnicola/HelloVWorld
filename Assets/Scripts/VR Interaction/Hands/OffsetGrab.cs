@@ -44,4 +44,33 @@ public class OffsetGrab : XRGrabInteractable
         interactorPosition = Vector3.zero;
         interactorRotation = Quaternion.identity;
     }
+
+    public new float GetDistanceSqrToInteractor(XRBaseInteractor interactor)
+    {
+        if (!interactor)
+            return float.MaxValue;
+
+        float minDistanceSqr = float.MaxValue;
+
+        var delColliders = new List<int>();
+        var ind = 0;
+
+        foreach (var col in m_Colliders)
+        {
+            if (col == null)
+            {
+                delColliders.Add(ind);
+                continue;
+            }
+
+            var offset = (interactor.attachTransform.position - col.transform.position);
+            minDistanceSqr = Mathf.Min(offset.sqrMagnitude, minDistanceSqr);
+
+            ind++;
+        }
+
+        foreach (var i in delColliders) m_Colliders.RemoveAt(i);
+
+        return minDistanceSqr;
+    }
 }
