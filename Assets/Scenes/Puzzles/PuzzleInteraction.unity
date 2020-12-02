@@ -2383,6 +2383,16 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 113511195}
+    - target: {fileID: 8341821474708005130, guid: ebaeca112bd486d46b49d9841a811b7c,
+        type: 3}
+      propertyPath: gravityMultiplier
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8341821474708005130, guid: ebaeca112bd486d46b49d9841a811b7c,
+        type: 3}
+      propertyPath: speed
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8341821475860644310, guid: ebaeca112bd486d46b49d9841a811b7c,
         type: 3}
       propertyPath: m_InteractionManager
