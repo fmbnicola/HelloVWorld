@@ -84,7 +84,7 @@ public class Computer : MonoBehaviour
     {
         var program = this.Parse();
 
-        this.StartMechanism.StartProgram(program);
+        this.StartMechanism.LoadProgram(program);
     }
 
 
