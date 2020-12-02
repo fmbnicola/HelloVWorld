@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4042587057789877930}
   - component: {fileID: 1132088061214535951}
   - component: {fileID: 2905115733475706309}
+  - component: {fileID: 7819663227715420125}
+  - component: {fileID: 4057882463479108019}
   m_Layer: 0
   m_Name: RobotBox
   m_TagString: Untagged
@@ -27,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 3698008546719851536}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 2.6070418, y: 0.314, z: 3.601}
-  m_LocalScale: {x: 31.620981, y: 31.620981, z: 31.620981}
+  m_LocalScale: {x: 32, y: 32, z: 32}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 90.00001}
 --- !u!33 &1132088061214535951
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79,3 +81,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7819663227715420125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698008546719851536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e54a855048fa4c419a7ab1095322c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 1
+--- !u!65 &4057882463479108019
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698008546719851536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000001, y: 0.020000001, z: 0.018662136}
+  m_Center: {x: -0.0000014249234, y: 0.0000020219013, z: 0.000000003259629}

@@ -31,5 +31,8 @@ namespace SudoProgram
 
 
         public abstract override CodeNode AfterBreak();
+
+
+        public abstract void DeConfirm();
     }
 }

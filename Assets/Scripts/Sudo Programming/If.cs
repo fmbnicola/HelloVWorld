@@ -20,7 +20,26 @@ namespace SudoProgram
 
         public override CodeNode AfterBreak()
         {
+            this.DeConfirm();
+
             return this.Next;
+        }
+
+
+        public override void DeConfirm()
+        {
+            var inBlock = this.NextIfTrue;
+
+            while (true)
+            {
+                if (inBlock is If || inBlock is While) inBlock.AfterBreak();
+
+                inBlock.Complete = false;
+
+                inBlock = inBlock.Next;
+
+                if (inBlock == null) break;
+            }
         }
     }
 }

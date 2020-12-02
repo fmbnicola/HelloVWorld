@@ -13,6 +13,7 @@ namespace SudoProgram
             Empty,
             Box,
             Wall,
+            Goal
         }
 
         public ID Id { get; protected set; }
