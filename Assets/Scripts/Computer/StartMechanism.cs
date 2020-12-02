@@ -18,6 +18,8 @@ namespace ComputerElements
         public Vector3 DesiredRot;
         private Vector3 DesiredPos { get; set; }
 
+        private bool RobotLoaded { get; set; }
+
         #endregion
 
 
@@ -27,13 +29,6 @@ namespace ComputerElements
 
         private bool RobotFullyInScene { get; set; }
 
-        #endregion
-
-
-        #region /* Program Attributes */
-
-        private CodeNode Program { get; set; }
-        
         #endregion
 
 
@@ -53,17 +48,9 @@ namespace ComputerElements
         void Update()
         {
             // Robot ready to start
-            if (this.Program != null && !this.Effect.executing)
+            if (!this.RobotFullyInScene && !this.Effect.executing)
             {
                 this.RobotFullyInScene = true;
-                this.Robot.LoadProgram(this.Program);
-                this.Program = null;
-            }
-
-            // Robot ended execution
-            else if (this.RobotFullyInScene && !this.Robot.ProgramRunning)
-            {
-                this.MakeRobotDesapear();
             }
         }
 
@@ -99,20 +86,34 @@ namespace ComputerElements
 
         #region === Execution Methods ===
 
-        public void StartProgram(CodeNode program)
+        public void MakeRobotAppear()
         {
-            this.Program = program;
-
             this.Robot.Active(true);
 
             this.Robot.SummonRobot(this.DesiredPos, this.DesiredRot);
             this.Effect.Execute();
+
+            this.RobotLoaded = false;
         }
 
 
-        private void MakeRobotDesapear() 
+        public void LoadProgram(CodeNode program)
         {
-            //this.Effect.Execute();
+            // TODO: if robot active then make him explode
+
+            if (this.RobotLoaded)
+            {
+                this.MakeRobotAppear();
+            }
+
+            this.Robot.LoadProgram(program);
+            this.RobotLoaded = true;
+        }
+
+
+        public void MakeRobotDesapear() 
+        {
+            // TODO: explosion effect
 
             this.Robot.Active(false);
             this.RobotFullyInScene = false;
