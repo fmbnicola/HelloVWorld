@@ -36,11 +36,14 @@ namespace Puzzle.Tiles
 
         public BoxCollider DetectBox { get; private set; }
 
+        public AudioSource OnAudioSource;
+        public AudioSource OffAudioSource;
+        private bool pressed = false;
         #endregion
 
 
         #region /* Tile Attributes */
-        
+
         private Renderer TileRenderer { get; set; }
         private Material TileMaterial { get; set; }
 
@@ -63,7 +66,16 @@ namespace Puzzle.Tiles
         // Update is called once per frame
         void Update()
         {
+            if (pressed == false && ObjectDetected) {
+                pressed = true;
+                OnAudioSource.Play();
+            }
 
+            if (pressed == true && !ObjectDetected)
+            {
+                pressed = false;
+                OffAudioSource.Play();
+            }
         }
 
 

@@ -21,6 +21,10 @@ public class SpawnEffect : MonoBehaviour
     private MaterialPropertyBlock propertyBlock;
     private List<Renderer> renderers = new List<Renderer>();
 
+    // Audio
+    public AudioSource AudioSource;
+
+
     public void Initialize(GameObject obj)
     {
         if(realObject != null)
@@ -130,6 +134,9 @@ public class SpawnEffect : MonoBehaviour
 
         elapsedTime = 0.0f;
         executing = true;
+
+        if(AudioSource != null) AudioSource.Play();
+
     }
 
     private void SpawnRealObject()

@@ -26,6 +26,10 @@ namespace Block
 
         private ConnectorCable Cable;
 
+        // Audio
+        public AudioSource PlugAudioSource;
+        public AudioSource UnPlugAudioSource;
+
 
         // State
         public enum States
@@ -166,6 +170,8 @@ namespace Block
             this.Socket = socket;
 
             this.State = States.OnSocket;
+
+            this.PlugAudioSource.Play();
         }
         #endregion
 
@@ -199,6 +205,8 @@ namespace Block
             this.transform.SetParent(this.Block.transform);
 
             this.Cable.Clear();
+
+            this.UnPlugAudioSource.Play();
         }
         #endregion
 

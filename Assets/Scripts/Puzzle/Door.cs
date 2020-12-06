@@ -17,6 +17,9 @@ public class Door : MonoBehaviour
 
     private MaterialPropertyBlock propertyBlock;
 
+    // Audio
+    public AudioSource AudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +36,15 @@ public class Door : MonoBehaviour
         //Animate animTime parameter
         animTime = Mathf.Lerp(animTime, target_animTime, animSpeed * Time.deltaTime);
 
+        if (Mathf.Abs(animTime - target_animTime) <= 0.05) AudioSource.Stop();
+
         //set property block for door
         if (propertyBlock == null)
             propertyBlock = new MaterialPropertyBlock();
 
         propertyBlock.SetFloat("_AnimationTime", animTime);
         ShutterRenderer.SetPropertyBlock(propertyBlock);
+
     }
 
     public void Open()
@@ -50,6 +56,8 @@ public class Door : MonoBehaviour
         var mats = FrameRenderer.materials;
         mats[1] = OpenLightMaterial;
         FrameRenderer.materials = mats;
+
+        AudioSource.Play();
     }
 
     public void Close()
@@ -60,6 +68,8 @@ public class Door : MonoBehaviour
         //change light material
         var mats = FrameRenderer.materials;
         mats[1] = ClosedLightMaterial;
-        FrameRenderer.materials = mats; ;
+        FrameRenderer.materials = mats;
+
+        AudioSource.Play();
     }
 }

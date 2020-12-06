@@ -22,6 +22,10 @@ public class Computer : MonoBehaviour
 
     public StartMechanism StartMechanism;
 
+    public AudioSource StartAudioSource;
+    public AudioSource HumAudioSource;
+    public AudioSource EndAudioSource;
+
     public enum States
     {
         Idle,
@@ -76,6 +80,11 @@ public class Computer : MonoBehaviour
             this.Animator.TurnOn();
 
             this.BlockManager.State = BlockManager.States.Categories;
+
+            // Sound
+            StartAudioSource.Play();
+            Debug.Log("Start");
+            HumAudioSource.Play();
         }
     }
 
@@ -106,6 +115,11 @@ public class Computer : MonoBehaviour
             this.Animator.TurnOff();
 
             this.BlockManager.State = BlockManager.States.Off;
+
+            // Sound
+            EndAudioSource.Play();
+            Debug.Log("End");
+            HumAudioSource.Stop();
         }
     }
     #endregion

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlockRetriever : MonoBehaviour
 {
     public BlockManager Manager;
-
+    public AudioSource AudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class BlockRetriever : MonoBehaviour
         if(obj.CompareTag("Block"))
         {
             this.Manager.DeSpawn(obj);
+            AudioSource.Play();
         }
     }
 }
