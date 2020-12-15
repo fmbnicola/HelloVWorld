@@ -252,6 +252,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2007477526}
     m_Modifications:
+    - target: {fileID: 190678381880435778, guid: f4a3bb368c52ca64191298254c31800f,
+        type: 3}
+      propertyPath: NextScene
+      value: PuzzleInteraction
+      objectReference: {fileID: 0}
     - target: {fileID: 1223078771555004063, guid: f4a3bb368c52ca64191298254c31800f,
         type: 3}
       propertyPath: m_Name
@@ -329,6 +334,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4a3bb368c52ca64191298254c31800f, type: 3}
+--- !u!1 &268367562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8341821474708005134, guid: ebaeca112bd486d46b49d9841a811b7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 84305403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &268367570
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268367562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &268896037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5717327731333927651, guid: 364390c99f459034cb4e13af8ca5399c,

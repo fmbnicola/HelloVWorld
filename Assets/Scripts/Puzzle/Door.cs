@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
     // Audio
     public AudioSource AudioSource;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,11 @@ public class Door : MonoBehaviour
         //Animate animTime parameter
         animTime = Mathf.Lerp(animTime, target_animTime, animSpeed * Time.deltaTime);
 
-        if (Mathf.Abs(animTime - target_animTime) <= 0.05) AudioSource.Stop();
+        if (Mathf.Abs(animTime - target_animTime) <= 0.05)
+        {
+            AudioSource.Stop();
+            animTime = target_animTime;
+        }
 
         //set property block for door
         if (propertyBlock == null)
@@ -46,6 +51,7 @@ public class Door : MonoBehaviour
         ShutterRenderer.SetPropertyBlock(propertyBlock);
 
     }
+
 
     public void Open()
     {
@@ -71,5 +77,11 @@ public class Door : MonoBehaviour
         FrameRenderer.materials = mats;
 
         AudioSource.Play();
+    }
+
+
+    public bool IsOpen()
+    {
+        return animTime == 1.0f;
     }
 }

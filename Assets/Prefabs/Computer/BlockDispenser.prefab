@@ -94,7 +94,7 @@ MonoBehaviour:
   m_fontSize: 0.15
   m_fontSizeBase: 0.15
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 0.1
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_fontSize: 0.15
   m_fontSizeBase: 0.15
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 0.1
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1082,6 +1082,7 @@ MonoBehaviour:
   delayTime: 0
   durationTime: 0.8
   executing: 0
+  AudioSource: {fileID: 0}
 --- !u!1 &8767153033344837826
 GameObject:
   m_ObjectHideFlags: 0

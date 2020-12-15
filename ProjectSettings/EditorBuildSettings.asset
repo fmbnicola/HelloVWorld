@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AssetScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/Puzzles/PuzzleInstruction.unity
+    guid: 79722fa06085f8548bcb743ef350df7d
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleInteraction.unity
+    guid: d17d00170f37b644eaf11ce8e40ce6f2
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleLaser.unity
+    guid: fed09e61614ecf944a560adf1a632d9a
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleMaze.unity
+    guid: 20da570ee40fed34e88ca06975977ccf
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/PuzzleWhile.unity
+    guid: 1910cc9999a2a0f439479e967fab10e4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 930c50dfbc61c374fbeca171db209e98,
       type: 2}
