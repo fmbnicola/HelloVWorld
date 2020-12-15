@@ -175,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 190678381880435778, guid: f4a3bb368c52ca64191298254c31800f,
         type: 3}
       propertyPath: NextScene
-      value: PuzzleLaser
+      value: PuzzleWhile
       objectReference: {fileID: 0}
     - target: {fileID: 1223078771555004063, guid: f4a3bb368c52ca64191298254c31800f,
         type: 3}
