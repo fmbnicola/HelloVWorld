@@ -34,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &268367570
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341821474708005134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &2068957010783943418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,8 +210,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 6558467681516762343, guid: 46805a10d4f8f6d48bc729550b5a1a42,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46805a10d4f8f6d48bc729550b5a1a42, type: 3}
+--- !u!1 &8341821474708005134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6558467681516762338, guid: 46805a10d4f8f6d48bc729550b5a1a42,
+    type: 3}
+  m_PrefabInstance: {fileID: 2936419475825464812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8341821474708005132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6558467681516762336, guid: 46805a10d4f8f6d48bc729550b5a1a42,

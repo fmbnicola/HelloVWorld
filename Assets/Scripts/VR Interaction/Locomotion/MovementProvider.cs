@@ -38,7 +38,7 @@ public class MovementProvider : LocomotionProvider
 
     private void Update()
     {
-        PositionController();
+        //PositionController();
         CheckForInput();
         ApplyGravity();
     }
@@ -100,6 +100,8 @@ public class MovementProvider : LocomotionProvider
         {
             rightHand.TeleportToTarget();
             leftHand.TeleportToTarget();
+
+            PositionController();
         }
     }
 

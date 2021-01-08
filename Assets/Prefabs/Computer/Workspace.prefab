@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2812202513608298427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.92, y: 0.3, z: -2.9}
-  m_LocalScale: {x: 0.668688, y: 0.8293738, z: 0.668688}
+  m_LocalPosition: {x: 1.92, y: 0.3718, z: -2.9}
+  m_LocalScale: {x: 0.668688, y: 0.97310346, z: 0.6686883}
   m_Children: []
   m_Father: {fileID: 3339941270851168093}
   m_RootOrder: 4
@@ -279,6 +279,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.7749997
       objectReference: {fileID: 0}
+    - target: {fileID: 1897861677588976044, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.645
+      objectReference: {fileID: 0}
     - target: {fileID: 2468558158082290216, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
@@ -344,6 +349,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.6249999
       objectReference: {fileID: 0}
+    - target: {fileID: 3010872332407776850, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.645
+      objectReference: {fileID: 0}
     - target: {fileID: 3998636400746196545, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -353,6 +363,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -1.5550001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998636400746196545, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4555
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998636400746196545, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25174576
       objectReference: {fileID: 0}
     - target: {fileID: 4278381691416293591, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
@@ -679,6 +699,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.415
       objectReference: {fileID: 0}
+    - target: {fileID: 8115673663609465889, guid: a2304201e65acd546bb4668f638b68a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.645
+      objectReference: {fileID: 0}
     - target: {fileID: 8875041036619741275, guid: a2304201e65acd546bb4668f638b68a5,
         type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
@@ -789,6 +814,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3339941270851168093}
     m_Modifications:
+    - target: {fileID: 340293532262088360, guid: cfb93d16fefed8c41a702ae466c9bb38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.386
+      objectReference: {fileID: 0}
+    - target: {fileID: 340293532262088360, guid: cfb93d16fefed8c41a702ae466c9bb38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 340293532262088360, guid: cfb93d16fefed8c41a702ae466c9bb38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.378
+      objectReference: {fileID: 0}
     - target: {fileID: 594351540032032507, guid: cfb93d16fefed8c41a702ae466c9bb38,
         type: 3}
       propertyPath: SpawnPoint
