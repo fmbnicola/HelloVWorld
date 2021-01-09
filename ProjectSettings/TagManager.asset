@@ -10,6 +10,7 @@ TagManager:
   - Comparator
   - Sensor
   - Value
+  - Disk
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - SensorBlocks
   - Comparators
   - ValueBlocks
-  - 
+  - Robot
   - 
   - 
   - 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1421722236922055585}
   - component: {fileID: 1421722236922055587}
   - component: {fileID: 1421722236922055586}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1421722237706995969}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1421722237716973266}
   - component: {fileID: 1421722237716973268}
   - component: {fileID: 1421722237716973267}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 1421722238216048273}
   - component: {fileID: 1421722238216048275}
   - component: {fileID: 1421722238216048274}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 1421722238378598170}
   - component: {fileID: 1421722238378598172}
   - component: {fileID: 1421722238378598171}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: forklift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 1421722238423585070}
   - component: {fileID: 1421722238423585056}
   - component: {fileID: 1421722238423585071}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: threads
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421722238766276330}
   - component: {fileID: 1037798670157369405}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: robot
   m_TagString: Robot
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 1421722238658645392}
   - component: {fileID: 1421722238658645394}
   - component: {fileID: 1421722238658645393}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: headset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 8844773660404425780}
   - component: {fileID: 1374809863775283480}
   - component: {fileID: 8152356324083659894}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3595511408318844085}
   - component: {fileID: 2011407025138601722}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Sensors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,9 +697,8 @@ GameObject:
   - component: {fileID: 383848412741150303}
   - component: {fileID: 8398872638906317856}
   - component: {fileID: 7188167073724529708}
-  - component: {fileID: 7515277365180992415}
   - component: {fileID: 7497272997787294661}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,91 +789,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7515277365180992415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8398872638906318042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1cf195879396a74d8dbfc44fa776745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
-  m_InteractionLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  m_OnFirstHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnLastHoverExit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8398872638906318047}
-        m_MethodName: ResetProgram
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_OnSelectExit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnActivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnDeactivate:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CustomReticle: {fileID: 0}
-  m_AttachTransform: {fileID: 0}
-  m_AttachEaseInTime: 0.15
-  m_MovementType: 1
-  m_TrackPosition: 1
-  m_SmoothPosition: 0
-  m_SmoothPositionAmount: 5
-  m_TightenPosition: 0.5
-  m_TrackRotation: 1
-  m_SmoothRotation: 0
-  m_SmoothRotationAmount: 5
-  m_TightenRotation: 0.5
-  m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.1
-  m_ThrowSmoothingCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 0.5
-  m_GravityOnDetach: 1
-  m_RetainTransformParent: 1
 --- !u!82 &7497272997787294661
 AudioSource:
   m_ObjectHideFlags: 0
@@ -982,7 +896,7 @@ GameObject:
   - component: {fileID: 5059822710551341859}
   - component: {fileID: 1912453854684200783}
   - component: {fileID: 8170843483943570014}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
