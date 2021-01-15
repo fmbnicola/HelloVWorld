@@ -28,7 +28,7 @@ public class BlockManager : MonoBehaviour
         [Header("Only used if Preafab is 'InstructionBlock'."), SerializeField]
         public Instruction.ID InstructionId;
 
-        public int Stored;
+        public int Stored { get; set; }
 
 
         public GameObject GetPrefab()
